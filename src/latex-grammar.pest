@@ -1,0 +1,54 @@
+// Top level rule is `document`.
+document               = { 
+    SOI ~
+    (section? ~ NEWLINE)* ~ section? ~
+    EOI
+} //-- the last section? catches the last line
+    
+// here, control_statement should be replaced by control_block? or have both?
+section = {
+    (control_statement |
+    expression) }
+
+expression             = { token* }
+token     = { operator | control_statement | literal | control_statement_body }
+
+literal                   = @{ char+ }
+char                    = @{ ASCII_ALPHANUMERIC | punctuation }
+punctuation             = {
+    "," | "." | ";" | "(" | ")" | "[" | "]" | "|" | "<" | ">" | ":" 
+}
+// comment = { "% " ~ ANY ~ newline_character }
+
+
+// Control Statement Grammar
+control_statement = { control_character ~ control_statement_name ~ "{" ~ expression ~ "}" }
+control_statement_name = {
+    name
+}
+control_statement_body = { "{" ~ expression ~ "}" }
+
+
+// Control Characters & Meta Characters
+control_character           = _{ "\\" }
+name = @{ (ASCII_ALPHA | "_")+ }
+WHITESPACE = _{ " " }
+space_character             = _{ " " }
+tab_character               = _{ "\t" }
+caret_return_character      = _{ "\r" }
+
+operator = {
+    operator_infix |
+    operator_postfix
+}
+operator_infix = {
+    "=" | "+" | "-" | "–" | "*" | "/"
+}
+operator_postfix  = { "!" }
+
+// Environment Grammar
+// environment          = { environment_begin ~ environment_content ~ environment_end }
+// environment_content  = {(control_statement | expression )}
+// environment_begin    = { control_character ~ "begin" ~ "{" ~ PUSH(environment_name) ~ "}" }
+// environment_end      = { control_character ~ "end" ~ "{" ~ POP ~ "}" }
+// environment_name     = { ASCII_ALPHA+ }
