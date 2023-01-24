@@ -1,4 +1,4 @@
-# tex-rs
+# latex-rs
 
 ## notes
 
