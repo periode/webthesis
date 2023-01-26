@@ -214,7 +214,7 @@ fn parse_expression(_expr: Pair<Rule>, _indent: usize) -> Node {
                 let c = parse_cmd_stmt(subpair, indent);
                 expr_node.children.push(c);
             }
-            Rule::literal => {
+            Rule::literal_group => {
                 if DEBUG {
                     println!("{}literal: {}", SEPARATOR.repeat(indent), subpair.as_str());
                 }

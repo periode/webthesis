@@ -5,14 +5,15 @@ document = {
     EOI
 } //-- the last section? catches the last line
 
+// section is representing a paragraph
 section = {
     env_stmt |
     cmd_stmt |
     expression
 }
 
-expression   = { ( cmd_stmt | literal )* }
-literal      = @{ char+ } //-- letters and numbers with no spaces
+expression   = { ( cmd_stmt | literal_group )* }
+literal_group      = { char+ } //-- letters and numbers with no spaces
 char         = @{ ASCII_ALPHANUMERIC | punctuation }
 punctuation  = {
     "," | "." | ";" | "(" | ")" | "[" | "]" | "|" | "<" | ">" | ":" 
