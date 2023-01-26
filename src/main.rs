@@ -25,8 +25,10 @@ fn main() {
                 println!("\n{:?}", subpair.as_rule());
                 match subpair.as_rule() {
                     Rule::section => parse_section(subpair),
+                    Rule::env_stmt => parse_environment(subpair),
+                    // Rule::COMMENT => println!("{:?} -{}", subpair.as_rule(), subpair.as_str()),
                     Rule::EOI => (),
-                    _ => unreachable!()
+                    _ => println!("UNKNOWN {:?}", subpair.as_rule())
                 }
             }
         }
@@ -38,11 +40,11 @@ fn parse_section(_section: Pair<Rule>) {
     for subpair in _section.into_inner() {
         println!("  {:?}", subpair.as_rule());
         match subpair.as_rule() {
-            Rule::environment_stmt => {
+            Rule::env_stmt => {
                 parse_environment(subpair);
             }
-            Rule::command_stmt => {
-                parse_command_stmt(subpair);
+            Rule::cmd_stmt => {
+                parse_cmd_stmt(subpair);
             }
             Rule::expression => {
                 parse_expression(subpair);
@@ -57,27 +59,38 @@ fn parse_section(_section: Pair<Rule>) {
 fn parse_environment(_env: Pair<Rule>) {
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
-            Rule::environment_begin => println!("      {:?}", subpair.as_rule()),
-            Rule::environment_content => {
+            Rule::env_begin => println!("      {:?}", subpair.as_rule()),
+            Rule::env_content => {
                 println!("      {:?}", subpair.as_rule());
-                parse_section(subpair);
+                for subsubpair in subpair.into_inner() {
+                    match subsubpair.as_rule() {
+                        Rule::section => parse_section(subsubpair),
+                        _ => unreachable!()
+                    }
+                }
             }
-            Rule::environment_end => println!("      {:?}", subpair.as_rule()),
+            Rule::env_end => println!("      {:?}", subpair.as_rule()),
             _ => println!("      unexpected environment bourdel"),
         }
     }
 }
 
-fn parse_command_stmt(_stmt: Pair<Rule>) {
+fn parse_cmd_stmt(_stmt: Pair<Rule>) {
     for subpair in _stmt.into_inner() {
-        println!("      {:?} - {}", subpair.as_rule(), subpair.as_str())
+        match subpair.as_rule() {
+            Rule::ctrl_character => (),
+            Rule::name => println!("    {}", subpair.as_str()),
+            Rule::cmd_stmt_opt => println!("    {}", subpair.as_str()),
+            Rule::expression => parse_expression(subpair),
+            _ => println!("      unexpected: {:?}", subpair.as_rule()),
+        }
     }
 }
 
 fn parse_expression(_expr: Pair<Rule>) {
     for subpair in _expr.into_inner() {
         match subpair.as_rule() {
-            Rule::command_stmt => parse_command_stmt(subpair),
+            Rule::cmd_stmt => parse_cmd_stmt(subpair),
             Rule::literal => println!("     literal: {}", subpair.as_str()),
             _ => unreachable!()
         }

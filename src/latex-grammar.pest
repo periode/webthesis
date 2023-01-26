@@ -6,12 +6,12 @@ document = {
 } //-- the last section? catches the last line
 
 section = {
-    environment_stmt |
-    command_stmt |
+    env_stmt |
+    cmd_stmt |
     expression
 }
 
-expression   = { ( command_stmt | literal )* }
+expression   = { ( cmd_stmt | literal )* }
 literal      = @{ char+ } //-- letters and numbers with no spaces
 char         = @{ ASCII_ALPHANUMERIC | punctuation }
 punctuation  = {
@@ -19,23 +19,19 @@ punctuation  = {
 }
 
 // Control Statement Grammar
-command_stmt = { control_character ~ name ~ command_stmt_opt? ~ "{" ~ expression ~ "}" }
-command_stmt_opt = { "[" ~ name ~ "]" }
-command_stmt_body = { "{" ~ expression ~ "}" }
+cmd_stmt = { ctrl_character ~ name ~ cmd_stmt_opt? ~ "{" ~ expression ~ "}" }
+cmd_stmt_opt = { "[" ~ name ~ "]" }
 
 
 // Control Characters & Meta Characters
 name                    = @{ ASCII_ALPHA+ } //-- used for command and environment names
-COMMENT                 = { "%" ~ (!NEWLINE ~ ANY)* ~ NEWLINE }
+COMMENT                 = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
 WHITESPACE              = _{ " " }
 newline_char            = _{"\n"}
-control_character       = _{ "\\" }
-space_character         = _{ " " }
-tab_character           = _{ "\t" }
-caret_return_character  = _{ "\r" }
+ctrl_character       = _{ "\\" }
 
 // Environment Grammar
-environment_stmt     = { environment_begin ~ environment_content ~ environment_end }
-environment_content  = { (section? ~ newline_char)* }
-environment_begin    = @{ control_character ~ "begin" ~ "{" ~ name ~ "}" }
-environment_end      = @{ control_character ~ "end" ~ "{" ~ name ~ "}" }
+env_stmt     = { env_begin ~ env_content ~ env_end }
+env_content  = { (section? ~ newline_char)* }
+env_begin    = @{ ctrl_character ~ "begin" ~ "{" ~ PUSH(name) ~ "}" }
+env_end      = @{ ctrl_character ~ "end" ~ "{" ~ PEEK ~ "}" }
