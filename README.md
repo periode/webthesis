@@ -8,7 +8,7 @@ this parser takes a specific latex file and returns an AST.
 - [] environments
     - [] problem with nesting (issues with push and peek?)
 - [] hashmap to store ast
-- [] proper indentation system
+- [x] proper indentation system
 
 ## done
 
