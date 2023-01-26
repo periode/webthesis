@@ -15,8 +15,18 @@ pub struct LaTeXParser;
 #[derive(Debug)]
 struct Node {
     children: Vec<Node>,
-    name: String,
+    _type: Token,
     value: String,
+}
+
+#[derive(Debug)]
+enum Token {
+    Document,
+    Section,
+    Environment,
+    Command,
+    Expression,
+    Literal,
 }
 
 const DEBUG: bool = false;
@@ -35,7 +45,7 @@ fn main() {
 
             let mut n = Node {
                 children: Vec::<Node>::new(),
-                name: String::from(format!("{:?}", pair.as_rule())),
+                _type: Token::Document,
                 value: String::from(""),
             };
 
@@ -66,7 +76,7 @@ fn main() {
 
 fn pretty_print(_ast: Vec<Node>, depth: usize) {
     for n in _ast.into_iter() {
-        println!("{}name: {}", SEPARATOR.repeat(depth), n.name);
+        println!("{}type: {:?}", SEPARATOR.repeat(depth), n._type);
         println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
         pretty_print(n.children, depth + 1);
     }
@@ -75,7 +85,7 @@ fn pretty_print(_ast: Vec<Node>, depth: usize) {
 fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
     let mut section_node = Node {
         children: Vec::<Node>::new(),
-        name: String::from("section"),
+        _type: Token::Section,
         value: String::from(""),
     };
 
@@ -113,7 +123,7 @@ fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
 fn parse_environment(_env: Pair<Rule>, _indent: usize) -> Node {
     let mut env_node = Node {
         children: Vec::<Node>::new(),
-        name: String::from("environment"),
+        _type: Token::Environment,
         value: String::from(""),
     };
     let indent = _indent + 1;
@@ -154,7 +164,7 @@ fn parse_environment(_env: Pair<Rule>, _indent: usize) -> Node {
 fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
     let mut cmd_node = Node {
         children: Vec::<Node>::new(),
-        name: String::from("cmd"),
+        _type: Token::Command,
         value: String::from(""),
     };
 
@@ -193,7 +203,7 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
 fn parse_expression(_expr: Pair<Rule>, _indent: usize) -> Node {
     let mut expr_node = Node {
         children: Vec::<Node>::new(),
-        name: String::from("expr"),
+        _type: Token::Expression,
         value: String::from(""),
     };
 
@@ -210,7 +220,7 @@ fn parse_expression(_expr: Pair<Rule>, _indent: usize) -> Node {
                 }
 
                 expr_node.children.push(Node {
-                    name: String::from("literal"),
+                    _type: Token::Literal,
                     value: String::from(subpair.as_str()),
                     children: Vec::<Node>::new(),
                 });
