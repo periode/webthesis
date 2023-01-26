@@ -16,63 +16,70 @@ fn main() {
     let input = "latex_test.tex";
     let src = fs::read_to_string(input).expect("Cannot open file");
 
-    println!("parsing...");
+    println!("parsing {}...", input);
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
-            let result = pairs.next().unwrap();
+            let pair = pairs.next().unwrap();
 
-            for section in result.into_inner() {
-                println!("\n{:?}", section.as_rule());
-                match section.as_rule() {
-                    Rule::section => parse_section(section),
-                    _ => println!("nothing"),
+            for subpair in pair.into_inner() {
+                println!("\n{:?}", subpair.as_rule());
+                match subpair.as_rule() {
+                    Rule::section => parse_section(subpair),
+                    Rule::EOI => (),
+                    _ => unreachable!()
                 }
             }
         }
         Err(error) => println!("error parsing: {}", error),
     }
-
-    // println!("parsed {:?}\n\n{}", result.as_rule(), result.as_str());
 }
 
 fn parse_section(_section: Pair<Rule>) {
-    for field in _section.into_inner() {
-        println!("  {:?}", field.as_rule());
-        match field.as_rule() {
+    for subpair in _section.into_inner() {
+        println!("  {:?}", subpair.as_rule());
+        match subpair.as_rule() {
             Rule::environment_stmt => {
-                parse_environment(field);
+                parse_environment(subpair);
             }
             Rule::command_stmt => {
-                for subfield in field.into_inner() {
-                    println!("      {:?} - {}", subfield.as_rule(), subfield.as_str())
-                }
+                parse_command_stmt(subpair);
             }
             Rule::expression => {
-                parse_expression(field);
+                parse_expression(subpair);
             }
-            Rule::section => parse_section(field),
-            Rule::comment => println!("     {}", field.as_str()),
-            _ => println!("UNKNOWN RULE: {:?}", field.as_rule()),
+            Rule::section => parse_section(subpair),
+            Rule::COMMENT => println!("     {}", subpair.as_str()),
+            _ => println!("UNKNOWN RULE: {:?}", subpair.as_rule()),
         }
     }
 }
 
 fn parse_environment(_env: Pair<Rule>) {
-    for elem in _env.into_inner() {
-        match elem.as_rule() {
-            Rule::environment_begin => println!("      {:?}", elem.as_rule()),
+    for subpair in _env.into_inner() {
+        match subpair.as_rule() {
+            Rule::environment_begin => println!("      {:?}", subpair.as_rule()),
             Rule::environment_content => {
-                println!("      {:?}", elem.as_rule());
-                parse_section(elem);
+                println!("      {:?}", subpair.as_rule());
+                parse_section(subpair);
             }
-            Rule::environment_end => println!("      {:?}", elem.as_rule()),
+            Rule::environment_end => println!("      {:?}", subpair.as_rule()),
             _ => println!("      unexpected environment bourdel"),
         }
     }
 }
 
+fn parse_command_stmt(_stmt: Pair<Rule>) {
+    for subpair in _stmt.into_inner() {
+        println!("      {:?} - {}", subpair.as_rule(), subpair.as_str())
+    }
+}
+
 fn parse_expression(_expr: Pair<Rule>) {
-    for subfield in _expr.into_inner() {
-        println!("      {:?} - {}", subfield.as_rule(), subfield.as_str())
+    for subpair in _expr.into_inner() {
+        match subpair.as_rule() {
+            Rule::command_stmt => parse_command_stmt(subpair),
+            Rule::literal => println!("     literal: {}", subpair.as_str()),
+            _ => unreachable!()
+        }
     }
 }

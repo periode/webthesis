@@ -2,10 +2,14 @@
 
 ## notes
 
-will need individual `parseExpression()`, `parseControlStmt()`, etc. rules with match loops
+this parser takes a specific latex file and returns an AST.
 
 ## todo
 - [] environments
-- [] command statements (e.g. `\emph[opt1, opt2]{arg}`)
-- [] comments
 - [] hashmap to store ast
+- [] proper indentation system
+
+## done
+
+- [x] command statements (e.g. `\emph[opt1, opt2]{arg}`)
+- [x] comments

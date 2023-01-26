@@ -1,56 +1,41 @@
 // Top level rule is `document`.
-document               = { 
+document = { 
     SOI ~
     (section? ~ newline_char)* ~ section? ~
     EOI
 } //-- the last section? catches the last line
-    comment = { "%" ~ ANY* }
 
 section = {
-    comment |
     environment_stmt |
     command_stmt |
     expression
 }
 
-expression             = { (operator | command_stmt | literal )* }
-literal                 = @{ char+ } //-- letters and numbers with no spaces
-char                    = @{ ASCII_ALPHANUMERIC | punctuation }
-punctuation             = {
+expression   = { ( command_stmt | literal )* }
+literal      = @{ char+ } //-- letters and numbers with no spaces
+char         = @{ ASCII_ALPHANUMERIC | punctuation }
+punctuation  = {
     "," | "." | ";" | "(" | ")" | "[" | "]" | "|" | "<" | ">" | ":" 
 }
-// comment = { "% " ~ ANY ~ NEWLINE }
-
 
 // Control Statement Grammar
-command_stmt = { control_character ~ command_stmt_name ~ "{" ~ expression ~ "}" }
-command_stmt_name = {
-    name
-}
+command_stmt = { control_character ~ name ~ command_stmt_opt? ~ "{" ~ expression ~ "}" }
+command_stmt_opt = { "[" ~ name ~ "]" }
 command_stmt_body = { "{" ~ expression ~ "}" }
 
 
 // Control Characters & Meta Characters
-name                        = @{ ASCII_ALPHA+ } //-- used for command and environment names
-WHITESPACE                  = _{ " " }
-newline_char                = _{"\n"}
-control_character           = _{ "\\" }
-space_character             = _{ " " }
-tab_character               = _{ "\t" }
-caret_return_character      = _{ "\r" }
-
-operator = {
-    operator_infix |
-    operator_postfix
-}
-operator_infix = {
-    "=" | "+" | "-" | "–" | "*" | "/"
-}
-operator_postfix  = { "!" }
+name                    = @{ ASCII_ALPHA+ } //-- used for command and environment names
+COMMENT                 = { "%" ~ (!NEWLINE ~ ANY)* ~ NEWLINE }
+WHITESPACE              = _{ " " }
+newline_char            = _{"\n"}
+control_character       = _{ "\\" }
+space_character         = _{ " " }
+tab_character           = _{ "\t" }
+caret_return_character  = _{ "\r" }
 
 // Environment Grammar
 environment_stmt     = { environment_begin ~ environment_content ~ environment_end }
 environment_content  = { (section? ~ newline_char)* }
-environment_begin    = { control_character ~ "begin" ~ "{" ~ environment_name ~ "}" }
-environment_end      = { control_character ~ "end" ~ "{" ~ environment_name ~ "}" }
-environment_name     = { ASCII_ALPHA+ }
+environment_begin    = @{ control_character ~ "begin" ~ "{" ~ name ~ "}" }
+environment_end      = @{ control_character ~ "end" ~ "{" ~ name ~ "}" }
