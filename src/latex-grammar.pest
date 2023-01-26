@@ -4,16 +4,16 @@ document               = {
     (section? ~ newline_char)* ~ section? ~
     EOI
 } //-- the last section? catches the last line
-    
-// here, command_stmt should be replaced by control_block? or have both?
+    comment = { "%" ~ ANY* }
+
 section = {
+    comment |
     environment_stmt |
     command_stmt |
     expression
 }
 
-expression             = { token* }
-token     = { operator | command_stmt | literal | command_stmt_body }
+expression             = { (operator | command_stmt | literal )* }
 literal                 = @{ char+ } //-- letters and numbers with no spaces
 char                    = @{ ASCII_ALPHANUMERIC | punctuation }
 punctuation             = {
