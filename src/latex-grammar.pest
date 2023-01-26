@@ -19,7 +19,7 @@ punctuation  = {
 }
 
 // Control Statement Grammar
-cmd_stmt = { ctrl_character ~ name ~ cmd_stmt_opt? ~ "{" ~ expression ~ "}" }
+cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ cmd_stmt_opt? ~ "{" ~ expression ~ "}" }
 cmd_stmt_opt = { "[" ~ name ~ "]" }
 
 
@@ -31,7 +31,5 @@ newline_char            = _{"\n"}
 ctrl_character       = _{ "\\" }
 
 // Environment Grammar
-env_stmt     = { env_begin ~ env_content ~ env_end }
+env_stmt     = { ctrl_character ~ "begin" ~ "{" ~ PUSH(name) ~ "}" ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 env_content  = { (section? ~ newline_char)* }
-env_begin    = @{ ctrl_character ~ "begin" ~ "{" ~ PUSH(name) ~ "}" }
-env_end      = @{ ctrl_character ~ "end" ~ "{" ~ PEEK ~ "}" }
