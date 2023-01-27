@@ -54,7 +54,9 @@ fn main() {
                 match subpair.as_rule() {
                     Rule::section => {
                         let s = parse_section(subpair, indent);
-                        n.children.push(s);
+                        if s.children.len() > 0 {
+                            n.children.push(s);
+                        }
                     }
                     Rule::env_stmt => {
                         let e = parse_environment(subpair, indent);
@@ -78,6 +80,7 @@ fn pretty_print(_ast: Vec<Node>, depth: usize) {
     for n in _ast.into_iter() {
         println!("{}type: {:?}", SEPARATOR.repeat(depth), n._type);
         println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
+        println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
         pretty_print(n.children, depth + 1);
     }
 }
@@ -106,11 +109,16 @@ fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
             }
             Rule::expression => {
                 let e = parse_expression(subpair, indent);
-                section_node.children.push(e);
+
+                if e.children.len() > 0 {
+                    section_node.children.push(e);
+                }
             }
             Rule::section => {
                 let n = parse_section(subpair, indent);
-                section_node.children.push(n);
+                if n.children.len() > 0 {
+                    section_node.children.push(n);
+                }
             }
             Rule::COMMENT => println!("{}{}", SEPARATOR.repeat(indent), subpair.as_str()),
             _ => unreachable!(),
@@ -144,7 +152,9 @@ fn parse_environment(_env: Pair<Rule>, _indent: usize) -> Node {
                     match subsubpair.as_rule() {
                         Rule::section => {
                             let n = parse_section(subsubpair, indent);
-                            env_node.children.push(n);
+                            if n.children.len() > 0 {
+                                env_node.children.push(n);
+                            }
                         }
                         _ => unreachable!(),
                     }
@@ -187,7 +197,13 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
             }
             Rule::expression => {
                 let e = parse_expression(subpair, indent);
-                cmd_node.children.push(e);
+
+                //-- todo: this might need some refactoring
+                //-- either we skip new lines in the parsing grammar
+                //-- or we get rid of the expression altogether
+                if e.children.len() > 0 {
+                    cmd_node.children.push(e);
+                }
             }
             _ => println!(
                 "{} unexpected: {:?}",
