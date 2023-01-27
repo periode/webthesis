@@ -21,11 +21,10 @@ struct Node {
 
 #[derive(Debug)]
 enum Token {
-    Document,
+    DocumentRoot,
     Section,
     Environment,
     Command,
-    Expression,
     Literal,
 }
 
@@ -45,7 +44,7 @@ fn main() {
 
             let mut n = Node {
                 children: Vec::<Node>::new(),
-                _type: Token::Document,
+                _type: Token::DocumentRoot,
                 value: String::from(""),
             };
 
@@ -107,12 +106,16 @@ fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
                 let c = parse_cmd_stmt(subpair, indent);
                 section_node.children.push(c);
             }
-            Rule::expression => {
-                let e = parse_expression(subpair, indent);
-
-                if e.children.len() > 0 {
-                    section_node.children.push(e);
+            Rule::literal_group => {
+                if DEBUG {
+                    println!("{}literal: {}", SEPARATOR.repeat(indent), subpair.as_str());
                 }
+
+                section_node.children.push(Node {
+                    _type: Token::Literal,
+                    value: String::from(subpair.as_str()),
+                    children: Vec::<Node>::new(),
+                });
             }
             Rule::section => {
                 let n = parse_section(subpair, indent);
@@ -195,15 +198,16 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
                 }
                 cmd_node.value = String::from(subpair.as_str())
             }
-            Rule::expression => {
-                let e = parse_expression(subpair, indent);
-
-                //-- todo: this might need some refactoring
-                //-- either we skip new lines in the parsing grammar
-                //-- or we get rid of the expression altogether
-                if e.children.len() > 0 {
-                    cmd_node.children.push(e);
+            Rule::literal_group => {
+                if DEBUG {
+                    println!("{}literal: {}", SEPARATOR.repeat(indent), subpair.as_str());
                 }
+
+                cmd_node.children.push(Node {
+                    _type: Token::Literal,
+                    value: String::from(subpair.as_str()),
+                    children: Vec::<Node>::new(),
+                });
             }
             _ => println!(
                 "{} unexpected: {:?}",
@@ -214,36 +218,4 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
     }
 
     cmd_node
-}
-
-fn parse_expression(_expr: Pair<Rule>, _indent: usize) -> Node {
-    let mut expr_node = Node {
-        children: Vec::<Node>::new(),
-        _type: Token::Expression,
-        value: String::from(""),
-    };
-
-    let indent = _indent + 1;
-    for subpair in _expr.into_inner() {
-        match subpair.as_rule() {
-            Rule::cmd_stmt => {
-                let c = parse_cmd_stmt(subpair, indent);
-                expr_node.children.push(c);
-            }
-            Rule::literal_group => {
-                if DEBUG {
-                    println!("{}literal: {}", SEPARATOR.repeat(indent), subpair.as_str());
-                }
-
-                expr_node.children.push(Node {
-                    _type: Token::Literal,
-                    value: String::from(subpair.as_str()),
-                    children: Vec::<Node>::new(),
-                });
-            }
-            _ => unreachable!(),
-        }
-    }
-
-    expr_node
 }

@@ -9,10 +9,9 @@ document = {
 section = {
     env_stmt |
     cmd_stmt |
-    expression
+    ( cmd_stmt | literal_group )*
 }
 
-expression   = { ( cmd_stmt | literal_group )* }
 literal_group      = { char+ } //-- letters and numbers with no spaces
 char         = @{ ASCII_ALPHANUMERIC | punctuation }
 punctuation  = {
@@ -21,7 +20,7 @@ punctuation  = {
 
 // Control Statement Grammar
 //-- no newlines allowed in a cmd body
-cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ cmd_stmt_opt? ~ "{" ~ expression ~ "}" }
+cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ cmd_stmt_opt? ~ "{" ~ ( cmd_stmt | literal_group )* ~ "}" }
 cmd_stmt_opt = { "[" ~ name ~ "]" }
 
 
