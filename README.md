@@ -1,11 +1,15 @@
-# latex-rs
+# webthesis
 
 ## notes
 
-this parser takes a specific latex file and returns an AST.
+this project takes a specific latex file and returns an AST.
+
+from this AST, it generates a web rendering of the latex file.
 
 ## doing
 
+- [ ] hashmap to store ast
+    - [ ] have different node types as `children` (trait implementation?)
 
 ## todo
 
@@ -43,11 +47,6 @@ this parser takes a specific latex file and returns an AST.
     - [ ] ref (counterpart of the above ^)
     - [ ] hyperref (not sure what is the difference with `ref`)
     - [ ] url
-- [ ] hashmap to store ast
-    - [ ] have a clear description of what the data type of each node should be (env, expr, cmd, etc.)
-    - [ ] environment -> name=name
-    - [ ] command -> name=name, value=opts, children=args (this is the one that needs to be made into an additional struct, it needs at least three fields)
-    - [ ] literal -> value
 
 ## done
 

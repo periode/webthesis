@@ -1,0 +1,98 @@
+[
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "_type": "literal",
+                                                "value": "A contribution"
+                                            }
+                                        ],
+                                        "_type": "command",
+                                        "value": "section"
+                                    }
+                                ],
+                                "_type": "section",
+                                "value": ""
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "_type": "literal",
+                                        "value": "I offered"
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [],
+                                                "_type": "literal",
+                                                "value": "aesthetic properties"
+                                            }
+                                        ],
+                                        "_type": "command",
+                                        "value": "[testoption]"
+                                    },
+                                    {
+                                        "children": [],
+                                        "_type": "literal",
+                                        "value": "in code."
+                                    }
+                                ],
+                                "_type": "section",
+                                "value": ""
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": [
+                                                    {
+                                                        "children": [],
+                                                        "_type": "literal",
+                                                        "value": "A quote."
+                                                    }
+                                                ],
+                                                "_type": "section",
+                                                "value": ""
+                                            }
+                                        ],
+                                        "_type": "environment",
+                                        "value": "quote"
+                                    }
+                                ],
+                                "_type": "section",
+                                "value": ""
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [],
+                                        "_type": "literal",
+                                        "value": "And then more."
+                                    }
+                                ],
+                                "_type": "section",
+                                "value": ""
+                            }
+                        ],
+                        "_type": "environment",
+                        "value": "document"
+                    }
+                ],
+                "_type": "section",
+                "value": ""
+            }
+        ],
+        "_type": "document_root",
+        "value": ""
+    }
+]
