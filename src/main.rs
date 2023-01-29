@@ -1,18 +1,20 @@
 // from https://github.com/bign86/pest_latex
 
-use std::fs;
-
+use std::fs::{self, File};
+use std::io::{Write};
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 
 use pest::{iterators::Pair, Parser};
+use serde::Serialize;
 
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
 pub struct LaTeXParser;
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
+//-- todo: probably add serde_derive
 struct Node {
     children: Vec<Node>,
     _type: Token,
@@ -28,15 +30,31 @@ enum Token {
     Literal,
 }
 
+impl Serialize for Token {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        match &self {
+            Token::DocumentRoot => serializer.serialize_str("document_root"),
+            Token::Section => serializer.serialize_str("section"),
+            Token::Environment => serializer.serialize_str("environment"),
+            Token::Command => serializer.serialize_str("command"),
+            Token::Literal => serializer.serialize_str("literal"),
+        }
+    }
+}
+
 const DEBUG: bool = false;
 const SEPARATOR: &str = " | ";
+const INPUT: &str = "latex_test.tex";
+const OUTPUT: &str = "parsed.json";
 fn main() {
-    let input = "latex_test.tex";
-    let src = fs::read_to_string(input).expect("Cannot open file");
+    let src = fs::read_to_string(INPUT).expect("Cannot open file");
 
     let mut ast = Vec::<Node>::new();
 
-    println!("parsing {}...", input);
+    println!("parsing {}...", INPUT);
     let indent = 0;
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
@@ -49,7 +67,10 @@ fn main() {
             };
 
             for subpair in pair.into_inner() {
-                println!("\n{:?}", subpair.as_rule());
+                if DEBUG {
+                    println!("\n{:?}", subpair.as_rule());
+                }
+
                 match subpair.as_rule() {
                     Rule::section => {
                         let s = parse_section(subpair, indent);
@@ -72,15 +93,24 @@ fn main() {
         Err(error) => println!("error parsing: {}", error),
     }
 
-    pretty_print(ast, 0);
+    if DEBUG {
+        pretty_print(&ast, 0);
+    }
+
+    let json_string = serde_json::to_string(&ast).unwrap();
+    let mut output_file = File::create(OUTPUT).unwrap();
+    match write!(output_file, "{}", json_string) {
+        Ok(_) => println!("...wrote AST to {}", OUTPUT),
+        Err(error) => println!("...failed to write to {}:{}", OUTPUT, error)
+    }
 }
 
-fn pretty_print(_ast: Vec<Node>, depth: usize) {
+fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     for n in _ast.into_iter() {
         println!("{}type: {:?}", SEPARATOR.repeat(depth), n._type);
         println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
         println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
-        pretty_print(n.children, depth + 1);
+        pretty_print(&n.children, depth + 1);
     }
 }
 

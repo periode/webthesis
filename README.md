@@ -4,6 +4,9 @@
 
 this parser takes a specific latex file and returns an AST.
 
+## doing
+
+
 ## todo
 
 - [ ] preprocessor for includes
@@ -53,3 +56,4 @@ this parser takes a specific latex file and returns an AST.
 - [x] command statements (e.g. `\emph[opt1, opt2]{arg}`)
 - [x] comments (currently silenced)
 - [x] proper indentation system
+- [x] serialization
