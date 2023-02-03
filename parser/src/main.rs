@@ -5,10 +5,10 @@ use std::io::Write;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
+use foliage::{environments, commands};
 use pest::{iterators::Pair, Parser};
 use serde::Serialize;
 use clap::Parser as ArgParser;
-use crate::foliage::commands::parse_cmd_name;
 
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
@@ -176,7 +176,12 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
-            Rule::name => env_node.value = String::from(subpair.as_str()),
+            Rule::name => match environments::parse_name(subpair.as_str()) {
+                Some(env) => {
+                    env_node.value = String::from(env.value())
+                },
+                None => panic!("Could not parse environment name: {}", subpair.as_str())
+            },
             Rule::env_content => {
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
@@ -208,7 +213,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
     for subpair in _stmt.into_inner() {
         match subpair.as_rule() {
             Rule::ctrl_character => (),
-            Rule::name => match parse_cmd_name(subpair.as_str()) {
+            Rule::name => match commands::parse_name(subpair.as_str()) {
                 Some(cmd) => {
                     if cmd.is_print_layout() {
                         return None;

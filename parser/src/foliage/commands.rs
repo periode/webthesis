@@ -9,6 +9,7 @@ pub enum Command {
     Footnote,
     InlineListing,
     Italic,
+    Item,
     Linespread,
     Linewidth,
     Label,
@@ -35,6 +36,7 @@ impl Command {
             Command::Footnote => "footnote",
             Command::InlineListing => "inline_listing",
             Command::Italic => "italic",
+            Command::Item => "item",
             Command::Label => "label",
             Command::Linespread => "linespread",
             Command::Linewidth => "linewidth",
@@ -63,7 +65,7 @@ impl Command {
     }
 }
 
-pub fn parse_cmd_name(_name: &str) -> Option<Command> {
+pub fn parse_name(_name: &str) -> Option<Command> {
     match _name {
         "baselineskip" => Some(Command::Baselineskip),
         "caption" => Some(Command::Caption),
@@ -73,6 +75,7 @@ pub fn parse_cmd_name(_name: &str) -> Option<Command> {
         "dots" => Some(Command::Dots),
         "emph" => Some(Command::Emph),
         "footnote" => Some(Command::Footnote),
+        "item" => Some(Command::Item),
         "label" => Some(Command::Label),
         "lstinline" => Some(Command::InlineListing),
         "linespread" => Some(Command::Linespread),
