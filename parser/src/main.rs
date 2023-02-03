@@ -1,7 +1,7 @@
 // from https://github.com/bign86/pest_latex
 
 use std::fs::{self, File};
-use std::io::{Write};
+use std::io::Write;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
@@ -50,55 +50,79 @@ impl Serialize for Token {
 }
 
 enum Command {
+    Baselineskip,
     Caption,
+    Centerline,
     Chapter,
     Dots,
     Emph,
     Footnote,
     InlineListing,
     Linespread,
+    Linewidth,
+    Pagebreak,
+    Rule,
     Section,
     Subsection,
     Subsubsection,
+    VSpace,
 }
 
 impl Command {
     fn value(&self) -> &str {
         match *self {
+            Command::Baselineskip => "baselineskip",
             Command::Caption => "caption",
+            Command::Centerline => "centerline",
             Command::Chapter => "chapter",
             Command::Dots => "dots",
             Command::Emph => "emph",
             Command::Footnote => "footnote",
             Command::InlineListing => "inline_listing",
             Command::Linespread => "linespread",
+            Command::Linewidth => "linewidth",
+            Command::Pagebreak => "pagebreak",
+            Command::Rule => "rule",
             Command::Section => "section",
             Command::Subsection => "subsection",
             Command::Subsubsection => "subsubsection",
+            Command::VSpace => "vspace"
         }
     }
 
     fn is_print_layout(&self) -> bool {
         match *self {
             Command::Linespread => true,
-            _ => false
+            Command::VSpace => true,
+            Command::Centerline => true,
+            Command::Pagebreak => true,
+            Command::Rule => true,
+            Command::Linewidth => true,
+            Command::Baselineskip => true,
+            _ => false,
         }
     }
 }
 
 fn parse_cmd_name(_name: &str) -> Option<Command> {
     match _name {
+        "baselineskip" => Some(Command::Baselineskip),
         "caption" => Some(Command::Caption),
+        "centerline" => Some(Command::Centerline),
         "chapter" => Some(Command::Chapter),
         "dots" => Some(Command::Dots),
         "emph" => Some(Command::Emph),
         "footnote" => Some(Command::Footnote),
         "lstinline" => Some(Command::InlineListing),
         "linespread" => Some(Command::Linespread),
+        "linewidth" => Some(Command::Linewidth),
+        "pagebreak" => Some(Command::Pagebreak),
+        "rule" => Some(Command::Rule),
         "section" => Some(Command::Section),
         "subsection" => Some(Command::Subsection),
         "subsubsection" => Some(Command::Subsubsection),
-        _ => None
+        "vspace" => Some(Command::VSpace),
+        _ => None,
     }
 }
 
@@ -153,7 +177,7 @@ fn main() {
     let mut output_file = File::create(OUTPUT).unwrap();
     match write!(output_file, "{}", json_string) {
         Ok(_) => println!("...wrote AST to {}", OUTPUT),
-        Err(error) => println!("...failed to write to {}:{}", OUTPUT, error)
+        Err(error) => println!("...failed to write to {}:{}", OUTPUT, error),
     }
 }
 
@@ -180,8 +204,11 @@ fn parse_section(_section: Pair<Rule>) -> Node {
                 section_node.children.push(e);
             }
             Rule::cmd_stmt => {
-                let c = parse_cmd_stmt(subpair);
-                section_node.children.push(c);
+                if let Some(c) = parse_cmd_stmt(subpair) {
+                    section_node.children.push(c)
+                }else{
+                    println!("skipping layout node")
+                }
             }
             Rule::literal_group => {
                 section_node.children.push(Node {
@@ -213,9 +240,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
-            Rule::name => {
-                env_node.value = String::from(subpair.as_str())
-            }
+            Rule::name => env_node.value = String::from(subpair.as_str()),
             Rule::env_content => {
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
@@ -229,16 +254,15 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                     }
                 }
             }
-            _ => println!(
-                "UNEXPECTED RULE {:?}", subpair.as_rule()
-            ),
+            _ => println!("UNEXPECTED RULE {:?}", subpair.as_rule()),
         }
     }
 
     env_node
 }
 
-fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Node {
+//-- parse_cmd_stmt can return None if the parsed Node is only related print layout
+fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Option<Node> {
     let mut cmd_node = Node {
         children: Vec::<Node>::new(),
         _type: Token::Command,
@@ -248,15 +272,17 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Node {
     for subpair in _stmt.into_inner() {
         match subpair.as_rule() {
             Rule::ctrl_character => (),
-            Rule::name => {
-                match parse_cmd_name(subpair.as_str()) {
-                    Some(cmd) => cmd_node.value = String::from(cmd.value()),
-                    None => panic!("Could not parse command: {}", subpair.as_str()),
+            Rule::name => match parse_cmd_name(subpair.as_str()) {
+                Some(cmd) => {
+                    if cmd.is_print_layout() {
+                        return None;
+                    } else {
+                        cmd_node.value = String::from(cmd.value());
+                    }
                 }
-            }
-            Rule::cmd_stmt_opt => {
-                cmd_node.value = String::from(subpair.as_str())
-            }
+                None => panic!("Could not parse command: {}", subpair.as_str()),
+            },
+            Rule::cmd_stmt_opt => cmd_node.value = String::from(subpair.as_str()),
             Rule::literal_group => {
                 cmd_node.children.push(Node {
                     _type: Token::Literal,
@@ -264,11 +290,9 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Node {
                     children: Vec::<Node>::new(),
                 });
             }
-            _ => println!(
-                "unexpected: {:?}", subpair.as_rule()
-            ),
+            _ => println!("unexpected: {:?}", subpair.as_rule()),
         }
     }
 
-    cmd_node
+    Some(cmd_node)
 }

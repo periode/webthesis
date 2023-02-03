@@ -42,11 +42,6 @@ refer to tufte-css for a base layout
         - [ ] hyperref (not sure what is the difference with `ref`? just for sections? I should harmonize)
         - [ ] url
         - [ ] citep
-    - [ ]  layout commands (to be ignored in web, the idea would be to change the return type of `parse_cmd_stmt` to `Option<Node>` and return `None` if the command is a layout command)
-        - [ ] linespread (only to make some listings fit in one page)
-        - [ ] vspace (WARNING: there's a `\` in the argument list)
-        - [ ] centerline (can probs ignore the arguments inside for now? the point is that it's an `<hr>`)
-        - [ ] pagebreak (just for print layout, could be ignored?)
 
 ## done
 
@@ -56,3 +51,11 @@ refer to tufte-css for a base layout
 - [x] comments (currently silenced)
 - [x] proper indentation system
 - [x] serialization
+- [x]  layout commands (to be ignored in web, the idea would be to change the return type of `parse_cmd_stmt` to `Option<Node>` and return `None` if the command is a layout command)
+    - [x] linespread
+    - [x] vspace
+    - [x] centerline
+    - [x] pagebreak
+    - [x] rule
+    - [x] linewidth
+    - [x] baselineskip
