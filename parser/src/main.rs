@@ -13,8 +13,12 @@ use serde::Serialize;
 #[grammar = "latex-grammar.pest"]
 pub struct LaTeXParser;
 
+// node should have traits like `fn children()`, `fn type()`, `fn value()`
+// e.g. impl Node for Command
+// but actually i might not even need traits tbh, just having Option fields might be fine
+// Box is also an interesting way to deal with generics
+
 #[derive(Debug, Serialize)]
-//-- todo: probably add serde_derive
 struct Node {
     children: Vec<Node>,
     _type: Token,
@@ -45,6 +49,37 @@ impl Serialize for Token {
     }
 }
 
+enum Command {
+    Chapter,
+    Emph,
+    Section,
+    Subsection,
+    Subsubsection,
+}
+
+impl Command {
+    fn value(&self) -> &str {
+        match *self {
+            Command::Chapter => "chapter",
+            Command::Emph => "emph",
+            Command::Section => "section",
+            Command::Subsection => "subsection",
+            Command::Subsubsection => "subsubsection",
+        }
+    }
+}
+
+fn parse_cmd_name(_name: &str) -> Option<Command> {
+    match _name {
+        "chapter" => Some(Command::Chapter),
+        "emph" => Some(Command::Emph),
+        "section" => Some(Command::Section),
+        "subsection" => Some(Command::Subsection),
+        "subsubsection" => Some(Command::Subsubsection),
+        _ => None
+    }
+}
+
 const DEBUG: bool = false;
 const SEPARATOR: &str = " | ";
 const INPUT: &str = "latex_test.tex";
@@ -54,8 +89,7 @@ fn main() {
 
     let mut ast = Vec::<Node>::new();
 
-    println!("parsing {}...", INPUT);
-    let indent = 0;
+    println!("parsing: {}", INPUT);
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
@@ -67,19 +101,15 @@ fn main() {
             };
 
             for subpair in pair.into_inner() {
-                if DEBUG {
-                    println!("\n{:?}", subpair.as_rule());
-                }
-
                 match subpair.as_rule() {
                     Rule::section => {
-                        let s = parse_section(subpair, indent);
+                        let s = parse_section(subpair);
                         if s.children.len() > 0 {
                             n.children.push(s);
                         }
                     }
                     Rule::env_stmt => {
-                        let e = parse_environment(subpair, indent);
+                        let e = parse_environment(subpair);
                         n.children.push(e);
                     }
                     // Rule::COMMENT => println!("{:?} -{}", subpair.as_rule(), subpair.as_str()),
@@ -114,33 +144,24 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     }
 }
 
-fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
+fn parse_section(_section: Pair<Rule>) -> Node {
     let mut section_node = Node {
         children: Vec::<Node>::new(),
         _type: Token::Section,
         value: String::from(""),
     };
 
-    let indent = _indent + 1;
     for subpair in _section.into_inner() {
-        if DEBUG {
-            println!("{}{:?}", SEPARATOR.repeat(indent), subpair.as_rule());
-        }
-
         match subpair.as_rule() {
             Rule::env_stmt => {
-                let e = parse_environment(subpair, indent);
+                let e = parse_environment(subpair);
                 section_node.children.push(e);
             }
             Rule::cmd_stmt => {
-                let c = parse_cmd_stmt(subpair, indent);
+                let c = parse_cmd_stmt(subpair);
                 section_node.children.push(c);
             }
             Rule::literal_group => {
-                if DEBUG {
-                    println!("{}literal: {}", SEPARATOR.repeat(indent), subpair.as_str());
-                }
-
                 section_node.children.push(Node {
                     _type: Token::Literal,
                     value: String::from(subpair.as_str()),
@@ -148,12 +169,12 @@ fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
                 });
             }
             Rule::section => {
-                let n = parse_section(subpair, indent);
+                let n = parse_section(subpair);
                 if n.children.len() > 0 {
                     section_node.children.push(n);
                 }
             }
-            Rule::COMMENT => println!("{}{}", SEPARATOR.repeat(indent), subpair.as_str()),
+            Rule::COMMENT => println!("{}", subpair.as_str()),
             _ => unreachable!(),
         }
     }
@@ -161,30 +182,23 @@ fn parse_section(_section: Pair<Rule>, _indent: usize) -> Node {
     section_node
 }
 
-fn parse_environment(_env: Pair<Rule>, _indent: usize) -> Node {
+fn parse_environment(_env: Pair<Rule>) -> Node {
     let mut env_node = Node {
         children: Vec::<Node>::new(),
         _type: Token::Environment,
         value: String::from(""),
     };
-    let indent = _indent + 1;
+
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
             Rule::name => {
-                if DEBUG {
-                    println!("{}{}", SEPARATOR.repeat(indent), subpair.as_str());
-                }
                 env_node.value = String::from(subpair.as_str())
             }
             Rule::env_content => {
-                if DEBUG {
-                    println!("{}{:?}", SEPARATOR.repeat(indent), subpair.as_rule());
-                }
-
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
                         Rule::section => {
-                            let n = parse_section(subsubpair, indent);
+                            let n = parse_section(subsubpair);
                             if n.children.len() > 0 {
                                 env_node.children.push(n);
                             }
@@ -194,9 +208,7 @@ fn parse_environment(_env: Pair<Rule>, _indent: usize) -> Node {
                 }
             }
             _ => println!(
-                "{}UNEXPECTED RULE {:?}",
-                SEPARATOR.repeat(indent),
-                subpair.as_rule()
+                "UNEXPECTED RULE {:?}", subpair.as_rule()
             ),
         }
     }
@@ -204,35 +216,26 @@ fn parse_environment(_env: Pair<Rule>, _indent: usize) -> Node {
     env_node
 }
 
-fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
+fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Node {
     let mut cmd_node = Node {
         children: Vec::<Node>::new(),
         _type: Token::Command,
         value: String::from(""),
     };
 
-    let indent = _indent + 1;
     for subpair in _stmt.into_inner() {
         match subpair.as_rule() {
             Rule::ctrl_character => (),
             Rule::name => {
-                if DEBUG {
-                    println!("{}{}", SEPARATOR.repeat(indent), subpair.as_str());
+                match parse_cmd_name(subpair.as_str()) {
+                    Some(cmd) => cmd_node.value = String::from(cmd.value()),
+                    None => println!("Could not parse command: {}", subpair.as_str()),
                 }
-
-                cmd_node.value = String::from(subpair.as_str())
             }
             Rule::cmd_stmt_opt => {
-                if DEBUG {
-                    println!("{}{}", SEPARATOR.repeat(indent), subpair.as_str())
-                }
                 cmd_node.value = String::from(subpair.as_str())
             }
             Rule::literal_group => {
-                if DEBUG {
-                    println!("{}literal: {}", SEPARATOR.repeat(indent), subpair.as_str());
-                }
-
                 cmd_node.children.push(Node {
                     _type: Token::Literal,
                     value: String::from(subpair.as_str()),
@@ -240,9 +243,7 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>, _indent: usize) -> Node {
                 });
             }
             _ => println!(
-                "{} unexpected: {:?}",
-                SEPARATOR.repeat(indent),
-                subpair.as_rule()
+                "unexpected: {:?}", subpair.as_rule()
             ),
         }
     }

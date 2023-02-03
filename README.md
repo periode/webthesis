@@ -1,10 +1,12 @@
 # webthesis
 
-## notes
-
 this project takes a specific latex file and returns an AST.
 
 from this AST, it generates a web rendering of the latex file.
+
+## notes
+
+refer to tufte-css for a base layout
 
 ## doing
 
@@ -26,18 +28,17 @@ from this AST, it generates a web rendering of the latex file.
         - [ ] lstlisting (should all be converted to listing + minted)
         - [ ] quotation / quote (should harmonize in the thesis itself)
     - [ ] commands
-    - [ ] chapter
-    - [ ] section
-    - [ ] subsection
-    - [ ] subsubsection
+    - [x] chapter
+    - [x] section
+    - [x] subsection
+    - [x] subsubsection
     - [ ] citep
-    - [ ] emph
+    - [x] emph
     - [ ] caption
     - [ ] lstinline
     - [ ] mint (inline listing, bit of a weird syntax)
     - [ ] textquote
     - [ ] linespread (only to make some listings fit in one page)
-    - [ ] same as above
     - [ ] footnote
     - [ ] vspace (WARNING: there's a `\` in the argument list)
     - [ ] centerline (can probs ignore the arguments inside for now? the point is that it's an `<hr>`)
