@@ -25,29 +25,28 @@ refer to tufte-css for a base layout
         - [ ] listing
         - [ ] itemize / item
         - [ ] minted
-        - [ ] lstlisting (should all be converted to listing + minted)
-        - [ ] quotation / quote (should harmonize in the thesis itself)
-    - [ ] commands
-    - [x] chapter
-    - [x] section
-    - [x] subsection
-    - [x] subsubsection
-    - [ ] citep
-    - [x] emph
-    - [ ] caption
-    - [ ] lstinline
-    - [ ] mint (inline listing, bit of a weird syntax)
-    - [ ] textquote
-    - [ ] linespread (only to make some listings fit in one page)
-    - [ ] footnote
-    - [ ] vspace (WARNING: there's a `\` in the argument list)
-    - [ ] centerline (can probs ignore the arguments inside for now? the point is that it's an `<hr>`)
-    - [ ] dots
-    - [ ] pagebreak (just for print layout, could be ignored?)
-    - [ ] label (that's the one that is used as a hyperlink)
-    - [ ] ref (counterpart of the above ^)
-    - [ ] hyperref (not sure what is the difference with `ref`)
-    - [ ] url
+        - [ ] quote
+    - [ ] semantic commands
+        - [x] chapter
+        - [x] section
+        - [x] subsection
+        - [x] subsubsection
+        - [x] emph
+        - [x] caption
+        - [x] lstinline
+        - [ ] textquote (__has options__ + todo figure out proper layout for citations in tex file)
+        - [x] footnote
+        - [x] dots
+        - [ ] label
+        - [ ] ref (counterpart of the above ^)
+        - [ ] hyperref (not sure what is the difference with `ref`? just for sections? I should harmonize)
+        - [ ] url
+        - [ ] citep
+    - [ ]  layout commands (to be ignored in web, the idea would be to change the return type of `parse_cmd_stmt` to `Option<Node>` and return `None` if the command is a layout command)
+        - [ ] linespread (only to make some listings fit in one page)
+        - [ ] vspace (WARNING: there's a `\` in the argument list)
+        - [ ] centerline (can probs ignore the arguments inside for now? the point is that it's an `<hr>`)
+        - [ ] pagebreak (just for print layout, could be ignored?)
 
 ## done
 

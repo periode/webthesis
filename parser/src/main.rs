@@ -50,8 +50,13 @@ impl Serialize for Token {
 }
 
 enum Command {
+    Caption,
     Chapter,
+    Dots,
     Emph,
+    Footnote,
+    InlineListing,
+    Linespread,
     Section,
     Subsection,
     Subsubsection,
@@ -60,19 +65,36 @@ enum Command {
 impl Command {
     fn value(&self) -> &str {
         match *self {
+            Command::Caption => "caption",
             Command::Chapter => "chapter",
+            Command::Dots => "dots",
             Command::Emph => "emph",
+            Command::Footnote => "footnote",
+            Command::InlineListing => "inline_listing",
+            Command::Linespread => "linespread",
             Command::Section => "section",
             Command::Subsection => "subsection",
             Command::Subsubsection => "subsubsection",
+        }
+    }
+
+    fn is_print_layout(&self) -> bool {
+        match *self {
+            Command::Linespread => true,
+            _ => false
         }
     }
 }
 
 fn parse_cmd_name(_name: &str) -> Option<Command> {
     match _name {
+        "caption" => Some(Command::Caption),
         "chapter" => Some(Command::Chapter),
+        "dots" => Some(Command::Dots),
         "emph" => Some(Command::Emph),
+        "footnote" => Some(Command::Footnote),
+        "lstinline" => Some(Command::InlineListing),
+        "linespread" => Some(Command::Linespread),
         "section" => Some(Command::Section),
         "subsection" => Some(Command::Subsection),
         "subsubsection" => Some(Command::Subsubsection),
@@ -229,7 +251,7 @@ fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Node {
             Rule::name => {
                 match parse_cmd_name(subpair.as_str()) {
                     Some(cmd) => cmd_node.value = String::from(cmd.value()),
-                    None => println!("Could not parse command: {}", subpair.as_str()),
+                    None => panic!("Could not parse command: {}", subpair.as_str()),
                 }
             }
             Rule::cmd_stmt_opt => {
