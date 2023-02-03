@@ -18,7 +18,7 @@ refer to tufte-css for a base layout
 - [ ] preprocessor for includes
 - [ ] postprocessor
   - [ ] create table of contents
-  - [ ] create table list
+  - [ ] create list of figures
   - [ ] create bibliography
 - [ ] list all needed elements
   - [ ] environments
@@ -32,6 +32,7 @@ refer to tufte-css for a base layout
 
 ## done
 
+- [x] basic cli args parsing
 - [x] environments
     - [x] problem with nesting (issues with push and peek?)
 - [x] command statements (e.g. `\emph[opt1, opt2]{arg}`)

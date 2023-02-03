@@ -9,6 +9,8 @@ extern crate pest_derive;
 use pest::{iterators::Pair, Parser};
 use serde::Serialize;
 
+use clap::Parser as ArgParser;
+
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
 pub struct LaTeXParser;
@@ -96,7 +98,7 @@ impl Command {
             Command::Subsection => "subsection",
             Command::Subsubsection => "subsubsection",
             Command::VSpace => "vspace",
-            Command::URL => "url"
+            Command::URL => "url",
         }
     }
 
@@ -141,16 +143,30 @@ fn parse_cmd_name(_name: &str) -> Option<Command> {
     }
 }
 
-const DEBUG: bool = false;
 const SEPARATOR: &str = " | ";
-const INPUT: &str = "latex_test.tex";
-const OUTPUT: &str = "parsed.json";
-fn main() {
-    let src = fs::read_to_string(INPUT).expect("Cannot open file");
+const DEFAULT_INPUT: &str = "latex_test.tex";
+const DEFAULT_OUTPUT: &str = "parsed.json";
+const DEFAULT_VERBOSE: usize = 0;
+#[derive(ArgParser, Debug)]
+struct Args {
+    #[arg(short, default_value = DEFAULT_INPUT)]
+    input: String,
+
+    #[arg(short, default_value = DEFAULT_OUTPUT)]
+    output: String,
+
+    #[arg(short, default_value_t = DEFAULT_VERBOSE)]
+    verbose: usize,
+}
+
+fn main() {    
+    let args = Args::parse();
+    
+    let src = fs::read_to_string(&args.input).expect("Cannot open file");
 
     let mut ast = Vec::<Node>::new();
 
-    println!("parsing: {}", INPUT);
+    println!("reading: {}", args.input);
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
@@ -184,15 +200,15 @@ fn main() {
         Err(error) => println!("error parsing: {}", error),
     }
 
-    if DEBUG {
+    if args.verbose == 1 {
         pretty_print(&ast, 0);
     }
 
     let json_string = serde_json::to_string(&ast).unwrap();
-    let mut output_file = File::create(OUTPUT).unwrap();
+    let mut output_file = File::create(&args.output).unwrap();
     match write!(output_file, "{}", json_string) {
-        Ok(_) => println!("...wrote AST to {}", OUTPUT),
-        Err(error) => println!("...failed to write to {}:{}", OUTPUT, error),
+        Ok(_) => println!("writing: {}", args.output),
+        Err(error) => println!("...failed to write to {}:{}", args.output, error),
     }
 }
 
@@ -221,7 +237,7 @@ fn parse_section(_section: Pair<Rule>) -> Node {
             Rule::cmd_stmt => {
                 if let Some(c) = parse_cmd_stmt(subpair) {
                     section_node.children.push(c)
-                }else{
+                } else {
                     println!("skipping layout node")
                 }
             }
