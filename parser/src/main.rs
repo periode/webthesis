@@ -17,7 +17,7 @@ pub struct LaTeXParser;
 #[derive(Debug, Serialize)]
 struct Node {
     children: Vec<Node>,
-    _type: Token,
+    tag: Token,
     value: String,
 }
 
@@ -73,7 +73,7 @@ fn main() {
 
             let mut n = Node {
                 children: Vec::<Node>::new(),
-                _type: Token::DocumentRoot,
+                tag: Token::DocumentRoot,
                 value: String::from(""),
             };
 
@@ -119,7 +119,7 @@ fn main() {
 
 fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     for n in _ast.into_iter() {
-        println!("{}type: {:?}", SEPARATOR.repeat(depth), n._type);
+        println!("{}tag: {:?}", SEPARATOR.repeat(depth), n.tag);
         println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
         println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
         pretty_print(&n.children, depth + 1);
@@ -129,7 +129,7 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
 fn parse_section(_section: Pair<Rule>) -> Node {
     let mut section_node = Node {
         children: Vec::<Node>::new(),
-        _type: Token::Section,
+        tag: Token::Section,
         value: String::from(""),
     };
 
@@ -148,7 +148,7 @@ fn parse_section(_section: Pair<Rule>) -> Node {
             }
             Rule::literal_group => {
                 section_node.children.push(Node {
-                    _type: Token::Literal,
+                    tag: Token::Literal,
                     value: String::from(subpair.as_str()),
                     children: Vec::<Node>::new(),
                 });
@@ -170,7 +170,7 @@ fn parse_section(_section: Pair<Rule>) -> Node {
 fn parse_environment(_env: Pair<Rule>) -> Node {
     let mut env_node = Node {
         children: Vec::<Node>::new(),
-        _type: Token::Environment,
+        tag: Token::Environment,
         value: String::from(""),
     };
 
@@ -201,7 +201,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
     let mut cmd_node = Node {
         children: Vec::<Node>::new(),
-        _type: Token::Command,
+        tag: Token::Command,
         value: String::from(""),
     };
 
@@ -221,7 +221,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
             Rule::cmd_stmt_opt => cmd_node.value = String::from(subpair.as_str()),
             Rule::literal_group => {
                 cmd_node.children.push(Node {
-                    _type: Token::Literal,
+                    tag: Token::Literal,
                     value: String::from(subpair.as_str()),
                     children: Vec::<Node>::new(),
                 });
