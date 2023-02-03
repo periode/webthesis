@@ -156,7 +156,7 @@ struct Args {
     output: String,
 
     #[arg(short, default_value_t = DEFAULT_VERBOSE)]
-    verbose: usize,
+    verbosity: usize,
 }
 
 fn main() {    
@@ -200,7 +200,7 @@ fn main() {
         Err(error) => println!("error parsing: {}", error),
     }
 
-    if args.verbose == 1 {
+    if args.verbosity == 1 {
         pretty_print(&ast, 0);
     }
 
