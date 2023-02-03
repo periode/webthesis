@@ -15,12 +15,12 @@ section = {
 literal_group      = { char+ } //-- letters and numbers with no spaces
 char         = @{ ASCII_ALPHANUMERIC | punctuation }
 punctuation  = {
-    "," | "." | ";" | "(" | ")" | "[" | "]" | "|" | "<" | ">" | ":" 
+    "," | "." | ";" | "(" | ")" | "[" | "]" | "|" | "<" | ">" | ":" | "=" | "-" | "_"
 }
 
 // Control Statement Grammar
 //-- no newlines allowed in a cmd body
-cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ cmd_stmt_opt? ~ ("{" ~ ( cmd_stmt | literal_group )* ~ "}")? ~ ("{" ~ ( cmd_stmt | literal_group )* ~ "}")? }
+cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ cmd_stmt_opt? ~ ("{" ~ ( cmd_stmt | literal_group )* ~ "}")? }
 cmd_stmt_opt = { "[" ~ name ~ "]" }
 
 
@@ -32,5 +32,8 @@ newline_char            = _{"\n"}
 ctrl_character       = _{ "\\" }
 
 // Environment Grammar
-env_stmt     = { ctrl_character ~ "begin" ~ "{" ~ PUSH(name) ~ "}" ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
+env_stmt     = { ctrl_character ~ "begin" ~ env_stmt_opt? ~ "{" ~ PUSH(env_name) ~ "}" ~  ("{" ~ code_description ~ "}")? ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 env_content  = { (section? ~ newline_char)* }
+env_name = { name }
+code_description = { name }
+env_stmt_opt = { "[" ~ name ~ "]" }

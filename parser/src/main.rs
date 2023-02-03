@@ -5,10 +5,10 @@ use std::io::Write;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
-use foliage::{environments, commands};
+use clap::Parser as ArgParser;
+use foliage::{commands, environments};
 use pest::{iterators::Pair, Parser};
 use serde::Serialize;
-use clap::Parser as ArgParser;
 
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
@@ -61,7 +61,7 @@ struct Args {
     verbosity: usize,
 }
 
-fn main() {    
+fn main() {
     let args = Args::parse();
     let src = fs::read_to_string(&args.input).expect("Cannot open file");
     let mut ast = Vec::<Node>::new();
@@ -106,15 +106,12 @@ fn main() {
 
     let json_string = serde_json::to_string(&ast).unwrap();
     match File::create(&args.output) {
-        Ok(mut output_file) => {
-            match write!(output_file, "{}", json_string) {
-                Ok(_) => println!("writing: {}", args.output),
-                Err(error) => println!("...failed to write {}:{}", args.output, error),
-            }
+        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+            Ok(_) => println!("writing: {}", args.output),
+            Err(error) => println!("...failed to write {}:{}", args.output, error),
         },
         Err(error) => println!("...failed to open {}:{}", args.output, error),
     }
-
 }
 
 fn pretty_print(_ast: &Vec<Node>, depth: usize) {
@@ -176,11 +173,9 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
-            Rule::name => match environments::parse_name(subpair.as_str()) {
-                Some(env) => {
-                    env_node.value = String::from(env.value())
-                },
-                None => panic!("Could not parse environment name: {}", subpair.as_str())
+            Rule::env_name => match environments::parse_name(subpair.as_str()) {
+                Some(env) => env_node.value = String::from(env.value()),
+                None => panic!("Could not parse environment name: {}", subpair.as_str()),
             },
             Rule::env_content => {
                 for subsubpair in subpair.into_inner() {
@@ -194,7 +189,8 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                         _ => unreachable!(),
                     }
                 }
-            }
+            },
+            Rule::code_description => env_node.value = format!("{}-{}", env_node.value, subpair.as_str()),
             _ => println!("UNEXPECTED RULE {:?}", subpair.as_rule()),
         }
     }
@@ -224,6 +220,13 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 None => panic!("Could not parse command: {}", subpair.as_str()),
             },
             Rule::cmd_stmt_opt => cmd_node.value = String::from(subpair.as_str()),
+            Rule::cmd_stmt => {
+                println!("{}", subpair.as_str());
+                match parse_command(subpair) {
+                    Some(n) => cmd_node.children.push(n),
+                    None => panic!("Could not parse nested command:"),
+                }
+            }
             Rule::literal_group => {
                 cmd_node.children.push(Node {
                     tag: Token::Literal,

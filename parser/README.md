@@ -10,6 +10,8 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 i could probably have the `tag` field of the Node be a vector of traits, with the common trait being `value()`
 
+currently, i'm not correctly parsing the options `[]` part of the command or environment. it's just a name, when it should be allow for more (literal? section?)
+
 ## doing
 
 - [ ] hashmap to store ast
@@ -17,6 +19,7 @@ i could probably have the `tag` field of the Node be a vector of traits, with th
 
 ## todo
 
+- [ ] write simple automated test
 - [ ] preprocessor for includes
 - [ ] postprocessor
   - [ ] create table of contents
@@ -24,10 +27,7 @@ i could probably have the `tag` field of the Node be a vector of traits, with th
   - [ ] create bibliography
 - [ ] list all needed elements
   - [ ] environments
-    - [ ] listing
-    - [ ] itemize
-    - [ ] minted
-    - [ ] quote
+    - [ ] minted (needs to have options handled better)
   - [ ] semantic commands
     - [ ] href (url + display text) __currently not used in thesis__
     - [ ] textquote __currently not used in thesis__
@@ -38,6 +38,9 @@ i could probably have the `tag` field of the Node be a vector of traits, with th
 - [x] basic cli args parsing
 - [x] environments
     - [x] problem with nesting (issues with push and peek?)
+    - [x] listing
+    - [x] itemize
+    - [x] quote
 - [x] command statements (e.g. `\emph[opt1, opt2]{arg}`)
 - [x] comments (currently silenced)
 - [x] proper indentation system
