@@ -1,24 +1,18 @@
-// from https://github.com/bign86/pest_latex
+pub mod foliage;
 
 use std::fs::{self, File};
 use std::io::Write;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
-
 use pest::{iterators::Pair, Parser};
 use serde::Serialize;
-
 use clap::Parser as ArgParser;
+use crate::foliage::commands::parse_cmd_name;
 
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
 pub struct LaTeXParser;
-
-// node should have traits like `fn children()`, `fn type()`, `fn value()`
-// e.g. impl Node for Command
-// but actually i might not even need traits tbh, just having Option fields might be fine
-// Box is also an interesting way to deal with generics
 
 #[derive(Debug, Serialize)]
 struct Node {
@@ -51,98 +45,6 @@ impl Serialize for Token {
     }
 }
 
-enum Command {
-    Baselineskip,
-    Caption,
-    Centerline,
-    Chapter,
-    Citation,
-    Dots,
-    Emph,
-    Footnote,
-    InlineListing,
-    Italic,
-    Linespread,
-    Linewidth,
-    Label,
-    Pagebreak,
-    Reference,
-    Rule,
-    Section,
-    Subsection,
-    Subsubsection,
-    URL,
-    VSpace,
-}
-
-impl Command {
-    fn value(&self) -> &str {
-        match *self {
-            Command::Baselineskip => "baselineskip",
-            Command::Caption => "caption",
-            Command::Centerline => "centerline",
-            Command::Citation => "citation",
-            Command::Chapter => "chapter",
-            Command::Dots => "dots",
-            Command::Emph => "emph",
-            Command::Footnote => "footnote",
-            Command::InlineListing => "inline_listing",
-            Command::Italic => "italic",
-            Command::Label => "label",
-            Command::Linespread => "linespread",
-            Command::Linewidth => "linewidth",
-            Command::Pagebreak => "pagebreak",
-            Command::Reference => "reference",
-            Command::Rule => "rule",
-            Command::Section => "section",
-            Command::Subsection => "subsection",
-            Command::Subsubsection => "subsubsection",
-            Command::VSpace => "vspace",
-            Command::URL => "url",
-        }
-    }
-
-    fn is_print_layout(&self) -> bool {
-        match *self {
-            Command::Linespread => true,
-            Command::VSpace => true,
-            Command::Centerline => true,
-            Command::Pagebreak => true,
-            Command::Rule => true,
-            Command::Linewidth => true,
-            Command::Baselineskip => true,
-            _ => false,
-        }
-    }
-}
-
-fn parse_cmd_name(_name: &str) -> Option<Command> {
-    match _name {
-        "baselineskip" => Some(Command::Baselineskip),
-        "caption" => Some(Command::Caption),
-        "centerline" => Some(Command::Centerline),
-        "chapter" => Some(Command::Chapter),
-        "citep" => Some(Command::Citation),
-        "dots" => Some(Command::Dots),
-        "emph" => Some(Command::Emph),
-        "footnote" => Some(Command::Footnote),
-        "label" => Some(Command::Label),
-        "lstinline" => Some(Command::InlineListing),
-        "linespread" => Some(Command::Linespread),
-        "linewidth" => Some(Command::Linewidth),
-        "pagebreak" => Some(Command::Pagebreak),
-        "ref" => Some(Command::Reference),
-        "rule" => Some(Command::Rule),
-        "section" => Some(Command::Section),
-        "subsection" => Some(Command::Subsection),
-        "subsubsection" => Some(Command::Subsubsection),
-        "textit" => Some(Command::Italic),
-        "vspace" => Some(Command::VSpace),
-        "url" => Some(Command::URL),
-        _ => None,
-    }
-}
-
 const SEPARATOR: &str = " | ";
 const DEFAULT_INPUT: &str = "latex_test.tex";
 const DEFAULT_OUTPUT: &str = "parsed.json";
@@ -161,9 +63,7 @@ struct Args {
 
 fn main() {    
     let args = Args::parse();
-    
     let src = fs::read_to_string(&args.input).expect("Cannot open file");
-
     let mut ast = Vec::<Node>::new();
 
     println!("reading: {}", args.input);
@@ -205,11 +105,16 @@ fn main() {
     }
 
     let json_string = serde_json::to_string(&ast).unwrap();
-    let mut output_file = File::create(&args.output).unwrap();
-    match write!(output_file, "{}", json_string) {
-        Ok(_) => println!("writing: {}", args.output),
-        Err(error) => println!("...failed to write to {}:{}", args.output, error),
+    match File::create(&args.output) {
+        Ok(mut output_file) => {
+            match write!(output_file, "{}", json_string) {
+                Ok(_) => println!("writing: {}", args.output),
+                Err(error) => println!("...failed to write {}:{}", args.output, error),
+            }
+        },
+        Err(error) => println!("...failed to open {}:{}", args.output, error),
     }
+
 }
 
 fn pretty_print(_ast: &Vec<Node>, depth: usize) {
@@ -235,7 +140,7 @@ fn parse_section(_section: Pair<Rule>) -> Node {
                 section_node.children.push(e);
             }
             Rule::cmd_stmt => {
-                if let Some(c) = parse_cmd_stmt(subpair) {
+                if let Some(c) = parse_command(subpair) {
                     section_node.children.push(c)
                 } else {
                     println!("skipping layout node")
@@ -292,8 +197,8 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
     env_node
 }
 
-//-- parse_cmd_stmt can return None if the parsed Node is only related print layout
-fn parse_cmd_stmt(_stmt: Pair<Rule>) -> Option<Node> {
+//-- parse_command can return None if the parsed Node is only related print layout
+fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
     let mut cmd_node = Node {
         children: Vec::<Node>::new(),
         _type: Token::Command,
