@@ -12,6 +12,8 @@ i could probably have the `tag` field of the Node be a vector of traits, with th
 
 currently, i'm not correctly parsing the options `[]` part of the command or environment. it's just a name, when it should be allow for more (literal? section?)
 
+the options really should be their own node
+
 ## doing
 
 - [ ] hashmap to store ast

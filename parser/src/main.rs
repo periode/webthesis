@@ -189,9 +189,14 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                         _ => unreachable!(),
                     }
                 }
+            }
+            Rule::code_description => {
+                env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
             },
-            Rule::code_description => env_node.value = format!("{}-{}", env_node.value, subpair.as_str()),
-            _ => println!("UNEXPECTED RULE {:?}", subpair.as_rule()),
+            Rule::env_stmt_opts => {
+                env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
+            }
+            _ => println!("-- unexpected environment {:?}", subpair.as_span()),
         }
     }
 
@@ -219,14 +224,11 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 }
                 None => panic!("Could not parse command: {}", subpair.as_str()),
             },
-            Rule::cmd_stmt_opt => cmd_node.value = String::from(subpair.as_str()),
-            Rule::cmd_stmt => {
-                println!("{}", subpair.as_str());
-                match parse_command(subpair) {
-                    Some(n) => cmd_node.children.push(n),
-                    None => panic!("Could not parse nested command:"),
-                }
-            }
+            Rule::cmd_stmt_opts => cmd_node.value = format!("{}-{}", cmd_node.value, subpair.as_str()),
+            Rule::cmd_stmt => match parse_command(subpair) {
+                Some(n) => cmd_node.children.push(n),
+                None => panic!("Could not parse nested command:"),
+            },
             Rule::literal_group => {
                 cmd_node.children.push(Node {
                     tag: Token::Literal,
