@@ -105,8 +105,8 @@ fn parse(src: String) -> Vec<Node> {
 
             for subpair in pair.into_inner() {
                 match subpair.as_rule() {
-                    Rule::section => {
-                        let s = parse_section(subpair);
+                    Rule::paragraph => {
+                        let s = parse_paragraph(subpair);
                         n.add(s);
                     }
                     Rule::env_stmt => {
@@ -130,7 +130,7 @@ fn parse(src: String) -> Vec<Node> {
     }
 }
 
-fn parse_section(_section: Pair<Rule>) -> Node {
+fn parse_paragraph(_section: Pair<Rule>) -> Node {
     let mut section_node = Node {
         children: None,
         tag: Box::new(Environment::Paragraph),
@@ -158,8 +158,8 @@ fn parse_section(_section: Pair<Rule>) -> Node {
                 };
                 section_node.add(l);
             }
-            Rule::section => {
-                let s = parse_section(subpair);
+            Rule::paragraph => {
+                let s = parse_paragraph(subpair);
                 if let Some(_) = &s.children {
                     //-- skip empty sections
                     section_node.add(s);
@@ -189,8 +189,8 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
             Rule::env_content => {
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
-                        Rule::section => {
-                            let s = parse_section(subsubpair);
+                        Rule::paragraph => {
+                            let s = parse_paragraph(subsubpair);
                             if let Some(_) = &s.children {
                                 //-- skip empty sections
                                 env_node.add(s);
