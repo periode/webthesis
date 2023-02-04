@@ -328,7 +328,7 @@ fn it_parses_a_file() {
         .first()
         .unwrap();
     assert_eq!("document", document_environment.tag.value());
-    assert_eq!(3, document_environment.children.as_ref().unwrap().len());
+    assert_eq!(4, document_environment.children.as_ref().unwrap().len());
 
     //-- check the first header
     let header_section = document_environment
@@ -350,7 +350,7 @@ fn it_parses_a_file() {
         .children
         .as_ref()
         .unwrap()
-        .get(1)
+        .get(2)
         .unwrap()
         .children
         .as_ref()
