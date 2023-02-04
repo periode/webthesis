@@ -178,11 +178,15 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                     }
                 }
             }
-            Rule::code_description => {
-                env_node.value = String::from(subpair.as_str())
-            }
-            Rule::env_stmt_opts => {
-                env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
+            Rule::code_description => env_node.value = String::from(subpair.as_str()),
+            Rule::opts => {
+                let opts = subpair.into_inner().next().unwrap();
+
+                env_node.children.push(Node {
+                    children: Vec::<Node>::new(),
+                    tag: Box::new(Token::Options),
+                    value: String::from(opts.as_str()),
+                })
             }
             _ => println!("-- unexpected environment {:?}", subpair.as_span()),
         }
@@ -212,8 +216,14 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 }
                 None => panic!("Could not parse command: {}", subpair.as_str()),
             },
-            Rule::cmd_stmt_opts => {
-                cmd_node.value = String::from(subpair.as_str())
+            Rule::opts => {
+                let opts = subpair.into_inner().next().unwrap();
+
+                cmd_node.children.push(Node {
+                    children: Vec::<Node>::new(),
+                    tag: Box::new(Token::Options),
+                    value: String::from(opts.as_str()),
+                })
             }
             Rule::cmd_stmt => match parse_command(subpair) {
                 Some(n) => cmd_node.children.push(n),
@@ -276,14 +286,18 @@ fn it_parses_a_file() {
     // assert_eq!("figure", listing.value);
 
     //-- check the code environment
-    let code = listing.children.first().unwrap().children.first().unwrap();
+    let code = listing.children.get(0).unwrap().children.first().unwrap();
     assert_eq!("code", code.tag.value());
     assert_eq!("python", code.value);
+
+    let code_opts = code.children.first().unwrap();
+    assert_eq!("linenos", code_opts.value);
 
     //-- check the caption
     let caption = listing.children.get(1).unwrap().children.first().unwrap();
     assert_eq!("caption", caption.tag.value());
-    assert_eq!("[]", caption.value);
+    let caption_opts = caption.children.first().unwrap();
+    assert_eq!("Short version", caption_opts.value);
 
     //-- check the label
     let label = listing.children.get(2).unwrap().children.first().unwrap();

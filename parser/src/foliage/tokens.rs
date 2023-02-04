@@ -6,6 +6,7 @@ pub enum Token {
     DocumentRoot,
     Environment,
     Literal,
+    Options,
     Paragraph
 }
 
@@ -16,6 +17,7 @@ impl Tag for Token {
             Token::DocumentRoot => "root",
             Token::Environment => "env",
             Token::Literal => "literal",
+            Token::Options => "options",
             Token::Paragraph => "paragraph",
         }
     }
