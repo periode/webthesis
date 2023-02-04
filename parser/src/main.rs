@@ -18,9 +18,21 @@ pub struct LaTeXParser;
 
 #[derive(Serialize)]
 struct Node {
-    children: Vec<Node>,
+    children: Option<Vec<Node>>,
     tag: Box<dyn Tag>,
     value: String,
+}
+
+impl Node {
+    pub fn add(&mut self, child: Node) {
+        if let Some(_) = &self.children {
+            self.children.as_mut().unwrap().push(child)
+        }else{
+            let mut v = Vec::<Node>::new();
+            v.push(child);
+            self.children = Some(v);
+        }
+    }
 }
 
 const SEPARATOR: &str = " | ";
@@ -64,8 +76,13 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     for n in _ast.into_iter() {
         println!("{}tag: {}", SEPARATOR.repeat(depth), n.tag.value());
         println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
-        println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
-        pretty_print(&n.children, depth + 1);
+        match &n.children {
+            Some(c) => {
+                println!("{}children: {}", SEPARATOR.repeat(depth), c.len());
+                pretty_print(&c, depth + 1);
+            }
+            None => (),
+        }
     }
 }
 
@@ -77,7 +94,7 @@ fn parse(src: String) -> Vec<Node> {
             let pair = pairs.next().unwrap();
 
             let mut n = Node {
-                children: Vec::<Node>::new(),
+                children: Some(Vec::<Node>::new()),
                 tag: Box::new(Environment::Root),
                 value: String::from(""),
             };
@@ -86,13 +103,11 @@ fn parse(src: String) -> Vec<Node> {
                 match subpair.as_rule() {
                     Rule::section => {
                         let s = parse_section(subpair);
-                        if s.children.len() > 0 {
-                            n.children.push(s);
-                        }
+                        n.add(s);
                     }
                     Rule::env_stmt => {
                         let e = parse_environment(subpair);
-                        n.children.push(e);
+                        n.add(e);
                     }
                     // Rule::COMMENT => println!("{:?} -{}", subpair.as_rule(), subpair.as_str()),
                     Rule::EOI => (),
@@ -113,7 +128,7 @@ fn parse(src: String) -> Vec<Node> {
 
 fn parse_section(_section: Pair<Rule>) -> Node {
     let mut section_node = Node {
-        children: Vec::<Node>::new(),
+        children: None,
         tag: Box::new(Environment::Paragraph),
         value: String::from(""),
     };
@@ -122,26 +137,28 @@ fn parse_section(_section: Pair<Rule>) -> Node {
         match subpair.as_rule() {
             Rule::env_stmt => {
                 let e = parse_environment(subpair);
-                section_node.children.push(e);
+                section_node.add(e);
             }
             Rule::cmd_stmt => {
                 if let Some(c) = parse_command(subpair) {
-                    section_node.children.push(c)
+                    section_node.add(c);
                 } else {
                     println!("skipping layout node")
                 }
             }
             Rule::literal_group => {
-                section_node.children.push(Node {
+                let l = Node {
                     tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
-                    children: Vec::<Node>::new(),
-                });
+                    children: None,
+                };
+                section_node.add(l);
             }
             Rule::section => {
-                let n = parse_section(subpair);
-                if n.children.len() > 0 {
-                    section_node.children.push(n);
+                let s = parse_section(subpair);
+                if let Some(_) = &s.children {
+                    //-- skip empty sections
+                    section_node.add(s);
                 }
             }
             Rule::COMMENT => println!("{}", subpair.as_str()),
@@ -154,7 +171,7 @@ fn parse_section(_section: Pair<Rule>) -> Node {
 
 fn parse_environment(_env: Pair<Rule>) -> Node {
     let mut env_node = Node {
-        children: Vec::<Node>::new(),
+        children: None,
         tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
         value: String::from(""),
     };
@@ -169,9 +186,10 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
                         Rule::section => {
-                            let n = parse_section(subsubpair);
-                            if n.children.len() > 0 {
-                                env_node.children.push(n);
+                            let s = parse_section(subsubpair);
+                            if let Some(_) = &s.children {
+                                //-- skip empty sections
+                                env_node.add(s);
                             }
                         }
                         _ => unreachable!(),
@@ -181,12 +199,13 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
             Rule::code_description => env_node.value = String::from(subpair.as_str()),
             Rule::opts => {
                 let opts = subpair.into_inner().next().unwrap();
-
-                env_node.children.push(Node {
-                    children: Vec::<Node>::new(),
+                let o = Node {
+                    children: None,
                     tag: Box::new(Token::Options),
                     value: String::from(opts.as_str()),
-                })
+                };
+
+                env_node.add(o);
             }
             _ => println!("-- unexpected environment {:?}", subpair.as_span()),
         }
@@ -198,7 +217,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 //-- parse_command can return None if the parsed Node is only related print layout
 fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
     let mut cmd_node = Node {
-        children: Vec::<Node>::new(),
+        children: None,
         tag: Box::new(Token::Command),
         value: String::from(""),
     };
@@ -218,23 +237,26 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
             },
             Rule::opts => {
                 let opts = subpair.into_inner().next().unwrap();
-
-                cmd_node.children.push(Node {
-                    children: Vec::<Node>::new(),
+                let o = Node {
                     tag: Box::new(Token::Options),
                     value: String::from(opts.as_str()),
-                })
+                    children: None,
+                };
+
+                cmd_node.add(o);
             }
             Rule::cmd_stmt => match parse_command(subpair) {
-                Some(n) => cmd_node.children.push(n),
+                Some(n) => cmd_node.add(n),
                 None => panic!("Could not parse nested command:"),
             },
             Rule::literal_group => {
-                cmd_node.children.push(Node {
+                let l = Node {
                     tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
-                    children: Vec::<Node>::new(),
-                });
+                    children: None,
+                };
+
+                cmd_node.add(l);
             }
             _ => println!("unexpected: {:?}", subpair.as_rule()),
         }
@@ -251,24 +273,32 @@ fn it_parses_a_file() {
 
     let top_level = test_ast.first().unwrap();
     assert_eq!("root", top_level.tag.value());
-    assert_eq!(top_level.children.len(), 1);
+    let ch = top_level.children.as_ref();
+    assert_eq!(ch.unwrap().len(), 1);
 
-    let document_environment = top_level
-        .children
+    let document_environment = top_level.children
+    .as_ref()
+        .unwrap()
         .first()
         .unwrap()
         .children
+        .as_ref()
+        .unwrap()
         .first()
         .unwrap();
     assert_eq!("document", document_environment.tag.value());
-    assert_eq!(3, document_environment.children.len());
+    assert_eq!(3, document_environment.children.as_ref().unwrap().len());
 
     //-- check the first header
     let header_section = document_environment
         .children
+        .as_ref()
+        .unwrap()
         .first()
         .unwrap()
         .children
+        .as_ref()
+        .unwrap()
         .first()
         .unwrap();
     assert_eq!("section", header_section.tag.value());
@@ -277,30 +307,64 @@ fn it_parses_a_file() {
     //-- check the listing environment
     let listing = document_environment
         .children
+        .as_ref()
+        .unwrap()
         .get(1)
         .unwrap()
         .children
+        .as_ref()
+        .unwrap()
         .get(0)
         .unwrap();
     assert_eq!("figure", listing.tag.value());
     // assert_eq!("figure", listing.value);
 
     //-- check the code environment
-    let code = listing.children.get(0).unwrap().children.first().unwrap();
+    let code = listing
+        .children
+        .as_ref()
+        .unwrap()
+        .get(0)
+        .unwrap()
+        .children
+        .as_ref()
+        .unwrap()
+        .first()
+        .unwrap();
     assert_eq!("code", code.tag.value());
     assert_eq!("python", code.value);
 
-    let code_opts = code.children.first().unwrap();
+    let code_opts = code.children.as_ref().unwrap().first().unwrap();
     assert_eq!("linenos", code_opts.value);
 
     //-- check the caption
-    let caption = listing.children.get(1).unwrap().children.first().unwrap();
+    let caption = listing
+        .children
+        .as_ref()
+        .unwrap()
+        .get(1)
+        .unwrap()
+        .children
+        .as_ref()
+        .unwrap()
+        .first()
+        .unwrap();
     assert_eq!("caption", caption.tag.value());
-    let caption_opts = caption.children.first().unwrap();
+    let caption_opts = caption.children.as_ref().unwrap().first().unwrap();
     assert_eq!("Short version", caption_opts.value);
 
     //-- check the label
-    let label = listing.children.get(2).unwrap().children.first().unwrap();
+    let label = listing
+        .children
+        .as_ref()
+        .unwrap()
+        .get(2)
+        .unwrap()
+        .children
+        .as_ref()
+        .unwrap()
+        .first()
+        .unwrap();
     assert_eq!("label", label.tag.value());
     // assert_eq!("label", label.value)
 }

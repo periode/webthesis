@@ -1,6 +1,6 @@
 use super::Tag;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum Token {
     Command,
     DocumentRoot,

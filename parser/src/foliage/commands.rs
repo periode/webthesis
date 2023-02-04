@@ -1,5 +1,6 @@
 use super::Tag;
 
+#[derive(Copy, Clone)]
 pub enum Command {
     Baselineskip,
     Caption,
