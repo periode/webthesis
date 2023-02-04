@@ -10,11 +10,9 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-
+- [ ] preprocessor for includes
 
 ## todo
-
-- [ ] preprocessor for includes
 - [ ] postprocessor
   - [ ] create table of contents
   - [ ] create list of figures
@@ -26,8 +24,6 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
     - [ ] item __tricky one: the rest of the line should be itemized__
 
 ## done
-
-    
 - [x] make options their own node (currently they're not parsed)
 - [x] have the `tag` field of the Node be a vector of traits, with the common trait being `value()`
 - [x] write simple automated test

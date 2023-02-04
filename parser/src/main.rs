@@ -366,5 +366,6 @@ fn it_parses_a_file() {
         .first()
         .unwrap();
     assert_eq!("label", label.tag.value());
-    // assert_eq!("label", label.value)
+    let label_content = label.children.as_ref().unwrap().first().unwrap();
+    assert_eq!("code:nielsen_chalktalk", label_content.value)
 }
