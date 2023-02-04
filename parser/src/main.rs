@@ -188,7 +188,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
         match subpair.as_rule() {
             Rule::env_name => match environments::parse_name(subpair.as_str()) {
                 Some(env) => env_node.tag = Box::new(env),
-                None => panic!("Could not parse environment name: {}", subpair.as_str()),
+                None => println!("Could not parse environment name: {}", subpair.as_str()),
             },
             Rule::env_content => {
                 for subsubpair in subpair.into_inner() {
@@ -273,7 +273,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                         cmd_node.tag = Box::new(cmd)
                     }
                 }
-                None => panic!("Could not parse command: {}", subpair.as_str()),
+                None => println!("Could not parse command: {}", subpair.as_str()),
             },
             Rule::opts => {
                 let opts = subpair.into_inner().next().unwrap();
@@ -287,7 +287,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
             }
             Rule::cmd_stmt => match parse_command(subpair) {
                 Some(n) => cmd_node.add(n),
-                None => panic!("Could not parse nested command:"),
+                None => println!("Could not parse nested command:"),
             },
             Rule::literal_group => {
                 let l = Node {
