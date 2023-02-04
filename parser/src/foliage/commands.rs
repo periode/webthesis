@@ -1,6 +1,6 @@
 use super::Tag;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq)]
 pub enum Command {
     Baselineskip,
     Caption,
@@ -10,6 +10,7 @@ pub enum Command {
     Dots,
     Emph,
     Footnote,
+    Include,
     InlineListing,
     Italic,
     Item,
@@ -37,6 +38,7 @@ impl Tag for Command {
             Command::Dots => "dots",
             Command::Emph => "emph",
             Command::Footnote => "footnote",
+            Command::Include => "include",
             Command::InlineListing => "inline_listing",
             Command::Italic => "italic",
             Command::Item => "item",
@@ -81,6 +83,7 @@ pub fn parse_name(_name: &str) -> Option<Command> {
         "emph" => Some(Command::Emph),
         "footnote" => Some(Command::Footnote),
         "item" => Some(Command::Item),
+        "include" => Some(Command::Include),
         "label" => Some(Command::Label),
         "lstinline" => Some(Command::InlineListing),
         "linespread" => Some(Command::Linespread),

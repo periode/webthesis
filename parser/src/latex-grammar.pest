@@ -15,7 +15,7 @@ paragraph = {
 literal_group      = { char+ } //-- letters and numbers with no spaces
 char         = @{ ASCII_ALPHANUMERIC | punctuation }
 punctuation  = {
-    "," | "." | ";" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_"
+    "," | "." | ";" | "!" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_"
 }
 opts = { "[" ~ paragraph? ~ "]" }
 

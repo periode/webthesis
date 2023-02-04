@@ -2,10 +2,12 @@ pub mod foliage;
 
 use std::fs::{self, File};
 use std::io::Write;
+use std::path::Path;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 use clap::Parser as ArgParser;
+use foliage::commands::Command;
 use foliage::environments::Environment;
 use foliage::tokens::Token;
 use foliage::{commands, environments, Tag};
@@ -27,7 +29,7 @@ impl Node {
     pub fn add(&mut self, child: Node) {
         if let Some(_) = &self.children {
             self.children.as_mut().unwrap().push(child)
-        }else{
+        } else {
             let mut v = Vec::<Node>::new();
             v.push(child);
             self.children = Some(v);
@@ -36,7 +38,7 @@ impl Node {
 }
 
 const SEPARATOR: &str = " | ";
-const DEFAULT_INPUT: &str = "./test_inputs/basic.tex";
+const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
 const DEFAULT_OUTPUT: &str = "parsed.json";
 const DEFAULT_VERBOSE: usize = 0;
 #[derive(ArgParser, Debug)]
@@ -53,7 +55,9 @@ struct Args {
 
 fn main() {
     let args = Args::parse();
-    let src = fs::read_to_string(&args.input).expect("Cannot open file");
+    let input = args.input.to_string();
+    let fp = Path::new(&input);
+    let src = fs::read_to_string(fp.as_os_str()).expect("Cannot open file");
     println!("reading: {}", args.input);
 
     let ast = parse(src);
@@ -65,7 +69,7 @@ fn main() {
     save_ast(ast, &args.output)
 }
 
-fn save_ast(nodes: Vec<Node>, dest : &str) {
+fn save_ast(nodes: Vec<Node>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
     match File::create(&dest) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
@@ -226,6 +230,38 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
         value: String::from(""),
     };
 
+    //-- check if we're currently at an \include
+    let mut s = _stmt.clone().into_inner();
+    if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
+        match c {
+            Command::Include => {
+                let include = Path::new(s.next().unwrap().as_str());
+                let fp;
+                if include.is_absolute() {
+                    fp = include.display().to_string();
+                }else{
+                    let args = Args::parse();
+                    let input = args.input.to_string();
+                    let root = Path::new(&input);
+
+                    fp = format!("{}/{}",root.parent().unwrap().display(), include.display());
+                }
+
+                println!("including: {:?}", fp);
+
+                let src = fs::read_to_string(fp).expect("Cannot open file");
+                let children = parse(src);
+                cmd_node.tag = Box::new(Command::Include);
+                for c in children {
+                    cmd_node.add(c);
+                }
+
+                return Some(cmd_node);
+            }
+            _ => (),
+        }
+    }
+
     for subpair in _stmt.into_inner() {
         match subpair.as_rule() {
             Rule::ctrl_character => (),
@@ -280,8 +316,9 @@ fn it_parses_a_file() {
     let ch = top_level.children.as_ref();
     assert_eq!(ch.unwrap().len(), 1);
 
-    let document_environment = top_level.children
-    .as_ref()
+    let document_environment = top_level
+        .children
+        .as_ref()
         .unwrap()
         .first()
         .unwrap()

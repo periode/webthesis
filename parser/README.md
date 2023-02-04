@@ -13,15 +13,15 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 - [ ] preprocessor for includes (text and graphics)
 
 ## todo
+- [ ] update grammar to allow for nested `{}` blocks
 - [ ] postprocessor
   - [ ] create table of contents
   - [ ] create list of figures
   - [ ] create bibliography
-- [ ] list all needed elements
-  - [ ] semantic commands
-    - [ ] href (url + display text) __currently not used in thesis__
-    - [ ] textquote __currently not used in thesis__
-    - [ ] item __tricky one: the rest of the line should be itemized__
+- [ ] semantic commands
+  - [ ] href (url + display text) __currently not used in thesis__
+  - [ ] textquote __currently not used in thesis__
+  - [ ] item __tricky one: the rest of the line should be itemized__
 
 ## done
 - [x] make options their own node (currently they're not parsed)
