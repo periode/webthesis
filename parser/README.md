@@ -10,7 +10,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-- [ ] preprocessor for includes
+- [ ] preprocessor for includes (text and graphics)
 
 ## todo
 - [ ] postprocessor

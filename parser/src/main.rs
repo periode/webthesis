@@ -36,7 +36,7 @@ impl Node {
 }
 
 const SEPARATOR: &str = " | ";
-const DEFAULT_INPUT: &str = "latex_test.tex";
+const DEFAULT_INPUT: &str = "./test_inputs/basic.tex";
 const DEFAULT_OUTPUT: &str = "parsed.json";
 const DEFAULT_VERBOSE: usize = 0;
 #[derive(ArgParser, Debug)]
@@ -62,13 +62,17 @@ fn main() {
         pretty_print(&ast, 0);
     }
 
-    let json_string = serde_json::to_string(&ast).unwrap();
-    match File::create(&args.output) {
+    save_ast(ast, &args.output)
+}
+
+fn save_ast(nodes: Vec<Node>, dest : &str) {
+    let json_string = serde_json::to_string(&nodes).unwrap();
+    match File::create(&dest) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-            Ok(_) => println!("writing: {}", args.output),
-            Err(error) => println!("...failed to write {}:{}", args.output, error),
+            Ok(_) => println!("writing: {}", dest),
+            Err(error) => println!("...failed to write {}:{}", dest, error),
         },
-        Err(error) => println!("...failed to open {}:{}", args.output, error),
+        Err(error) => println!("...failed to open {}:{}", dest, error),
     }
 }
 
@@ -267,7 +271,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
 
 #[test]
 fn it_parses_a_file() {
-    let test_src = fs::read_to_string("latex_test.tex").expect("Cannot open file");
+    let test_src = fs::read_to_string("test_inputs/basic.tex").expect("Cannot open file");
     let test_ast = parse(test_src);
     assert_eq!(test_ast.len(), 1);
 
