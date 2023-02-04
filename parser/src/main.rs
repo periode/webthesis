@@ -21,7 +21,7 @@ struct Node {
     value: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 enum Token {
     DocumentRoot,
     Section,
@@ -64,9 +64,36 @@ struct Args {
 fn main() {
     let args = Args::parse();
     let src = fs::read_to_string(&args.input).expect("Cannot open file");
+    println!("reading: {}", args.input);
+
+    let ast = parse(src);
+
+    if args.verbosity == 1 {
+        pretty_print(&ast, 0);
+    }
+
+    let json_string = serde_json::to_string(&ast).unwrap();
+    match File::create(&args.output) {
+        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+            Ok(_) => println!("writing: {}", args.output),
+            Err(error) => println!("...failed to write {}:{}", args.output, error),
+        },
+        Err(error) => println!("...failed to open {}:{}", args.output, error),
+    }
+}
+
+fn pretty_print(_ast: &Vec<Node>, depth: usize) {
+    for n in _ast.into_iter() {
+        println!("{}tag: {:?}", SEPARATOR.repeat(depth), n.tag);
+        println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
+        println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
+        pretty_print(&n.children, depth + 1);
+    }
+}
+
+fn parse(src: String) -> Vec<Node> {
     let mut ast = Vec::<Node>::new();
 
-    println!("reading: {}", args.input);
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
@@ -96,30 +123,13 @@ fn main() {
             }
 
             ast.push(n);
+
+            ast
         }
-        Err(error) => println!("error parsing: {}", error),
-    }
-
-    if args.verbosity == 1 {
-        pretty_print(&ast, 0);
-    }
-
-    let json_string = serde_json::to_string(&ast).unwrap();
-    match File::create(&args.output) {
-        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-            Ok(_) => println!("writing: {}", args.output),
-            Err(error) => println!("...failed to write {}:{}", args.output, error),
-        },
-        Err(error) => println!("...failed to open {}:{}", args.output, error),
-    }
-}
-
-fn pretty_print(_ast: &Vec<Node>, depth: usize) {
-    for n in _ast.into_iter() {
-        println!("{}tag: {:?}", SEPARATOR.repeat(depth), n.tag);
-        println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
-        println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
-        pretty_print(&n.children, depth + 1);
+        Err(error) => {
+            println!("error parsing: {}", error);
+            ast
+        }
     }
 }
 
@@ -192,7 +202,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
             }
             Rule::code_description => {
                 env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
-            },
+            }
             Rule::env_stmt_opts => {
                 env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
             }
@@ -224,7 +234,9 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 }
                 None => panic!("Could not parse command: {}", subpair.as_str()),
             },
-            Rule::cmd_stmt_opts => cmd_node.value = format!("{}-{}", cmd_node.value, subpair.as_str()),
+            Rule::cmd_stmt_opts => {
+                cmd_node.value = format!("{}-{}", cmd_node.value, subpair.as_str())
+            }
             Rule::cmd_stmt => match parse_command(subpair) {
                 Some(n) => cmd_node.children.push(n),
                 None => panic!("Could not parse nested command:"),
@@ -241,4 +253,62 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
     }
 
     Some(cmd_node)
+}
+
+#[test]
+fn it_parses_a_file() {
+    let test_src = fs::read_to_string("latex_test.tex").expect("Cannot open file");
+    let test_ast = parse(test_src);
+    assert_eq!(test_ast.len(), 1);
+
+    let top_level = test_ast.first().unwrap();
+    assert_eq!(Token::DocumentRoot, top_level.tag);
+    assert_eq!(top_level.children.len(), 1);
+
+    let document_environment = top_level
+        .children
+        .first()
+        .unwrap()
+        .children
+        .first()
+        .unwrap();
+    assert_eq!(Token::Environment, document_environment.tag);
+    assert_eq!(3, document_environment.children.len());
+
+    //-- check the first header
+    let header_section = document_environment
+        .children
+        .first()
+        .unwrap()
+        .children
+        .first()
+        .unwrap();
+    assert_eq!(Token::Command, header_section.tag);
+    assert_eq!("section", header_section.value);
+
+    //-- check the listing environment
+    let listing = document_environment
+        .children
+        .get(1)
+        .unwrap()
+        .children
+        .get(0)
+        .unwrap();
+    assert_eq!(Token::Environment, listing.tag);
+    assert_eq!("figure", listing.value);
+
+    //-- check the code environment
+    let code = listing.children.first().unwrap().children.first().unwrap();
+    assert_eq!(Token::Environment, code.tag);
+    assert_eq!("code-python", code.value);
+
+    //-- check the caption
+    let caption = listing.children.get(1).unwrap().children.first().unwrap();
+    assert_eq!(Token::Command, caption.tag);
+    assert_eq!("caption-[]", caption.value);
+
+    //-- check the label
+    let label = listing.children.get(2).unwrap().children.first().unwrap();
+    assert_eq!(Token::Command, label.tag);
+    assert_eq!("label", label.value)
 }
