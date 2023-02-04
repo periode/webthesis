@@ -1,3 +1,5 @@
+use super::Tag;
+
 pub enum Command {
     Baselineskip,
     Caption,
@@ -23,8 +25,8 @@ pub enum Command {
     VSpace,
 }
 
-impl Command {
-    pub fn value(&self) -> &str {
+impl Tag for Command {
+    fn value(&self) -> &str {
         match *self {
             Command::Baselineskip => "baselineskip",
             Command::Caption => "caption",
@@ -50,7 +52,9 @@ impl Command {
             Command::URL => "url",
         }
     }
+}
 
+impl Command {
     pub fn is_print_layout(&self) -> bool {
         match *self {
             Command::Linespread => true,

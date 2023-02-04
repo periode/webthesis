@@ -6,7 +6,9 @@ extern crate pest;
 #[macro_use]
 extern crate pest_derive;
 use clap::Parser as ArgParser;
-use foliage::{commands, environments};
+use foliage::environments::Environment;
+use foliage::tokens::Token;
+use foliage::{commands, environments, Tag};
 use pest::{iterators::Pair, Parser};
 use serde::Serialize;
 
@@ -14,35 +16,11 @@ use serde::Serialize;
 #[grammar = "latex-grammar.pest"]
 pub struct LaTeXParser;
 
-#[derive(Debug, Serialize)]
+#[derive(Serialize)]
 struct Node {
     children: Vec<Node>,
-    tag: Token,
+    tag: Box<dyn Tag>,
     value: String,
-}
-
-#[derive(Debug, PartialEq)]
-enum Token {
-    DocumentRoot,
-    Section,
-    Environment,
-    Command,
-    Literal,
-}
-
-impl Serialize for Token {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: serde::Serializer,
-    {
-        match &self {
-            Token::DocumentRoot => serializer.serialize_str("document_root"),
-            Token::Section => serializer.serialize_str("section"),
-            Token::Environment => serializer.serialize_str("environment"),
-            Token::Command => serializer.serialize_str("command"),
-            Token::Literal => serializer.serialize_str("literal"),
-        }
-    }
 }
 
 const SEPARATOR: &str = " | ";
@@ -84,7 +62,7 @@ fn main() {
 
 fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     for n in _ast.into_iter() {
-        println!("{}tag: {:?}", SEPARATOR.repeat(depth), n.tag);
+        println!("{}tag: {}", SEPARATOR.repeat(depth), n.tag.value());
         println!("{}value: {}", SEPARATOR.repeat(depth), n.value);
         println!("{}children: {}", SEPARATOR.repeat(depth), n.children.len());
         pretty_print(&n.children, depth + 1);
@@ -100,7 +78,7 @@ fn parse(src: String) -> Vec<Node> {
 
             let mut n = Node {
                 children: Vec::<Node>::new(),
-                tag: Token::DocumentRoot,
+                tag: Box::new(Environment::Root),
                 value: String::from(""),
             };
 
@@ -136,7 +114,7 @@ fn parse(src: String) -> Vec<Node> {
 fn parse_section(_section: Pair<Rule>) -> Node {
     let mut section_node = Node {
         children: Vec::<Node>::new(),
-        tag: Token::Section,
+        tag: Box::new(Environment::Paragraph),
         value: String::from(""),
     };
 
@@ -155,7 +133,7 @@ fn parse_section(_section: Pair<Rule>) -> Node {
             }
             Rule::literal_group => {
                 section_node.children.push(Node {
-                    tag: Token::Literal,
+                    tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
                     children: Vec::<Node>::new(),
                 });
@@ -177,14 +155,14 @@ fn parse_section(_section: Pair<Rule>) -> Node {
 fn parse_environment(_env: Pair<Rule>) -> Node {
     let mut env_node = Node {
         children: Vec::<Node>::new(),
-        tag: Token::Environment,
+        tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
         value: String::from(""),
     };
 
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
             Rule::env_name => match environments::parse_name(subpair.as_str()) {
-                Some(env) => env_node.value = String::from(env.value()),
+                Some(env) => env_node.tag = Box::new(env),
                 None => panic!("Could not parse environment name: {}", subpair.as_str()),
             },
             Rule::env_content => {
@@ -201,7 +179,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                 }
             }
             Rule::code_description => {
-                env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
+                env_node.value = String::from(subpair.as_str())
             }
             Rule::env_stmt_opts => {
                 env_node.value = format!("{}-{}", env_node.value, subpair.as_str())
@@ -217,7 +195,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
     let mut cmd_node = Node {
         children: Vec::<Node>::new(),
-        tag: Token::Command,
+        tag: Box::new(Token::Command),
         value: String::from(""),
     };
 
@@ -229,13 +207,13 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                     if cmd.is_print_layout() {
                         return None;
                     } else {
-                        cmd_node.value = String::from(cmd.value());
+                        cmd_node.tag = Box::new(cmd)
                     }
                 }
                 None => panic!("Could not parse command: {}", subpair.as_str()),
             },
             Rule::cmd_stmt_opts => {
-                cmd_node.value = format!("{}-{}", cmd_node.value, subpair.as_str())
+                cmd_node.value = String::from(subpair.as_str())
             }
             Rule::cmd_stmt => match parse_command(subpair) {
                 Some(n) => cmd_node.children.push(n),
@@ -243,7 +221,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
             },
             Rule::literal_group => {
                 cmd_node.children.push(Node {
-                    tag: Token::Literal,
+                    tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
                     children: Vec::<Node>::new(),
                 });
@@ -262,7 +240,7 @@ fn it_parses_a_file() {
     assert_eq!(test_ast.len(), 1);
 
     let top_level = test_ast.first().unwrap();
-    assert_eq!(Token::DocumentRoot, top_level.tag);
+    assert_eq!("root", top_level.tag.value());
     assert_eq!(top_level.children.len(), 1);
 
     let document_environment = top_level
@@ -272,7 +250,7 @@ fn it_parses_a_file() {
         .children
         .first()
         .unwrap();
-    assert_eq!(Token::Environment, document_environment.tag);
+    assert_eq!("document", document_environment.tag.value());
     assert_eq!(3, document_environment.children.len());
 
     //-- check the first header
@@ -283,8 +261,8 @@ fn it_parses_a_file() {
         .children
         .first()
         .unwrap();
-    assert_eq!(Token::Command, header_section.tag);
-    assert_eq!("section", header_section.value);
+    assert_eq!("section", header_section.tag.value());
+    // assert_eq!("section", header_section.value);
 
     //-- check the listing environment
     let listing = document_environment
@@ -294,21 +272,21 @@ fn it_parses_a_file() {
         .children
         .get(0)
         .unwrap();
-    assert_eq!(Token::Environment, listing.tag);
-    assert_eq!("figure", listing.value);
+    assert_eq!("figure", listing.tag.value());
+    // assert_eq!("figure", listing.value);
 
     //-- check the code environment
     let code = listing.children.first().unwrap().children.first().unwrap();
-    assert_eq!(Token::Environment, code.tag);
-    assert_eq!("code-python", code.value);
+    assert_eq!("code", code.tag.value());
+    assert_eq!("python", code.value);
 
     //-- check the caption
     let caption = listing.children.get(1).unwrap().children.first().unwrap();
-    assert_eq!(Token::Command, caption.tag);
-    assert_eq!("caption-[]", caption.value);
+    assert_eq!("caption", caption.tag.value());
+    assert_eq!("[]", caption.value);
 
     //-- check the label
     let label = listing.children.get(2).unwrap().children.first().unwrap();
-    assert_eq!(Token::Command, label.tag);
-    assert_eq!("label", label.value)
+    assert_eq!("label", label.tag.value());
+    // assert_eq!("label", label.value)
 }

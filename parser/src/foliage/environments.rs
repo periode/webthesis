@@ -1,19 +1,25 @@
+use super::Tag;
+
 pub enum Environment {
     Document,
     Itemize,
     Listing,
     Minted,
+    Paragraph,
     Quote,
+    Root,
 }
 
-impl Environment {
-    pub fn value(&self) -> &str {
+impl Tag for Environment {
+    fn value(&self) -> &str {
         match *self {
             Environment::Document => "document",
             Environment::Itemize => "list",
             Environment::Listing => "figure",
             Environment::Minted => "code",
+            Environment::Paragraph => "paragraph",
             Environment::Quote => "quote",
+            Environment::Root => "root",
         }
     }
 }

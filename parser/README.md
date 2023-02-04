@@ -8,19 +8,14 @@ from this AST, it generates a web rendering of the latex file.
 
 the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the rest of the line as its body). the workaround is to adapt the writing of the `.tex` input to only use `\item{}`.
 
-currently, i'm not correctly parsing the options `[]` part of the command or environment. it's just a name, when it should be allow for more (literal? section?)
-
-the options really should be their own node
+currently, i'm not correctly parsing the options `[]` part of the command or environment. it's just a name, when it should be allow for more (literal? section?. they really should be their own node.
 
 ## doing
 
-- [ ] hashmap to store ast
-    - [ ] have different node types as `children` (trait implementation?)
+- [ ] make options their own node (currently they're not parsed)
 
 ## todo
 
-- [ ] have the `tag` field of the Node be a vector of traits, with the common trait being `value()`
-- [ ] make options their own node (currently they're not parsed)
 - [ ] preprocessor for includes
 - [ ] postprocessor
   - [ ] create table of contents
@@ -36,6 +31,7 @@ the options really should be their own node
 
 ## done
 
+- [x] have the `tag` field of the Node be a vector of traits, with the common trait being `value()`
 - [x] write simple automated test
 - [x] basic cli args parsing
 - [x] environments
