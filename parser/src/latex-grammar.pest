@@ -13,10 +13,11 @@ paragraph = {
 }
 
 literal_group      = { char+ } //-- letters and numbers with no spaces
-char         = @{ ASCII_ALPHANUMERIC | punctuation }
+char         = @{ ASCII_ALPHANUMERIC | punctuation | french_char }
 punctuation  = {
-    "," | "." | ";" | "'" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—"
+    "," | "." | ";" | "'" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&"
 }
+french_char = { "é" | "ç" | "ô" }
 opts = { "[" ~ paragraph? ~ "]" }
 
 // Control Statement Grammar
@@ -25,7 +26,7 @@ cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ opts? ~ ("{" ~ ( cmd_s
 
 
 // Control Characters & Meta Characters
-name                    = @{ ASCII_ALPHA+ } //-- used for command and environment names
+name                    = @{ (ASCII_ALPHA | "#" | "^") + } //-- used for command and environment names
 COMMENT                 = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
 WHITESPACE              = _{ " " }
 newline_char            = _{"\n"}
