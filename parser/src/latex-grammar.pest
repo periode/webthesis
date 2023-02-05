@@ -11,30 +11,32 @@ paragraph = {
     ( cmd_stmt | literal_group )*
 }
 
-literal_group      = { (char | "[" | "]")+ } //-- letters and numbers with no spaces
-char         = @{ ASCII_ALPHANUMERIC | punctuation | french_char }
-punctuation  = {
-    "," | "." | ";" | "'" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&"
-}
-french_char = { "é" | "ç" | "ô" }
+//-- letters and numbers with no spaces, brackets are included separately to address options
+literal_group      = { (char | "[" | "]")+ } 
+
+//-- letters and numbers with spaces, and no brackets
 opts = { "[" ~ opts_group? ~ "]" }
 opts_group = { literal_group_opts* }
-literal_group_opts = { char+ } //-- letters and numbers with no spaces
+literal_group_opts = { char+ } 
 
-// Control Statement Grammar
+// command statement
 //-- no newlines allowed in a cmd body
 cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ opts? ~ ("{" ~ ( cmd_stmt | literal_group | ("{" ~ ( cmd_stmt | literal_group )* ~ "}") )* ~ "}")* }
 
-
-// Control Characters & Meta Characters
-name                    = @{ (ASCII_ALPHA | "#" | "^") + } //-- used for command and environment names
-COMMENT                 = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
-WHITESPACE              = _{ ( " " | "\t" ) }
-newline_char            = _{"\n"}
-ctrl_character          = _{ "\\" }
-
-// Environment Grammar
+// environments
 env_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~  ("{" ~ code_description ~ "}")? ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 env_content         = { (paragraph? ~ newline_char)* }
 env_name            = { name }
 code_description    = { name }
+
+// characters
+name           = @{ (ASCII_ALPHA | "#" | "^") + } //-- used for command and environment names
+COMMENT        = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
+WHITESPACE     = _{ ( " " | "\t" ) }
+newline_char   = _{"\n"}
+ctrl_character = _{ "\\" }
+char           = @{ ASCII_ALPHANUMERIC | punctuation | non_ascii }
+punctuation    = {
+    "," | "." | ";" | "'" | "’" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&" | "@" | "$"
+}
+non_ascii      = { "é" | "è" | "ç" | "ô" | "ü" | "Ü" | "ñ" }
