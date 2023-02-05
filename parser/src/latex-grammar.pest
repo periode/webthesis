@@ -8,7 +8,6 @@ document = {
 // paragraph is representing a paragraph
 paragraph = {
     env_stmt |
-    cmd_stmt |
     ( cmd_stmt | literal_group )*
 }
 
@@ -28,7 +27,7 @@ cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ opts? ~ ("{" ~ ( cmd_s
 // Control Characters & Meta Characters
 name                    = @{ (ASCII_ALPHA | "#" | "^") + } //-- used for command and environment names
 COMMENT                 = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
-WHITESPACE              = _{ " " }
+WHITESPACE              = _{ ( " " | "\t" ) }
 newline_char            = _{"\n"}
 ctrl_character       = _{ "\\" }
 
