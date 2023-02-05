@@ -7,6 +7,7 @@ pub enum Command {
     Centerline,
     Chapter,
     Citation,
+    Clearpage,
     Dots,
     Emph,
     Footnote,
@@ -35,6 +36,7 @@ impl Tag for Command {
             Command::Centerline => "centerline",
             Command::Citation => "citation",
             Command::Chapter => "chapter",
+            Command::Clearpage => "clearpage",
             Command::Dots => "dots",
             Command::Emph => "emph",
             Command::Footnote => "footnote",
@@ -60,13 +62,14 @@ impl Tag for Command {
 impl Command {
     pub fn is_print_layout(&self) -> bool {
         match *self {
-            Command::Linespread => true,
-            Command::VSpace => true,
+            Command::Baselineskip => true,
             Command::Centerline => true,
+            Command::Clearpage => true,
+            Command::Linespread => true,
+            Command::Linewidth => true,
+            Command::VSpace => true,
             Command::Pagebreak => true,
             Command::Rule => true,
-            Command::Linewidth => true,
-            Command::Baselineskip => true,
             _ => false,
         }
     }
@@ -77,6 +80,7 @@ pub fn parse_name(_name: &str) -> Option<Command> {
         "baselineskip" => Some(Command::Baselineskip),
         "caption" => Some(Command::Caption),
         "centerline" => Some(Command::Centerline),
+        "clearpage" => Some(Command::Clearpage),
         "chapter" => Some(Command::Chapter),
         "citep" => Some(Command::Citation),
         "dots" => Some(Command::Dots),

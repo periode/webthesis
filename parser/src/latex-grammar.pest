@@ -16,7 +16,7 @@ literal_group      = { (char | "[" | "]")+ }
 
 //-- letters and numbers with spaces, and no brackets
 opts = { "[" ~ opts_group? ~ "]" }
-opts_group = { literal_group_opts* }
+opts_group = { (literal_group_opts | cmd_stmt)* }
 literal_group_opts = { char+ } 
 
 // command statement

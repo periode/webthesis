@@ -150,8 +150,6 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
             Rule::cmd_stmt => {
                 if let Some(c) = parse_command(subpair) {
                     section_node.add(c);
-                } else {
-                    println!("skipping layout node")
                 }
             }
             Rule::literal_group => {
@@ -376,7 +374,7 @@ fn it_parses_a_file() {
     assert_eq!("python", code.value);
 
     let code_opts = code.children.as_ref().unwrap().first().unwrap();
-    assert_eq!("linenos", code_opts.value);
+    assert_eq!("linenos,text=\\footnotesize", code_opts.value);
 
     //-- check the caption
     let caption = listing

@@ -10,20 +10,30 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-- [ ] preprocessor for includes (text and graphics)
+- [ ] ignore tex/package-specific commands
 
 ## todo
-- [ ] update grammar to allow for nested `{}` blocks
 - [ ] postprocessor
   - [ ] create table of contents
   - [ ] create list of figures
   - [ ] create bibliography
+- [ ] environment
+  - [ ] figure
+  - [ ] center
+  - [ ] enumerate
 - [ ] semantic commands
+  - [ ] title
+  - [ ] author
+  - [ ] affil
+  - [ ] date
+  - [ ] today
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__
   - [ ] item __tricky one: the rest of the line should be itemized__
 
 ## done
+- [x] preprocessor for includes (text and graphics)
+- [x] update grammar to allow for nested `{}` blocks
 - [x] make options their own node (currently they're not parsed)
 - [x] have the `tag` field of the Node be a vector of traits, with the common trait being `value()`
 - [x] write simple automated test
