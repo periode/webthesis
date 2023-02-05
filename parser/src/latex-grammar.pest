@@ -5,19 +5,21 @@ document = {
     EOI
 } //-- the last paragraph? catches the last line
 
-// paragraph is representing a paragraph
+// basic unit
 paragraph = {
     env_stmt |
     ( cmd_stmt | literal_group )*
 }
 
-literal_group      = { char+ } //-- letters and numbers with no spaces
+literal_group      = { (char | "[" | "]")+ } //-- letters and numbers with no spaces
 char         = @{ ASCII_ALPHANUMERIC | punctuation | french_char }
 punctuation  = {
     "," | "." | ";" | "'" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&"
 }
 french_char = { "é" | "ç" | "ô" }
-opts = { "[" ~ paragraph? ~ "]" }
+opts = { "[" ~ opts_group? ~ "]" }
+opts_group = { literal_group_opts* }
+literal_group_opts = { char+ } //-- letters and numbers with no spaces
 
 // Control Statement Grammar
 //-- no newlines allowed in a cmd body
@@ -29,10 +31,10 @@ name                    = @{ (ASCII_ALPHA | "#" | "^") + } //-- used for command
 COMMENT                 = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
 WHITESPACE              = _{ ( " " | "\t" ) }
 newline_char            = _{"\n"}
-ctrl_character       = _{ "\\" }
+ctrl_character          = _{ "\\" }
 
 // Environment Grammar
-env_stmt     = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~  ("{" ~ code_description ~ "}")? ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
-env_content  = { (paragraph? ~ newline_char)* }
-env_name = { name }
-code_description = { name }
+env_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~  ("{" ~ code_description ~ "}")? ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
+env_content         = { (paragraph? ~ newline_char)* }
+env_name            = { name }
+code_description    = { name }

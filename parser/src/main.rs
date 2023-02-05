@@ -38,7 +38,7 @@ impl Node {
 }
 
 const SEPARATOR: &str = " | ";
-const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
+const DEFAULT_INPUT: &str = "./test_inputs/basic.tex";
 const DEFAULT_OUTPUT: &str = "parsed.json";
 const DEFAULT_VERBOSE: usize = 0;
 #[derive(ArgParser, Debug)]
