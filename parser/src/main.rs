@@ -147,6 +147,10 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
                 let e = parse_environment(subpair);
                 section_node.add(e);
             }
+            Rule::code_stmt => {
+                let e = parse_environment(subpair);
+                section_node.add(e);
+            }
             Rule::cmd_stmt => {
                 if let Some(c) = parse_command(subpair) {
                     section_node.add(c);
@@ -168,7 +172,7 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
                 }
             }
             Rule::COMMENT => println!("{}", subpair.as_str()),
-            _ => unreachable!(),
+            _ => println!("unable to parse paragraph:{:?}", subpair.as_rule()),
         }
     }
 
@@ -198,7 +202,32 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                                 env_node.add(s);
                             }
                         }
-                        _ => unreachable!(),
+                        _ => println!("could not parse inside environment: {:?}", subsubpair.as_rule()),
+                    }
+                }
+            }
+            Rule::code_content => {
+                env_node.tag = Box::new(Environment::Minted);
+
+                for subsubpair in subpair.into_inner() {
+                    match subsubpair.as_rule() {
+                        Rule::paragraph => {
+                            let s = parse_paragraph(subsubpair);
+                            if let Some(_) = &s.children {
+                                //-- skip empty sections
+                                env_node.add(s);
+                            }
+                        }
+                        Rule::literal_group => {
+                            let l = Node {
+                                tag: Box::new(Token::Literal),
+                                value: String::from(subsubpair.as_str()),
+                                children: None,
+                            };
+            
+                            env_node.add(l);
+                        }
+                        _ => println!("could not parse inside code: {:?}", subsubpair.as_rule()),
                     }
                 }
             }

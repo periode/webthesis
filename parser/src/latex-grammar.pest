@@ -7,7 +7,7 @@ document = {
 
 // basic unit
 paragraph = {
-    env_stmt |
+    code_stmt | env_stmt |
     ( cmd_stmt | literal_group )*
 }
 
@@ -24,10 +24,13 @@ literal_group_opts = { char+ }
 cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ opts? ~ ("{" ~ ( cmd_stmt | literal_group | ("{" ~ ( cmd_stmt | literal_group )* ~ "}") )* ~ "}")* }
 
 // environments
-env_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~  ("{" ~ code_description ~ "}")? ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
+env_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 env_content         = { (paragraph? ~ newline_char)* }
 env_name            = { name }
 code_description    = { name }
+
+code_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{minted}" ~  ("{" ~ code_description ~ "}")? ~ code_content ~ ctrl_character ~ "end" ~ "{minted}" }
+code_content         = { (( literal_group | "{" | "}" )*? ~ newline_char)* }
 
 // characters
 name           = @{ (ASCII_ALPHA | "^") + } //-- used for command and environment names
@@ -37,6 +40,6 @@ newline_char   = _{"\n"}
 ctrl_character = _{ "\\" }
 char           = @{ ASCII_ALPHANUMERIC | punctuation | non_ascii }
 punctuation    = {
-    "," | "." | ";" | "'" | "’" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&" | "@" | "$" | "#"
+    "," | "." | ";" | "'" | "’" | "\"" | "\\&" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&" | "@" | "$" | "#"
 }
 non_ascii      = { "é" | "è" | "ç" | "ô" | "ü" | "Ü" | "ñ" }
