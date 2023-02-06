@@ -237,12 +237,12 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 let fp;
                 if include.is_absolute() {
                     fp = include.display().to_string();
-                }else{
+                } else {
                     let args = Args::parse();
                     let input = args.input.to_string();
                     let root = Path::new(&input);
 
-                    fp = format!("{}/{}",root.parent().unwrap().display(), include.display());
+                    fp = format!("{}/{}", root.parent().unwrap().display(), include.display());
                 }
 
                 println!("including: {:?}", fp);
@@ -265,10 +265,10 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
             Rule::ctrl_character => (),
             Rule::name => match commands::parse_name(subpair.as_str()) {
                 Some(cmd) => {
-                    if cmd.is_print_layout() {
-                        return None;
-                    } else {
+                    if cmd.is_semantic() {
                         cmd_node.tag = Box::new(cmd)
+                    } else {
+                        return None;
                     }
                 }
                 None => println!("Could not parse command: {}", subpair.as_str()),
