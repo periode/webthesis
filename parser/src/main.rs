@@ -355,7 +355,7 @@ fn it_parses_a_file() {
         .unwrap()
         .get(0)
         .unwrap();
-    assert_eq!("figure", listing.tag.value());
+    assert_eq!("listing", listing.tag.value());
     // assert_eq!("figure", listing.value);
 
     //-- check the code environment

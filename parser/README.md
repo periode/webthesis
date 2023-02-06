@@ -6,6 +6,8 @@ from this AST, it generates a web rendering of the latex file.
 
 ## notes
 
+`Environment::Figure` refers to images, while `Environment::Listing` refers to code snippets.
+
 the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the rest of the line as its body). the workaround is to adapt the writing of the `.tex` input to only use `\item{}`.
 
 ## doing
@@ -18,15 +20,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [ ] create list of figures
   - [ ] create bibliography
 - [ ] environment
-  - [ ] figure
-  - [ ] center
-  - [ ] enumerate
 - [ ] semantic commands
-  - [ ] title
-  - [ ] author
-  - [ ] affil
-  - [ ] date
-  - [ ] today
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__
   - [ ] item __tricky one: the rest of the line should be itemized__
@@ -44,6 +38,9 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [x] listing
   - [x] itemize
   - [x] quote
+  - [x] figure
+  - [x] center
+  - [x] enumerate
 - [x] command statements (e.g. `\emph[opt1, opt2]{arg}`)
 - [x] comments (currently silenced)
 - [x] proper indentation system
@@ -61,6 +58,11 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [x] footnote
   - [x] dots
   - [x] label
+  - [x] title
+  - [x] author
+  - [x] affil
+  - [x] date
+  - [x] today
   - [x] ref
   - [x] url (pure url)
   - [x] citep
