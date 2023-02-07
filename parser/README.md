@@ -12,7 +12,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-- [ ] the `\` char in a code block is creating problems
+- [ ] block on line `593` in `ideals.tex`
 
 ## todo
 - [ ] postprocessor
