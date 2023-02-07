@@ -32,7 +32,7 @@ env_name            = { name }
 code_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH("minted") ~ "}" ~  "{" ~ code_description ~ "}"~ code_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 code_description     = { name }
 code_content         = { ((literal_group_code)* ~ newline_char)* }
-literal_group_code   = { ( char | "=" | (!"\\end{minted}" ~ "\\") | "^" | "[" | "]"  | "{" | "}" | apl_chars)+ } 
+literal_group_code   = { ( char | "=" | (!"\\end{minted}" ~ "\\") | "^" | "[" | "]"  | "{" | "}" | "%" | apl_chars)+ } 
 apl_chars = { "←" | "⊃" | "⍵" | "∨" | "∧" | "⌿" | "¯" |"∘" | "⊖" | "⌽" | "¨" | "⊂"}
 
 // characters

@@ -12,7 +12,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-- [ ] block on line `593` in `ideals.tex`
+
 
 ## todo
 - [ ] postprocessor
@@ -26,6 +26,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [ ] item __tricky one: the rest of the line should be itemized__
 
 ## done
+- [x] block on line `593` in `ideals.tex` -> solved by adding new line before \end
 - [x] preprocessor for includes (text and graphics)
 - [x] update grammar to allow for nested `{}` blocks
 - [x] make options their own node (currently they're not parsed)
