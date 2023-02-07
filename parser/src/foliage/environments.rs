@@ -2,9 +2,11 @@ use super::Tag;
 
 #[derive(Copy, Clone)]
 pub enum Environment {
+    Aligned,
     Center,
     Document,
     Enumerate,
+    Equation,
     Figure,
     Itemize,
     Listing,
@@ -17,9 +19,11 @@ pub enum Environment {
 impl Tag for Environment {
     fn value(&self) -> &str {
         match *self {
+            Environment::Aligned => "center",
             Environment::Center => "center",
             Environment::Document => "document",
             Environment::Enumerate => "list",
+            Environment::Equation => "listing",
             Environment::Figure => "figure",
             Environment::Itemize => "list",
             Environment::Listing => "listing",
@@ -33,9 +37,11 @@ impl Tag for Environment {
 
 pub fn parse_name(_name: &str) -> Option<Environment> {
     match _name {
+        "aligned" => Some(Environment::Aligned),
         "center" => Some(Environment::Center),
         "document" => Some(Environment::Document),
         "enumerate" => Some(Environment::Enumerate),
+        "equation" => Some(Environment::Equation),
         "figure" => Some(Environment::Figure),
         "itemize" => Some(Environment::Itemize),
         "listing" => Some(Environment::Listing),

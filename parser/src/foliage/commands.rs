@@ -52,6 +52,15 @@ pub enum Command {
     Usemintedstyle,
     Usepackage,
     VSpace,
+    //-- mathematics-specific
+    Fraction,
+    Partial,
+    Mathcal,
+    PartialSymbol,
+    Quad,
+    NablaSymbol,
+    TimesSymbol,
+    DotSymbol,
 }
 
 impl Tag for Command {
@@ -107,13 +116,36 @@ impl Tag for Command {
             Command::URL => "url",
             Command::Usemintedstyle => "usemintedstyle",
             Command::Usepackage => "usepackage",
+            //-- mathematics-specific
+            Command::Fraction => "math_fraction",
+            Command::Partial => "math_partial",
+            Command::Mathcal => "math_mathcal",
+            Command::PartialSymbol => "math_partial",
+            Command::Quad => "math_quad",
+            Command::NablaSymbol => "math_nabla",
+            Command::TimesSymbol => "math_times",
+            Command::DotSymbol => "math_dot",
         }
     }
 }
 
 impl Command {
     pub fn is_semantic(&self) -> bool {
-        return !self.is_print_specific() && !self.is_latex_specific()
+        return !self.is_print_specific() && !self.is_latex_specific() && !self.is_mathematics_specific();
+    }
+
+    fn is_mathematics_specific(&self) -> bool {
+        match *self {
+            Command::Fraction => true,
+            Command::Partial => true,
+            Command::Mathcal => true,
+            Command::PartialSymbol => true,
+            Command::Quad => true,
+            Command::NablaSymbol => true,
+            Command::TimesSymbol => true,
+            Command::DotSymbol => true,
+            _ => false
+        }
     }
 
     fn is_print_specific(&self) -> bool {
@@ -207,6 +239,14 @@ pub fn parse_name(_name: &str) -> Option<Command> {
         "usepackage" => Some(Command::Usepackage),
         "vspace" => Some(Command::VSpace),
         "^" => Some(Command::Superscript),
+        //-- mathematics-specific
+        "frac" => Some(Command::Fraction),
+        "partial" => Some(Command::Partial),
+        "mathcal" => Some(Command::Mathcal),
+        "quad" => Some(Command::Quad),
+        "nabla" => Some(Command::NablaSymbol),
+        "times" => Some(Command::TimesSymbol),
+        "cdot" => Some(Command::DotSymbol),
         _ => None,
     }
 }

@@ -12,9 +12,10 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-
+- [ ] load parsed file into frontend
 
 ## todo
+
 - [ ] postprocessor
   - [ ] create table of contents
   - [ ] create list of figures
@@ -26,6 +27,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [ ] item __tricky one: the rest of the line should be itemized__
 
 ## done
+
 - [x] block on line `593` in `ideals.tex` -> solved by adding new line before \end
 - [x] preprocessor for includes (text and graphics)
 - [x] update grammar to allow for nested `{}` blocks
@@ -42,6 +44,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [x] figure
   - [x] center
   - [x] enumerate
+  - [x] mathematics
 - [x] command statements (e.g. `\emph[opt1, opt2]{arg}`)
 - [x] comments (currently silenced)
 - [x] proper indentation system
@@ -74,3 +77,4 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
   - [x] rule
   - [x] linewidth
   - [x] baselineskip
+  - [x] mathematics-specific

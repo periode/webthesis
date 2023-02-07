@@ -36,13 +36,13 @@ literal_group_code   = { ( char | "=" | (!"\\end{minted}" ~ "\\") | "^" | "[" | 
 apl_chars = { "←" | "⊃" | "⍵" | "∨" | "∧" | "⌿" | "¯" |"∘" | "⊖" | "⌽" | "¨" | "⊂"}
 
 // characters
-name           = @{ (ASCII_ALPHANUMERIC | "^" | "$") + } //-- used for command and environment names
+name           = @{ (ASCII_ALPHANUMERIC | "^" ) + } //-- used for command and environment names
 COMMENT        = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
 WHITESPACE     = _{ ( " " | "\t" ) }
 newline_char   = _{ "\n" }
 ctrl_character = _{ "\\" }
 char           = @{ ASCII_ALPHANUMERIC | punctuation | non_ascii }
 punctuation    = {
-    "," | "." | ";" | "'" | "`" | "’" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "~" | "&" | "@" | "$" | "#" | "\\#" | "\\&" | "\\%" | "\\_" | "\\{" | "\\}" | "“" | "”"
+    "," | "." | ";" | "'" | "`" | "’" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "~" | "&" | "@" | "$" | "#" | "\\#" | "\\&" | "\\%" | "\\_" | "\\{" | "\\}" | "\\$" | "“" | "”"
 }
 non_ascii      = { "é" | "è" | "à" | "ë" | "ç" | "ô" | "ü" | "Ü" | "ñ" | "ä" | "ō" | "τ" | "ε" | "χ" | "ν" | "η" | "Ā" | "ṭ" | "整" | "理" | "頓" | "清" | "掃" | "潔" | "躾"}
