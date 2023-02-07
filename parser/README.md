@@ -12,7 +12,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-- [ ] ignore tex/package-specific commands
+- [ ] the `\` char in a code block is creating problems
 
 ## todo
 - [ ] postprocessor

@@ -218,7 +218,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                                 env_node.add(s);
                             }
                         }
-                        Rule::literal_group => {
+                        Rule::literal_group_code => {
                             let l = Node {
                                 tag: Box::new(Token::Literal),
                                 value: String::from(subsubpair.as_str()),

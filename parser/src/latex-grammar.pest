@@ -27,19 +27,21 @@ cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ opts? ~ ("{" ~ ( cmd_s
 env_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 env_content         = { (paragraph? ~ newline_char)* }
 env_name            = { name }
-code_description    = { name }
 
-code_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{minted}" ~  ("{" ~ code_description ~ "}")? ~ code_content ~ ctrl_character ~ "end" ~ "{minted}" }
-code_content         = { (( literal_group | "{" | "}" )*? ~ newline_char)* }
+// code block - to allow for { } characters and disallow nested command statements
+code_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH("minted") ~ "}" ~  "{" ~ code_description ~ "}"~ code_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
+code_description     = { name }
+code_content         = { (( literal_group_code)* ~ newline_char)* }
+literal_group_code   = { (char | "[" | "]"  | "{" | "}")+ } 
 
 // characters
 name           = @{ (ASCII_ALPHA | "^") + } //-- used for command and environment names
 COMMENT        = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
 WHITESPACE     = _{ ( " " | "\t" ) }
-newline_char   = _{"\n"}
+newline_char   = _{ "\n" }
 ctrl_character = _{ "\\" }
 char           = @{ ASCII_ALPHANUMERIC | punctuation | non_ascii }
 punctuation    = {
-    "," | "." | ";" | "'" | "’" | "\"" | "\\&" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&" | "@" | "$" | "#"
+    "," | "." | ";" | "'" | "’" | "\"" | "\\\\" | "!" | "*" | "+" |"?" | "/" | "(" | ")" | "|" | "<" | ">" | ":" | "=" | "-" | "_" | "—" | "&" | "@" | "$" | "#" | "\\&" | "\\%"
 }
 non_ascii      = { "é" | "è" | "ç" | "ô" | "ü" | "Ü" | "ñ" }
