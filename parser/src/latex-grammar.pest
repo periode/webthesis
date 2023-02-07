@@ -31,8 +31,8 @@ env_name            = { name }
 // code block - to allow for { } characters and disallow nested command statements
 code_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH("minted") ~ "}" ~  "{" ~ code_description ~ "}"~ code_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
 code_description     = { name }
-code_content         = { (( literal_group_code)* ~ newline_char)* }
-literal_group_code   = { (char | "[" | "]"  | "{" | "}")+ } 
+code_content         = { ((literal_group_code)* ~ newline_char)* }
+literal_group_code   = { ( char | "=" | (!"\\end{minted}" ~ "\\") | "[" | "]"  | "{" | "}")+ } 
 
 // characters
 name           = @{ (ASCII_ALPHA | "^") + } //-- used for command and environment names

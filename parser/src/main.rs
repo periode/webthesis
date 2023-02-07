@@ -211,13 +211,6 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
-                        Rule::paragraph => {
-                            let s = parse_paragraph(subsubpair);
-                            if let Some(_) = &s.children {
-                                //-- skip empty sections
-                                env_node.add(s);
-                            }
-                        }
                         Rule::literal_group_code => {
                             let l = Node {
                                 tag: Box::new(Token::Literal),
