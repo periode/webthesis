@@ -3,6 +3,7 @@ pub mod foliage;
 use std::fs::{self, File};
 use std::io::Write;
 use std::path::Path;
+use std::time::Instant;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
@@ -60,13 +61,16 @@ fn main() {
     let src = fs::read_to_string(fp.as_os_str()).expect("Cannot open file");
     println!("reading: {}", args.input);
 
+    let start = Instant::now();
     let ast = parse(src);
-
+    let duration = start.elapsed();
+    
     if args.verbosity == 1 {
         pretty_print(&ast, 0);
     }
 
-    save_ast(ast, &args.output)
+    save_ast(ast, &args.output);
+    println!("lasting: {:?}", duration)
 }
 
 fn save_ast(nodes: Vec<Node>, dest: &str) {
