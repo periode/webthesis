@@ -1,9 +1,9 @@
 <script>
     import parsed_data from "./data.json";
+    import Node from './components/Node.svelte';
 </script>
 
 <h1>webthesis</h1>
 {#each parsed_data as d}
-    <h2>{d._type}</h2>
-    <p>{d.value}</p>
+   <Node tag={d.tag} value={d.value} children={d.children}/>
 {/each}
