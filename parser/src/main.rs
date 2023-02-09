@@ -64,7 +64,7 @@ fn main() {
     let start = Instant::now();
     let ast = parse(src);
     let duration = start.elapsed();
-    
+
     if args.verbosity == 1 {
         pretty_print(&ast, 0);
     }
@@ -115,7 +115,9 @@ fn parse(src: String) -> Vec<Node> {
                 match subpair.as_rule() {
                     Rule::paragraph => {
                         let s = parse_paragraph(subpair);
-                        n.add(s);
+                        if let Some(_) = &s.children {
+                            n.add(s);
+                        }
                     }
                     Rule::env_stmt => {
                         let e = parse_environment(subpair);
@@ -171,7 +173,7 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
             Rule::paragraph => {
                 let s = parse_paragraph(subpair);
                 if let Some(_) = &s.children {
-                    //-- skip empty sections
+                    //-- skip empty paragraphs
                     section_node.add(s);
                 }
             }
@@ -202,11 +204,14 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                         Rule::paragraph => {
                             let s = parse_paragraph(subsubpair);
                             if let Some(_) = &s.children {
-                                //-- skip empty sections
+                                //-- skip empty paragraphs
                                 env_node.add(s);
                             }
                         }
-                        _ => println!("could not parse inside environment: {:?}", subsubpair.as_rule()),
+                        _ => println!(
+                            "could not parse inside environment: {:?}",
+                            subsubpair.as_rule()
+                        ),
                     }
                 }
             }
@@ -221,7 +226,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                                 value: String::from(subsubpair.as_str()),
                                 children: None,
                             };
-            
+
                             env_node.add(l);
                         }
                         _ => println!("could not parse inside code: {:?}", subsubpair.as_rule()),
@@ -276,6 +281,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 let src = fs::read_to_string(fp).expect("Cannot open file");
                 let children = parse(src);
                 cmd_node.tag = Box::new(Command::Include);
+                cmd_node.value = include.display().to_string();
                 for c in children {
                     cmd_node.add(c);
                 }

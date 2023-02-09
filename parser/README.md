@@ -6,13 +6,11 @@ from this AST, it generates a web rendering of the latex file.
 
 ## notes
 
-`Environment::Figure` refers to images, while `Environment::Listing` refers to code snippets.
+`Environment::Figure` refers to images, while `Environment::Listing` refers to code snippets (`Environment::Equation` is subsumed into `Environment::Listing`).
 
 the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the rest of the line as its body). the workaround is to adapt the writing of the `.tex` input to only use `\item{}`.
 
 ## doing
-
-- [ ] load parsed file into frontend
 
 ## todo
 
@@ -28,6 +26,8 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## done
 
+- [x] give a value to the `include`
+- [x] get rid of empty paragraph nodes
 - [x] block on line `593` in `ideals.tex` -> solved by adding new line before \end
 - [x] preprocessor for includes (text and graphics)
 - [x] update grammar to allow for nested `{}` blocks
