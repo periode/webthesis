@@ -4,7 +4,23 @@ front-end for the thesis.
 
 ## todo
 
-- [ ] create basic node component to recursively display all information
+- [ ] include tailwind
+- [ ] specific components
+  - [ ] paragraph
+  - [ ] code
+  - [ ] image
+  - [ ] citation
+  - [ ] listing
+  - [ ] figure
+  - [ ] footnote
+  - [ ] quote
+- [ ] deal with escaped characters
+  - [ ] `\{` -> `{`
+  - [ ] etc.
+
+## done
+
+- [x] create basic node component to recursively display all information
 
 
 ## svelte
