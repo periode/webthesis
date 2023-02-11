@@ -2,12 +2,17 @@
 
 front-end for the thesis.
 
-## todo
+## doing
 
 - [ ] include tailwind
+- [ ] code
+- [ ] emph
+
+## todo
+
+- [ ] have a default error node
 - [ ] specific components
-  - [ ] paragraph
-  - [ ] code
+  - [x] paragraph
   - [ ] image
   - [ ] citation
   - [ ] listing
@@ -16,6 +21,7 @@ front-end for the thesis.
   - [ ] quote
 - [ ] deal with escaped characters
   - [ ] `\{` -> `{`
+  - [ ] `\\` -> `\n`
   - [ ] etc.
 
 ## done
