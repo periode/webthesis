@@ -5,19 +5,12 @@
 
     let data = json_data as Array<INode>;
     let nodes = data[0].children as Array<INode>;
-    // let nodes = parsed_data.children;
+    let document_children = nodes[0].children as Array<INode>;
 </script>
 
-<div class="content">
+<div class="w-full bg-slate-50 text-slate-800 p-3">
     <h1>webthesis</h1>
-    {#each nodes as n}
+    {#each document_children as n}
         <Paragraph children={n.children} />
     {/each}
 </div>
-
-<style>
-    .content {
-        background-color: #eee;
-        color: #222;
-    }
-</style>

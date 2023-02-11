@@ -4,13 +4,11 @@ front-end for the thesis.
 
 ## doing
 
-- [ ] include tailwind
 - [ ] code
-- [ ] emph
 
 ## todo
 
-- [ ] have a default error node
+- [ ] handle `\today` with Date in SSR
 - [ ] specific components
   - [x] paragraph
   - [ ] image
@@ -27,6 +25,13 @@ front-end for the thesis.
 ## done
 
 - [x] create basic node component to recursively display all information
+- [x] include tailwind
+- [x] emph
+- [x] citep
+- [x] section
+- [x] subsection
+- [x] subsubsection
+- [**x**] error node
 
 
 ## svelte

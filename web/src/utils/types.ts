@@ -3,6 +3,11 @@ export enum NodeType {
     Listing = 'listing',
     Literal = 'literal',
     Paragraph = 'paragraph',
+    Section = 'section',
+    Subsection = 'subsection',
+    Subsubsection = 'subsubsection',
+    Emphasis = 'emph',
+    Citation = 'citation',
 }
 
 export interface INode {

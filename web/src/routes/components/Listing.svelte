@@ -7,13 +7,15 @@
     export let children: Array<INode> | null;
 </script>
 
-<div class="listing">
+<div class="w-full font-mono break-words">
     <div>env: {tag} - {value} ({children ? children.length : "none"})</div>
     {#if children}
         {#each children as child}
             {child.value}
             {#if child.tag === NodeType.Literal}
-                <svelte:self children={child.children} />
+                <div>
+                    {child.value}
+                </div>
             {:else}
                 <Paragraph
                     children={child.children}
@@ -22,9 +24,3 @@
         {/each}
     {/if}
 </div>
-
-<style>
-    .listing {
-        font-family: monospace;
-    }
-</style>
