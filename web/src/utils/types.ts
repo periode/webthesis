@@ -15,6 +15,8 @@ export enum NodeType {
     Root = 'root',
     Quote = 'quote',
     Footnote = 'footnote',
+    Reference = 'reference',
+    InlineListing = 'inline_listing',
 }
 
 export interface INode {

@@ -23,13 +23,13 @@
     }
 </script>
 
-<div class="w-fit my-5 text-sm">
+<div class="w-5/12 my-5 text-sm">
     {#if children}
         {#each children as paragraph}
             {#if paragraph.children}
                 {#if paragraph.children[0].tag === NodeType.Code}
                     <div
-                        class="border-slate-600 border-2 p-2 font-mono bg-slate-200 break-words"
+                        class="border-slate-600 border-2 p-2 font-mono bg-slate-200 break-words overflow-y-scroll"
                     >
                         {#if paragraph.children[0].children}
                             {#each paragraph.children[0].children as c}
