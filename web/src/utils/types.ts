@@ -8,10 +8,17 @@ export enum NodeType {
     Subsubsection = 'subsubsection',
     Emphasis = 'emph',
     Citation = 'citation',
+    Code = 'code',
+    Caption = 'caption',
+    Label = 'label',
+    Include = 'include',
+    Root = 'root',
+    Quote = 'quote',
+    Footnote = 'footnote',
 }
 
 export interface INode {
-    tag: String;
-    value: String;
+    tag: string;
+    value: string;
     children: Array<INode> | null;
 };

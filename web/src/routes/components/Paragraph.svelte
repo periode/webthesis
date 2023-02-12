@@ -6,6 +6,7 @@
     import Subsection from "./headers/Subsection.svelte";
     import Subsubsection from "./headers/Subsubsection.svelte";
     import Listing from "./Listing.svelte";
+    import Quote from "./Quote.svelte";
 
     export let children: Array<INode> | null;
 
@@ -24,7 +25,7 @@
         else return false;
     };
 
-    const getLiteralContent = (nodes: Array<INode>) => {
+    const concatenateLiteralContent = (nodes: Array<INode>) => {
         let c = "";
 
         nodes.map((n) => {
@@ -34,6 +35,8 @@
                 c += ` <span class="italic">${n.children[0].value}</span>`;
             } else if (n.tag === NodeType.Citation && n.children) {
                 c += ` (<span class="bold">${n.children[0].value}</span>)`;
+            } else if (n.tag === NodeType.Footnote && n.children) {
+                c += `<sup class="text-sm">${n.children.map(c => c.value).join(" ")}</sup>`
             } else {
                 c = `<b>nope! ${n.tag}</b>`;
             }
@@ -44,7 +47,7 @@
 
     let literal_content: string | null = null;
     if (isLiteralParagraph(children)) {
-        literal_content = getLiteralContent(children as INode[]);
+        literal_content = concatenateLiteralContent(children as INode[]);
     }
 </script>
 
@@ -53,7 +56,11 @@
         <!-- <div>({children ? children.length : "none"})</div> -->
         {#each children as child}
             {child.value}
-            {#if child.tag === NodeType.Chapter}
+            {#if child.tag === NodeType.Root}
+                <svelte:self children={child.children} />
+            {:else if child.tag === NodeType.Include}
+                <svelte:self children={child.children} />
+            {:else if child.tag === NodeType.Chapter}
                 <Chapter children={child.children} />
             {:else if child.tag === NodeType.Section}
                 <Section children={child.children} />
@@ -67,6 +74,8 @@
                     tag={child.tag}
                     value={child.value}
                 />
+            {:else if child.tag === NodeType.Quote}
+                <Quote children={child.children} />
             {:else if child.tag === NodeType.Paragraph}
                 <svelte:self children={child.children} />
             {:else}
@@ -76,7 +85,7 @@
             {/if}
         {/each}
     {:else}
-        <div class="w-6/12 mb-1 indent-3">
+        <div class="w-6/12 mb-1 indent-12">
             {@html literal_content}
         </div>
     {/if}

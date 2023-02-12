@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let tag: String;
+    export let tag: string;
 </script>
 
 <div class="border-red-600 border text-black p-1">

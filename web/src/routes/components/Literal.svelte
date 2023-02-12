@@ -1,13 +1,7 @@
 <script lang="ts">
-    export let value: String;
+    export let value: string;
 </script>
 
-<span class="literal">
+<span>
     {value}
 </span>
-
-<style>
-    .literal {
-        background-color: yellow;
-    }
-</style>

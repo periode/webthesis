@@ -2,20 +2,29 @@
 
 front-end for the thesis.
 
+## notes
+
+would it be better to have it as a single page, or as distinct includes?
+
 ## doing
 
-- [ ] code
+- [ ] listing
+  - [ ] save whitespace during tex parsing
+  - [ ] show lines
+  - [ ] show highglight for language (library)
 
 ## todo
 
 - [ ] handle `\today` with Date in SSR
+- [ ] handle deep nestedness of quotes
 - [ ] specific components
   - [x] paragraph
   - [ ] image
-  - [ ] citation
-  - [ ] listing
+  - [ ] inline_listing
+  - [ ] reference
   - [ ] figure
   - [ ] footnote
+    - [ ] this where i figure out where to put modular elements
   - [ ] quote
 - [ ] deal with escaped characters
   - [ ] `\{` -> `{`

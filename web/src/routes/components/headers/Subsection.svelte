@@ -5,6 +5,6 @@
     let value = children ? children[0].value : "none"
 </script>
 
-<div class="text-xl">
+<div class="text-2xl mt-8 mb-2">
     {value}
 </div>
