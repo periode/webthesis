@@ -17,6 +17,10 @@ export enum NodeType {
     Footnote = 'footnote',
     Reference = 'reference',
     InlineListing = 'inline_listing',
+    Title = 'title',
+    Author = 'author',
+    Affiliation = 'affiliation',
+    Date = 'date',
 }
 
 export interface INode {

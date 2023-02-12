@@ -9,6 +9,16 @@
     import Quote from "./Quote.svelte";
     import Include from "./Include.svelte";
     import Label from "./Label.svelte";
+    import Literal from "./inline/Literal.svelte";
+    import Emph from "./inline/Emph.svelte";
+    import Citation from "./inline/Citation.svelte";
+    import InlineListing from "./inline/InlineListing.svelte";
+    import Footnote from "./inline/Footnote.svelte";
+    import Reference from "./inline/Reference.svelte";
+    import Title from "./Title.svelte";
+    import Author from "./Author.svelte";
+    import Affiliation from "./Affiliation.svelte";
+    import Date from "./Date.svelte";
 
     export let children: Array<INode> | null;
 
@@ -26,43 +36,10 @@
             return true;
         else return false;
     };
-
-    const concatenateLiteralContent = (nodes: Array<INode>) => {
-        let c = "";
-
-        nodes.map((n) => {
-            if (n.tag == NodeType.Literal) {
-                c += n.value;
-            } else if (n.tag === NodeType.Emphasis && n.children) {
-                c += ` <span class="italic">${n.children[0].value}</span>`;
-            } else if (n.tag === NodeType.Citation && n.children) {
-                c += ` (<span class="bold">${n.children[0].value}</span>)`;
-            } else if (n.tag === NodeType.Reference && n.children) {
-                c += ` (<b class="text">${n.children[0].value}</b>) `;
-            } else if (n.tag === NodeType.InlineListing && n.children) {
-                c += `<span class="text-sm">${n.children
-                    .map((c) => c.value)
-                    .join(" ")}</span>`;
-            } else if (n.tag === NodeType.Footnote && n.children) {
-                c += `<sup class="text-sm">${n.children
-                    .map((c) => c.value)
-                    .join(" ")}</sup>`;
-            } else {
-                c = `<b>nope! ${n.tag}</b>`;
-            }
-        });
-
-        return c;
-    };
-
-    let literal_content: string | null = null;
-    if (isLiteralParagraph(children)) {
-        literal_content = concatenateLiteralContent(children as INode[]);
-    }
 </script>
 
-<div class="paragraph m-2">
-    {#if children && literal_content === null}
+<div class="m-1 md:m-2">
+    {#if children && !isLiteralParagraph(children)}
         <!-- <div>({children ? children.length : "none"})</div> -->
         {#each children as child}
             <!-- {child.value} -->
@@ -70,6 +47,22 @@
                 <svelte:self children={child.children} />
             {:else if child.tag === NodeType.Include}
                 <Include children={child.children} />
+            {:else if child.tag === NodeType.Title}
+                {#if child.children}
+                    <Title value={child.children[0].value} />
+                {/if}
+            {:else if child.tag === NodeType.Author}
+                {#if child.children}
+                    <Author value={child.children[0].value} />
+                {/if}
+            {:else if child.tag === NodeType.Affiliation}
+                {#if child.children}
+                    <Affiliation value={child.children[0].value} />
+                {/if}
+            {:else if child.tag === NodeType.Date}
+                {#if child.children}
+                    <Date />
+                {/if}
             {:else if child.tag === NodeType.Chapter}
                 <Chapter children={child.children} />
             {:else if child.tag === NodeType.Section}
@@ -86,6 +79,10 @@
                 />
             {:else if child.tag === NodeType.Quote}
                 <Quote children={child.children} />
+            {:else if child.tag === NodeType.Emphasis}
+                {#if child.children}
+                    <Emph value={child.children[0].value} />
+                {/if}
             {:else if child.tag === NodeType.Label}
                 {#if child.children}
                     <Label value={child.children[0].value} />
@@ -98,9 +95,29 @@
                 </Error>
             {/if}
         {/each}
-    {:else}
-        <div class="lg:w-5/12 md:w-8/12 mb-1 indent-12">
-            {@html literal_content}
+    {:else if children}
+        <div class="w-full lg:w-5/12 md:w-8/12 mb-1 indent-12">
+            {#each children as child}
+                {#if child.tag == NodeType.Literal}
+                    <Literal value={child.value} />
+                {:else if child.tag === NodeType.Emphasis && child.children}
+                    <Emph value={child.children[0].value} />
+                {:else if child.tag === NodeType.Citation && child.children}
+                    <Citation value={child.children[0].value} />;
+                {:else if child.tag === NodeType.Reference && child.children}
+                    <Reference value={child.children[0].value} />;
+                {:else if child.tag === NodeType.InlineListing && child.children}
+                    <InlineListing
+                        value={child.children.map((c) => c.value).join("")}
+                    />;
+                {:else if child.tag === NodeType.Footnote && child.children}
+                    <Footnote
+                        value={child.children.map((c) => c.value).join("")}
+                    />;
+                {:else}
+                    <b>nope! `${child.tag}`</b>
+                {/if}
+            {/each}
         </div>
     {/if}
 </div>

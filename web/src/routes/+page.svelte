@@ -8,7 +8,7 @@
     let document_children = nodes[0].children as Array<INode>;
 </script>
 
-<div class="w-full bg-slate-50 text-slate-800 p-3">
+<div class="container max-w-full bg-slate-50 text-slate-800 lg:p-3">
     {#each document_children as n}
         <Paragraph children={n.children} />
     {/each}

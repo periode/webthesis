@@ -8,22 +8,19 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## doing
 
+## todo
+
+- [ ] refactor paragraph component (https://www.twilio.com/blog/dynamically-render-svelte-components)
+- [ ] save a timestamp in rust
+- [ ] handle `\today` with Date in SSR
+- [ ] handle deep nestedness of quotes
 - [ ] listing
   - [ ] save whitespace during tex parsing
   - [ ] show lines
   - [ ] show highglight for language (library)
-
-## todo
-
-- [ ] refactor paragraph component (https://www.twilio.com/blog/dynamically-render-svelte-components)
-- [ ] properly concatenate the literals inside a paragraph
-- [ ] handle `\today` with Date in SSR
-- [ ] handle deep nestedness of quotes
 - [ ] specific components
   - [x] paragraph
   - [ ] image
-  - [x] inline_listing
-  - [x] reference
   - [ ] figure
   - [ ] footnote
     - [ ] this where i figure out where to put modular elements
@@ -34,7 +31,7 @@ would it be better to have it as a single page, or as distinct includes?
   - [ ] etc.
 
 ## done
-
+- [x] properly concatenate the literals inside a paragraph
 - [x] create basic node component to recursively display all information
 - [x] include tailwind
 - [x] emph
@@ -42,6 +39,8 @@ would it be better to have it as a single page, or as distinct includes?
 - [x] section
 - [x] subsection
 - [x] subsubsection
+- [x] inline_listing
+- [x] reference
 - [**x**] error node
 
 

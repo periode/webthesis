@@ -23,7 +23,7 @@
     }
 </script>
 
-<div class="w-5/12 my-5 text-sm">
+<div class="md:w-5/12 my-5 text-sm">
     {#if children}
         {#each children as paragraph}
             {#if paragraph.children}
