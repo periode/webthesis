@@ -5,6 +5,7 @@ authors = ["pierre <pierre.depaz@gmail.com>"]
 edition = "2021"
 
 [dependencies]
+chrono = "0.4.23"
 clap = { version="4.1.4", features = ["derive"]}
 pest = "2.0"
 pest_derive = "2.0"

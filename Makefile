@@ -4,7 +4,7 @@ thesis:
 test:
 	cd parser && cargo test
 
-webdata: thesis
+data: thesis
 	cp ./parser/parsed.json ./web/src/routes/data.json
 
 dev:

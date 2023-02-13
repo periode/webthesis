@@ -7,6 +7,7 @@ use std::time::Instant;
 extern crate pest;
 #[macro_use]
 extern crate pest_derive;
+use chrono::Utc;
 use clap::Parser as ArgParser;
 use foliage::commands::Command;
 use foliage::environments::Environment;
@@ -287,7 +288,8 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 }
 
                 return Some(cmd_node);
-            }
+            },
+            Command::Date => cmd_node.value = Utc::now().timestamp().to_string(),
             _ => (),
         }
     }

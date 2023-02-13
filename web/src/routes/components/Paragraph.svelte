@@ -61,7 +61,7 @@
                 {/if}
             {:else if child.tag === NodeType.Date}
                 {#if child.children}
-                    <Date />
+                    <Date timestamp={child.value} />
                 {/if}
             {:else if child.tag === NodeType.Chapter}
                 <Chapter children={child.children} />
