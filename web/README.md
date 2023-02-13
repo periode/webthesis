@@ -15,7 +15,7 @@ would it be better to have it as a single page, or as distinct includes?
 - [ ] listing
   - [ ] save whitespace during tex parsing
   - [ ] show lines
-  - [ ] show highglight for language (library)
+  - [ ] show highglight for language ([library](https://github.com/highlightjs/highlight.js))
 - [ ] specific components
   - [x] paragraph
   - [ ] image
