@@ -7,6 +7,7 @@ export enum NodeType {
     Subsection = 'subsection',
     Subsubsection = 'subsubsection',
     Emphasis = 'emph',
+    Italic = 'italic',
     Citation = 'citation',
     Code = 'code',
     Caption = 'caption',

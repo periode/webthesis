@@ -38,7 +38,7 @@
     };
 </script>
 
-<div class="m-1 md:m-2">
+<div class="m-1 md:m-2 leading-8">
     {#if children && !isLiteralParagraph(children)}
         <!-- <div>({children ? children.length : "none"})</div> -->
         {#each children as child}
@@ -100,22 +100,22 @@
             {#each children as child}
                 {#if child.tag == NodeType.Literal}
                     <Literal value={child.value} />
-                {:else if child.tag === NodeType.Emphasis && child.children}
+                {:else if (child.tag === NodeType.Emphasis || child.tag === NodeType.Italic) && child.children}
                     <Emph value={child.children[0].value} />
                 {:else if child.tag === NodeType.Citation && child.children}
-                    <Citation value={child.children[0].value} />;
+                    <Citation value={child.children[0].value} />
                 {:else if child.tag === NodeType.Reference && child.children}
-                    <Reference value={child.children[0].value} />;
+                    <Reference value={child.children[0].value} />
                 {:else if child.tag === NodeType.InlineListing && child.children}
                     <InlineListing
                         value={child.children.map((c) => c.value).join("")}
-                    />;
+                    />
                 {:else if child.tag === NodeType.Footnote && child.children}
                     <Footnote
                         value={child.children.map((c) => c.value).join("")}
-                    />;
+                    />
                 {:else}
-                    <b>nope! `${child.tag}`</b>
+                    <b>nope! {child.tag}</b>
                 {/if}
             {/each}
         </div>

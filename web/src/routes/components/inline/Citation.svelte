@@ -2,6 +2,6 @@
     export let value: string;
 </script>
 
-<span class="">
-    {` (${value}) `}
+<span class="font-medium">
+    &nbsp;({value})&nbsp;
 </span>

@@ -11,9 +11,9 @@ would it be better to have it as a single page, or as distinct includes?
 ## todo
 
 - [ ] refactor paragraph component (https://www.twilio.com/blog/dynamically-render-svelte-components)
-- [ ] save a timestamp in rust
-- [ ] handle `\today` with Date in SSR
+- [ ] handle `\today` with Date in SSR (save a timestamp in rust)
 - [ ] handle deep nestedness of quotes
+- [ ] handle deep nestedness of footnotes
 - [ ] listing
   - [ ] save whitespace during tex parsing
   - [ ] show lines
@@ -22,8 +22,9 @@ would it be better to have it as a single page, or as distinct includes?
   - [x] paragraph
   - [ ] image
   - [ ] figure
-  - [ ] footnote
-    - [ ] this where i figure out where to put modular elements
+  - [x] footnote
+    - [x] this where i figure out where to put modular elements
+    - [ ] make it so that clicking anywhere on the rest of the screen makes the footnote disappear
   - [ ] quote
 - [ ] deal with escaped characters
   - [ ] `\{` -> `{`
