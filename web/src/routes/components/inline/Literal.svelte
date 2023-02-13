@@ -1,5 +1,7 @@
 <script lang="ts">
-    export let value: string;    
+    import type { INode } from "../../../utils/types";
+    export let node: INode;
+    const value = node.value ? node.value : "Missing literal";
 </script>
 
 <span>

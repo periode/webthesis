@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { INode } from "../../../utils/types";
-    export let children: Array<INode> | null;
+    export let node:INode;
 
-    let value = children ? children[0].value : "none"
+    let value = node.children ? node.children[0].value : "none"
 </script>
 
 <div class="font-bold">

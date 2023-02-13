@@ -10,7 +10,6 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## todo
 
-- [ ] refactor paragraph component (https://www.twilio.com/blog/dynamically-render-svelte-components)
 - [ ] handle deep nestedness of quotes
 - [ ] handle deep nestedness of footnotes
 - [ ] listing
@@ -20,6 +19,7 @@ would it be better to have it as a single page, or as distinct includes?
 - [ ] specific components
   - [x] paragraph
   - [ ] image
+    - [ ] in makefile, copy all src images to target web asset dir
   - [ ] figure
   - [x] footnote
     - [x] this where i figure out where to put modular elements
@@ -30,6 +30,7 @@ would it be better to have it as a single page, or as distinct includes?
   - [ ] etc.
 
 ## done
+- [x] refactor paragraph component
 - [x] handle `\today` with Date in SSR (save a timestamp in rust)
 - [x] properly concatenate the literals inside a paragraph
 - [x] create basic node component to recursively display all information

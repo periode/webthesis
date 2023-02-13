@@ -1,5 +1,9 @@
 <script lang="ts">
-    export let timestamp: string;
+    import type { INode } from "../../utils/types";
+
+    export let node: INode;
+
+    const timestamp = node.value;
     let d = new Date(parseInt(timestamp) * 1000);
 </script>
 

@@ -1,13 +1,15 @@
 <script lang="ts">
-    export let value: string;
+    import type { INode } from "../../utils/types";
+    export let node: INode;
+    const value = node.children ? node.children[0].value : "Missing author";
 
-    const escapeCharacter = (input: string): string[] => {        
+    const splitLatexLinebreaks = (input: string): string[] => {
         return input.split("\\\\");
     };
 </script>
 
 <div class="my-32">
-    {#each escapeCharacter(value) as line}
-    {`${line}`}<br/>
+    {#each splitLatexLinebreaks(value) as line}
+        {`${line}`}<br />
     {/each}
 </div>
