@@ -18,41 +18,40 @@
     import Emph from "./inline/Emph.svelte";
     import Citation from "./inline/Citation.svelte";
     import InlineListing from "./inline/InlineListing.svelte";
-    import Footnote from "./inline/Footnote.svelte";
+    import Footnote from "./Footnote.svelte";
     import Reference from "./inline/Reference.svelte";
-    import type { INode } from "../../utils/types";
+    import { NodeType, type INode } from "../../utils/types";
 
     export let node: INode;
 
     const nodes = [
-        { tag: "root", component: Paragraph },
-        { tag: "paragraph", component: Paragraph },
-        { tag: "include", component: Include },
-        { tag: "chapter", component: Chapter },
-        { tag: "listing", component: Listing },
-        { tag: "literal", component: Literal },
-        { tag: "section", component: Section },
-        { tag: "subsection", component: Subsection },
-        { tag: "subsubsection", component: Subsubsection },
-        { tag: "emph", component: Emph },
-        { tag: "italic", component: Emph },
-        { tag: "citation", component: Citation },
-        { tag: "code", component: Listing },
-        { tag: "figure", component: Figure },
-        { tag: "label", component: Label },
-        { tag: "include", component: Include },
-        { tag: "quote", component: Quote },
-        { tag: "footnote", component: Footnote },
-        { tag: "reference", component: Reference },
-        { tag: "inline_listing", component: InlineListing },
-        { tag: "title", component: Title },
-        { tag: "author", component: Author },
-        { tag: "affiliation", component: Affiliation },
-        { tag: "date", component: Date },
+        { tag: NodeType.Root, component: Paragraph },
+        { tag: NodeType.Paragraph, component: Paragraph },
+        { tag: NodeType.Include, component: Include },
+        { tag: NodeType.Chapter, component: Chapter },
+        { tag: NodeType.Listing, component: Listing },
+        { tag: NodeType.Literal, component: Literal },
+        { tag: NodeType.Section, component: Section },
+        { tag: NodeType.Subsection, component: Subsection },
+        { tag: NodeType.Subsubsection, component: Subsubsection },
+        { tag: NodeType.Emphasis, component: Emph },
+        { tag: NodeType.Italic, component: Emph },
+        { tag: NodeType.Citation, component: Citation },
+        { tag: NodeType.Code, component: Listing },
+        { tag: NodeType.Figure, component: Figure },
+        { tag: NodeType.Label, component: Label },
+        { tag: NodeType.Quote, component: Quote },
+        { tag: NodeType.Footnote, component: Footnote },
+        { tag: NodeType.Reference, component: Reference },
+        { tag: NodeType.InlineListing, component: InlineListing },
+        { tag: NodeType.Title, component: Title },
+        { tag: NodeType.Author, component: Author },
+        { tag: NodeType.Affiliation, component: Affiliation },
+        { tag: NodeType.Date, component: Date },
     ];
 
     const n = nodes.find((n) => n.tag === node.tag);
-    const component = n ? n.component : Error;
+    const component = n ? n.component : Error;    
 </script>
 
 <svelte:component this={component} {node} />

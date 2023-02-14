@@ -8,10 +8,13 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## doing
 
+
 ## todo
 
-- [ ] handle deep nestedness of quotes
-- [ ] handle deep nestedness of footnotes
+- [ ] assign icons for references
+  - [ ] listing
+  - [ ] figure
+  - [ ] citation
 - [ ] listing
   - [ ] save whitespace during tex parsing
   - [ ] show lines
@@ -19,6 +22,7 @@ would it be better to have it as a single page, or as distinct includes?
 - [ ] specific components
   - [x] paragraph
   - [ ] equation
+  - [ ] list of items
   - [x] footnote
     - [x] this where i figure out where to put modular elements
     - [ ] make it so that clicking anywhere on the rest of the screen makes the footnote disappear
@@ -31,6 +35,8 @@ would it be better to have it as a single page, or as distinct includes?
 - [x] image
   - [x] in makefile, copy all src images to target web asset dir
 - [x] refactor paragraph component
+- [x] handle deep nestedness of quotes
+- [x] handle deep nestedness of footnotes
 - [x] handle `\today` with Date in SSR (save a timestamp in rust)
 - [x] properly concatenate the literals inside a paragraph
 - [x] create basic node component to recursively display all information

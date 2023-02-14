@@ -1,9 +1,11 @@
 <script lang="ts">
-    import type { INode } from "../../../utils/types";
-
+    import type { INode } from "../../utils/types";
+    import Node from "./Node.svelte";
     export let node: INode;
 
-    const value = node.children ? node.children[0].value : "Missing footnote";
+    const children = node.children
+        ? node.children
+        : [{ tag: node.tag, value: node.value, children: null } as INode];
 
     let isVisible = false;
     const showFootnote = () => {
@@ -25,7 +27,9 @@
             isVisible ? "" : "hidden"
         }`}
     >
-        {value}
+        {#each children as node}
+            <Node {node} />
+        {/each}
 
         <div
             on:click={() => (isVisible = false)}

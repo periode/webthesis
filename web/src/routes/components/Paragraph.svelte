@@ -5,8 +5,9 @@
     import Emph from "./inline/Emph.svelte";
     import Citation from "./inline/Citation.svelte";
     import InlineListing from "./inline/InlineListing.svelte";
-    import Footnote from "./inline/Footnote.svelte";
+    import Footnote from "./Footnote.svelte";
     import Reference from "./inline/Reference.svelte";
+    import Dots from "./inline/Dots.svelte";
 
     export let node: INode;
     const nodes = node.children ? node.children : [];
@@ -41,6 +42,8 @@
                     <Emph {node} />
                 {:else if node.tag === NodeType.Citation}
                     <Citation {node} />
+                {:else if node.tag === NodeType.Dots}
+                    <Dots />
                 {:else if node.tag === NodeType.Reference}
                     <Reference {node} />
                 {:else if node.tag === NodeType.InlineListing}
