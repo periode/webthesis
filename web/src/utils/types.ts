@@ -10,6 +10,7 @@ export enum NodeType {
     Italic = 'italic',
     Citation = 'citation',
     Code = 'code',
+    Figure = 'listing',
     Caption = 'caption',
     Label = 'label',
     Include = 'include',

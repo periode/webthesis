@@ -5,7 +5,6 @@
 
     export let node: INode;
 
-    //-- has a content
     let lang: string,
         caption: string,
         label: string = "";
@@ -24,7 +23,7 @@
     }
 </script>
 
-<div class="md:w-5/12 my-5 text-sm">
+<div class="md:w-5/12 my-5 text-sm" id={encodeURIComponent(label)}>
     {#if node.children}
         {#each node.children as paragraph}
             {#if paragraph.children}

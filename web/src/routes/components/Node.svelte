@@ -1,11 +1,11 @@
 <script lang="ts">
-
     import Chapter from "./headers/Chapter.svelte";
     import Error from "./Error.svelte";
     import Section from "./headers/Section.svelte";
     import Subsection from "./headers/Subsection.svelte";
     import Subsubsection from "./headers/Subsubsection.svelte";
     import Listing from "./Listing.svelte";
+    import Figure from "./Figure.svelte";
     import Quote from "./Quote.svelte";
     import Include from "./Include.svelte";
     import Label from "./Label.svelte";
@@ -38,6 +38,7 @@
         { tag: "italic", component: Emph },
         { tag: "citation", component: Citation },
         { tag: "code", component: Listing },
+        { tag: "figure", component: Figure },
         { tag: "label", component: Label },
         { tag: "include", component: Include },
         { tag: "quote", component: Quote },
@@ -54,4 +55,4 @@
     const component = n ? n.component : Error;
 </script>
 
-<svelte:component this={component} {node}/>
+<svelte:component this={component} {node} />
