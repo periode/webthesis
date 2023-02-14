@@ -8,6 +8,12 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## doing
 
+- [ ] listing
+  - [ ] replace all inline code in tex source by minted input
+  - [ ] parse command minted input
+  - [ ] copy all `redaction/corpus/*` to web
+  - [ ] fill in the `snippet.ts`
+  - [x] show highglight for language ([library](https://github.com/highlightjs/highlight.js))
 
 ## todo
 
@@ -15,10 +21,6 @@ would it be better to have it as a single page, or as distinct includes?
   - [ ] listing
   - [ ] figure
   - [ ] citation
-- [ ] listing
-  - [ ] save whitespace during tex parsing
-  - [ ] show lines
-  - [ ] show highglight for language ([library](https://github.com/highlightjs/highlight.js))
 - [ ] specific components
   - [x] paragraph
   - [ ] equation

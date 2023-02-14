@@ -2,6 +2,7 @@
     import Error from "./Error.svelte";
     import { NodeType, type INode } from "../../utils/types";
     import { findNode } from "../../utils/find";
+    import Code from './Code.svelte';
 
     export let node: INode;
 
@@ -29,12 +30,10 @@
             {#if paragraph.children}
                 {#if paragraph.children[0].tag === NodeType.Code}
                     <div
-                        class="border-slate-600 border-2 p-2 font-mono bg-slate-200 break-words overflow-y-scroll"
+                        class="border-slate-600 border-2 p-2 font-mono  break-words overflow-y-scroll"
                     >
                         {#if paragraph.children[0].children}
-                            {#each paragraph.children[0].children as c}
-                                <div>{c.value}</div>
-                            {/each}
+                            <Code nodes={paragraph.children[0].children}/>
                         {/if}
                     </div>
                 {:else if paragraph.children[0].tag === NodeType.Caption}
