@@ -4,12 +4,12 @@
 /parser/parsed.json
 
 # web
-/web/node_modules
-/web/dist
-/web/yarn.lock
-/web/vite.config.js.timestamp-*
-/web//packages/create-svelte/template/CHANGELOG.md
-/web//packages/package/test/**/package
-/web//documentation/types.js
-/web/.env
-/web/.svelte-kit
+node_modules
+dist
+yarn.lock
+vite.config.js.timestamp-*
+/packages/create-svelte/template/CHANGELOG.md
+/packages/package/test/**/package
+//documentation/types.js
+.env
+.svelte-kit/
