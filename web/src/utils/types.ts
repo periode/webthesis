@@ -11,7 +11,7 @@ export enum NodeType {
     Dots = 'dots',
     Citation = 'citation',
     Code = 'code',
-    Figure = 'listing',
+    Figure = 'figure',
     Caption = 'caption',
     Label = 'label',
     Include = 'include',

@@ -26,9 +26,6 @@
         n = findNode(node.children, "label");
         if (n) label = n.children ? n.children[0].value : "";
     }
-
-    if(lang == "")
-        console.log(node)
 </script>
 
 <div class="md:w-5/12 my-5 text-sm" id={encodeURIComponent(label)}>

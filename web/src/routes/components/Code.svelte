@@ -11,4 +11,4 @@
     let highlightedCode = hljs.highlightAuto(raw).value;
 </script>
 
-<pre><code>{@html highlightedCode}</code></pre>
+<pre><code lang={lang}>{@html highlightedCode}</code></pre>
