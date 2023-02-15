@@ -8,12 +8,6 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## doing
 
-- [ ] listing
-  - [ ] replace all inline code in tex source by minted input
-  - [ ] parse command minted input
-  - [ ] copy all `redaction/corpus/*` to web
-  - [ ] fill in the `snippet.ts`
-  - [x] show highglight for language ([library](https://github.com/highlightjs/highlight.js))
 
 ## todo
 
@@ -24,6 +18,7 @@ would it be better to have it as a single page, or as distinct includes?
 - [ ] specific components
   - [x] paragraph
   - [ ] equation
+    - [ ] make into image
   - [ ] list of items
   - [x] footnote
     - [x] this where i figure out where to put modular elements
@@ -34,6 +29,12 @@ would it be better to have it as a single page, or as distinct includes?
   - [ ] etc.
 
 ## done
+- [x] listing
+  - [x] replace all inline code in tex source by minted input
+  - [x] parse command minted input
+  - [x] copy all `redaction/corpus/*` to web
+  - [x] fill in the `snippet.ts`
+  - [x] show highglight for language ([library](https://github.com/highlightjs/highlight.js))
 - [x] image
   - [x] in makefile, copy all src images to target web asset dir
 - [x] refactor paragraph component

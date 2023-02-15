@@ -216,25 +216,19 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                     }
                 }
             }
-            Rule::code_content => {
+            Rule::language => {
                 env_node.tag = Box::new(Environment::Minted);
-
-                for subsubpair in subpair.into_inner() {
-                    match subsubpair.as_rule() {
-                        Rule::literal_group_code => {
-                            let l = Node {
-                                tag: Box::new(Token::Literal),
-                                value: String::from(subsubpair.as_str()),
-                                children: None,
-                            };
-
-                            env_node.add(l);
-                        }
-                        _ => println!("could not parse inside code: {:?}", subsubpair.as_rule()),
-                    }
-                }
+                env_node.value = String::from(subpair.as_str());
             }
-            Rule::code_description => env_node.value = String::from(subpair.as_str()),
+            Rule::filepath => {
+                let l = Node {
+                    tag: Box::new(Token::Literal),
+                    value: String::from(subpair.as_str()),
+                    children: None,
+                };
+
+                env_node.add(l);
+            }
             Rule::opts => {
                 let opts = subpair.into_inner().next().unwrap();
                 let o = Node {
@@ -288,7 +282,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                 }
 
                 return Some(cmd_node);
-            },
+            }
             Command::Date => cmd_node.value = Utc::now().timestamp().to_string(),
             _ => (),
         }

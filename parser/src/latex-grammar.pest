@@ -29,11 +29,9 @@ env_content         = { (paragraph? ~ newline_char)* }
 env_name            = { name }
 
 // code block - to allow for { } characters and disallow nested command statements
-code_stmt            = { ctrl_character ~ "begin" ~ "{" ~ PUSH("minted") ~ "}" ~ opts? ~  "{" ~ code_description ~ "}"~ code_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
-code_description     = { name }
-code_content         = { ((literal_group_code)* ~ newline_char)* }
-literal_group_code   = { ( char | "=" | (!"\\end{minted}" ~ "\\") | "^" | "[" | "]"  | "{" | "}" | "%" | apl_chars)+ } 
-apl_chars = { "←" | "⊃" | "⍵" | "∨" | "∧" | "⌿" | "¯" |"∘" | "⊖" | "⌽" | "¨" | "⊂"}
+code_stmt            = { ctrl_character ~ "inputminted" ~ opts? ~  "{" ~ language ~ "}" ~ "{" ~ filepath ~ "}" }
+language     = { name }
+filepath = { char+ }
 
 // characters
 name           = @{ (ASCII_ALPHANUMERIC | "^" ) + } //-- used for command and environment names

@@ -1,13 +1,14 @@
 <script lang="ts">
     import hljs from "highlight.js";
-    import type { INode } from "../../utils/types";
+
     import { getRawSourceCode } from "../../utils/snippet";
-    export let nodes: Array<INode>;
+    export let path: string;
+    export let lang: string
 
-    const raw = getRawSourceCode("testpy")
-    
-    let highlightedCode = hljs.highlightAuto(raw).value
+    const fname = path.replace("./corpus/", "")
+    const raw = getRawSourceCode(fname);
+
+    let highlightedCode = hljs.highlightAuto(raw).value;
 </script>
-
 
 <pre><code>{@html highlightedCode}</code></pre>
