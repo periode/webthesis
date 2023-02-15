@@ -6,6 +6,7 @@
 # web
 /web/node_modules
 /web/dist
+/web/build
 /web/yarn.lock
 /web/vite.config.js.timestamp-*
 /web//packages/create-svelte/template/CHANGELOG.md

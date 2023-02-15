@@ -11,6 +11,7 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## todo
 
+- [ ] autodeploy on push?
 - [ ] assign icons for references
   - [ ] listing
   - [ ] figure
