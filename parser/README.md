@@ -17,8 +17,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 - [ ] postprocessor
   - [ ] create table of contents
   - [ ] create list of figures
-  - [ ] create bibliography
-- [ ] environment
+  - [ ] create list of listings
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__
@@ -26,6 +25,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## done
 
+- [x] create bibliography
 - [x] give a value to the `include`
 - [x] get rid of empty paragraph nodes
 - [x] block on line `593` in `ideals.tex` -> solved by adding new line before \end

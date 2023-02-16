@@ -5,6 +5,7 @@
     import Subsection from "./headers/Subsection.svelte";
     import Subsubsection from "./headers/Subsubsection.svelte";
     import Listing from "./Listing.svelte";
+    import List from "./List.svelte";
     import Figure from "./Figure.svelte";
     import Quote from "./Quote.svelte";
     import Include from "./Include.svelte";
@@ -20,6 +21,7 @@
     import InlineListing from "./inline/InlineListing.svelte";
     import Footnote from "./Footnote.svelte";
     import Reference from "./inline/Reference.svelte";
+    import URL from "./inline/URL.svelte";
     import { NodeType, type INode } from "../../utils/types";
 
     export let node: INode;
@@ -30,6 +32,7 @@
         { tag: NodeType.Include, component: Include },
         { tag: NodeType.Chapter, component: Chapter },
         { tag: NodeType.Listing, component: Listing },
+        { tag: NodeType.List, component: List },
         { tag: NodeType.Literal, component: Literal },
         { tag: NodeType.Section, component: Section },
         { tag: NodeType.Subsection, component: Subsection },
@@ -43,6 +46,7 @@
         { tag: NodeType.Quote, component: Quote },
         { tag: NodeType.Footnote, component: Footnote },
         { tag: NodeType.Reference, component: Reference },
+        { tag: NodeType.URL, component: URL },
         { tag: NodeType.InlineListing, component: InlineListing },
         { tag: NodeType.Title, component: Title },
         { tag: NodeType.Author, component: Author },

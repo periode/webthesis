@@ -12,24 +12,20 @@ would it be better to have it as a single page, or as distinct includes?
 ## todo
 
 - [ ] autodeploy on push?
-- [ ] assign icons for references
-  - [ ] listing
-  - [ ] figure
-  - [ ] citation
-- [ ] specific components
-  - [x] paragraph
-  - [ ] equation
-    - [ ] make into image
-  - [ ] list of items
-  - [x] footnote
-    - [x] this where i figure out where to put modular elements
-    - [ ] make it so that clicking anywhere on the rest of the screen makes the footnote disappear
-- [ ] deal with escaped characters
-  - [ ] `\{` -> `{`
-  - [ ] `\\` -> `\n`
-  - [ ] etc.
+- [ ] references
+  - [ ] deal with finding the actual names for the chapters/sections/subsections, etc.
+  - [ ] citation (parse bib.json to find the proper ones)
 
 ## done
+- [x] render URL
+- [x] assign icons for references
+  - [x] listing
+  - [x] figure
+  - [x] footnote
+    - [x] make it so that clicking anywhere on the rest of the screen makes the footnote disappear
+- [x] list of items
+- [x] paragraph
+- [x] deal with escaped characters (based on pest grammar)
 - [x] listing
   - [x] replace all inline code in tex source by minted input
   - [x] parse command minted input

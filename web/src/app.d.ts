@@ -7,6 +7,13 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	namespace svelteHTML {
+		interface HTMLAttributes<T> {
+			'on:outclick'?: () => void;
+		}
+	}
 }
 
-export {};
+
+	export { };

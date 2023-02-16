@@ -1,6 +1,7 @@
 export enum NodeType {
     Chapter = 'chapter',
     Listing = 'listing',
+    List = 'list',
     Literal = 'literal',
     Paragraph = 'paragraph',
     Section = 'section',
@@ -19,6 +20,7 @@ export enum NodeType {
     Quote = 'quote',
     Footnote = 'footnote',
     Reference = 'reference',
+    URL = 'url',
     InlineListing = 'inline_listing',
     Title = 'title',
     Author = 'author',

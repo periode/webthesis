@@ -9,7 +9,7 @@
     let document_children = root_children[0].children as Array<INode>;
 </script>
 
-<div class="container max-w-full bg-slate-50 text-slate-800 lg:p-3 font-serif">
+<div class="container max-w-full bg-zinc-50 text-zinc-800 lg:p-3 font-serif">
     {#each document_children as node}
         <Node {node} />
     {/each}

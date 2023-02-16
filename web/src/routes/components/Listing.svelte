@@ -28,14 +28,15 @@
     }
 </script>
 
-<div class="md:w-5/12 my-5 text-sm" id={encodeURIComponent(label)}>
+<div class="md:w-5/12 my-8 text-sm" id={encodeURIComponent(label)}>
+    <div class="relative text-right text-sm text-zinc-400">{label}</div>
     <div
-        class="border-slate-600 border-2 p-2 font-mono  break-words overflow-y-scroll"
+        class="border-zinc-600 border p-2 font-mono  break-words overflow-y-scroll"
     >
         <Code {lang} {path} />
     </div>
     <div class="italic text-center px-4">
         {caption}
     </div>
-    <div class="text-right text-sm">{label}</div>
+    
 </div>

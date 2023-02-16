@@ -12,11 +12,10 @@
     const label = l && l.children ? l.children[0].value : "";
 </script>
 
-<div
-    class="flex flex-col md:w-5/12 my-5 border border-slate-600 p-2"
-    id={encodeURIComponent(label)}
->
-    <img src={`/images/${image?.value}`} alt={caption?.value} srcset="" />
-    <div class="italic text-center px-4">{caption?.value}</div>
-    <div class="text-right text-sm">{label}</div>
+<div class="md:w-5/12 my-8 " id={encodeURIComponent(label)}>
+    <div class="relative text-zinc-400 text-right text-sm">{label}</div>
+    <div class="flex flex-col border border-zinc-600 p-2">
+        <img src={`/images/${image?.value}`} alt={caption?.value} srcset="" />
+        <div class="italic text-center px-4">{caption?.value}</div>
+    </div>
 </div>

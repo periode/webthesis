@@ -2,8 +2,12 @@
     import type { INode } from "../../../utils/types";
     export let node: INode;
     const value = node.children ? node.children[0].value : "Missing reference";
+
+    const type = value.split(":")[0]
+    const name = value.split(":")[1]
+    // console.log("reference with type:", type)
 </script>
 
 <span class="font-bold">
-    <a href={`/#${encodeURIComponent(value)}`}>{` ${value} `}</a>
+    &nbsp;<a href={`/#${encodeURIComponent(value)}`}>{name}<img class="inline relative bottom-1 left-1" src={`/images/${type}.svg`} alt={`icon to reference the ${value} item`}></a>&nbsp;&nbsp;
 </span>

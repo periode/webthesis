@@ -7,5 +7,5 @@
 </script>
 
 <span class="font-mono">
-    {value}
+    {value}&nbsp;
 </span>

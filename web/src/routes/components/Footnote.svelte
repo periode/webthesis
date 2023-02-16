@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { clickOutside } from "../../utils/actions";
     import type { INode } from "../../utils/types";
     import Node from "./Node.svelte";
     export let node: INode;
@@ -7,36 +8,27 @@
         ? node.children
         : [{ tag: node.tag, value: node.value, children: null } as INode];
 
-    let isVisible = false;
-    const showFootnote = () => {
-        isVisible = !isVisible;
-    };
+    let isVisible = true;
 </script>
 
 <span>
-    <sup
-        on:mouseenter={showFootnote}
-        on:click={showFootnote}
-        on:keydown={showFootnote}
-        class="font-bold cursor-pointer"
+    <span
+        on:mouseenter={() => isVisible = true}
+        on:click={() => isVisible = true}
+        on:keydown={() => isVisible = true}
+        class="cursor-pointer"
     >
-        ?
-    </sup>
+    <img class="inline relative bottom-1 left-1" src={`/images/footnote.svg`} alt={`icon to reference a footnote`}>&nbsp;
+    </span>
     <div
-        class={`absolute left-12 z-10 w-full lg:w-5/12 md:w-8/12 p-4 font-normal text-md text-left min-h-max min-w-max border border-slate-700 bg-slate-50 ${
+        class={`absolute left-10 z-10 w-full lg:w-5/12 md:w-8/12 p-4 font-normal text-sm text-left min-h-max min-w-min border border-zinc-500 bg-zinc-100 text-zinc-500 ${
             isVisible ? "" : "hidden"
         }`}
+        use:clickOutside
+    on:outclick={() => {isVisible = false}}
     >
         {#each children as node}
             <Node {node} />
         {/each}
-
-        <div
-            on:click={() => (isVisible = false)}
-            on:keydown={() => (isVisible = false)}
-            class="absolute top-0 right-1 cursor-pointer"
-        >
-            x
-        </div>
     </div>
 </span>
