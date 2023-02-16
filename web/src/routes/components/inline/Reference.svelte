@@ -9,5 +9,5 @@
 </script>
 
 <span class="font-bold">
-    &nbsp;<a href={`/#${encodeURIComponent(value)}`}>{name}<img class="inline relative bottom-1 left-1" src={`/images/${type}.svg`} alt={`icon to reference the ${value} item`}></a>&nbsp;&nbsp;
+    &nbsp;<a href={`/#${encodeURIComponent(value)}`}>{name}{#if type == "code" || type == "graphic"}<img class="inline relative bottom-1 left-1" src={`/images/${type}.svg`} alt={`icon to reference the ${value} item`}>{/if}</a>&nbsp;&nbsp;
 </span>

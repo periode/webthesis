@@ -12,3 +12,8 @@ data: thesis
 
 dev:
 	cd web && npm run dev -- --open
+build:
+	cd web && npm run build
+
+upload: 
+	rsync -zvur web/build/ enframed:/mnt/volume_nyc3_01/www/public/thesis

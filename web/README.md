@@ -12,6 +12,9 @@ would it be better to have it as a single page, or as distinct includes?
 ## todo
 
 - [ ] autodeploy on push?
+- [ ] mobile styling
+  - [ ] put footnotes on top
+  - [ ] make them aligned left and smaller
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc.
   - [ ] citation (parse bib.json to find the proper ones)

@@ -12,8 +12,6 @@
         .replaceAll("\\%", "%")
         .replaceAll("\\_", "_");
     let url = new URL(cleaned);
-
-    console.log(url);
 </script>
 
 &nbsp;<a href={`${url.href}`} target="_blank" rel="noopener noreferrer" class="underline cursor-pointer">{url.host}</a>&nbsp;
