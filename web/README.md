@@ -8,18 +8,23 @@ would it be better to have it as a single page, or as distinct includes?
 
 ## doing
 
+- [ ] citation (parse bib.json to find the proper ones)
+  - [ ] probably have a `citationItem` component which renders each individual citation
+  - [ ] hovering above the group shows all citations, and the specific short citation element that is being hovered over is underline its long counterpart
+- [ ] layout
+  - [ ] make it into a full width block for each paragraph, divded in two blocks, one is the text, the other one holds citations/footnotes. citations and footnotes are at different z-indexes, interverting as they become more recently clicked (also toggle for all citations vs. all footnotes)
 
 ## todo
 
-- [ ] autodeploy on push?
 - [ ] mobile styling
   - [ ] put footnotes on top
   - [ ] make them aligned left and smaller
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc.
-  - [ ] citation (parse bib.json to find the proper ones)
+
 
 ## done
+- [x] autodeploy on push? makefile
 - [x] render URL
 - [x] assign icons for references
   - [x] listing

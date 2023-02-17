@@ -33,3 +33,18 @@ export interface INode {
     value: string;
     children: Array<INode> | null;
 };
+
+export interface IAuthor {
+    family: string,
+    given: string,
+    literal: string,
+}
+
+export interface IDateParts {
+    'date-parts': Array<Array<number>>,
+}
+
+export interface ICitation {
+    author: Array<IAuthor>;
+    issued: IDateParts,
+}
