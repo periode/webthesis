@@ -28,13 +28,13 @@
     };
 </script>
 
-<div class="m-1 md:m-2 leading-8">
+<div class="m-1 md:m-2 leading-9">
     {#if !isLiteralParagraph(nodes)}
         {#each nodes as node}
             <Node {node} />
         {/each}
     {:else}
-        <div class="w-full lg:w-5/12 md:w-8/12 mb-1 indent-12">
+        <div class="w-full lg:w-6/12 md:w-8/12 mb-1 indent-12">
             {#each nodes as node}
                 {#if node.tag == NodeType.Literal}
                     <Literal {node} />

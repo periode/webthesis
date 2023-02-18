@@ -6,7 +6,7 @@
     const children = node.children ? node.children : [{tag:node.tag, value: node.value, children: null} as INode];
 </script>
 
-<div class="m-5 italic border-l-2">
+<div class="w-2/3 m-4 ml-24 border-l pl-4 italic text-zinc-800 dark:text-zinc-300">
     {#each children as node}
         <Node {node} />
     {/each}

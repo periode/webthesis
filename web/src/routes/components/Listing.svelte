@@ -35,7 +35,7 @@
     >
         <Code {lang} {path} />
     </div>
-    <div class="italic text-center px-4">
+    <div class="italic text-center text-base px-4">
         {caption}
     </div>
     

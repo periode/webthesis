@@ -8,12 +8,11 @@
     const keys = value.split(",");
     const citations = keys.map((k) => {
         const b = bib.find((b) => b.id === k);
-        const typed = b ? (b as unknown) as ICitation : undefined;
-        
+        const typed = b ? (b as unknown as ICitation) : undefined;
+
         if (typed === undefined) {
             console.warn("undefined", k);
         } else {
-            
             const author = typed.author
                 ? typed.author[0]
                     ? typed.author[0].family
@@ -27,8 +26,16 @@
                     : "UNKNOWN DATE"
                 : "UNKNOWN ISSUANCE";
 
+                const title = typed.title
+                ? typed.title
+                : "UNKNOWN TITLE";
+
+                const publisher = typed.publisher
+                ? typed.publisher
+                : "UNKNOWN PUB";
+
             const short = `${author}, ${year}`;
-            const long = `${author}`;
+            const long = `${title}, written by ${author} at ${publisher}`;
             return [short, long];
         }
     });
@@ -49,7 +56,7 @@
 </span>
 
 <div
-    class={`absolute right-10 z-10 w-full lg:w-3/12 md:w-8/12 p-4 font-normal text-sm text-left min-h-max min-w-min border border-zinc-500 bg-zinc-100 text-zinc-500 ${
+    class={`absolute flex flex-col right-10 z-10 w-full lg:w-4/12 md:w-8/12 p-4 border-zinc-500 dark:border-zinc-400 border-l font-normal text-left min-h-max min-w-min ${
         isVisible ? "" : "hidden"
     }`}
     use:clickOutside
@@ -58,7 +65,11 @@
     }}
 >
     {#each citations as cit}
-        <div>{cit ? cit[1] : "nope"}</div>{/each}
+        <div class="bg-zinc-100 dark:bg-zinc-900 " />
+        <div class=" py-4 px-8 mx-4 text-sm text-zinc-500 dark:text-zinc-400">
+            {cit ? cit[1] : "nope"}
+        </div>
+    {/each}
 </div>
 
 <style>
