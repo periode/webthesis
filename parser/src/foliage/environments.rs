@@ -2,6 +2,7 @@ use super::Tag;
 
 #[derive(Copy, Clone)]
 pub enum Environment {
+    Abstract,
     Aligned,
     Center,
     Document,
@@ -19,6 +20,7 @@ pub enum Environment {
 impl Tag for Environment {
     fn value(&self) -> &str {
         match *self {
+            Environment::Abstract => "abstract",
             Environment::Aligned => "center",
             Environment::Center => "center",
             Environment::Document => "document",
@@ -37,6 +39,7 @@ impl Tag for Environment {
 
 pub fn parse_name(_name: &str) -> Option<Environment> {
     match _name {
+        "abstract" => Some(Environment::Abstract),
         "aligned" => Some(Environment::Aligned),
         "center" => Some(Environment::Center),
         "document" => Some(Environment::Document),
@@ -47,6 +50,6 @@ pub fn parse_name(_name: &str) -> Option<Environment> {
         "listing" => Some(Environment::Listing),
         "minted" => Some(Environment::Minted),
         "quote" => Some(Environment::Quote),
-        _ => None
+        _ => None,
     }
 }
