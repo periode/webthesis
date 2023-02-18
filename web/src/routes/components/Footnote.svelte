@@ -20,8 +20,13 @@
         class="cursor-pointer"
     >
         <img
-            class="inline relative bottom-1 left-1 pointer-events-none"
+            class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
             src={`/images/footnote.svg`}
+            alt={`icon to reference a footnote`}
+        />
+        <img
+            class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
+            src={`/images/footnote-dark.svg`}
             alt={`icon to reference a footnote`}
         />&nbsp;
     </span>

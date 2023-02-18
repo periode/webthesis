@@ -4,14 +4,15 @@ front-end for the thesis.
 
 ## notes
 
-would it be better to have it as a single page, or as distinct includes? separate includes because chunking makes it more manageable, and because chapters can (and should ?) be seen as standing on their own right as well
+would it be better to have it as a single page, or as distinct includes? separate includes because chunking makes it more manageable, and because chapters can (and should ?) be seen as standing on their own right as well. and also if you split you don't have to serve the whole bundle
 
 make layout into a full width block for each paragraph, divded in two blocks, one is the text, the other one holds citations/footnotes. citations and footnotes are at different z-indexes, interverting as they become more recently clicked (also toggle for all citations vs. all footnotes)
 
-- [ ] parsing or rendering error: `As Pye puts it, [...` dots are messing it up again
-
 ## doing
 
+## todo
+
+- [ ] render single chapters
 - [ ] citation (parse bib.json to find the proper ones)
   - [ ] probably have a `citationItem` component which renders each individual citation (one for each short and long?)
   - [ ] hovering above the group shows all citations or the footnote
@@ -20,9 +21,6 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 - [ ] layout
   - [ ] have a message passing from a nested child short footnote or citation, caught by the node, and generating the approriate element with unique ID
   - [ ] the source text should be edited making use of references to labels of listings
-
-## todo
-
 - [ ] mobile styling
   - [ ] put footnotes on top
   - [ ] make them aligned left and smaller
@@ -31,6 +29,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 
 ## done
+- [x] dark mode
 - [x] autodeploy on push? makefile
 - [x] render URL
 - [x] assign icons for references

@@ -56,7 +56,7 @@
 </span>
 
 <div
-    class={`absolute flex flex-col right-10 z-10 w-full lg:w-4/12 md:w-8/12 p-4 border-zinc-500 dark:border-zinc-400 border-l font-normal text-left min-h-max min-w-min ${
+    class={`absolute flex flex-col right-10 z-10 w-full lg:w-4/12 md:w-8/12 p-2 border-zinc-500 dark:border-zinc-400 border-l font-normal text-left min-h-max min-w-min ${
         isVisible ? "" : "hidden"
     }`}
     use:clickOutside
@@ -66,7 +66,7 @@
 >
     {#each citations as cit}
         <div class="bg-zinc-100 dark:bg-zinc-900 " />
-        <div class=" py-4 px-8 mx-4 text-sm text-zinc-500 dark:text-zinc-400">
+        <div class="py-2 px-2 mx-4 text-sm text-zinc-500 dark:text-zinc-400">
             {cit ? cit[1] : "nope"}
         </div>
     {/each}
