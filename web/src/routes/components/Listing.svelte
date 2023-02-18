@@ -1,6 +1,6 @@
 <script lang="ts">
     import Error from "./Error.svelte";
-    import { findNode } from "../../utils/find";
+    import { findNodeByTag } from "../../utils/find";
     import Code from "./Code.svelte";
     import type { INode } from "../../utils/types";
 
@@ -12,18 +12,18 @@
         label: string = "";
 
     if (node.children) {
-        let n = findNode(node.children, "code");
+        let n = findNodeByTag(node.children, "code");
         if (n) lang = n.value;
         if (n)
             path = n.children ? n.children[n.children.length - 1].value : "n/a";
 
-        n = findNode(node.children, "caption");
+        n = findNodeByTag(node.children, "caption");
         if (n)
             caption = n.children
                 ? n.children.map((c) => c.value).join(" ")
                 : "";
 
-        n = findNode(node.children, "label");
+        n = findNodeByTag(node.children, "label");
         if (n) label = n.children ? n.children[0].value : "";
     }
 </script>

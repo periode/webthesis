@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { findNode } from "../../utils/find";
+    import { findNodeByTag } from "../../utils/find";
     import type { INode } from "../../utils/types";
     export let node: INode;
     
     const items = node.children ? node.children.map((n) => {
-        const i = findNode(n.children as INode[], "literal");
+        const i = findNodeByTag(n.children as INode[], "literal");
         const v = i ? i.value : "n/a";
         return v;
     }) : []

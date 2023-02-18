@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { findNode } from "../../utils/find";
+    import { findNodeByTag } from "../../utils/find";
     import type { INode } from "../../utils/types";
 
     export let node: INode;
     const contents = node.children ? node.children : [];
-    const i = findNode(contents, "image");
-    const image = i && i.children ? findNode(i.children, "literal") : null;
-    const c = findNode(contents, "caption");
+    const i = findNodeByTag(contents, "image");
+    const image = i && i.children ? findNodeByTag(i.children, "literal") : null;
+    const c = findNodeByTag(contents, "caption");
     const caption = c && c.children ? c.children[0] : null;
-    const l = findNode(contents, "label");
+    const l = findNodeByTag(contents, "label");
     const label = l && l.children ? l.children[0].value : "";
 </script>
 

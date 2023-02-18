@@ -8,7 +8,7 @@
     };
 </script>
 
-<div class="my-32">
+<div class="my-16">
     {#each splitLatexLinebreaks(value) as line}
         {`${line}`}<br />
     {/each}
