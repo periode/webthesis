@@ -17,5 +17,4 @@
     {#each document_children as node}
         <Node {node} />
     {/each}
-    <DarkMode />
 </div>

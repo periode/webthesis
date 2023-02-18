@@ -31,5 +31,4 @@
     <Date node={date_node}/>
     <Abstract node={abstract_node}/>
     <TableOfContents/>
-    <DarkMode />
 </div>
