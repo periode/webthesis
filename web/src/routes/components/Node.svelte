@@ -55,7 +55,7 @@
     ];
 
     const n = nodes.find((n) => n.tag === node.tag);
-    const component = n ? n.component : Error;    
+    const component = n ? n.component : Error;
 </script>
 
 <svelte:component this={component} {node} />

@@ -1,6 +1,6 @@
 <script>
   import "../app.css";
-    import DarkMode from "./components/DarkMode.svelte";
+  import DarkMode from "./components/DarkMode.svelte";
 </script>
 
 <svelte:head>

@@ -3,7 +3,7 @@
     export let node: INode;
     const value = node.value ? node.value : "Missing literal";
 
-    const cleaned = value.replaceAll("\\{", "{").replaceAll("\\}", "}").replaceAll("\\$", "$").replaceAll("\\#", "#").replaceAll("\\@", "@").replaceAll("\\%", "%").replaceAll("\\_", "_")
+    const cleaned = value.replaceAll("\\{", "{").replaceAll("\\}", "}").replaceAll("\\$", "$").replaceAll("\\#", "#").replaceAll("\\@", "@").replaceAll("\\%", "%").replaceAll("\\&", "&").replaceAll("\\_", "_")
 </script>
 
 <span>
