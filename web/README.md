@@ -10,23 +10,23 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 ## todo
 
-- [ ] citation (parse bib.json to find the proper ones)
-  - [ ] probably have a `citationItem` component which renders each individual citation (one for each short and long?)
-  - [ ] hovering above the group shows all citations or the footnote
-  - [ ] hovering above short citation in a group underlines its long counterpart, and scrolls it into view
-  - [ ] the right side of the row (the citation+footnote, is flex col, with overflow scrolling
+- [ ] citation
+  - [ ] hovering above group
+  - [ ] hovering above short
 - [ ] layout
-  - [ ] have a message passing from a nested child short footnote or citation, caught by the node, and generating the approriate element with unique ID
   - [ ] the source text should be edited making use of references to labels of listings
 - [ ] mobile styling
-  - [ ] put footnotes on top
-  - [ ] make them aligned left and smaller
+  - [ ] overlap of right col full width
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc.
 
 
 ## done
 - [x] render single chapters
+- [x] citation (parse bib.json to find the proper ones)
+  - [x] have a `citationItem` component which renders the long one
+  - [x] have a message passing from a nested child short footnote or citation, caught by the node, and generating the approriate element with unique ID
+  - [x] the right side of the row (the citation+footnote, is flex col, with overflow scrolling
 - [x] dark mode
 - [x] autodeploy on push? makefile
 - [x] render URL

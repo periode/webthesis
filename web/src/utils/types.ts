@@ -45,8 +45,12 @@ export interface IDateParts {
 }
 
 export interface ICitation {
-    author: Array<IAuthor>;
+    id: string,
+    author: Array<IAuthor>,
+    contributor: Array<IAuthor>,
+    editor: Array<IAuthor>,
     issued: IDateParts,
     title: string,
     publisher: string,
+    visible: boolean,
 }

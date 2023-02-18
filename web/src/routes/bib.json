@@ -26,19 +26,6 @@
     "volume": "35"
   },
   {
-    "abstract": "Transcoding the Digital: How Metaphors Matter in New Media by Marianne van den Boomen is a material-semiotic inquiry into the constitutive role of metaphors in our daily encounters with computers and networks. While interface concepts such as desktop and windows are easily recognized as metaphors, this research shows how in fact all digital sign-tool-objects  ranging from icons and email to Facebook friends, from hyperlink and tweet to Pirate Bay  are digital-material metaphors. They frame and organize how we access the black boxes of software and machinery, which in turn organize and reconfigure society. The same holds for discourse metaphors such as virtual community, cyberspace, Web 2.0, and social network. Metaphors matter in digital praxis, literally. This study makes an intervention into the contemporary theory of metaphor by extending it with the notion of material metaphor, including a manifest for hacking digital-material metaphors.",
-    "author": [
-      {
-        "literal": "3130431"
-      }
-    ],
-    "id": "3130431_transcoding_",
-    "language": "en-US",
-    "title": "Transcoding the Digital: How Metaphors Matter in New Media",
-    "title-short": "Transcoding the Digital",
-    "type": "book"
-  },
-  {
     "DOI": "10.1109/CSMR.2011.24",
     "ISSN": "1534-5351",
     "abstract": "Antipatterns are \"poor\" solutions to recurring design problems which are conjectured in the literature to make object-oriented systems harder to maintain. However, little quantitative evidence exists to support this conjecture. We performed an empirical study to investigate whether the occurrence of antipatterns does indeed affect the understandability of systems by developers during comprehension and maintenance tasks. We designed and conducted three experiments, with 24 subjects each, to collect data on the performance of developers on basic tasks related to program comprehension and assessed the impact of two antipatterns and of their combinations: Blob and Spaghetti Code. We measured the developers’ performance with: (1) the NASA task load index for their effort, (2) the time that they spent performing their tasks, and, (3) their percentages of correct answers. Collected data show that the occurrence of one antipattern does not significantly decrease developers’ performance while the combination of two antipatterns impedes significantly developers. We conclude that developers can cope with one antipattern but that combinations of antipatterns should be avoided possibly through detection and refactorings.",
@@ -227,12 +214,6 @@
     "publisher": "Oxford University Press",
     "title": "The Timeless Way of Building",
     "type": "book"
-  },
-  {
-    "DOI": "10.1145/2384592.2384594",
-    "id": "alternative_",
-    "title": "Alternative programming interfaces for alternative programmers",
-    "type": ""
   },
   {
     "DOI": "10.1145/1953122.1953131",
@@ -753,6 +734,28 @@
     "title": "SWEBOK: Guide to the Software Engineering Body of Knowledge",
     "title-short": "SWEBOK",
     "type": "book"
+  },
+  {
+    "abstract": "Walking an elegant equation or proof backwards is an unraveling. It’s hard to see how the equation got so refined, so simple… and it’s usually an aggregate over many years of small refined edits. Rarely does math come out Ideal. It’s messy and gross and gets refined over time. Students are rarely told this, and you’d hardly guess how messy math is looking through books.",
+    "author": [
+      {
+        "family": "Bowles",
+        "given": "Joshua"
+      }
+    ],
+    "container-title": "Nextjournal",
+    "id": "bowles_mathematical_2020",
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          1
+        ]
+      ]
+    },
+    "publisher": "https://nextjournal.com/jbowles/the-mathematical-ideal-and-softmax-in-julia",
+    "title": "The mathematical Ideal and Softmax in Julia",
+    "type": ""
   },
   {
     "DOI": "10.1002/pan3.10089",
@@ -1318,6 +1321,47 @@
     "volume": "1369"
   },
   {
+    "author": [
+      {
+        "family": "Chelaru-Centea",
+        "given": "Nancy"
+      }
+    ],
+    "container-title": "Nextjournal",
+    "id": "chelaru-centea_supervised_2019",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          8
+        ]
+      ]
+    },
+    "publisher": "https://nextjournal.com/eda/discretize-cont-var",
+    "title": "Supervised discretization of continuous variables",
+    "type": ""
+  },
+  {
+    "abstract": "Gorgonia is a library that helps facilitate machine learning in Go.",
+    "author": [
+      {
+        "family": "Chewxy"
+      }
+    ],
+    "id": "chewxy_gorgonia_2022",
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          8
+        ]
+      ]
+    },
+    "publisher": "Gorgonia",
+    "title": "Gorgonia/gorgonia",
+    "type": ""
+  },
+  {
     "ISBN": "978-0-262-53007-1",
     "abstract": "Bibliography: p. 237-245",
     "author": [
@@ -1421,23 +1465,6 @@
     "title-short": "Buildings, Beauty, and the Brain",
     "type": "article-journal",
     "volume": "29"
-  },
-  {
-    "abstract": "In computer programming, a code smell is any characteristic in the source code of a program that possibly indicates a deeper problem. Determining what is and is not a code smell is subjective, and varies by language, developer, and development methodology. The term was popularised by Kent Beck on WardsWiki in the late 1990s. Usage of the term increased after it was featured in the 1999 book Refactoring: Improving the Design of Existing Code by Martin Fowler. It is also a term used by agile programmers.",
-    "annote": "Page Version ID: 1074709396",
-    "container-title": "Wikipedia",
-    "id": "code_2022",
-    "issued": {
-      "date-parts": [
-        [
-          2022,
-          3
-        ]
-      ]
-    },
-    "language": "en-US",
-    "title": "Code smell",
-    "type": "article-journal"
   },
   {
     "DOI": "10.1007/978-3-642-56472-7_19",
@@ -1720,12 +1747,6 @@
     "type": "book"
   },
   {
-    "id": "crafting_",
-    "language": "en-US",
-    "title": "Crafting code at the demo-scene \\textbackslashtextbackslashtextbar Proceedings of the 2014 conference on Designing interactive systems",
-    "type": ""
-  },
-  {
     "ISBN": "978-3-8467-4499-4",
     "abstract": "\"Exe.cut(up)able statements\" published on 09 Dec 2019 by Wilhelm Fink.",
     "author": [
@@ -1882,22 +1903,6 @@
     "title": "DTIC AD0715513: An Empirical Study of Fortran Programs",
     "title-short": "DTIC AD0715513",
     "type": "book"
-  },
-  {
-    "abstract": "free from dirt or pollution; free from contamination or disease; free or relatively free from radioactivity… See the full definition",
-    "container-title": "Merriam-Webster",
-    "id": "definition_2022",
-    "issued": {
-      "date-parts": [
-        [
-          2022
-        ]
-      ]
-    },
-    "language": "en-US",
-    "publisher": "https://www.merriam-webster.com/dictionary/clean",
-    "title": "Definition of CLEAN",
-    "type": ""
   },
   {
     "ISBN": "978-2-07-036021-5",
@@ -2238,12 +2243,6 @@
     "type": ""
   },
   {
-    "id": "dm_",
-    "publisher": "https://www.dangermouse.net/esoteric/chef.html",
-    "title": "DM’s Esoteric Programming Languages - Chef",
-    "type": ""
-  },
-  {
     "author": [
       {
         "family": "Douce",
@@ -2345,12 +2344,6 @@
     },
     "publisher": "https://finance.yahoo.com/news/startup-god-paul-graham-reveals-165445488.html?guccounter=1",
     "title": "Startup God Paul Graham Reveals The Single Most Important Quality To Look For In A Company",
-    "type": ""
-  },
-  {
-    "id": "early_",
-    "publisher": "http://worrydream.com/EarlyHistoryOfSmalltalk/",
-    "title": "The Early History Of Smalltalk",
     "type": ""
   },
   {
@@ -2512,7 +2505,16 @@
         "given": "John"
       }
     ],
-    "id": "erickson_hacking_",
+    "id": "erickson_hacking_2008",
+    "issued": {
+      "date-parts": [
+        [
+          2008,
+          2
+        ]
+      ]
+    },
+    "publisher": "No Starch Press",
     "title": "Hacking, 2nd Edition",
     "type": "book"
   },
@@ -2736,6 +2738,26 @@
     },
     "title": "Aesthetic Programming",
     "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Flach",
+        "given": "Peter"
+      }
+    ],
+    "id": "flach1994simply",
+    "issued": {
+      "date-parts": [
+        [
+          1994
+        ]
+      ]
+    },
+    "publisher": "John Wiley",
+    "title": "Simply Logical: Intelligent Reasoning by Example",
+    "title-short": "Simply Logical",
+    "type": "book"
   },
   {
     "ISBN": "978-1-937561-24-6",
@@ -3418,11 +3440,6 @@
     "type": "book"
   },
   {
-    "id": "geek_",
-    "title": "Geek Sublime \\textbackslashtextbackslashtextbackslashtextbackslashtextbar Graywolf Press",
-    "type": "book"
-  },
-  {
     "author": [
       {
         "family": "Gefen",
@@ -3548,6 +3565,28 @@
     "title": "The beauty of simplicity",
     "type": "article-journal",
     "volume": "55"
+  },
+  {
+    "abstract": "To write or read a poem is often to think in distinctively poetic waysguided by metaphors, sound, rhythms, associative movement, and more. Poetry’s stance toward language creates a particular intelligence of thought and feeling, a compressed articulation that expands inner experience, imagining with words what cannot always be imagined without them. Through translation, poetry has diversified poetic traditions, and some of poetry’s ways of thinking begin in the ancient world and remain potent even now. In How Poems Think, Reginald Gibbons presents a rich gallery of poetic inventiveness and continuity drawn from a wide range of poetsSappho, Pindar, Shakespeare, Keats, William Carlos Williams, Marina Tsvetaeva, Gwendolyn Brooks, and many others. Gibbons explores poetic temperament, rhyme, metonymy, etymology, and other elements of poetry as modes of thinking and feeling. In celebration and homage, Gibbons attunes us to the possibilities of poetic thinking.",
+    "author": [
+      {
+        "family": "Gibbons",
+        "given": "Reginald"
+      }
+    ],
+    "id": "gibbons_how_",
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "language": "en-US",
+    "publisher": "University of Chicago Press",
+    "publisher-place": "Chicago",
+    "title": "How Poems Think",
+    "type": "book"
   },
   {
     "ISBN": "978-0-89859-959-6",
@@ -3869,21 +3908,6 @@
     "title": "Who Turned the Mechanical Ideal into Mechanical Reality?",
     "type": "article-journal",
     "volume": "29"
-  },
-  {
-    "abstract": "Gorgonia is a library that helps facilitate machine learning in Go.",
-    "id": "gorgonia_2022",
-    "issued": {
-      "date-parts": [
-        [
-          2022,
-          8
-        ]
-      ]
-    },
-    "publisher": "Gorgonia",
-    "title": "Gorgonia/gorgonia",
-    "type": ""
   },
   {
     "ISBN": "978-87-988440-4-4",
@@ -4689,33 +4713,6 @@
     "type": "article-journal"
   },
   {
-    "id": "how_",
-    "title": "How Not to Write Fortran in Any Language - ACM Queue",
-    "type": ""
-  },
-  {
-    "container-title": "Software Engineering Stack Exchange",
-    "genre": "Forum Post",
-    "id": "how_2013a",
-    "issued": {
-      "date-parts": [
-        [
-          2013,
-          6
-        ]
-      ]
-    },
-    "title": "How can you explain \"beautiful code\" to a non-programmer?",
-    "type": ""
-  },
-  {
-    "abstract": "To write or read a poem is often to think in distinctively poetic waysguided by metaphors, sound, rhythms, associative movement, and more. Poetry’s stance toward language creates a particular intelligence of thought and feeling, a compressed articulation that expands inner experience, imagining with words what cannot always be imagined without them. Through translation, poetry has diversified poetic traditions, and some of poetry’s ways of thinking begin in the ancient world and remain potent even now. In How Poems Think, Reginald Gibbons presents a rich gallery of poetic inventiveness and continuity drawn from a wide range of poetsSappho, Pindar, Shakespeare, Keats, William Carlos Williams, Marina Tsvetaeva, Gwendolyn Brooks, and many others. Gibbons explores poetic temperament, rhyme, metonymy, etymology, and other elements of poetry as modes of thinking and feeling. In celebration and homage, Gibbons attunes us to the possibilities of poetic thinking.",
-    "id": "how_a",
-    "language": "en-US",
-    "title": "How Poems Think",
-    "type": "book"
-  },
-  {
     "ISBN": "978-0-201-61622-4",
     "abstract": "Ward Cunningham Straight from the programming trenches, The Pragmatic Programmer cuts through the increasing specialization and technicalities of modern software development to examine the core processtaking a requirement and producing working, maintainable code that delights its users. It covers topics ranging from personal responsibility and career development to architectural techniques for keeping your code flexible and easy to adapt and reuse. Read this book, and you’ll learn how to Fight software rot; Avoid the trap of duplicating knowledge; Write flexible, dynamic, and adaptable code; Avoid programming by coincidence; Bullet-proof your code with contracts, assertions, and exceptions; Capture real requirements; Test ruthlessly and effectively; Delight your users; Build teams of pragmatic programmers; and Make your developments more precise with automation. Written as a series of self-contained sections and filled with entertaining anecdotes, thoughtful examples, and interesting analogies, The Pragmatic Programmer illustrates the best practices and major pitfalls of many different aspects of software development. Whether you’re a new coder, an experienced program.",
     "author": [
@@ -4813,21 +4810,25 @@
     "volume": "32"
   },
   {
-    "ISBN": "978-2-7056-9159-2",
-    "id": "interpretation_2015",
+    "abstract": "Neural Network primitives with multiple backends",
+    "author": [
+      {
+        "family": "Innes",
+        "given": "Mike"
+      }
+    ],
+    "id": "innes_nnlib_2022",
     "issued": {
       "date-parts": [
         [
-          2015
+          2022,
+          8
         ]
       ]
     },
-    "keyword": "Littérature et neurosciences",
-    "language": "fre",
-    "publisher": "Hermann",
-    "publisher-place": "Paris",
-    "title": "Interprétation littéraire et sciences cognitives",
-    "type": "book"
+    "publisher": "FluxML",
+    "title": "NNlib.jl",
+    "type": ""
   },
   {
     "DOI": "10.1163/9789401209182_005",
@@ -5051,9 +5052,42 @@
     "type": "book"
   },
   {
-    "id": "jargon_",
+    "author": [
+      {
+        "family": "4.4.7",
+        "given": "Jargon File"
+      }
+    ],
+    "container-title": "The Jargon File",
+    "id": "jargonfile4.4.7_hacker_2014",
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "title": "Hacker",
+    "type": ""
+  },
+  {
+    "author": [
+      {
+        "family": "4.4.7",
+        "given": "Jargon File"
+      }
+    ],
+    "id": "jargonfile4.4.7_jargon_2014",
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "publisher": "http://www.catb.org/jargon/html/",
     "title": "The Jargon File",
-    "type": "book"
+    "type": ""
   },
   {
     "DOI": "10.3406/sotra.1998.1333",
@@ -5319,6 +5353,32 @@
     "volume": "2"
   },
   {
+    "DOI": "10.1145/155360.155364",
+    "ISSN": "0362-1340",
+    "abstract": "Most ideas come from previous ideas. The sixties, particularly in the ARPA community, gave rise to a host of notions about “human-computer symbiosis” through interactive time-shared computers, graphics screens and pointing devices. Advanced computer languages were invented to simulate complex systems such as oil refineries and semi-intelligent behavior. The soon to follow paradigm shift of modern personal computing, overlapping window interfaces, and object-oriented design came from seeing the work of the sixties as something more than a “better old thing”. That is, more than a better way: to do mainframe computing; for end-users to invoke functionality; to make data structures more abstract. Instead the promise of exponential growth in computing/$/volume demanded that the sixties be regarded as “almost a new thing” and to find out what the actual “new things” might be. For example, one would compute with a handheld “Dynabook” in a way that would not be possible on a shared mainframe; millions of potential users meant that the user interface would have to become a learning environment along the lines of Montessori and Bruner; and needs for large scope, reduction in complexity, and end-user literacy would require that data and control structures be done away with in favor of a more biological scheme of protected universal cells interacting only through messages that could mimic any desired behavior. Early Smalltalk was the first complete realization of these new points of view as parented by its many predecessors in hardware, language and user interface design. It became the exemplar of the new computing, in part, because we were actually trying for a qualitative shift in belief structuresa new Kuhnian paradigm in the same spirit as the invention of the printing pressand thus took highly extreme positions which almost forced these new styles to be invented.",
+    "author": [
+      {
+        "family": "Kay",
+        "given": "Alan C."
+      }
+    ],
+    "container-title": "ACM SIGPLAN Notices",
+    "id": "kay_early_1993",
+    "issue": "3",
+    "issued": {
+      "date-parts": [
+        [
+          1993,
+          3
+        ]
+      ]
+    },
+    "page": "69-95",
+    "title": "The early history of Smalltalk",
+    "type": "article-journal",
+    "volume": "28"
+  },
+  {
     "abstract": "Les traités mathématiques sanskrits, suivant le style des textes de cette culture savante, sont rédigés en vers concis et concernent le plus souvent des procédures. Cette présentation se propose d’observer le lien entre le texte et l’algorithme reconstruit qu’il s’agit d’exécuter, afin d’y mettre en lumière comment s’effectue l’expression concise des étapes de l’exécution. En s’appuyant sur un texte canonique, l’Āryabhaṭīya (499), et le commentaire de Bhāskara pour décoder le sens des vers, nous observerons des manières de dire des procédures d’extraction de racine carrée, de calculer différents éléments d’une suite arithmétique ou de résoudre un certain type d’équation indéterminée. L’analyse pourra s’élargir à l’expression verbale de table numériques de sinus. Il s’agira donc d’observer les modes de compression d’un texte d’algorithme ou d’un ensemble de données numériques.",
     "author": [
       {
@@ -5368,6 +5428,26 @@
     "title-short": "A Software Chasm",
     "type": "article-journal",
     "volume": "24"
+  },
+  {
+    "author": [
+      {
+        "literal": "kenjackson"
+      }
+    ],
+    "container-title": "Hacker News",
+    "id": "kenjackson_perfection_2010",
+    "issued": {
+      "date-parts": [
+        [
+          2010,
+          8
+        ]
+      ]
+    },
+    "publisher": "https://news.ycombinator.com/item?id=1640594",
+    "title": "\"Perfection is achieved, not when there is nothing more to add, but when there i... | Hacker News",
+    "type": ""
   },
   {
     "ISBN": "978-0-07-034207-1",
@@ -6009,6 +6089,29 @@
     "type": "book"
   },
   {
+    "ISBN": "978-2-7056-9159-2",
+    "editor": [
+      {
+        "family": "Lavocat",
+        "given": "Françoise"
+      }
+    ],
+    "id": "lavocat_interpretation_2015",
+    "issued": {
+      "date-parts": [
+        [
+          2015
+        ]
+      ]
+    },
+    "keyword": "Littérature et neurosciences",
+    "language": "fre",
+    "publisher": "Hermann",
+    "publisher-place": "Paris",
+    "title": "Interprétation littéraire et sciences cognitives",
+    "type": "book"
+  },
+  {
     "ISBN": "978-0-8141-5911-8",
     "abstract": "Presenting a comprehensive look at (and critical history of) computer-aided composition (CAC), this book focuses on faculty development of software for composition studies. The book describes who is building these writing tools, how they are doing so, how their work is being received, and what is likely to affect their efforts in the future. Chapters in the book are: (1) Introduction; (2) Understanding Computer Software; (3) The \"Who\" and \"How\" of CAC Software Development; (4) Forces that Impact CAC Software Design; and (5) CAC Software Design and the New Literacy. A brief description of 13 software programs mentioned in the book and samples of program interfaces are appended. (Contains over 200 references.) (RS)",
     "author": [
@@ -6464,11 +6567,6 @@
     "type": "book"
   },
   {
-    "id": "mactech_",
-    "title": "MacTech \\textbar The journal of Apple technology.",
-    "type": ""
-  },
-  {
     "DOI": "10.1007/978-3-662-46510-3_13",
     "ISBN": "978-3-662-46510-3",
     "abstract": "This chapter begins to examine the practice of moxie or imitation in art in Chinese aesthetics, compares it with the Platonic notion of mimesis, and explicates its original meaning. It then traces its development from the tradition to the late Qing export paintings in which traditional Chinese aesthetics is combined with Western perspectives to meet the Western interests.",
@@ -6668,14 +6766,6 @@
     "title": "A Box, Darkly: Obfuscation, Weird Languages, and Code Aesthetics",
     "title-short": "A Box, Darkly",
     "type": "article-journal"
-  },
-  {
-    "abstract": "Walking an elegant equation or proof backwards is an unraveling. It’s hard to see how the equation got so refined, so simple… and it’s usually an aggregate over many years of small refined edits. Rarely does math come out Ideal. It’s messy and gross and gets refined over time. Students are rarely told this, and you’d hardly guess how messy math is looking through books.",
-    "container-title": "Nextjournal",
-    "id": "mathematical_",
-    "publisher": "https://nextjournal.com/jbowles/the-mathematical-ideal-and-softmax-in-julia",
-    "title": "The mathematical Ideal and Softmax in Julia",
-    "type": ""
   },
   {
     "DOI": "10.3390/arts8010026",
@@ -7116,6 +7206,27 @@
     "volume": "467"
   },
   {
+    "abstract": "free from dirt or pollution; free from contamination or disease; free or relatively free from radioactivity… See the full definition",
+    "author": [
+      {
+        "literal": "Merriam-Webster"
+      }
+    ],
+    "container-title": "Merriam-Webster.com",
+    "id": "merriam-webster_definition_2022",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "language": "en-US",
+    "publisher": "https://www.merriam-webster.com/dictionary/clean",
+    "title": "Definition of CLEAN",
+    "type": ""
+  },
+  {
     "DOI": "10.1109/MCSE.2011.36",
     "ISSN": "1558-366X",
     "author": [
@@ -7430,6 +7541,28 @@
     "type": "book"
   },
   {
+    "abstract": "A twice-yearly journal for tiny computational poems, published by Bad Quarto",
+    "author": [
+      {
+        "family": "Montfort",
+        "given": "Nick"
+      }
+    ],
+    "container-title": "Taper",
+    "id": "montfort_taper_2019",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "language": "en-US",
+    "publisher": "https://taper.badquar.to/",
+    "title": "Taper",
+    "type": ""
+  },
+  {
     "DOI": "10.1093/bjps/29.3.213",
     "author": [
       {
@@ -7484,8 +7617,15 @@
       }
     ],
     "container-title": "Digital Humanities Quarterly",
-    "id": "moore_brain_",
+    "id": "moore_brain_2022",
     "issue": "1",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
     "title": "The Brain Is Deeper Than the Sea: Sea and Spar Between, Computational Stuplimity, and Fragmentation",
     "title-short": "The Brain Is Deeper Than the Sea",
     "type": "article-journal",
@@ -7538,6 +7678,48 @@
     "language": "en-US",
     "title": "Of IBM, Operating Systems and Rosetta Stones",
     "type": "article-journal"
+  },
+  {
+    "author": [
+      {
+        "family": "Morgan-Marr",
+        "given": "David"
+      }
+    ],
+    "container-title": "Chef",
+    "id": "morgan-marr_dm_2003",
+    "issued": {
+      "date-parts": [
+        [
+          2003
+        ]
+      ]
+    },
+    "publisher": "https://www.dangermouse.net/esoteric/chef.html",
+    "title": "DM’s Esoteric Programming Languages - Chef",
+    "type": ""
+  },
+  {
+    "author": [
+      {
+        "family": "Morin",
+        "given": "Rich"
+      },
+      {
+        "family": "Brown",
+        "given": "Vicki"
+      }
+    ],
+    "id": "morin_mactech_1999",
+    "issued": {
+      "date-parts": [
+        [
+          1999
+        ]
+      ]
+    },
+    "title": "MacTech The journal of Apple technology.",
+    "type": ""
   },
   {
     "abstract": "Concise and beautiful algorithms written in Julia",
@@ -7832,21 +8014,6 @@
     "publisher-place": "Cambridge",
     "title": "The Quest for Artificial Intelligence",
     "type": "book"
-  },
-  {
-    "abstract": "Neural Network primitives with multiple backends",
-    "id": "nnlib_2022",
-    "issued": {
-      "date-parts": [
-        [
-          2022,
-          8
-        ]
-      ]
-    },
-    "publisher": "FluxML",
-    "title": "NNlib.jl",
-    "type": ""
   },
   {
     "DOI": "10.1145/3274398",
@@ -8590,12 +8757,6 @@
     "type": "book"
   },
   {
-    "id": "perfection_",
-    "publisher": "https://news.ycombinator.com/item?id=1640594",
-    "title": "\"Perfection is achieved, not when there is nothing more to add, but when there i... | Hacker News",
-    "type": ""
-  },
-  {
     "author": [
       {
         "family": "Perlin",
@@ -9107,6 +9268,18 @@
     "type": "book"
   },
   {
+    "author": [
+      {
+        "family": "Investigator",
+        "given": "Quote"
+      }
+    ],
+    "id": "quoteinvestigator_theory_",
+    "language": "en-US",
+    "title": "In Theory There Is No Difference Between Theory and Practice, While In Practice There Is  Quote Investigator",
+    "type": ""
+  },
+  {
     "ISBN": "978-1-78168-089-6",
     "abstract": "Composed in a series of scenes, AisthesisRancière’s definitive statement on the aesthetictakes its reader from Dresden in 1764 to New York in 1941. Along the way, we view the Belvedere Torso with Winckelmann, accompany Hegel to the museum and Mallarmé to the Folies-Bergère, attend a lecture by Emerson, visit exhibitions in Paris and New York, factories in Berlin, and film sets in Moscow and Hollywood. Rancière uses these sites and eventssome famous, others forgottento ask what becomes art and what comes of it. He shows how a regime of artistic perception and interpretation was constituted and transformed by erasing the specificities of the different arts, as well as the borders that separated them from ordinary experience. This incisive study provides a history of artistic modernity far removed from the conventional postures of modernism.",
     "author": [
@@ -9265,18 +9438,6 @@
     "type": "book"
   },
   {
-    "author": [
-      {
-        "family": "Raymond",
-        "given": "Eric"
-      }
-    ],
-    "container-title": "The Jargon File",
-    "id": "raymond_hacker_",
-    "title": "Hacker",
-    "type": ""
-  },
-  {
     "ISBN": "978-0-262-68092-9",
     "abstract": "This new edition of the hacker’s own phenomenally successful lexicon includes more than 100 new entries and updates or revises 200 more. This new edition of the hacker’s own phenomenally successful lexicon includes more than 100 new entries and updates or revises 200 more. Historically and etymologically richer than its predecessor, it supplies additional background on existing entries and clarifies the murky origins of several important jargon terms (overturning a few long-standing folk etymologies) while still retaining its high giggle value. Sample definition hacker n. [originally, someone who makes furniture with an axe] 1. A person who enjoys exploring the details of programmable systems and how to stretch their capabilities, as opposed to most users, who prefer to learn only the minimum necessary. 2. One who programs enthusiastically (even obsessively) or who enjoys programming rather than just theorizing about programming. 3. A person capable of appreciating {hack value}. 4. A person who is good at programming quickly. 5. An expert at a particular program, or one who frequently does work using it or on it; as in “a UNIX hacker”. (Definitions 1 through 5 are correlated, and people who fit them congregate.) 6. An expert or enthusiast of any kind. One might be an astronomy hacker, for example. 7. One who enjoys the intellectual challenge of creatively overcoming or circumventing limitations. 8. [deprecated] A malicious meddler who tries to discover sensitive information by poking around. Hence “password hacker”, “network hacker”. The correct term is {cracker}. The term ’hacker’ also tends to connote membership in the global community defined by the net (see {network, the} and {Internet address}). It also implies that the person described is seen to subscribe to some version of the hacker ethic (see {hacker ethic, the}). It is better to be described as a hacker by others than to describe oneself that way. Hackers consider themselves something of an elite (a meritocracy based on ability), though one to which new members are gladly welcome. There is thus a certain ego satisfaction to be had in identifying yourself as a hacker (but if you claim to be one and are not, you’ll quickly be labeled {bogus}). See also {wannabee}.",
     "author": [
@@ -9302,6 +9463,28 @@
     "publisher": "MIT Press",
     "title": "The New Hacker’s Dictionary",
     "type": "book"
+  },
+  {
+    "abstract": "An integrated development environment (IDE) is software for building applications that combines common developer tools into a single GUI.",
+    "author": [
+      {
+        "family": "Hat",
+        "given": "Red"
+      }
+    ],
+    "id": "redhat_what_2019",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          1
+        ]
+      ]
+    },
+    "language": "en-US",
+    "publisher": "https://www.redhat.com/en/topics/middleware/what-is-ide",
+    "title": "What is an IDE?",
+    "type": ""
   },
   {
     "ISSN": "1937-4771",
@@ -9654,21 +9837,6 @@
     "type": "book"
   },
   {
-    "abstract": "26",
-    "author": [
-      {
-        "family": "Ruskin",
-        "given": "John"
-      }
-    ],
-    "id": "ruskin_seven_1920a",
-    "keyword": "Architecture",
-    "language": "en-US",
-    "publisher": "London Waverley Book Co",
-    "title": "The seven lamps of architecture. With illustrations drawn by the author",
-    "type": "book"
-  },
-  {
     "ISSN": "0048-8143",
     "author": [
       {
@@ -9858,6 +10026,26 @@
     "type": ""
   },
   {
+    "DOI": "10.1145/2384592.2384594",
+    "author": [
+      {
+        "family": "Schachman",
+        "given": "Toby"
+      }
+    ],
+    "id": "schachman_alternative_2012",
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "publisher": "ACM",
+    "title": "Alternative programming interfaces for alternative programmers",
+    "type": ""
+  },
+  {
     "ISBN": "978-0-631-16622-1 978-0-631-16623-8",
     "abstract": "x, 470 pages ; 26 cm; Approaches to Discourse is a guide to the various frameworks, concepts, and methods available for the analysis of discourse within linguistics. It compares six dominant approaches to discourse analysis: speech act theory, pragmatics, ethnomethodology, interactional sociolinguistics, ethnography of communication, and variation theory. The author not only considers each approach from several standpoints but she also illustrates each approach through extensive applications to a variety of concrete social and linguistic problems facing discourse analysts. Exercises pose problems to which each approach can be applied. In the second edition of Approaches to Discourse, Schiffrin updates and revises the content, organization and exercises throughout the book. In Part 1, she broadens the discussion of discourse analysis through more definitions, new examples, synopsis of approaches not included in the book, and discussion of data. In Part 2, she adds simpler demonstrations of the approaches, clarifies sample analyses, presents recent trends (in a new section in each chapter called \"New Developments\"), and revises exercises. She also makes crucial additions and revisions to the chapters on ethnography and variation, and adds a chapter on Critical Discourse Analysis. In Part 3, she condenses the comparative chapters, adds a chapter on the integration of various approaches to discourse analysis, and discusses discourse analysis both inside and outside of linguistics; Includes bibliographical references (pages 439-458) and index; pt. I. The Scope of Discourse Analysis. 1. Overview—- 2. Definitions of Discourse —- pt. II. Approaches to Discourse Analysis — 3. Speech Act Theory — 4. Interactional Sociolinguistics — 5. The Ethnography of Communication — 6. Pragmatics — 7. Conversation Analysis — 8. Variation Analysis —- pt. III. Conclusion. 9. Structure and Function — 10. Text and Context — 11. Discourse and Communication — 12. Conclusion: Language as Social Interaction —- Appendix 1: Collecting Data — Appendix 2: Transcription Conventions — Appendix 3: Sample Data",
     "author": [
@@ -10007,7 +10195,12 @@
     ],
     "id": "scruton_aesthetics_2013",
     "issued": {
-      "date-parts": []
+      "date-parts": [
+        [
+          2013,
+          4
+        ]
+      ]
     },
     "language": "en-US",
     "publisher": "Princeton University Press",
@@ -10068,6 +10261,25 @@
     "publisher-place": "NY, NY",
     "title": "Concepts of Programming Languages",
     "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Seeley",
+        "given": "Donn"
+      }
+    ],
+    "id": "seeley_how_2004",
+    "issued": {
+      "date-parts": [
+        [
+          2004,
+          12
+        ]
+      ]
+    },
+    "title": "How Not to Write Fortran in Any Language - ACM Queue",
+    "type": ""
   },
   {
     "DOI": "10.1007/s10664-005-3865-y",
@@ -10323,12 +10535,6 @@
     "volume": "9"
   },
   {
-    "id": "shrdlu_",
-    "publisher": "http://hci.stanford.edu/winograd/shrdlu/",
-    "title": "SHRDLU",
-    "type": ""
-  },
-  {
     "ISBN": "978-0-203-93910-9",
     "author": [
       {
@@ -10426,16 +10632,6 @@
     "type": "thesis"
   },
   {
-    "id": "simply_",
-    "title": "Simply Logical",
-    "type": ""
-  },
-  {
-    "id": "simply_a",
-    "title": "Simply Logical",
-    "type": ""
-  },
-  {
     "abstract": "We argue that because the very concept of computation rests on notions of interpretation, the semantics of natural anguages and the semantics of computational formalisms are in the deepest sense the same subject. The attempt to use computational formalisms in aid of an explanation of natural language semantics, therefore, is an enterprise that must be undertaken with particular care. We describe a framework for semantical analysis that we have used in the computational realm, and suggest hat it may serve to underwrite computadonally-oriented linguistic ser.antics as well. The major feature of this framework is the explicit recognition of both the declarative and the procedural import of meaningful expressions; we argue that whereas these two viewpoints have traditionally been taken as alternative, any comprehensive semantical theory must account for how both aspects of an expression contribute to its",
     "author": [
       {
@@ -10529,6 +10725,26 @@
     "volume": "22"
   },
   {
+    "author": [
+      {
+        "literal": "sparkes"
+      }
+    ],
+    "container-title": "Stack Overflow",
+    "genre": "Forum Post",
+    "id": "sparkes_your_2015",
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          8
+        ]
+      ]
+    },
+    "title": "Your favourite algorithm and the lesson it taught you",
+    "type": ""
+  },
+  {
     "ISBN": "978-0-596-55439-2",
     "abstract": "What are the ingredients of robust, elegant, flexible, and maintainable software architecture? Beautiful Architecture answers this question through a collection of intriguing essays from more than a dozen of today’s leading software designers and architects. In each essay, contributors present a notable software architecture, and analyze what makes it innovative and ideal for its purpose. Some of the engineers in this book reveal how they developed a specific project, including decisions they faced and tradeoffs they made. Others take a step back to investigate how certain architectural aspects have influenced computing as a whole. With this book, you’ll discover:How Facebook’s architecture is the basis for a data-centric application ecosystemThe effect of Xen’s well-designed architecture on the way operating systems evolveHow community processes within the KDE project help software architectures evolve from rough sketches to beautiful systemsHow creeping featurism has helped GNU Emacs gain unanticipated functionalityThe magic behind the Jikes RVM self-optimizable, self-hosting runtimeDesign choices and building blocks that made Tandem the choice platform in high-availability environments for over two decadesDifferences and similarities between object-oriented and functional architectural viewsHow architectures can affect the software’s evolution and the developers’ engagementGo behind the scenes to learn what it takes to design elegant software architecture, and how it can shape the way you approach your own projects, with Beautiful Architecture.",
     "author": [
@@ -10581,9 +10797,63 @@
     "type": ""
   },
   {
+    "author": [
+      {
+        "family": "Exchange",
+        "given": "Stack"
+      }
+    ],
+    "container-title": "Academia Stack Exchange",
+    "id": "stackexchange_why_2014",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          3
+        ]
+      ]
+    },
+    "title": "Why do many talented scientists write horrible software?",
+    "type": ""
+  },
+  {
+    "author": [
+      {
+        "family": "Overflow",
+        "given": "Stack"
+      }
+    ],
+    "container-title": "Software Engineering Stack Exchange",
+    "genre": "Forum Post",
+    "id": "stackoverflow_how_2013",
+    "issued": {
+      "date-parts": [
+        [
+          2013,
+          6
+        ]
+      ]
+    },
+    "title": "How can you explain \"beautiful code\" to a non-programmer?",
+    "type": ""
+  },
+  {
     "abstract": "In May 2021 over 80,000 developers told us how they learn and level up, which tools they’re using, and what they want.",
+    "author": [
+      {
+        "family": "Overflow",
+        "given": "Stack"
+      }
+    ],
     "container-title": "Stack Overflow",
-    "id": "stack_",
+    "id": "stackoverflow_stack_2021",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
     "language": "en-US",
     "title": "Stack Overflow Developer Survey 2021",
     "type": ""
@@ -10615,6 +10885,25 @@
     "title": "Free software, free society : Selected essays of Richard M. Stallman",
     "title-short": "Free software, free society",
     "type": "book"
+  },
+  {
+    "author": [
+      {
+        "family": "Group",
+        "given": "Stanford HCI"
+      }
+    ],
+    "id": "stanfordhcigroup_shrdlu_1973",
+    "issued": {
+      "date-parts": [
+        [
+          1973
+        ]
+      ]
+    },
+    "publisher": "http://hci.stanford.edu/winograd/shrdlu/",
+    "title": "SHRDLU",
+    "type": ""
   },
   {
     "ISBN": "978-0-13-726936-5",
@@ -10784,13 +11073,6 @@
     "type": "book"
   },
   {
-    "container-title": "Nextjournal",
-    "id": "supervised_",
-    "publisher": "https://nextjournal.com/eda/discretize-cont-var",
-    "title": "Supervised discretization of continuous variables",
-    "type": ""
-  },
-  {
     "author": [
       {
         "family": "Sustrik",
@@ -10830,14 +11112,6 @@
     "publisher-place": "USA",
     "title": "Semiotics of Programming",
     "type": "book"
-  },
-  {
-    "abstract": "A twice-yearly journal for tiny computational poems, published by Bad Quarto",
-    "id": "taper_",
-    "language": "en-US",
-    "publisher": "https://taper.badquar.to/",
-    "title": "Taper",
-    "type": ""
   },
   {
     "author": [
@@ -10881,6 +11155,24 @@
     "publisher": "O’Reilly Media",
     "title": "Low-Code and the Democratization of Programming",
     "type": "book"
+  },
+  {
+    "author": [
+      {
+        "literal": "Tech Model Railroad club"
+      }
+    ],
+    "container-title": "Tech Model Railroad Club",
+    "id": "techmodelrailroadclub_tmrc_2000",
+    "issued": {
+      "date-parts": [
+        [
+          2000
+        ]
+      ]
+    },
+    "title": "TMRC - Hackers",
+    "type": ""
   },
   {
     "DOI": "10.1145/1315803.1315808",
@@ -10947,7 +11239,12 @@
     "container-title": "esoteric.codes",
     "id": "temkin_sentences_2017",
     "issued": {
-      "date-parts": []
+      "date-parts": [
+        [
+          2017,
+          12
+        ]
+      ]
     },
     "language": "en-US",
     "publisher": "https://esoteric.codes/blog/sentences-on-code-art",
@@ -10977,12 +11274,6 @@
     "title": "Plain Text: The Poetics of Computation",
     "title-short": "Plain Text",
     "type": "book"
-  },
-  {
-    "id": "theory_",
-    "language": "en-US",
-    "title": "In Theory There Is No Difference Between Theory and Practice, While In Practice There Is  Quote Investigator",
-    "type": ""
   },
   {
     "ISBN": "978-0-486-20327-0",
@@ -11074,12 +11365,6 @@
     "title": "Dumb People, Smart Objects: The Sims and The Distributed Self",
     "title-short": "Dumb People, Smart Objects",
     "type": "paper-conference"
-  },
-  {
-    "container-title": "Tech Model Railroad Club",
-    "id": "tmrc_",
-    "title": "TMRC - Hackers",
-    "type": ""
   },
   {
     "author": [
@@ -11303,6 +11588,30 @@
     "language": "en-US",
     "title": "Transcoding the digital : How metaphors matter in new media",
     "title-short": "Transcoding the digital",
+    "type": "book"
+  },
+  {
+    "abstract": "Transcoding the Digital: How Metaphors Matter in New Media by Marianne van den Boomen is a material-semiotic inquiry into the constitutive role of metaphors in our daily encounters with computers and networks. While interface concepts such as desktop and windows are easily recognized as metaphors, this research shows how in fact all digital sign-tool-objects  ranging from icons and email to Facebook friends, from hyperlink and tweet to Pirate Bay  are digital-material metaphors. They frame and organize how we access the black boxes of software and machinery, which in turn organize and reconfigure society. The same holds for discourse metaphors such as virtual community, cyberspace, Web 2.0, and social network. Metaphors matter in digital praxis, literally. This study makes an intervention into the contemporary theory of metaphor by extending it with the notion of material metaphor, including a manifest for hacking digital-material metaphors.",
+    "author": [
+      {
+        "family": "Boomen",
+        "given": "Marianne",
+        "non-dropping-particle": "van den"
+      }
+    ],
+    "id": "vandenboomen_transcoding_2014a",
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "language": "en-US",
+    "publisher": "Institute of Network Cultures",
+    "publisher-place": "Amsterdam",
+    "title": "Transcoding the Digital: How Metaphors Matter in New Media",
+    "title-short": "Transcoding the Digital",
     "type": "book"
   },
   {
@@ -11749,12 +12058,26 @@
     "type": "book"
   },
   {
-    "abstract": "An integrated development environment (IDE) is software for building applications that combines common developer tools into a single GUI.",
-    "id": "what_",
+    "abstract": "In computer programming, a code smell is any characteristic in the source code of a program that possibly indicates a deeper problem. Determining what is and is not a code smell is subjective, and varies by language, developer, and development methodology. The term was popularised by Kent Beck on WardsWiki in the late 1990s. Usage of the term increased after it was featured in the 1999 book Refactoring: Improving the Design of Existing Code by Martin Fowler. It is also a term used by agile programmers.",
+    "annote": "Page Version ID: 1074709396",
+    "author": [
+      {
+        "family": "Wikipedia"
+      }
+    ],
+    "container-title": "Wikipedia",
+    "id": "wikipedia_code_2022",
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          3
+        ]
+      ]
+    },
     "language": "en-US",
-    "publisher": "https://www.redhat.com/en/topics/middleware/what-is-ide",
-    "title": "What is an IDE?",
-    "type": ""
+    "title": "Code smell",
+    "type": "article-journal"
   },
   {
     "abstract": "The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel. It was conceived and created in 1991 by Linus Torvalds for his i386-based PC, and it was soon adopted as the kernel for the GNU operating system, which was created as a free replacement for UNIX. Since then, it has spawned a large number of operating system distributions, commonly also called Linux. Linux is deployed on a wide variety of computing systems, such as embedded devices, mobile devices (including its use in the Android operating system), personal computers, servers, mainframes, and supercomputers. It can be tailored for specific architectures and for several usage scenarios using a family of simple commands (that is, without the need of manually editing its source code before compilation); privileged users can also fine-tune kernel parameters at runtime. Most of the Linux kernel code is written using the GNU extensions of GCC to the standard C programming language and with the use of architecture specific instructions (ISA). This produces a highly optimized executable (vmlinux) with respect to utilization of memory space and task execution times.Day-to-day development discussions take place on the Linux kernel mailing list (LKML). Changes are tracked using the version control system git, which was created by Torvalds as a bespoke replacement for BitKeeper. Linux as a whole is released under the GNU General Public License version 2 only (GPL-2.0-only) with an explicit syscall exception (Linux-syscall-note), but it also contains several files under other compatible licenses.As with many other open-source software projects, developers are required to adhere to the Contributor Covenant, a code of conduct created by Coraline Ada Ehmke and intended to address harassment of minority contributors including women, LGBT, trans and genderqueer individuals.",
@@ -12136,12 +12459,6 @@
     "type": "article-journal"
   },
   {
-    "container-title": "Academia Stack Exchange",
-    "id": "workflow_",
-    "title": "Workflow - Why do many talented scientists write horrible software?",
-    "type": ""
-  },
-  {
     "ISSN": "0162-2439",
     "abstract": "The author analyzes the types of metaphors that are used to describe the Internet in issues of Wired magazine from before and after the dot-com collapse to understand the perceptions and expectations of some of the actors involved in the shaping of the Internet. In addition, the metaphors deployed in economics and geophysiology are used to demonstrate how metaphors can influence public debate, policy, and theory. The author argues that metaphors do not simply have a descriptive function but that they also carry normative connotations. Language, alongside social practices and material objects, is an important tool in attempts to construct the future. Six overlapping metaphorical themes are identified: revolution, evolution, salvation, progress, universalism, and the \"American dream.\" A critical analysis of these metaphors, informed by a critique of the metaphors used in economics and geophysiology, leads the author to challenge the universalist claims made by some Internet enthusiasts for the inclusive potential of the Internet.",
     "author": [
@@ -12197,21 +12514,6 @@
     "title": "The Unknown Craftsman: A Japanese Insight Into Beauty",
     "title-short": "The Unknown Craftsman",
     "type": "book"
-  },
-  {
-    "container-title": "Stack Overflow",
-    "genre": "Forum Post",
-    "id": "your_2015",
-    "issued": {
-      "date-parts": [
-        [
-          2015,
-          8
-        ]
-      ]
-    },
-    "title": "Your favourite algorithm and the lesson it taught you",
-    "type": ""
   },
   {
     "abstract": "Originally published in read_me: Software Art and Cultures, 2004",
