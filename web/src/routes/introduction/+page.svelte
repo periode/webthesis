@@ -1,14 +1,21 @@
 <script lang="ts">
     import json_data from "./../data.json";
     import Node from "./../components/Node.svelte";
-    import DarkMode from "./../components/DarkMode.svelte";
     import type { INode } from "../../utils/types";
     import { findNodeByValue } from "../../utils/find";
+    import { onMount } from "svelte";
 
     let data = json_data as Array<INode>;
     let root = findNodeByValue(data, "introduction.tex");
 
     let document_children = root ? (root.children ? root.children : []) : [];
+    
+    onMount(() => {
+        console.log(location.hash);
+        
+        if(location.hash !== "")
+            document.getElementById(location.hash.substring(1))?.scrollIntoView()
+    })
 </script>
 
 <div

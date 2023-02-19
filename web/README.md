@@ -14,15 +14,17 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] hovering above group
   - [ ] hovering above short
 - [ ] layout
-  - [ ] the source text should be edited making use of references to labels of listings
-- [ ] mobile styling
-  - [ ] overlap of right col full width
+  - [ ] make footnotes behave the same as citations
+  - [ ] add header
+  - [ ] add footer
+- [ ] mobile
 - [ ] references
-  - [ ] deal with finding the actual names for the chapters/sections/subsections, etc.
-
+  - [ ] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
 
 ## done
+- [x] added location to anchors, so that one can jump between pages
 - [x] render single chapters
+- [x] overlap of right col full width
 - [x] citation (parse bib.json to find the proper ones)
   - [x] have a `citationItem` component which renders the long one
   - [x] have a message passing from a nested child short footnote or citation, caught by the node, and generating the approriate element with unique ID
