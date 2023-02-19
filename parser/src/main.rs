@@ -39,8 +39,23 @@ impl Node {
     }
 }
 
+#[derive(Clone)]
+struct State {
+    include: String,
+}
+
+impl State {
+    fn set_include(&mut self, _include: String) {
+        self.include = _include
+    }
+
+    fn get_include(&self) -> String {
+        self.include.clone()
+    }
+}
+
 const SEPARATOR: &str = " | ";
-const DEFAULT_INPUT: &str = "./test_inputs/basic.tex";
+const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
 const DEFAULT_OUTPUT: &str = "parsed.json";
 const DEFAULT_VERBOSE: usize = 0;
 #[derive(ArgParser, Debug)]
@@ -62,8 +77,12 @@ fn main() {
     let src = fs::read_to_string(fp.as_os_str()).expect("Cannot open file");
     println!("reading: {}", args.input);
 
+    let mut state = State {
+        include: String::from(""),
+    };
+
     let start = Instant::now();
-    let ast = parse(src);
+    let ast = parse(src, &mut state);
     let duration = start.elapsed();
 
     if args.verbosity == 1 {
@@ -99,7 +118,7 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     }
 }
 
-fn parse(src: String) -> Vec<Node> {
+fn parse(src: String, state: &mut State) -> Vec<Node> {
     let mut ast = Vec::<Node>::new();
 
     match LaTeXParser::parse(Rule::document, &src) {
@@ -115,13 +134,13 @@ fn parse(src: String) -> Vec<Node> {
             for subpair in pair.into_inner() {
                 match subpair.as_rule() {
                     Rule::paragraph => {
-                        let s = parse_paragraph(subpair);
+                        let s = parse_paragraph(subpair, state);
                         if let Some(_) = &s.children {
                             n.add(s);
                         }
                     }
                     Rule::env_stmt => {
-                        let e = parse_environment(subpair);
+                        let e = parse_environment(subpair, state);
                         n.add(e);
                     }
                     // Rule::COMMENT => println!("{:?} -{}", subpair.as_rule(), subpair.as_str()),
@@ -141,7 +160,7 @@ fn parse(src: String) -> Vec<Node> {
     }
 }
 
-fn parse_paragraph(_section: Pair<Rule>) -> Node {
+fn parse_paragraph(_section: Pair<Rule>, state: &mut State) -> Node {
     let mut section_node = Node {
         children: None,
         tag: Box::new(Environment::Paragraph),
@@ -151,15 +170,15 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
     for subpair in _section.into_inner() {
         match subpair.as_rule() {
             Rule::env_stmt => {
-                let e = parse_environment(subpair);
+                let e = parse_environment(subpair, state);
                 section_node.add(e);
             }
             Rule::code_stmt => {
-                let e = parse_environment(subpair);
+                let e = parse_environment(subpair, state);
                 section_node.add(e);
             }
             Rule::cmd_stmt => {
-                if let Some(c) = parse_command(subpair) {
+                if let Some(c) = parse_command(subpair, state) {
                     section_node.add(c);
                 }
             }
@@ -172,7 +191,7 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
                 section_node.add(l);
             }
             Rule::paragraph => {
-                let s = parse_paragraph(subpair);
+                let s = parse_paragraph(subpair, state);
                 if let Some(_) = &s.children {
                     //-- skip empty paragraphs
                     section_node.add(s);
@@ -186,7 +205,7 @@ fn parse_paragraph(_section: Pair<Rule>) -> Node {
     section_node
 }
 
-fn parse_environment(_env: Pair<Rule>) -> Node {
+fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
     let mut env_node = Node {
         children: None,
         tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
@@ -203,7 +222,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
                 for subsubpair in subpair.into_inner() {
                     match subsubpair.as_rule() {
                         Rule::paragraph => {
-                            let s = parse_paragraph(subsubpair);
+                            let s = parse_paragraph(subsubpair, state);
                             if let Some(_) = &s.children {
                                 //-- skip empty paragraphs
                                 env_node.add(s);
@@ -247,7 +266,7 @@ fn parse_environment(_env: Pair<Rule>) -> Node {
 }
 
 //-- parse_command can return None if the parsed Node is only related print layout
-fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
+fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
     let mut cmd_node = Node {
         children: None,
         tag: Box::new(Token::Command),
@@ -271,10 +290,13 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
                     fp = format!("{}/{}", root.parent().unwrap().display(), include.display());
                 }
 
+                let i = include.file_stem().unwrap().to_str().unwrap();
+                state.set_include(String::from(i));
+
                 println!("including: {:?}", fp);
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
-                let children = parse(src);
+                let children = parse(src, state);
                 cmd_node.tag = Box::new(Command::Include);
                 cmd_node.value = include.display().to_string();
                 for c in children {
@@ -294,7 +316,12 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
             Rule::name => match commands::parse_name(subpair.as_str()) {
                 Some(cmd) => {
                     if cmd.is_semantic() {
-                        cmd_node.tag = Box::new(cmd)
+                        cmd_node.tag = Box::new(cmd);
+
+                        if cmd == Command::Label {
+                            let i = state.get_include();
+                            cmd_node.value = i;
+                        }
                     } else {
                         return None;
                     }
@@ -311,7 +338,7 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
 
                 cmd_node.add(o);
             }
-            Rule::cmd_stmt => match parse_command(subpair) {
+            Rule::cmd_stmt => match parse_command(subpair, state) {
                 Some(n) => cmd_node.add(n),
                 None => println!("Could not parse nested command:"),
             },
@@ -334,7 +361,10 @@ fn parse_command(_stmt: Pair<Rule>) -> Option<Node> {
 #[test]
 fn it_parses_a_file() {
     let test_src = fs::read_to_string("test_inputs/basic.tex").expect("Cannot open file");
-    let test_ast = parse(test_src);
+    let mut test_state = State {
+        include: String::from(""),
+    };
+    let test_ast = parse(test_src, &mut test_state);
     assert_eq!(test_ast.len(), 1);
 
     let top_level = test_ast.first().unwrap();

@@ -21,10 +21,11 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__
-  - [ ] item __tricky one: the rest of the line should be itemized__
 
 ## done
 
+- [x] store the include value (i.e. the current chapter) for each label (added external state)
+- [x] item __tricky one: the rest of the line should be itemized__
 - [x] create bibliography
 - [x] give a value to the `include`
 - [x] get rid of empty paragraph nodes
