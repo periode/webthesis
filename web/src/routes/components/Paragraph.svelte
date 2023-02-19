@@ -44,9 +44,9 @@
     }
 </script>
 
-<div class="m-1 md:m-2 leading-9">
+<div class="relative m-1 md:m-2 leading-9">
     {#if isLiteralParagraph(nodes)}
-        <div class="flex justify-between">
+        <div class="md:flex justify-between">
             <div class="w-full lg:w-6/12 md:w-8/12 mb-1 indent-12">
                 {#each nodes as node}
                     {#if node.tag == NodeType.Literal}
@@ -68,7 +68,7 @@
                     {/if}
                 {/each}
             </div>
-            <div class="flex flex-col justify-center lg:w-3/12 text-base overflow-y-scroll">
+            <div class="absolute top-0 h-full md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none">
                 {#each citations as citation}
                     <CitationItem {citation}/>
                 {/each}
