@@ -18,6 +18,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] add header (just a single icon opening up a bar with all other icons)
   - [ ] add footer (just the current section, expands into full ToC)
 - [ ] mobile
+  - [ ] footnotes click is janky
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
 

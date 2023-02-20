@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { NodeType, type ICitation, type INode } from "../../utils/types";
+    import { NodeType, type ICitation, type IFootnote, type INode } from "../../utils/types";
     import Node from "./Node.svelte";
     import CitationItem from "./CitationItem.svelte";
     import FootnoteItem from "./FootnoteItem.svelte";
@@ -14,7 +14,7 @@
     export let node: INode;
     const nodes = node.children ? node.children : [];
     let citations: Array<ICitation> = [];
-    let footnotes: Array<INode> = [];
+    let footnotes: Array<IFootnote> = [];
 
     const isLiteralParagraph = (children: Array<INode> | null) => {
         if (!children || children.length === 0) return false; // no children
@@ -31,13 +31,18 @@
         else return false;
     };
 
-    const handleFootnote = (event: CustomEvent<INode>) => {
+    const handleFootnote = (event: CustomEvent<IFootnote>) => {
         footnotes.push(event.detail)
         footnotes = footnotes
     }
 
     const handleShowFootnote = (event: CustomEvent<string>) => {        
-        document.getElementById(`${event.detail}`)?.classList.toggle("hidden")
+        footnotes.forEach(f => {
+            if(event.detail === `footnote-${event.detail}`)
+                f.visible = !f.visible
+        });
+
+        footnotes = footnotes
     }
 
     const handleCitation = (event: CustomEvent<ICitation>) => {

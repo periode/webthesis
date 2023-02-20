@@ -54,3 +54,9 @@ export interface ICitation {
     publisher: string,
     visible: boolean,
 }
+
+export interface IFootnote {
+    value: string,
+    children: Array<INode>,
+    visible: boolean,
+}

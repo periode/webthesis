@@ -27,7 +27,7 @@
     }}
     id={citation.id}
     class={`${
-        !citation.visible ? "hidden" : ""
+        citation.visible ? "block" : "hidden"
     } w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto p-6 md:p-0  text-zinc-500 dark:text-zinc-300 border border-zinc-400 md:border-none bg-zinc-50 dark:bg-zinc-800 md:bg-transparent pointer-events-auto`}
 >
     <div
