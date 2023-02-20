@@ -42,6 +42,7 @@ impl Node {
 #[derive(Clone)]
 struct State {
     include: String,
+    footnote_index: i32,
 }
 
 impl State {
@@ -51,6 +52,13 @@ impl State {
 
     fn get_include(&self) -> String {
         self.include.clone()
+    }
+
+    //-- to be called whenever a footnote is encountered
+    //-- increases the counter by one and returns the new value
+    fn register_footnote(&mut self) -> i32 {
+        self.footnote_index += 1;
+        self.footnote_index.clone()
     }
 }
 
@@ -79,6 +87,7 @@ fn main() {
 
     let mut state = State {
         include: String::from(""),
+        footnote_index: 0,
     };
 
     let start = Instant::now();
@@ -321,6 +330,9 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                         if cmd == Command::Label {
                             let i = state.get_include();
                             cmd_node.value = i;
+                        }else if cmd == Command::Footnote {
+                            let i = state.register_footnote();
+                            cmd_node.value = i.to_string();
                         }
                     } else {
                         return None;
@@ -363,6 +375,7 @@ fn it_parses_a_file() {
     let test_src = fs::read_to_string("test_inputs/basic.tex").expect("Cannot open file");
     let mut test_state = State {
         include: String::from(""),
+        footnote_index: 0
     };
     let test_ast = parse(test_src, &mut test_state);
     assert_eq!(test_ast.len(), 1);
