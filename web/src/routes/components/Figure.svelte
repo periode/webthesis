@@ -12,7 +12,7 @@
     const label = l && l.children ? l.children[0].value : "";
 </script>
 
-<div class="md:w-5/12 my-8 " id={encodeURIComponent(label)}>
+<div class="w-full lg:w-6/12 m-auto  md:w-5/12 my-8 " id={encodeURIComponent(label)}>
     <div class="relative text-zinc-400 text-right text-sm">{label}</div>
     <div class="flex flex-col border border-zinc-600 p-2">
         <img src={`/images/${image?.value}`} alt={caption?.value} srcset="" />

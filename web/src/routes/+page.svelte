@@ -1,5 +1,5 @@
 <script lang="ts">
-    import json_data from "./data.json";
+    import text_data from "./text.json";
     import Date from "./components/Date.svelte";
     import DarkMode from "./components/DarkMode.svelte";
     import type { INode } from "../utils/types";
@@ -10,7 +10,7 @@
     import TableOfContents from "./components/TableOfContents.svelte";
     import Abstract from "./components/Abstract.svelte";
 
-    let data = json_data as Array<INode>;
+    let data = text_data as Array<INode>;
     let nodes = data[0].children as Array<INode>;
     let root_children = nodes[0].children as Array<INode>;
     let document_children = root_children[0].children as Array<INode>;

@@ -20,6 +20,7 @@
     import Citation from "./inline/Citation.svelte";
     import InlineListing from "./inline/InlineListing.svelte";
     import Footnote from "./Footnote.svelte";
+    import Spacer from "./Spacer.svelte";
     import Reference from "./inline/Reference.svelte";
     import URL from "./inline/URL.svelte";
     import { NodeType, type INode } from "../../utils/types";
@@ -52,6 +53,7 @@
         { tag: NodeType.Author, component: Author },
         { tag: NodeType.Affiliation, component: Affiliation },
         { tag: NodeType.Date, component: Date },
+        { tag: NodeType.Spacer, component: Spacer },
     ];
 
     const n = nodes.find((n) => n.tag === node.tag);

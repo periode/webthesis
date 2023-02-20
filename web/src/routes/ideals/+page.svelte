@@ -1,11 +1,11 @@
 <script lang="ts">
-    import json_data from "./../data.json";
+    import text_data from "./../text.json";
     import Node from "./../components/Node.svelte";
     import DarkMode from "./../components/DarkMode.svelte";
     import type { INode } from "../../utils/types";
     import { findNodeByValue } from "../../utils/find";
 
-    let data = json_data as Array<INode>;
+    let data = text_data as Array<INode>;
     let root = findNodeByValue(data, "ideals.tex");
 
     let document_children = root ? (root.children ? root.children : []) : [];

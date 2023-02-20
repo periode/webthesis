@@ -1,5 +1,5 @@
 import type { INode } from "./types";
-import json_data from "./../routes/data.json";
+import text_data from "./../routes/text.json";
 
 export const findNodeByTag = (nodes: Array<INode>, tag: string): INode | null => {
     var result = null;
@@ -59,7 +59,7 @@ export const findNodeByValue = (nodes: Array<INode>, value: string): INode | nul
 //-- this is mostly used when references need to locate on which page the label is
 export const findLabel = (value: string): INode | null => {
     var result = null;
-    const data = json_data as Array<INode>;
+    const data = text_data as Array<INode>;
     const labels = findNodesByTag(data, "label")
 
     for(let label of labels){

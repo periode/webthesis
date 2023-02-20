@@ -673,20 +673,29 @@
     "author": [
       {
         "family": "Bogost",
-        "given": "I."
+        "given": "Ian"
       }
     ],
-    "id": "bogost_rhetoric_2007",
+    "container-title": "The Ecology of Games: Connecting Youth, Games and Learning",
+    "editor": [
+      {
+        "family": "Salen",
+        "given": "Katie"
+      }
+    ],
+    "id": "bogost_rhetoric_2008",
     "issued": {
       "date-parts": [
         [
-          2007
+          2008
         ]
       ]
     },
     "language": "en-US",
+    "publisher": "The MIT Press",
+    "publisher-place": "Cambridge, MA",
     "title": "The Rhetoric of Video Games",
-    "type": "book"
+    "type": "chapter"
   },
   {
     "author": [
@@ -3574,7 +3583,7 @@
         "given": "Reginald"
       }
     ],
-    "id": "gibbons_how_",
+    "id": "gibbons_how_2015",
     "issued": {
       "date-parts": [
         [

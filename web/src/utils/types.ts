@@ -26,6 +26,7 @@ export enum NodeType {
     Author = 'author',
     Affiliation = 'affiliation',
     Date = 'date',
+    Spacer = 'spacer',
 }
 
 export interface INode {

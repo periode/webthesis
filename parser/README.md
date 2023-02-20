@@ -24,6 +24,7 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## done
 
+- [x] have a "spacer" command
 - [x] store the include value (i.e. the current chapter) for each label (added external state)
 - [x] item __tricky one: the rest of the line should be itemized__
 - [x] create bibliography

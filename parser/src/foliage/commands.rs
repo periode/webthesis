@@ -42,6 +42,9 @@ pub enum Command {
     Setmainfont,
     Setmonofont,
     Sloppy,
+    Spacer,
+    SpacerSmall,
+    NewCommand,
     Subsection,
     Subsubsection,
     Superscript,
@@ -106,6 +109,9 @@ impl Tag for Command {
             Command::Setmainfont => "setmainfont",
             Command::Setmonofont => "setmonofont",
             Command::Sloppy => "sloppy",
+            Command::Spacer => "spacer",
+            Command::SpacerSmall => "spacersmall",
+            Command::NewCommand => "newcommand",
             Command::Subsection => "subsection",
             Command::Subsubsection => "subsubsection",
             Command::Superscript => "superscript",
@@ -165,6 +171,7 @@ impl Command {
 
     fn is_latex_specific(&self) -> bool {
         match *self {
+            Command::NewCommand => true,
             Command::AtBeginEnvironment => true,
             Command::Bibliographystyle => true,
             Command::Captionsetup => true,
@@ -230,6 +237,9 @@ pub fn parse_name(_name: &str) -> Option<Command> {
         "subsection" => Some(Command::Subsection),
         "subsubsection" => Some(Command::Subsubsection),
         "sloppy" => Some(Command::Sloppy),
+        "spacer" => Some(Command::Spacer),
+        "spacersmall" => Some(Command::SpacerSmall),
+        "newcommand" => Some(Command::NewCommand),
         "textit" => Some(Command::Italic),
         "title" => Some(Command::Title),
         "today" => Some(Command::Today),

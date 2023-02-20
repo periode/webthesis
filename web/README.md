@@ -17,6 +17,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [x] make left column for footnotes (behave the same as citations)
   - [ ] add header (just a single icon opening up a bar with all other icons)
   - [ ] add footer (just the current section, expands into full ToC)
+  - [ ] use the system default when using dark theme
 - [ ] mobile
   - [ ] footnotes click is janky
 - [ ] references
