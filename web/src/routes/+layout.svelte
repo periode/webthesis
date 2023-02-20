@@ -1,6 +1,6 @@
 <script>
   import "../app.css";
-  import DarkMode from "./components/DarkMode.svelte";
+  import Header from "./components/interface/Header.svelte";
 </script>
 
 <svelte:head>
@@ -10,6 +10,6 @@
   />
 </svelte:head>
 
-<DarkMode />
+<Header />
 
 <slot />

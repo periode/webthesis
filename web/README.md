@@ -15,15 +15,16 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] hovering above short
 - [ ] layout
   - [x] make left column for footnotes (behave the same as citations)
-  - [ ] add header (just a single icon opening up a bar with all other icons)
   - [ ] add footer (just the current section, expands into full ToC)
-  - [ ] use the system default when using dark theme
+  - [x] use the system default when using dark theme
+  - [ ] have lightmode/darkmode as a store?
 - [ ] mobile
   - [ ] footnotes click is janky
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
 
 ## done
+- [x] add header (just a single icon opening up a bar with all other icons)
 - [x] added location to anchors, so that one can jump between pages
 - [x] render single chapters
 - [x] overlap of right col full width
