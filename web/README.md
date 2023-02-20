@@ -14,9 +14,9 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] hovering above group
   - [ ] hovering above short
 - [ ] layout
-  - [ ] make footnotes behave the same as citations
-  - [ ] add header
-  - [ ] add footer
+  - [x] make left column for footnotes (behave the same as citations)
+  - [ ] add header (just a single icon opening up a bar with all other icons)
+  - [ ] add footer (just the current section, expands into full ToC)
 - [ ] mobile
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)

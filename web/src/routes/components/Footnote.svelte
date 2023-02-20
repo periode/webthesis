@@ -1,22 +1,34 @@
 <script lang="ts">
+    import { createEventDispatcher, onMount } from "svelte";
     import { clickOutside } from "../../utils/actions";
     import type { INode } from "../../utils/types";
     import Node from "./Node.svelte";
     export let node: INode;
+
+    const dispatch = createEventDispatcher<{ footnote: INode }>();
+    const dispatchToggle = createEventDispatcher<{showfootnote: string}>();
 
     const children = node.children
         ? node.children
         : [{ tag: node.tag, value: node.value, children: null } as INode];
 
     let isVisible = false;
+
+    onMount(() => {
+        node.children = children;
+        dispatch("footnote", node);
+    })
+
+    const showFootnote = () => {        
+        dispatchToggle("showfootnote", `footnote-${node.value}`);
+    };
 </script>
 
 <span>
     <span
-        on:mouseenter={() => (isVisible = true)}
-        on:click={() => (isVisible = true)}
-        on:touchstart={() => (isVisible = true)}
-        on:keydown={() => (isVisible = true)}
+        on:click={showFootnote}
+        on:touchstart={showFootnote}
+        on:keydown={showFootnote}
         class="cursor-pointer"
     >
         <img
@@ -30,17 +42,5 @@
             alt={`icon to reference a footnote`}
         />&nbsp;
     </span>
-    <div
-        class={`absolute left-10 z-10 w-full lg:w-5/12 md:w-8/12 p-4 font-normal text-sm text-left min-h-max min-w-min border border-zinc-500 bg-zinc-100 text-zinc-500 ${
-            isVisible ? "" : "hidden"
-        }`}
-        use:clickOutside
-        on:outclick={() => {
-            isVisible = false;
-        }}
-    >
-        {#each children as node}
-            <Node {node} />
-        {/each}
-    </div>
+
 </span>

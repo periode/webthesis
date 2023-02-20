@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Error from "./Error.svelte";
     import { findNodeByTag } from "../../utils/find";
     import Code from "./Code.svelte";
     import type { INode } from "../../utils/types";
@@ -28,7 +27,7 @@
     }
 </script>
 
-<div class="md:w-5/12 my-8 text-sm" id={`${encodeURIComponent(label)}`}>
+<div class="md:w-5/12 m-auto my-8 text-sm" id={`${encodeURIComponent(label)}`}>
     <div class="relative text-right text-sm text-zinc-400">{label}</div>
     <div
         class="border-zinc-600 border p-2 font-mono  break-words overflow-y-scroll"

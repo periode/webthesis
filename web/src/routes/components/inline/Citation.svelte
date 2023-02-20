@@ -18,8 +18,8 @@
         if (typed === undefined)
             return { author: "author", year: "year", id: "id" };
 
-        let author = "UNKNOWN",
-            editor = "UNKNOWN";
+        let author = "UNKNOWN AUTHOR",
+            editor = "UNKNOWN EDITOR";
         if (typed.author !== undefined)
             author = typed.author
                 ? typed.author[0]
@@ -50,6 +50,7 @@
         keys.forEach((k) => {
             const b = bib.find((b) => b.id === k);
             const typed = b ? (b as unknown as ICitation) : undefined;
+            if(typed) typed.visible = true
             dispatch("citation", typed);
         });
     });
