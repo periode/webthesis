@@ -91,7 +91,10 @@ fn main() {
     };
 
     let start = Instant::now();
-    let ast = parse(src, &mut state);
+    println!("parsing text...");
+    let ast = parse(src.clone(), &mut state);
+    println!("parsing table of contents...");
+    let toc = parse_toc(src.clone(), "root");
     let duration = start.elapsed();
 
     if args.verbosity == 1 {
@@ -99,6 +102,7 @@ fn main() {
     }
 
     save_ast(ast, &args.output);
+    save_ast(toc, "toc.json");
     println!("lasting: {:?}", duration)
 }
 
@@ -124,6 +128,203 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
             }
             None => (),
         }
+    }
+}
+
+fn parse_toc(src: String, origin: &str) -> Vec<Node> {
+    let mut toc = Vec::<Node>::new();
+
+    match LaTeXParser::parse(Rule::document, &src) {
+        Ok(mut pairs) => {
+            let pair = pairs.next().unwrap();
+
+            let mut n = Node {
+                children: Some(Vec::<Node>::new()),
+                tag: Box::new(Environment::Root),
+                value: String::from(""),
+            };
+
+            //-- figure out whether we are at the root, or the include
+            let start_node;
+            if origin == "root" {
+                let mut doc_paragraph_iter = pair.into_inner();
+                let doc_paragraph = doc_paragraph_iter.next().unwrap();
+                let mut doc_environment_iter = doc_paragraph.into_inner();
+                start_node = doc_environment_iter.next().unwrap();
+            } else {
+                start_node = pair;
+            }
+
+            // println!("the start node is {:?} {}", start_node.as_rule(), start_node.as_str());
+
+            for subpair in start_node.into_inner() {
+                match subpair.as_rule() {
+                    Rule::env_content => {
+                        //-- if we're at the root
+                        let s = parse_paragraph_toc(subpair);
+                        if let Some(_) = &s.children {
+                            n.add(s);
+                        }
+                    }
+                    Rule::paragraph => {
+                        let s = parse_paragraph_toc(subpair);
+                        if let Some(_) = &s.children {
+                            n.add(s);
+                        }
+                    }
+                    Rule::EOI => (),
+                    _ => println!("UNKNOWN {:?}", subpair.as_rule()),
+                }
+            }
+
+            toc.push(n);
+
+            toc
+        }
+        Err(error) => {
+            println!("error parsing: {}", error);
+            toc
+        }
+    }
+}
+
+//-- this one is just for recursion (either paragraph, and keep on going, or command, and check for headers)
+fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Node {
+    let mut toc_node = Node {
+        children: None,
+        tag: Box::new(Environment::Paragraph),
+        value: String::from(""),
+    };
+
+    let mut pair_iter = _paragraph.into_inner();
+    loop {
+        let subpair = pair_iter.next();
+
+        match subpair {
+            Some(subsubpair) => match subsubpair.as_rule() {
+                Rule::paragraph => {
+                    if subsubpair.as_str() != "" {
+                        let n = parse_paragraph_toc(subsubpair);
+                        if let Some(children) = &n.children {
+                            toc_node.add(n);
+                        }
+                    }
+                }
+                Rule::cmd_stmt => {
+                    let n = parse_command_toc(subsubpair);
+                    if let Some(nod) = n {
+                        toc_node.add(nod);
+                    }
+                }
+                _ => (),
+            },
+            None => break,
+        }
+    }
+
+    toc_node
+}
+
+//-- this is where the meet of the parsing happens
+fn parse_command_toc(_stmt: Pair<Rule>) -> Option<Node> {
+    let mut toc_node = Node {
+        children: None,
+        tag: Box::new(Token::Command),
+        value: String::from(""),
+    };
+
+    //-- check if we're currently at an \include
+    let mut s = _stmt.clone().into_inner();
+    if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
+        match c {
+            Command::Include => {
+                let include = Path::new(s.next().unwrap().as_str());
+                let fp;
+                if include.is_absolute() {
+                    fp = include.display().to_string();
+                } else {
+                    let args = Args::parse();
+                    let input = args.input.to_string();
+                    let root = Path::new(&input);
+
+                    fp = format!("{}/{}", root.parent().unwrap().display(), include.display());
+                }
+
+                println!("including in toc: {:?}", fp);
+
+                let src = fs::read_to_string(fp).expect("Cannot open file");
+                let children = parse_toc(src, "include");
+                toc_node.tag = Box::new(Command::Include);
+                toc_node.value = include.display().to_string();
+                for c in children {
+                    toc_node.add(c);
+                }
+
+                return Some(toc_node);
+            }
+            _ => (),
+        }
+    }
+
+    //-- probably need to make a loop, checking for each individual paragraph
+    //-- looking inside of each paragraph to see if there's a header section
+    //-- getting the literal value and the label of that section
+    //-- appending or creating a new node based on the appropriateness (i.e. if the header is below the current level, append; if it's at the same level or above, go back up)
+    let mut pair_iter = _stmt.into_inner();
+    loop {
+        let pair = pair_iter.next();
+
+        match pair {
+            Some(subpair) => match subpair.as_rule() {
+                Rule::name => {
+                    match commands::parse_name(subpair.as_str()) {
+                        Some(cmd) => {
+                            // println!("found command {}", cmd.value());
+                            match cmd {
+                                Command::Chapter => {
+                                    toc_node.tag = Box::new(cmd);
+                                    //-- grab the text value
+                                    let p = pair_iter.next().unwrap();
+                                    toc_node.value = String::from(p.as_str());
+                                }
+                                Command::Section => {
+                                    toc_node.tag = Box::new(cmd);
+                                    //-- grab the text value
+                                    let p = pair_iter.next().unwrap();
+                                    toc_node.value = String::from(p.as_str());
+                                }
+                                Command::Subsection => {
+                                    toc_node.tag = Box::new(cmd);
+                                    //-- grab the text value
+                                    let p = pair_iter.next().unwrap();
+                                    toc_node.value = String::from(p.as_str());
+                                }
+                                Command::Subsubsection => {
+                                    toc_node.tag = Box::new(cmd);
+                                    //-- grab the text value
+                                    let p = pair_iter.next().unwrap();
+                                    toc_node.value = String::from(p.as_str());
+                                }
+                                _ => (),
+                            }
+                        }
+                        None => return None,
+                    }
+                }
+                _ => println!(
+                    "otherwise is [{:?}] {}",
+                    subpair.as_rule(),
+                    subpair.as_str()
+                ),
+            },
+            None => break,
+        }
+    }
+
+    if toc_node.value != String::from("") {
+        Some(toc_node)
+    }else{
+        None
     }
 }
 
@@ -330,7 +531,7 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                         if cmd == Command::Label {
                             let i = state.get_include();
                             cmd_node.value = i;
-                        }else if cmd == Command::Footnote {
+                        } else if cmd == Command::Footnote {
                             let i = state.register_footnote();
                             cmd_node.value = i.to_string();
                         }
@@ -375,7 +576,7 @@ fn it_parses_a_file() {
     let test_src = fs::read_to_string("test_inputs/basic.tex").expect("Cannot open file");
     let mut test_state = State {
         include: String::from(""),
-        footnote_index: 0
+        footnote_index: 0,
     };
     let test_ast = parse(test_src, &mut test_state);
     assert_eq!(test_ast.len(), 1);
