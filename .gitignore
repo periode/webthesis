@@ -1,7 +1,7 @@
 # parser
 /parser/target
 /parser/Cargo.lock
-/parser/parsed.json
+/parser/output/*
 
 # web
 /web/node_modules

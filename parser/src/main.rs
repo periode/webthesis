@@ -13,6 +13,7 @@ use foliage::commands::Command;
 use foliage::environments::Environment;
 use foliage::tokens::Token;
 use foliage::{commands, environments, Tag};
+use pest::iterators::Pairs;
 use pest::{iterators::Pair, Parser};
 use serde::Serialize;
 
@@ -64,7 +65,7 @@ impl State {
 
 const SEPARATOR: &str = " | ";
 const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
-const DEFAULT_OUTPUT: &str = "parsed.json";
+const DEFAULT_OUTPUT: &str = "output/parsed.json";
 const DEFAULT_VERBOSE: usize = 0;
 #[derive(ArgParser, Debug)]
 struct Args {
@@ -102,7 +103,7 @@ fn main() {
     }
 
     save_ast(ast, &args.output);
-    save_ast(toc, "toc.json");
+    save_ast(toc, "output/toc.json");
     println!("lasting: {:?}", duration)
 }
 
@@ -133,16 +134,9 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
 
 fn parse_toc(src: String, origin: &str) -> Vec<Node> {
     let mut toc = Vec::<Node>::new();
-
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
-
-            let mut n = Node {
-                children: Some(Vec::<Node>::new()),
-                tag: Box::new(Environment::Root),
-                value: String::from(""),
-            };
 
             //-- figure out whether we are at the root, or the include
             let start_node;
@@ -157,27 +151,44 @@ fn parse_toc(src: String, origin: &str) -> Vec<Node> {
 
             // println!("the start node is {:?} {}", start_node.as_rule(), start_node.as_str());
 
-            for subpair in start_node.into_inner() {
-                match subpair.as_rule() {
-                    Rule::env_content => {
-                        //-- if we're at the root
-                        let s = parse_paragraph_toc(subpair);
-                        if let Some(_) = &s.children {
-                            n.add(s);
+            let mut start_iter = start_node.into_inner();
+            loop {
+                let pair = start_iter.next();
+
+                match pair {
+                    Some(subpair) => {
+                        match subpair.as_rule() {
+                            Rule::env_content => {
+                                //-- if we're at the root
+                                if let Some(n) = parse_paragraph_toc(subpair) {
+                                    toc.push(n);
+                                }
+                            }
+                            Rule::paragraph => {
+                                let s = parse_paragraph_toc(subpair);
+                                if let Some(mut node) = s {
+
+                                    if let Some(label) = parse_label(&mut start_iter) {
+                                        node.add(label);
+                                    }
+
+                                    //-- locate the relative position of the node
+                                    // todo before we add the node, we keep on looping for subheaders, and we break when we find a header that is one level above the current one
+                                    // three possibilities
+                                    // header is above, create a new parent node
+                                    // header is same level, append to sibling
+                                    // header is below, append to child
+
+                                    toc.push(node);
+                                }
+                            }
+                            Rule::EOI => (),
+                            _ => println!("UNKNOWN {:?}", subpair.as_rule()),
                         }
                     }
-                    Rule::paragraph => {
-                        let s = parse_paragraph_toc(subpair);
-                        if let Some(_) = &s.children {
-                            n.add(s);
-                        }
-                    }
-                    Rule::EOI => (),
-                    _ => println!("UNKNOWN {:?}", subpair.as_rule()),
+                    None => break,
                 }
             }
-
-            toc.push(n);
 
             toc
         }
@@ -188,53 +199,64 @@ fn parse_toc(src: String, origin: &str) -> Vec<Node> {
     }
 }
 
+//-- this finds a label on the following line of the given _pairs
+fn parse_label(_pairs: &mut Pairs<Rule>) -> Option<Node> {
+    if let Some(par) = _pairs.next() {
+        //-- next paragraph
+        let mut par_iter = par.into_inner();
+        if let Some(label_cmd) = par_iter.next() {
+            //-- actual label cmd
+            let mut label = label_cmd.into_inner();
+            if let Some(label_name) = label.next() {
+                if let Some(cmd) = commands::parse_name(label_name.as_str()) {
+                    if cmd == Command::Label {
+                        let label_content = label.next().unwrap();
+
+                        return Some(Node {
+                            children: None,
+                            tag: Box::new(Command::Label),
+                            value: String::from(label_content.as_str()),
+                        });
+                    } else {
+                        println!("[WARN] [no-label] following command is not a label!");
+                    }
+                } else {
+                    println!("[WARN] [no-label] could not parse following command");
+                }
+            }
+        } else {
+            println!("[WARN] [no-label] no command found after header");
+        }
+    }
+    None
+}
+
 //-- this one is just for recursion (either paragraph, and keep on going, or command, and check for headers)
-fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Node {
-    let mut toc_node = Node {
-        children: None,
-        tag: Box::new(Environment::Paragraph),
-        value: String::from(""),
-    };
-
+fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<Node> {
     let mut pair_iter = _paragraph.into_inner();
-    loop {
-        let subpair = pair_iter.next();
 
-        match subpair {
+    loop {
+        match pair_iter.next() {
             Some(subsubpair) => match subsubpair.as_rule() {
                 Rule::paragraph => {
-                    if subsubpair.as_str() != "" {
-                        let n = parse_paragraph_toc(subsubpair);
-                        if let Some(children) = &n.children {
-                            toc_node.add(n);
-                        }
+                    if let Some(node) = parse_paragraph_toc(subsubpair) {
+                        return Some(node);
                     }
                 }
-                Rule::cmd_stmt => {
-                    let n = parse_command_toc(subsubpair);
-                    if let Some(nod) = n {
-                        toc_node.add(nod);
-                    }
-                }
+                Rule::cmd_stmt => return parse_command_toc(subsubpair),
                 _ => (),
             },
             None => break,
         }
     }
 
-    toc_node
+    None
 }
 
 //-- this is where the meet of the parsing happens
-fn parse_command_toc(_stmt: Pair<Rule>) -> Option<Node> {
-    let mut toc_node = Node {
-        children: None,
-        tag: Box::new(Token::Command),
-        value: String::from(""),
-    };
-
+fn parse_command_toc(_cmd: Pair<Rule>) -> Option<Node> {
     //-- check if we're currently at an \include
-    let mut s = _stmt.clone().into_inner();
+    let mut s = _cmd.clone().into_inner();
     if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
         match c {
             Command::Include => {
@@ -254,78 +276,44 @@ fn parse_command_toc(_stmt: Pair<Rule>) -> Option<Node> {
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
                 let children = parse_toc(src, "include");
-                toc_node.tag = Box::new(Command::Include);
-                toc_node.value = include.display().to_string();
-                for c in children {
-                    toc_node.add(c);
-                }
 
-                return Some(toc_node);
+                let n = Node {
+                    children: Some(children),
+                    tag: Box::new(Command::Include),
+                    value: include.display().to_string(),
+                };
+
+                return Some(n);
             }
             _ => (),
         }
     }
 
-    //-- probably need to make a loop, checking for each individual paragraph
-    //-- looking inside of each paragraph to see if there's a header section
-    //-- getting the literal value and the label of that section
-    //-- appending or creating a new node based on the appropriateness (i.e. if the header is below the current level, append; if it's at the same level or above, go back up)
-    let mut pair_iter = _stmt.into_inner();
+    let mut pair_iter = _cmd.into_inner();
     loop {
-        let pair = pair_iter.next();
-
-        match pair {
+        match pair_iter.next() {
             Some(subpair) => match subpair.as_rule() {
                 Rule::name => {
-                    match commands::parse_name(subpair.as_str()) {
-                        Some(cmd) => {
-                            // println!("found command {}", cmd.value());
-                            match cmd {
-                                Command::Chapter => {
-                                    toc_node.tag = Box::new(cmd);
-                                    //-- grab the text value
-                                    let p = pair_iter.next().unwrap();
-                                    toc_node.value = String::from(p.as_str());
-                                }
-                                Command::Section => {
-                                    toc_node.tag = Box::new(cmd);
-                                    //-- grab the text value
-                                    let p = pair_iter.next().unwrap();
-                                    toc_node.value = String::from(p.as_str());
-                                }
-                                Command::Subsection => {
-                                    toc_node.tag = Box::new(cmd);
-                                    //-- grab the text value
-                                    let p = pair_iter.next().unwrap();
-                                    toc_node.value = String::from(p.as_str());
-                                }
-                                Command::Subsubsection => {
-                                    toc_node.tag = Box::new(cmd);
-                                    //-- grab the text value
-                                    let p = pair_iter.next().unwrap();
-                                    toc_node.value = String::from(p.as_str());
-                                }
-                                _ => (),
-                            }
+                    if let Some(cmd) = commands::parse_name(subpair.as_str()) {
+                        if cmd.is_header() {
+                            let p = pair_iter.next().unwrap();
+                            let n = Node {
+                                children: None,
+                                tag: Box::new(cmd),
+                                value: String::from(p.as_str()),
+                            };
+
+                            return Some(n);
                         }
-                        None => return None,
                     }
                 }
-                _ => println!(
-                    "otherwise is [{:?}] {}",
-                    subpair.as_rule(),
-                    subpair.as_str()
-                ),
+                _ => (),
             },
             None => break,
         }
     }
 
-    if toc_node.value != String::from("") {
-        Some(toc_node)
-    }else{
-        None
-    }
+    None
 }
 
 fn parse(src: String, state: &mut State) -> Vec<Node> {

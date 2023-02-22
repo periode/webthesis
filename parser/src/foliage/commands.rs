@@ -140,6 +140,16 @@ impl Command {
         return !self.is_print_specific() && !self.is_latex_specific() && !self.is_mathematics_specific();
     }
 
+    pub fn is_header(&self) -> bool {
+        match *self {
+            Command::Chapter => true,
+            Command::Section => true,
+            Command::Subsection => true,
+            Command::Subsubsection => true,
+            _ => false
+        }
+    }
+
     fn is_mathematics_specific(&self) -> bool {
         match *self {
             Command::Fraction => true,
