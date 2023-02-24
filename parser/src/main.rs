@@ -88,15 +88,15 @@ impl State {
 
 const SEPARATOR: &str = " | ";
 const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
-const DEFAULT_OUTPUT: &str = "output/parsed.json";
+const DEFAULT_OUTPUT_DIR: &str = "output";
 const DEFAULT_VERBOSE: usize = 0;
 #[derive(ArgParser, Debug)]
 struct Args {
     #[arg(short, default_value = DEFAULT_INPUT)]
     input: String,
 
-    #[arg(short, default_value = DEFAULT_OUTPUT)]
-    output: String,
+    #[arg(short, default_value = DEFAULT_OUTPUT_DIR)]
+    output_dir: String,
 
     #[arg(short, default_value_t = DEFAULT_VERBOSE)]
     verbosity: usize,
@@ -125,14 +125,14 @@ fn main() {
         pretty_print(&ast, 0);
     }
 
-    save_ast(ast, &args.output);
-    save_toc(toc, "output/toc.json");
+    save_ast(ast, &args.output_dir);
+    save_toc(toc, &args.output_dir);
     println!("lasting: {:?}", duration)
 }
 
 fn save_ast(nodes: Vec<Node>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
-    match File::create(&dest) {
+    match File::create(format!("{}/text.json",&dest)) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
             Ok(_) => println!("writing: {}", dest),
             Err(error) => println!("...failed to write {}:{}", dest, error),
@@ -143,7 +143,7 @@ fn save_ast(nodes: Vec<Node>, dest: &str) {
 
 fn save_toc(nodes: Vec<ToCNode>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
-    match File::create(&dest) {
+    match File::create(format!("{}/toc.json",&dest)) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
             Ok(_) => println!("writing: {}", dest),
             Err(error) => println!("...failed to write {}:{}", dest, error),

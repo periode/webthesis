@@ -5,7 +5,8 @@ test:
 	cd parser && cargo test
 
 data: thesis
-	cp ./parser/output/parsed.json ./web/src/routes/text.json
+	cp ./parser/output/text.json ./web/src/routes/text.json
+	cp ./parser/output/toc.json ./web/src/routes/toc.json
 	cp /home/pierre/forschung/phd/redaction/images/* ./web/static/images
 	cp /home/pierre/forschung/phd/redaction/corpus/* ./web/src/corpus
 	pandoc /home/pierre/forschung/phd/redaction/thesis.bib -t csljson -o ./web/src/routes/bib.json
