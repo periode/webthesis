@@ -2,7 +2,9 @@ pub mod foliage;
 
 use std::fs::{self, File};
 use std::io::Write;
+use std::iter::Peekable;
 use std::path::Path;
+use std::slice::Iter;
 use std::time::Instant;
 extern crate pest;
 #[macro_use]
@@ -34,6 +36,27 @@ impl Node {
             self.children.as_mut().unwrap().push(child)
         } else {
             let mut v = Vec::<Node>::new();
+            v.push(child);
+            self.children = Some(v);
+        }
+    }
+}
+
+#[derive(Serialize, Clone, Debug)]
+struct ToCNode {
+    children: Option<Vec<ToCNode>>,
+    tag: Command,
+    value: String,
+    label: String,
+    indent: i8,
+}
+
+impl ToCNode {
+    pub fn add(&mut self, child: ToCNode) {
+        if let Some(_) = &self.children {
+            self.children.as_mut().unwrap().push(child)
+        } else {
+            let mut v = Vec::<ToCNode>::new();
             v.push(child);
             self.children = Some(v);
         }
@@ -103,11 +126,22 @@ fn main() {
     }
 
     save_ast(ast, &args.output);
-    save_ast(toc, "output/toc.json");
+    save_toc(toc, "output/toc.json");
     println!("lasting: {:?}", duration)
 }
 
 fn save_ast(nodes: Vec<Node>, dest: &str) {
+    let json_string = serde_json::to_string(&nodes).unwrap();
+    match File::create(&dest) {
+        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+            Ok(_) => println!("writing: {}", dest),
+            Err(error) => println!("...failed to write {}:{}", dest, error),
+        },
+        Err(error) => println!("...failed to open {}:{}", dest, error),
+    }
+}
+
+fn save_toc(nodes: Vec<ToCNode>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
     match File::create(&dest) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
@@ -132,8 +166,8 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     }
 }
 
-fn parse_toc(src: String, origin: &str) -> Vec<Node> {
-    let mut toc = Vec::<Node>::new();
+fn parse_toc(src: String, origin: &str) -> Vec<ToCNode> {
+    let mut toc = Vec::<ToCNode>::new();
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
@@ -167,30 +201,28 @@ fn parse_toc(src: String, origin: &str) -> Vec<Node> {
                             Rule::paragraph => {
                                 let s = parse_paragraph_toc(subpair);
                                 if let Some(mut node) = s {
-
-                                    if let Some(label) = parse_label(&mut start_iter) {
-                                        node.add(label);
-                                    }
-
-                                    //-- locate the relative position of the node
-                                    // todo before we add the node, we keep on looping for subheaders, and we break when we find a header that is one level above the current one
-                                    // three possibilities
-                                    // header is above, create a new parent node
-                                    // header is same level, append to sibling
-                                    // header is below, append to child
-
-                                    toc.push(node);
+                                    node.label = parse_label(&mut start_iter);
+                                    toc.push(node.clone());
                                 }
                             }
                             Rule::EOI => (),
-                            _ => println!("UNKNOWN {:?}", subpair.as_rule()),
+                            _ => (),
                         }
                     }
                     None => break,
                 }
             }
 
-            toc
+            println!("parsing toc len {}", toc.len());
+            let mut toc_iter = toc.iter().peekable();
+            if let Some(start) = toc_iter.next() {
+                let mut sc = start.clone();
+                let final_toc = make_tree(&mut sc, &mut toc_iter, 0);
+
+                return final_toc;
+            } else {
+                return toc;
+            }
         }
         Err(error) => {
             println!("error parsing: {}", error);
@@ -199,8 +231,83 @@ fn parse_toc(src: String, origin: &str) -> Vec<Node> {
     }
 }
 
+fn make_tree(
+    current: &mut ToCNode,
+    iter: &mut Peekable<Iter<ToCNode>>,
+    indent: u8,
+) -> Vec<ToCNode> {
+    let mut tree = Vec::<ToCNode>::new();
+
+    loop {
+        if let Some(mut next) = iter.peek() {
+            match assess_toc_relation(&next, &current.tag) {
+                0 => {
+                    //-- find siblings
+                    println!(
+                        "[{}] found siblings: {} {}",
+                        indent,
+                        next.tag.value(),
+                        next.value
+                    );
+                    tree.push(iter.next().unwrap().clone());
+                }
+                1 => {
+                    println!(
+                        "[{}] found {} as child of {}",
+                        indent,
+                        next.tag.value(),
+                        current.tag.value()
+                    );
+
+                    let mut c = iter.next().unwrap().clone();
+                    let grandchildren = make_tree(&mut c, iter, indent + 1);
+
+                    if grandchildren.len() == 0 {
+                        tree.push(current.clone());
+                        return tree;
+                    } else {
+                        current.children = Some(grandchildren);
+                    }
+                }
+                _ => {
+                    // this is where i should find last sibling and append to that
+                    // just exit loops until i hit the right one
+                    println!(
+                        "[{}] found different one: {} {}, should go up",
+                        indent,
+                        next.tag.value(),
+                        next.value
+                    );
+
+                    let c = current.clone();
+                    tree.push(c);
+                    return tree;
+                }
+            }
+        } else {
+            println!(
+                "[{}] adding {} {}",
+                indent,
+                current.tag.value(),
+                current.value
+            );
+            tree.push(current.clone());
+            return tree;
+        }
+    }
+}
+
+fn assess_toc_relation(next: &ToCNode, current: &Command) -> i8 {
+    // println!(
+    //     "current is {}, next is {}",
+    //     current.value(),
+    //     next.tag.value()
+    // );
+    return current.get_indent() - next.tag.get_indent();
+}
+
 //-- this finds a label on the following line of the given _pairs
-fn parse_label(_pairs: &mut Pairs<Rule>) -> Option<Node> {
+fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
     if let Some(par) = _pairs.next() {
         //-- next paragraph
         let mut par_iter = par.into_inner();
@@ -211,12 +318,7 @@ fn parse_label(_pairs: &mut Pairs<Rule>) -> Option<Node> {
                 if let Some(cmd) = commands::parse_name(label_name.as_str()) {
                     if cmd == Command::Label {
                         let label_content = label.next().unwrap();
-
-                        return Some(Node {
-                            children: None,
-                            tag: Box::new(Command::Label),
-                            value: String::from(label_content.as_str()),
-                        });
+                        return String::from(label_content.as_str());
                     } else {
                         println!("[WARN] [no-label] following command is not a label!");
                     }
@@ -228,11 +330,11 @@ fn parse_label(_pairs: &mut Pairs<Rule>) -> Option<Node> {
             println!("[WARN] [no-label] no command found after header");
         }
     }
-    None
+    String::from("")
 }
 
 //-- this one is just for recursion (either paragraph, and keep on going, or command, and check for headers)
-fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<Node> {
+fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<ToCNode> {
     let mut pair_iter = _paragraph.into_inner();
 
     loop {
@@ -254,7 +356,7 @@ fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<Node> {
 }
 
 //-- this is where the meet of the parsing happens
-fn parse_command_toc(_cmd: Pair<Rule>) -> Option<Node> {
+fn parse_command_toc(_cmd: Pair<Rule>) -> Option<ToCNode> {
     //-- check if we're currently at an \include
     let mut s = _cmd.clone().into_inner();
     if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
@@ -277,10 +379,12 @@ fn parse_command_toc(_cmd: Pair<Rule>) -> Option<Node> {
                 let src = fs::read_to_string(fp).expect("Cannot open file");
                 let children = parse_toc(src, "include");
 
-                let n = Node {
+                let n = ToCNode {
                     children: Some(children),
-                    tag: Box::new(Command::Include),
+                    tag: Command::Include,
                     value: include.display().to_string(),
+                    label: String::from(""),
+                    indent: 0,
                 };
 
                 return Some(n);
@@ -297,10 +401,12 @@ fn parse_command_toc(_cmd: Pair<Rule>) -> Option<Node> {
                     if let Some(cmd) = commands::parse_name(subpair.as_str()) {
                         if cmd.is_header() {
                             let p = pair_iter.next().unwrap();
-                            let n = Node {
+                            let n = ToCNode {
                                 children: None,
-                                tag: Box::new(cmd),
+                                tag: cmd,
                                 value: String::from(p.as_str()),
+                                indent: 0,
+                                label: String::from(""),
                             };
 
                             return Some(n);

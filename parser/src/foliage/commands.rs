@@ -1,6 +1,8 @@
+use serde::Serialize;
+
 use super::Tag;
 
-#[derive(Copy, Clone, PartialEq)]
+#[derive(Serialize, Copy, Clone, PartialEq, Debug)]
 pub enum Command {
     Affiliation,
     AtBeginEnvironment,
@@ -137,7 +139,9 @@ impl Tag for Command {
 
 impl Command {
     pub fn is_semantic(&self) -> bool {
-        return !self.is_print_specific() && !self.is_latex_specific() && !self.is_mathematics_specific();
+        return !self.is_print_specific()
+            && !self.is_latex_specific()
+            && !self.is_mathematics_specific();
     }
 
     pub fn is_header(&self) -> bool {
@@ -146,7 +150,18 @@ impl Command {
             Command::Section => true,
             Command::Subsection => true,
             Command::Subsubsection => true,
-            _ => false
+            _ => false,
+        }
+    }
+
+    pub fn get_indent(&self) -> i8 {
+        match *self {
+            Command::Include => 4,
+            Command::Chapter => 3,
+            Command::Section => 2,
+            Command::Subsection => 1,
+            Command::Subsubsection => 0,
+            _ => -1,
         }
     }
 
@@ -160,7 +175,7 @@ impl Command {
             Command::NablaSymbol => true,
             Command::TimesSymbol => true,
             Command::DotSymbol => true,
-            _ => false
+            _ => false,
         }
     }
 
