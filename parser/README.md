@@ -12,12 +12,15 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
+- [ ] postprocessor
+  - [ ] create table of contents
+
 ## todo
 
 - [ ] postprocessor
-  - [ ] create table of contents
   - [ ] create list of figures
   - [ ] create list of listings
+- [ ] use `erased_serde` or `typetag` crate to have only one `save_ast` function
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__

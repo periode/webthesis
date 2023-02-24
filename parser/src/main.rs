@@ -51,18 +51,6 @@ struct ToCNode {
     indent: i8,
 }
 
-impl ToCNode {
-    pub fn add(&mut self, child: ToCNode) {
-        if let Some(_) = &self.children {
-            self.children.as_mut().unwrap().push(child)
-        } else {
-            let mut v = Vec::<ToCNode>::new();
-            v.push(child);
-            self.children = Some(v);
-        }
-    }
-}
-
 #[derive(Clone)]
 struct State {
     include: String,
@@ -118,7 +106,7 @@ fn main() {
     println!("parsing text...");
     let ast = parse(src.clone(), &mut state);
     println!("parsing table of contents...");
-    let toc = parse_toc(src.clone(), "root");
+    let toc = parse_toc(src.clone());
     let duration = start.elapsed();
 
     if args.verbosity == 1 {
@@ -134,7 +122,7 @@ fn save_ast(nodes: Vec<Node>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
     match File::create(format!("{}/text.json",&dest)) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-            Ok(_) => println!("writing: {}", dest),
+            Ok(_) => println!("writing: {}/text.json", dest),
             Err(error) => println!("...failed to write {}:{}", dest, error),
         },
         Err(error) => println!("...failed to open {}:{}", dest, error),
@@ -145,7 +133,7 @@ fn save_toc(nodes: Vec<ToCNode>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
     match File::create(format!("{}/toc.json",&dest)) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-            Ok(_) => println!("writing: {}", dest),
+            Ok(_) => println!("writing: {}/toc.json", dest),
             Err(error) => println!("...failed to write {}:{}", dest, error),
         },
         Err(error) => println!("...failed to open {}:{}", dest, error),
@@ -166,46 +154,38 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
     }
 }
 
-fn parse_toc(src: String, origin: &str) -> Vec<ToCNode> {
+fn parse_toc(src: String) -> Vec<ToCNode> {
     let mut toc = Vec::<ToCNode>::new();
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
-
-            //-- figure out whether we are at the root, or the include
-            let start_node;
-            if origin == "root" {
-                let mut doc_paragraph_iter = pair.into_inner();
-                let doc_paragraph = doc_paragraph_iter.next().unwrap();
-                let mut doc_environment_iter = doc_paragraph.into_inner();
-                start_node = doc_environment_iter.next().unwrap();
-            } else {
-                start_node = pair;
-            }
+            let start_node = pair;
 
             // println!("the start node is {:?} {}", start_node.as_rule(), start_node.as_str());
 
             let mut start_iter = start_node.into_inner();
             loop {
                 let pair = start_iter.next();
-
+                
                 match pair {
                     Some(subpair) => {
+                        // println!("the current node is {:?} {}", subpair.as_rule(), subpair.as_str());
                         match subpair.as_rule() {
                             Rule::env_content => {
                                 //-- if we're at the root
+                                println!("parsing env: {}", subpair.as_str());
                                 if let Some(n) = parse_paragraph_toc(subpair) {
                                     toc.push(n);
                                 }
                             }
                             Rule::paragraph => {
+                                // println!("parsing par: {}", subpair.as_str());
                                 let s = parse_paragraph_toc(subpair);
                                 if let Some(mut node) = s {
                                     node.label = parse_label(&mut start_iter);
                                     toc.push(node.clone());
                                 }
                             }
-                            Rule::EOI => (),
                             _ => (),
                         }
                     }
@@ -239,7 +219,7 @@ fn make_tree(
     let mut tree = Vec::<ToCNode>::new();
 
     loop {
-        if let Some(mut next) = iter.peek() {
+        if let Some(next) = iter.peek() {
             match assess_toc_relation(&next, &current.tag) {
                 0 => {
                     //-- find siblings
@@ -298,11 +278,6 @@ fn make_tree(
 }
 
 fn assess_toc_relation(next: &ToCNode, current: &Command) -> i8 {
-    // println!(
-    //     "current is {}, next is {}",
-    //     current.value(),
-    //     next.tag.value()
-    // );
     return current.get_indent() - next.tag.get_indent();
 }
 
@@ -340,12 +315,26 @@ fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<ToCNode> {
     loop {
         match pair_iter.next() {
             Some(subsubpair) => match subsubpair.as_rule() {
+                Rule::env_stmt => {
+                    
+                    let mut env_iter = subsubpair.into_inner();
+                    let _env_name = env_iter.next();
+                    let env_content = env_iter.next().unwrap();
+                    println!("parsing env from inside par: {}", env_content.as_str());
+
+                    if let Some(n) = parse_paragraph_toc(env_content) {
+                        return Some(n)
+                    }
+                },
                 Rule::paragraph => {
                     if let Some(node) = parse_paragraph_toc(subsubpair) {
                         return Some(node);
                     }
                 }
-                Rule::cmd_stmt => return parse_command_toc(subsubpair),
+                Rule::cmd_stmt => {
+                    println!("parsing cmd: {}", subsubpair.as_str());
+                    return parse_command_toc(subsubpair)
+                },
                 _ => (),
             },
             None => break,
@@ -355,7 +344,6 @@ fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<ToCNode> {
     None
 }
 
-//-- this is where the meet of the parsing happens
 fn parse_command_toc(_cmd: Pair<Rule>) -> Option<ToCNode> {
     //-- check if we're currently at an \include
     let mut s = _cmd.clone().into_inner();
@@ -377,7 +365,7 @@ fn parse_command_toc(_cmd: Pair<Rule>) -> Option<ToCNode> {
                 println!("including in toc: {:?}", fp);
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
-                let children = parse_toc(src, "include");
+                let children = parse_toc(src);
 
                 let n = ToCNode {
                     children: Some(children),
