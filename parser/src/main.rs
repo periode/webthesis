@@ -237,7 +237,11 @@ fn make_tree(
                         tree.push(current.clone()); //-- todo not sure why this is needed
                         return tree;
                     } else {
-                        current.children = Some(grandchildren);
+                        if let Some(l) = tree.last_mut() {
+                            l.children = Some(grandchildren);
+                        } else {
+                            current.children = Some(grandchildren);
+                        }
                     }
                 }
                 _ => {

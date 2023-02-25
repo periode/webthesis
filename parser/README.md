@@ -12,12 +12,10 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
-- [ ] postprocessor
-  - [ ] create table of contents
-
 ## todo
 
 - [ ] postprocessor
+  - [ ] when parsing toc, ignore following comments
   - [ ] create list of figures
   - [ ] create list of listings
 - [ ] use `erased_serde` or `typetag` crate to have only one `save_ast` function
@@ -27,6 +25,8 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## done
 
+- [x] create table of contents
+- [x] issue that only the first children are being picked up
 - [x] have a "spacer" command
 - [x] store the include value (i.e. the current chapter) for each label (added external state)
 - [x] item __tricky one: the rest of the line should be itemized__
