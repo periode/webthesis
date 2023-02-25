@@ -22,8 +22,11 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] footnotes click is janky
 - [ ] references
   - [ ] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
+- [ ] add full text search
+- [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
 
 ## done
+- [x] write to taeyoon
 - [x] add header (just a single icon opening up a bar with all other icons)
 - [x] added location to anchors, so that one can jump between pages
 - [x] render single chapters
