@@ -63,7 +63,6 @@ impl ToCNode {
     }
 }
 
-
 #[derive(Clone)]
 struct State {
     include: String,
@@ -174,33 +173,25 @@ fn parse_toc(src: String) -> Vec<ToCNode> {
             let pair = pairs.next().unwrap();
             let start_node = pair;
 
-            // println!("the start node is {:?} {}", start_node.as_rule(), start_node.as_str());
-
             let mut start_iter = start_node.into_inner();
             loop {
                 let pair = start_iter.next();
                 match pair {
-                    Some(subpair) => {
-                        // println!("the current node is {:?} {}", subpair.as_rule(), subpair.as_str());
-                        match subpair.as_rule() {
-                            Rule::env_content => {
-                                //-- if we're at the root
-                                println!("parsing env: {}", subpair.as_str());
-                                if let Some(n) = parse_paragraph_toc(subpair) {
-                                    toc.push(n);
-                                }
+                    Some(subpair) => match subpair.as_rule() {
+                        Rule::env_content => {
+                            if let Some(n) = parse_paragraph_toc(subpair) {
+                                toc.push(n);
                             }
-                            Rule::paragraph => {
-                                
-                                let s = parse_paragraph_toc(subpair);
-                                if let Some(mut node) = s {
-                                    node.label = parse_label(&mut start_iter);
-                                    toc.push(node.clone());
-                                }
-                            }
-                            _ => (),
                         }
-                    }
+                        Rule::paragraph => {
+                            let s = parse_paragraph_toc(subpair);
+                            if let Some(mut node) = s {
+                                node.label = parse_label(&mut start_iter);
+                                toc.push(node.clone());
+                            }
+                        }
+                        _ => (),
+                    },
                     None => break,
                 }
             }
@@ -225,7 +216,7 @@ fn parse_toc(src: String) -> Vec<ToCNode> {
 fn make_tree(
     current: &mut ToCNode,
     iter: &mut Peekable<Iter<ToCNode>>,
-    indent: u8,
+    indent: i8,
 ) -> Vec<ToCNode> {
     let mut tree = Vec::<ToCNode>::new();
 
@@ -233,54 +224,31 @@ fn make_tree(
         if let Some(next) = iter.peek() {
             match assess_toc_relation(&next, &current.tag) {
                 0 => {
-                    //-- find siblings
-                    println!(
-                        "[{}] found siblings: {} {}",
-                        indent,
-                        next.tag.value(),
-                        next.value
-                    );
-                    tree.push(iter.next().unwrap().clone());
+                    let mut sibling = iter.next().unwrap().clone();
+                    sibling.indent = indent;
+                    tree.push(sibling);
                 }
                 1 => {
-                    println!(
-                        "[{}] found {} as child of {}",
-                        indent,
-                        next.tag.value(),
-                        current.tag.value()
-                    );
-
-                    let mut c = iter.next().unwrap().clone();
-                    let grandchildren = make_tree(&mut c, iter, indent + 1);
+                    let mut child = iter.next().unwrap().clone();
+                    child.indent = indent;
+                    let grandchildren = make_tree(&mut child, iter, indent + 1);
 
                     if grandchildren.len() == 0 {
-                        tree.push(current.clone());
+                        tree.push(current.clone()); //-- todo not sure why this is needed
                         return tree;
                     } else {
                         current.children = Some(grandchildren);
                     }
                 }
                 _ => {
-                    println!(
-                        "[{}] found different one: {} {}, should go up",
-                        indent,
-                        next.tag.value(),
-                        next.value
-                    );
-
-                    let c = current.clone();
-                    tree.push(c);
+                    let mut c = current.clone();
+                    c.indent = indent;
+                    tree.insert(0, c);
                     return tree;
                 }
             }
         } else {
-            println!(
-                "[{}] adding {} {}",
-                indent,
-                current.tag.value(),
-                current.value
-            );
-            tree.push(current.clone());
+            tree.insert(0, current.clone());
             return tree;
         }
     }
@@ -320,7 +288,7 @@ fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
 //-- this one is just for recursion (either paragraph, and keep on going, or command, and check for headers)
 fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<ToCNode> {
     let mut pair_iter = _paragraph.into_inner();
-    let mut paragraph = ToCNode{
+    let mut paragraph = ToCNode {
         tag: Command::Documentclass,
         value: String::from(""),
         label: String::from(""),
@@ -354,10 +322,9 @@ fn parse_paragraph_toc(_paragraph: Pair<Rule>) -> Option<ToCNode> {
 
     if let Some(_) = paragraph.children {
         return Some(paragraph);
-    }else{
+    } else {
         return None;
     }
-    
 }
 
 fn parse_command_toc(_cmd: Pair<Rule>) -> Option<ToCNode> {
