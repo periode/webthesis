@@ -18,3 +18,6 @@ build:
 
 upload: 
 	rsync -zvur web/build/ enframed:/mnt/volume_nyc3_01/www/public/thesis
+
+all: data build upload
+
