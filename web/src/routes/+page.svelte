@@ -18,7 +18,7 @@
 </script>
 
 <div
-    class="container max-w-full bg-zinc-50 text-zinc-800 dark:bg-zinc-800 dark:text-zinc-50 p-1 lg:p-8 font-serif text-xl"
+    class="container max-w-full bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 p-1 lg:p-8 font-serif text-xl"
 >
     <div class="w-full lg:w-6/12 md:w-8/12 m-auto text-center pt-12">
         <Title node={title_node} />

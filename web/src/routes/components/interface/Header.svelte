@@ -15,7 +15,7 @@
 </script>
 
 <div
-    class="bg-zinc-50 dark:bg-zinc-800 md:bg-transparent w-full md:w-auto fixed md:top-2 md:left-2 flex"
+    class="bg-zinc-50 dark:bg-zinc-900 md:bg-transparent w-full md:w-auto fixed top-0 p-2 md:p-1 md:top-2 md:left-2 flex z-10"
 >
     <img
         on:click={toggleMenu}
