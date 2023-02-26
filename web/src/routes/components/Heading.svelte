@@ -12,7 +12,7 @@ import type { IToCNode } from "../../utils/types";
 </script>
 
 <li class="text-2xl my-12">
-    <a href={`/${path}`} class="font-bold hover:underline">{chapter?.value}</a>
+    <a href={`./${path}.html`} class="font-bold hover:underline">{chapter?.value}</a>
     <ol class="mt-4">
         {#each sections as sec}
             <li class="text-xl list-decimal ml-12 mb-2">{sec.value}</li>
