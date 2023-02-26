@@ -3,6 +3,7 @@
     import { clickOutside } from "../../../utils/actions";
     import type { ICitation, INode } from "../../../utils/types";
     import { createEventDispatcher, onMount } from "svelte";
+    import isMobile from "../../../utils/helper";
 
     const dispatch = createEventDispatcher<{ citation: ICitation }>();
     const dispatchToggle = createEventDispatcher<{ showcitation: string }>();
@@ -46,11 +47,13 @@
         return {author: author, editor: editor, year: year, id: typed.id };
     });
 
+    let isVisible = !isMobile();
+
     onMount(() => {
         keys.forEach((k) => {
             const b = bib.find((b) => b.id === k);
             const typed = b ? (b as unknown as ICitation) : undefined;
-            if(typed) typed.visible = true
+            if(typed) typed.visible = isVisible;
             dispatch("citation", typed);
         });
     });

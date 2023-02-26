@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher, onMount } from "svelte";
     import { clickOutside } from "../../utils/actions";
+    import isMobile from "../../utils/helper";
     import type { IFootnote, INode } from "../../utils/types";
     import Node from "./Node.svelte";
     export let node: INode;
@@ -12,10 +13,10 @@
         ? node.children
         : [{ tag: node.tag, value: node.value, children: null } as INode];
 
-    let isVisible = false;
+    let isVisible = !isMobile();
 
     onMount(() => {
-        dispatch("footnote", {children: children, value: node.value, visible: true} as IFootnote);
+        dispatch("footnote", {children: children, value: node.value, visible: isVisible} as IFootnote);
     })
 
     const showFootnote = () => {        
