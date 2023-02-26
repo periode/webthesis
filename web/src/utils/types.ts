@@ -35,6 +35,12 @@ export interface INode {
     children: Array<INode> | null;
 };
 
+export interface IToCNode {
+    tag: string;
+    value: string;
+    children: Array<IToCNode> | null;
+};
+
 export interface IAuthor {
     family: string,
     given: string,

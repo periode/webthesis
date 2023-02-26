@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Chapter from "./headers/Chapter.svelte";
+    import Chapter from "./headings/Chapter.svelte";
     import Error from "./Error.svelte";
-    import Section from "./headers/Section.svelte";
-    import Subsection from "./headers/Subsection.svelte";
-    import Subsubsection from "./headers/Subsubsection.svelte";
+    import Section from "./headings/Section.svelte";
+    import Subsection from "./headings/Subsection.svelte";
+    import Subsubsection from "./headings/Subsubsection.svelte";
     import Listing from "./Listing.svelte";
     import List from "./List.svelte";
     import Figure from "./Figure.svelte";

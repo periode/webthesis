@@ -12,6 +12,12 @@ module.exports = {
         '12': '3rem',
       }
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      alpha: 'lower-alpha'
+    },
     fontFamily: {
       'serif': ['BespokeSerif', defaultTheme.fontFamily.serif],
       'mono': ['IBMPlex', defaultTheme.fontFamily.mono],
