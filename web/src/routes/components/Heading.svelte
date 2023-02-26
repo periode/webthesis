@@ -15,11 +15,11 @@ import type { IToCNode } from "../../utils/types";
     <a href={`/${path}`} class="font-bold hover:underline">{chapter?.value}</a>
     <ol class="mt-4">
         {#each sections as sec}
-            <li class="text-xl list-alpha ml-12 mb-2">{sec.value}</li>
+            <li class="text-xl list-decimal ml-12 mb-2">{sec.value}</li>
             <ul class="mb-4">
                 {#if sec.children}
                     {#each sec.children as subsec}
-                        <li class="text-base italic ml-24">{subsec.value}</li>
+                        <li class="text-base italic ml-16 md:ml-24">{subsec.value}</li>
                     {/each}
                 {/if}
             </ul>

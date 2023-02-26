@@ -8,16 +8,26 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 ## doing
 
+- [ ] table of contents
+  - [ ] iframe to show the excerpt of chapters / sections
+  - [ ] separate pages into sections as well, keep full chapter page
+
 ## todo
 
+- [ ] navigation
+  - [ ] next / previous / up navigation both in header and at bottom of page
+- [ ] listing
+  - [ ] show as iframe on hover
+  - [ ] jump to on click
 - [ ] citation
-  - [ ] hovering above group
-  - [ ] hovering above short
+  - [ ] hovering above citation highlights the corresponding item
 - [ ] layout
   - [x] make left column for footnotes (behave the same as citations)
   - [ ] add footer (just the current section, expands into full ToC)
   - [x] use the system default when using dark theme
   - [ ] have lightmode/darkmode as a store?
+  - [ ] make font-size smaller
+  - [ ] make font-size mobile be base, scale to lg on md:+ / https://pimpmytype.com/font-size/ (-2px for citations and foonotes)
 - [ ] mobile
   - [ ] footnotes click is janky
 - [ ] references

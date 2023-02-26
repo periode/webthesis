@@ -12,7 +12,7 @@
 </script>
 
 <div
-    class="container max-w-full bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 lg:p-3 font-serif text-xl"
+    class="container max-w-full bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 p-2 lg:p-3 font-serif text-xl"
 >
     {#each document_children as node}
         <Node {node} />
