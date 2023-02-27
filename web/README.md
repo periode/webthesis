@@ -9,7 +9,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 ## doing
 
 - [ ] table of contents
-  - [ ] iframe to show the excerpt of chapters / sections
+  - [x] iframe to show the excerpt of chapters / sections
   - [ ] separate pages into sections as well, keep full chapter page
 
 ## todo

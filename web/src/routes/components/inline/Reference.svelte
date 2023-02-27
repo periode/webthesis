@@ -11,7 +11,7 @@
 </script>
 
 <span class="font-bold">
-    &nbsp;<a href={`/${location}/#${encodeURIComponent(value)}`}
+    &nbsp;<a href={`${location !== "" ? "/"+location: ""}#${encodeURIComponent(value)}`}
         >{name}{#if type == "code" || type == "graphic"}<img
                 class="inline dark:hidden relative bottom-1 left-1"
                 src={`/images/${type}.svg`}
