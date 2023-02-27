@@ -62,9 +62,55 @@ export const findLabel = (value: string): INode | null => {
     const data = text_data as Array<INode>;
     const labels = findNodesByTag(data, "label")
 
-    for(let label of labels){
-        if(label.children && label.children[0].value === value)
+    for (let label of labels) {
+        if (label.children && label.children[0].value === value)
             return label
     }
+    return result;
+}
+
+export const findSection = (include: string, value: string): Array<INode> => {
+    var result: INode[] = [];
+    const data = text_data as Array<INode>;
+    const root = findNodeByValue(data, `${include}.tex`)
+
+    if (root && root.children) {
+        if (root.children[0].children) {
+            const all_paragraphs = root.children[0].children.map((el) => {
+                if (el.children) {
+                    return el
+                }
+            }) as Array<INode>
+
+            let sectionFound = false;
+            for (let i = 0; i < all_paragraphs.length; i++) {
+                const par = all_paragraphs[i];
+
+                if (sectionFound) {
+                    //-- we break if we find the beginning of a new section
+                    if (par.children && par.children[0].tag === "section")
+                        return result;
+
+                    result.push(par);
+
+                } else {
+                    //-- we look for the starting section, whose label should match the given value
+                    if (par.children && par.children[0].tag === 'label') {
+                        if (par.children[0].children) {
+                            const label = par.children[0].children[0];
+                            const label_value = label.value.split(":")[1]
+
+                            if (label_value === value) {
+                                sectionFound = true;
+                                result.push(all_paragraphs[i - 1])
+                                result.push(all_paragraphs[i])
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     return result;
 }

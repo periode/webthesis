@@ -23,7 +23,9 @@
         >
         <ol class="mt-4">
             {#each sections as sec}
-                <li class="text-xl list-decimal ml-12 mb-2">{sec.value}</li>
+                <li class="text-xl list-decimal ml-12 mb-2">
+                    <a href={`./${path}/${sec.label.split(":")[1]}`}>{sec.value}</a>
+                </li>
                 <ul class="mb-4">
                     {#if sec.children}
                         {#each sec.children as subsec}

@@ -10,7 +10,9 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 - [ ] table of contents
   - [x] iframe to show the excerpt of chapters / sections
-  - [ ] separate pages into sections as well, keep full chapter page
+  - [x] separate pages into sections as well, keep full chapter page (use slugs/dynamic routes)
+    - [x] link those routes based on the second part of the label value (e.g. `subsec:software-abstract-artifact` -> `software-abstract-artifact`)
+    - [ ] show the nestedness of the section at the top of the page
 
 ## todo
 
@@ -37,6 +39,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 ## done
 - [x] write to taeyoon
+- [x] write to nicky tesla
 - [x] add header (just a single icon opening up a bar with all other icons)
 - [x] added location to anchors, so that one can jump between pages
 - [x] render single chapters
@@ -81,18 +84,14 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 - [x] reference
 - [**x**] error node
 
+## references
 
-## svelte
+### tech
 
-```bash
-npm run dev
+- https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
+- https://tradingstrategy.ai/blog/optimizing-page-load-speed-on-sveltekit
+- https://joyofcode.xyz/sveltekit-routing
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+### theoretical
 
-npm run build
-
-npm run preview
-```
-
-to deploy your app, need to install an [adapter](https://kit.svelte.dev/docs/adapters) for the target environment.
+- https://en.wikipedia.org/wiki/Table_of_contents

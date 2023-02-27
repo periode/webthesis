@@ -38,6 +38,7 @@ export interface INode {
 export interface IToCNode {
     tag: string;
     value: string;
+    label: string;
     children: Array<IToCNode> | null;
 };
 
