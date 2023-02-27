@@ -5,7 +5,6 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 const config = {
 	// https://kit.svelte.dev/docs/integrations#preprocessors
 	preprocess: vitePreprocess(),
-	trailingSlash: 'always',
 	kit: {
 		adapter: adapter({
 			pages: 'build',
