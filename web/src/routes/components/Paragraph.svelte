@@ -25,7 +25,8 @@
         if (!children || children.length === 0) return false; // no children
         if (
             (children.length === 1 && children[0].tag === NodeType.Literal) ||
-            children[0].tag === NodeType.Emphasis
+            children[0].tag === NodeType.Emphasis ||
+            children[0].tag === NodeType.Quote
         )
             // a single line paragraph
             return true;
@@ -33,7 +34,8 @@
             // a paragraph that starts either with a literal or an emphasis
             children.length > 1 &&
             (children[0].tag === NodeType.Literal ||
-                children[0].tag === NodeType.Emphasis)
+                children[0].tag === NodeType.Emphasis ||
+                children[0].tag === NodeType.Quote)
         )
             return true;
         else return false;

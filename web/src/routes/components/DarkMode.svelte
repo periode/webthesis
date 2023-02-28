@@ -3,48 +3,34 @@
 
     let icon_name = "lightmode";
     const toggleDarkMode = () => {
-        const theme = window.localStorage.getItem("theme");
+        const theme = localStorage.theme;
 
         if (!theme) {
             document.documentElement.classList.add("dark");
-            window.localStorage.setItem("theme", "dark");
-            icon_name = "darkmode";
+            localStorage.setItem("theme", "dark");
         } else if (theme === "dark") {
             document.documentElement.classList.remove("dark");
-            window.localStorage.setItem("theme", "light");
-            icon_name = "lightmode";
+            localStorage.setItem("theme", "light");
         } else if (theme === "light") {
             document.documentElement.classList.add("dark");
-            window.localStorage.setItem("theme", "dark");
-            icon_name = "darkmode";
+            localStorage.setItem("theme", "dark");
         }
+        icon_name = `${localStorage.theme}mode`
     };
 
     onMount(() => {
-        const theme = window.localStorage.getItem("theme");
+        let theme = localStorage.theme;
 
         //-- only respect system defaults if the user hasn't explicity chosen the light theme
         if (
-            window.matchMedia("(prefers-color-scheme: dark)").matches &&
-            theme !== "light"
+            theme === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
         ) {
-            console.log(
-                "mounting for dark mode:",
-                window.matchMedia("(prefers-color-scheme: dark)").matches
-            );
-
+            theme = "dark";
             document.documentElement.classList.add("dark");
-            window.localStorage.setItem("theme", "dark");
-            return;
-        }
-
-        if (!theme) {
-            //-- handle user defaults here
-            document.documentElement.classList.add("dark");
-            window.localStorage.setItem("theme", "dark");
-        } else if (theme === "dark") {
-            document.documentElement.classList.add("dark");
-        } else if (theme === "light") {
+        } else {
+            theme = "light";
             document.documentElement.classList.remove("dark");
         }
 
