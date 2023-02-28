@@ -4,6 +4,7 @@
     import { findNodeByValue } from "../../utils/find";
     import type { INode } from "../../utils/types";
     import NotFound from "../components/NotFound.svelte";
+    import Navigation from "../components/Navigation.svelte";
 
     const chapter = $page.params.chap;
     const root = findNodeByValue(`${chapter}.tex`);
@@ -17,6 +18,7 @@
         {#each nodes as node}
             <Node {node} />
         {/each}
+        <Navigation chapter={`chap:${chapter}`}/>
     {:else}
         <NotFound status="404" />
     {/if}

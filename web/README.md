@@ -4,18 +4,16 @@ front-end for the thesis.
 
 ## notes
 
-make layout into a full width block for each paragraph, divded in two blocks, one is the text, the other one holds citations/footnotes. citations and footnotes are at different z-indexes, interverting as they become more recently clicked (also toggle for all citations vs. all footnotes)
-
 ## doing
 
-- [ ] navigation
-  - [ ] next / previous / up navigation both in header and at bottom of page
 
 ## todo
 
 - [ ] listing
   - [ ] show as iframe on hover
   - [ ] jump to on click
+- [ ] quote
+  - [ ] deal with width issues ()
 - [ ] citation
   - [ ] hovering above citation highlights the corresponding item
 - [ ] layout
@@ -23,10 +21,16 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] have lightmode/darkmode as a store?
 - [ ] mobile
   - [ ] footnotes click is janky
-- [ ] add full text search
-- [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
+- [ ] performance
+  - [ ] load data on the server
+  - [ ] prevent iframes??
+- [ ] wishlist:
+  - [ ] add full text search
+  - [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
 
 ## done
+- [x] navigation
+  - [x] next / previous / up navigation both in header and at bottom of page
 - [x] references
   - [x] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
 - [x] table of contents

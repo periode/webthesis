@@ -3,6 +3,7 @@
     import Node from "../../components/Node.svelte";
     import { findChapterInInclude, findSection } from "../../../utils/find";
     import NotFound from "../../components/NotFound.svelte";
+    import Navigation from "../../components/Navigation.svelte";
 
     const include = $page.params.chap;
     const chap_node = findChapterInInclude(include);
@@ -26,6 +27,7 @@
         {#each nodes as node}
             <Node {node} />
         {/each}
+        <Navigation chapter={`chap:${include}`} section={`sec:${section}`}/>
     {:else}
         <NotFound status="404" />
     {/if}

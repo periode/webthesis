@@ -41,7 +41,7 @@ export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> =
 }
 
 export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | null => {
-    if(nodes === undefined)
+    if (nodes === undefined)
         nodes = data;
 
     var result = null;
@@ -63,11 +63,11 @@ export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | nu
 
 export const findChapterInInclude = (include: string): INode => {
     const include_node = findNodeByValue(`${include}.tex`);
-    if (include_node){
+    if (include_node) {
         const children = include_node.children as Array<INode>;
         const chap_node = findNodeByTag(children, "chapter")
         return chap_node as INode;
-    }else{
+    } else {
         const err = {
             tag: "error",
             value: "could not find include",
@@ -78,7 +78,7 @@ export const findChapterInInclude = (include: string): INode => {
 }
 
 export const findToCNodeByLabel = (label: string, nodes?: Array<IToCNode>): IToCNode | null => {
-    if(nodes === undefined)
+    if (nodes === undefined)
         nodes = toc;
 
     var result = null;
@@ -99,7 +99,7 @@ export const findToCNodeByLabel = (label: string, nodes?: Array<IToCNode>): IToC
 }
 
 export const findToCNodeByValue = (value: string, nodes?: Array<IToCNode>): IToCNode | null => {
-    if(nodes === undefined)
+    if (nodes === undefined)
         nodes = toc;
 
     var result = null;
@@ -119,6 +119,7 @@ export const findToCNodeByValue = (value: string, nodes?: Array<IToCNode>): IToC
     return result;
 }
 
+//-- findHeadingValue takes a label and returns the literal for the heading associated with the label
 export const findHeadingValue = (label: string): string => {
     const node = findToCNodeByLabel(label)
     return node ? node.value : "ERROR";
@@ -135,6 +136,85 @@ export const findLabel = (value: string): INode | null => {
             return label
     }
     return result;
+}
+
+export const findPreviousToC = (chapter: string, section: string): IToCNode | null => {
+    let start_nodes: Array<IToCNode> = [];
+    let label = ""
+
+    if (section === "") { //-- find chapter siblings
+        start_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
+        label = chapter;
+    } else { //-- find section siblings
+        const chapter_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
+        for (let chap of chapter_nodes)
+            for (let c of chap.children as Array<IToCNode>)
+                if (c.label == chapter)
+                    start_nodes = c.children as Array<IToCNode>;
+        label = section;
+    }
+
+
+    for (let i = 0; i < start_nodes.length; i++) {
+        const n = start_nodes[i];
+
+        if (n.label === label) { //-- checking at the section level
+            return (i == 0) ? null : start_nodes[i - 1];
+        }
+
+        if (n.children && n.children[0].label === label) { //-- checking at the chapter level
+            // found! now check if it's the first
+            if (i == 0)
+                return null
+            else
+                if (start_nodes[i - 1].children) {
+                    const c = start_nodes[i - 1].children as Array<IToCNode>;
+                    return c[0];
+                }
+
+        }
+    }
+
+    return null;
+}
+
+export const findNextToC = (chapter: string, section: string): IToCNode | null => {
+    let start_nodes: Array<IToCNode> = [];
+    let label = ""
+
+    if (section === "") { //-- chapter
+        start_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
+        label = chapter;
+    } else { //-- section
+        const chapter_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
+        for (let chap of chapter_nodes)
+            for (let c of chap.children as Array<IToCNode>)
+                if (c.label == chapter)
+                    start_nodes = c.children as Array<IToCNode>;
+        label = section;
+    }
+
+
+    for (let i = 0; i < start_nodes.length; i++) {
+        const n = start_nodes[i];
+
+        if (n.label === label) { //-- checking at the section level
+            return (i == start_nodes.length - 1) ? null : start_nodes[i + 1];
+        }
+
+        if (n.children && n.children[0].label == label) {
+            // found! now check if it's the first
+            if (i == start_nodes.length - 1)
+                return null
+            else
+                if (start_nodes[i + 1].children) {
+                    const c = start_nodes[i + 1].children as Array<IToCNode>;
+                    return c[0];
+                }
+        }
+    }
+
+    return null;
 }
 
 export const findSection = (include: string, value: string): Array<INode> => {
