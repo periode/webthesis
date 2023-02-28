@@ -60,10 +60,20 @@ export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | nu
 }
 
 export const findChapterInInclude = (include: string): INode => {
-    const include_node = findNodeByValue(`${include}.tex`) as INode;
-    const children = include_node.children as Array<INode>;
-    const chap_node = findNodeByTag(children, "chapter")
-    return chap_node as INode;
+    const include_node = findNodeByValue(`${include}.tex`);
+    if (include_node){
+        const children = include_node.children as Array<INode>;
+        const chap_node = findNodeByTag(children, "chapter")
+        return chap_node as INode;
+    }else{
+        const err = {
+            tag: "error",
+            value: "could not find include",
+            children: null,
+        }
+        return err;
+    }
+
 }
 
 //-- findLabel finds a particular label node.
