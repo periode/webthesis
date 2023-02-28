@@ -17,6 +17,7 @@
     import Paragraph from "./Paragraph.svelte";
     import Literal from "./inline/Literal.svelte";
     import Emph from "./inline/Emph.svelte";
+    import Dots from "./inline/Dots.svelte";
     import Citation from "./inline/Citation.svelte";
     import InlineListing from "./inline/InlineListing.svelte";
     import Footnote from "./Footnote.svelte";
@@ -40,6 +41,7 @@
         { tag: NodeType.Subsubsection, component: Subsubsection },
         { tag: NodeType.Emphasis, component: Emph },
         { tag: NodeType.Italic, component: Emph },
+        { tag: NodeType.Dots, component: Dots },
         { tag: NodeType.Citation, component: Citation },
         { tag: NodeType.Code, component: Listing },
         { tag: NodeType.Figure, component: Figure },
