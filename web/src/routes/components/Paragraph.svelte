@@ -1,5 +1,10 @@
 <script lang="ts">
-    import { NodeType, type ICitation, type IFootnote, type INode } from "../../utils/types";
+    import {
+        NodeType,
+        type ICitation,
+        type IFootnote,
+        type INode,
+    } from "../../utils/types";
     import Node from "./Node.svelte";
     import CitationItem from "./CitationItem.svelte";
     import FootnoteItem from "./FootnoteItem.svelte";
@@ -18,7 +23,10 @@
 
     const isLiteralParagraph = (children: Array<INode> | null) => {
         if (!children || children.length === 0) return false; // no children
-        if (children.length === 1 && children[0].tag === NodeType.Literal || children[0].tag === NodeType.Emphasis)
+        if (
+            (children.length === 1 && children[0].tag === NodeType.Literal) ||
+            children[0].tag === NodeType.Emphasis
+        )
             // a single line paragraph
             return true;
         else if (
@@ -32,40 +40,40 @@
     };
 
     const handleFootnote = (event: CustomEvent<IFootnote>) => {
-        footnotes.push(event.detail)
-        footnotes = footnotes
-    }
+        footnotes.push(event.detail);
+        footnotes = footnotes;
+    };
 
-    const handleShowFootnote = (event: CustomEvent<string>) => {        
-        footnotes.forEach(f => {
-            if(event.detail === `footnote-${event.detail}`)
-                f.visible = !f.visible
+    const handleShowFootnote = (event: CustomEvent<string>) => {
+        footnotes.forEach((f) => {
+            if (event.detail === `footnote-${f.value}`) f.visible = !f.visible;
         });
 
-        footnotes = footnotes
-    }
+        footnotes = footnotes;
+    };
 
     const handleCitation = (event: CustomEvent<ICitation>) => {
-        citations.push(event.detail)
-        citations = citations
+        citations.push(event.detail);
+        citations = citations;
     };
 
     const handleShowCitation = (event: CustomEvent<string>) => {
-        citations.forEach(c => {
-            if(c.id === event.detail)
-                c.visible = !c.visible
+        citations.forEach((c) => {
+            if (c.id === event.detail) c.visible = !c.visible;
         });
 
-        citations = citations
-    }
+        citations = citations;
+    };
 </script>
 
 <div class="relative m-1 md:m-2 leading-9">
     {#if isLiteralParagraph(nodes)}
         <div class="md:flex justify-between">
-            <div class="absolute top-0 h-full md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none">
+            <div
+                class="absolute top-0 h-full md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
+            >
                 {#each footnotes as footnote}
-                    <FootnoteItem {footnote}/>
+                    <FootnoteItem {footnote} />
                 {/each}
             </div>
             <div class="w-full lg:w-6/12 md:w-8/12 m-auto mb-1 indent-12">
@@ -75,7 +83,11 @@
                     {:else if node.tag === NodeType.Emphasis || node.tag === NodeType.Italic}
                         <Emph {node} />
                     {:else if node.tag === NodeType.Citation}
-                        <Citation {node} on:citation={handleCitation} on:showcitation={handleShowCitation}/>
+                        <Citation
+                            {node}
+                            on:citation={handleCitation}
+                            on:showcitation={handleShowCitation}
+                        />
                     {:else if node.tag === NodeType.Dots}
                         <Dots />
                     {:else if node.tag === NodeType.Reference}
@@ -83,15 +95,21 @@
                     {:else if node.tag === NodeType.InlineListing}
                         <InlineListing {node} />
                     {:else if node.tag === NodeType.Footnote}
-                        <Footnote {node} on:footnote={handleFootnote} on:showfootnote={handleShowFootnote}/>
+                        <Footnote
+                            {node}
+                            on:footnote={handleFootnote}
+                            on:showfootnote={handleShowFootnote}
+                        />
                     {:else}
                         <b>nope! {node.tag}</b>
                     {/if}
                 {/each}
             </div>
-            <div class="absolute top-0 h-full md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none">
+            <div
+                class="absolute top-0 h-full md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
+            >
                 {#each citations as citation}
-                    <CitationItem {citation}/>
+                    <CitationItem {citation} />
                 {/each}
             </div>
         </div>

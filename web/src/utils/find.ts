@@ -1,6 +1,8 @@
-import type { INode } from "./types";
+import type { INode, IToCNode } from "./types";
 import text_data from "./../routes/text.json";
+import toc_data from "./../routes/toc.json";
 const data = text_data as Array<INode>;
+const toc = toc_data as Array<IToCNode>;
 
 export const findNodeByTag = (nodes: Array<INode>, tag: string): INode | null => {
     var result = null;
@@ -40,7 +42,7 @@ export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> =
 
 export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | null => {
     if(nodes === undefined)
-        nodes = text_data as Array<INode>;
+        nodes = data;
 
     var result = null;
     for (var i = 0; i < nodes.length; i++) {
@@ -73,7 +75,53 @@ export const findChapterInInclude = (include: string): INode => {
         }
         return err;
     }
+}
 
+export const findToCNodeByLabel = (label: string, nodes?: Array<IToCNode>): IToCNode | null => {
+    if(nodes === undefined)
+        nodes = toc;
+
+    var result = null;
+    for (var i = 0; i < nodes.length; i++) {
+        const n = nodes[i]
+
+        if (n.label === label)
+            return n;
+
+        if (n.children) {
+            result = findToCNodeByLabel(label, n.children);
+            if (result)
+                return result;
+
+        }
+    }
+    return result;
+}
+
+export const findToCNodeByValue = (value: string, nodes?: Array<IToCNode>): IToCNode | null => {
+    if(nodes === undefined)
+        nodes = toc;
+
+    var result = null;
+    for (var i = 0; i < nodes.length; i++) {
+        const n = nodes[i]
+
+        if (n.value === value)
+            return n;
+
+        if (n.children) {
+            result = findToCNodeByValue(value, n.children);
+            if (result)
+                return result;
+
+        }
+    }
+    return result;
+}
+
+export const findHeadingValue = (label: string): string => {
+    const node = findToCNodeByLabel(label)
+    return node ? node.value : "ERROR";
 }
 
 //-- findLabel finds a particular label node.

@@ -8,13 +8,6 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 ## doing
 
-- [ ] table of contents
-  - [x] iframe to show the excerpt of chapters / sections
-  - [x] separate pages into sections as well, keep full chapter page (use slugs/dynamic routes)
-    - [x] link those routes based on the second part of the label value (e.g. `subsec:software-abstract-artifact` -> `software-abstract-artifact`)
-    - [x] show the nestedness of the section at the top of the page
-    - [x] make it a link
-
 ## todo
 
 - [ ] navigation
@@ -33,12 +26,18 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [ ] make font-size mobile be base, scale to lg on md:+ / https://pimpmytype.com/font-size/ (-2px for citations and foonotes)
 - [ ] mobile
   - [ ] footnotes click is janky
-- [ ] references
-  - [ ] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
 - [ ] add full text search
 - [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
 
 ## done
+- [x] references
+  - [x] deal with finding the actual names for the chapters/sections/subsections, etc. (probably client side, similar to how we find the labels)
+- [x] table of contents
+  - [x] iframe to show the excerpt of chapters / sections
+  - [x] separate pages into sections as well, keep full chapter page (use slugs/dynamic routes)
+    - [x] link those routes based on the second part of the label value (e.g. `subsec:software-abstract-artifact` -> `software-abstract-artifact`)
+    - [x] show the nestedness of the section at the top of the page
+    - [x] make it a link
 - [x] write to taeyoon
 - [x] write to nicky tesla
 - [x] add header (just a single icon opening up a bar with all other icons)
