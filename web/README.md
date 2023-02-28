@@ -8,22 +8,19 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 
 ## doing
 
-## todo
-
 - [ ] navigation
   - [ ] next / previous / up navigation both in header and at bottom of page
+
+## todo
+
 - [ ] listing
   - [ ] show as iframe on hover
   - [ ] jump to on click
 - [ ] citation
   - [ ] hovering above citation highlights the corresponding item
 - [ ] layout
-  - [x] make left column for footnotes (behave the same as citations)
   - [ ] add footer (just the current section, expands into full ToC)
-  - [x] use the system default when using dark theme
   - [ ] have lightmode/darkmode as a store?
-  - [ ] make font-size smaller
-  - [ ] make font-size mobile be base, scale to lg on md:+ / https://pimpmytype.com/font-size/ (-2px for citations and foonotes)
 - [ ] mobile
   - [ ] footnotes click is janky
 - [ ] add full text search
@@ -44,11 +41,13 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 - [x] added location to anchors, so that one can jump between pages
 - [x] render single chapters
 - [x] overlap of right col full width
+- [x] make left column for footnotes (behave the same as citations)
 - [x] citation (parse bib.json to find the proper ones)
   - [x] have a `citationItem` component which renders the long one
   - [x] have a message passing from a nested child short footnote or citation, caught by the node, and generating the approriate element with unique ID
   - [x] the right side of the row (the citation+footnote, is flex col, with overflow scrolling
 - [x] dark mode
+  - [x] use the system default when using dark theme
 - [x] autodeploy on push? makefile
 - [x] render URL
 - [x] assign icons for references
@@ -91,6 +90,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
 - https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
 - https://tradingstrategy.ai/blog/optimizing-page-load-speed-on-sveltekit
 - https://joyofcode.xyz/sveltekit-routing
+- https://pimpmytype.com/font-size/
 
 ### theoretical
 

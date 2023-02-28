@@ -7,6 +7,6 @@
 </script>
 
 <div
-    class="relative -top-28 text-zinc-400 mb-12"
+    class="relative -top-28 text-zinc-400 my-6"
     id={`${location}/${encodeURIComponent(value)}`}
 />
