@@ -12,7 +12,7 @@ make layout into a full width block for each paragraph, divded in two blocks, on
   - [x] iframe to show the excerpt of chapters / sections
   - [x] separate pages into sections as well, keep full chapter page (use slugs/dynamic routes)
     - [x] link those routes based on the second part of the label value (e.g. `subsec:software-abstract-artifact` -> `software-abstract-artifact`)
-    - [ ] show the nestedness of the section at the top of the page
+    - [x] show the nestedness of the section at the top of the page
 
 ## todo
 

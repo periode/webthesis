@@ -1,5 +1,6 @@
 import type { INode } from "./types";
 import text_data from "./../routes/text.json";
+const data = text_data as Array<INode>;
 
 export const findNodeByTag = (nodes: Array<INode>, tag: string): INode | null => {
     var result = null;
@@ -37,7 +38,10 @@ export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> =
     return result;
 }
 
-export const findNodeByValue = (nodes: Array<INode>, value: string): INode | null => {
+export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | null => {
+    if(nodes === undefined)
+        nodes = text_data as Array<INode>;
+
     var result = null;
     for (var i = 0; i < nodes.length; i++) {
         const n = nodes[i]
@@ -46,7 +50,7 @@ export const findNodeByValue = (nodes: Array<INode>, value: string): INode | nul
             return n;
 
         if (n.children) {
-            result = findNodeByValue(n.children, value);
+            result = findNodeByValue(value, n.children);
             if (result)
                 return result;
 
@@ -55,11 +59,17 @@ export const findNodeByValue = (nodes: Array<INode>, value: string): INode | nul
     return result;
 }
 
+export const findChapterInInclude = (include: string): INode => {
+    const include_node = findNodeByValue(`${include}.tex`) as INode;
+    const children = include_node.children as Array<INode>;
+    const chap_node = findNodeByTag(children, "chapter")
+    return chap_node as INode;
+}
+
 //-- findLabel finds a particular label node.
 //-- this is mostly used when references need to locate on which page the label is
 export const findLabel = (value: string): INode | null => {
     var result = null;
-    const data = text_data as Array<INode>;
     const labels = findNodesByTag(data, "label")
 
     for (let label of labels) {
@@ -71,8 +81,7 @@ export const findLabel = (value: string): INode | null => {
 
 export const findSection = (include: string, value: string): Array<INode> => {
     var result: INode[] = [];
-    const data = text_data as Array<INode>;
-    const root = findNodeByValue(data, `${include}.tex`)
+    const root = findNodeByValue(`${include}.tex`, data)
 
     if (root && root.children) {
         if (root.children[0].children) {
