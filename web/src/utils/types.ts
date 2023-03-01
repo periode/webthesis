@@ -68,4 +68,5 @@ export interface IFootnote {
     value: string,
     children: Array<INode>,
     visible: boolean,
+    highlighted: boolean,
 }

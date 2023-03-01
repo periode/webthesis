@@ -5,7 +5,10 @@
     export let node: INode;
 
     const dispatch = createEventDispatcher<{ footnote: IFootnote }>();
-    const dispatchToggle = createEventDispatcher<{showfootnote: string}>();
+    const dispatchToggle = createEventDispatcher<{ showfootnote: string }>();
+    const dispatchHighlight = createEventDispatcher<{
+        highlightfootnote: string;
+    }>();
 
     const children = node.children
         ? node.children
@@ -14,31 +17,31 @@
     let isVisible = !isMobile();
 
     onMount(() => {
-        dispatch("footnote", {children: children, value: node.value, visible: isVisible} as IFootnote);
-    })
+        dispatch("footnote", {
+            children: children,
+            value: node.value,
+            visible: isVisible,
+            highlighted: false,
+        } as IFootnote);
+    });
 
-    const showFootnote = () => {        
+    const showFootnote = () => {
         dispatchToggle("showfootnote", `footnote-${node.value}`);
+    };
+
+    const highlightFootnote = () => {
+        dispatchHighlight("highlightfootnote", `footnote-${node.value}`);
     };
 </script>
 
 <span>
     <span
         on:click={showFootnote}
-        on:touchstart={showFootnote}
         on:keydown={showFootnote}
-        class="cursor-pointer"
+        on:mouseenter={highlightFootnote}
+        on:mouseleave={highlightFootnote}
+        class="cursor-pointer p-1"
     >
-        <img
-            class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
-            src={`/images/footnote.svg`}
-            alt={`icon to reference a footnote`}
-        />
-        <img
-            class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-            src={`/images/footnote-dark.svg`}
-            alt={`icon to reference a footnote`}
-        />&nbsp;
+        <sup>{node.value}</sup>
     </span>
-
 </span>

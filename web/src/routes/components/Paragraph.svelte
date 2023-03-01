@@ -55,9 +55,15 @@
         footnotes = footnotes;
     };
 
+    const handleHighlightFootnote = (event: CustomEvent<string>) => {        
+        footnotes.forEach((f) => {            
+            if (event.detail === `footnote-${f.value}`) f.highlighted = !f.highlighted;
+        });
+
+        footnotes = footnotes;
+    };
+
     const handleCitation = (event: CustomEvent<ICitation>) => {
-        console.log('handling');
-        
         citations.push(event.detail);
         citations = citations;
     };
@@ -71,8 +77,6 @@
     };
 
     const handleHighlightCitation = (event: CustomEvent<string>) => {
-        console.log("highlight");
-
         citations.forEach((c) => {
             if (c.id === event.detail) c.highlighted = !c.highlighted;
         });
@@ -122,6 +126,7 @@
                             {node}
                             on:footnote={handleFootnote}
                             on:showfootnote={handleShowFootnote}
+                            on:highlightfootnote={handleHighlightFootnote}
                         />
                     {:else}
                         <b>nope! {node.tag}</b>
