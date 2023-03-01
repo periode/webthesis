@@ -1,10 +1,6 @@
 <script lang="ts">
-    import type { INode } from "../../utils/types";
-
-    export let node: INode;
-
-    const timestamp = node.value;
-    let d = new Date(parseInt(timestamp) * 1000);
+    export let date: string;
+    let d = new Date(parseInt(date) * 1000);
 </script>
 
 <div class="text-sm">

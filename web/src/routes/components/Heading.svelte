@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { children } from "svelte/internal";
     import type { IToCNode } from "../../utils/types";
-    import Spacer from "./Spacer.svelte";
 
     export let heading: IToCNode;
 
@@ -24,7 +22,9 @@
         <ol class="mt-4">
             {#each sections as sec}
                 <li class="text-xl list-decimal ml-12 mb-2">
-                    <a href={`./${path}/${sec.label.split(":")[1]}`}>{sec.value}</a>
+                    <a href={`./${path}/${sec.label.split(":")[1]}`} class="hover:underline"
+                        >{sec.value}</a
+                    >
                 </li>
                 <ul class="mb-4">
                     {#if sec.children}
@@ -43,7 +43,17 @@
             showPreview ? "" : "hidden"
         } w-5/12 relative border border-zinc-100`}
     >
-    <div on:click={() => {showPreview = false;}} on:keypress={() => {showPreview = false;}} class="absolute font-mono cursor-pointer top-1 right-1 m-2 rounded-full bg-zinc-50"><img src="/images/close-circle-fill.svg" alt="" srcset=""></div>
+        <div
+            on:click={() => {
+                showPreview = false;
+            }}
+            on:keypress={() => {
+                showPreview = false;
+            }}
+            class="absolute font-mono cursor-pointer top-1 right-1 m-2 rounded-full bg-zinc-50"
+        >
+            <img src="/images/close-circle-fill.svg" alt="" srcset="" />
+        </div>
         <iframe
             class="w-full h-full overflow-y-scroll"
             src={`./${path}`}

@@ -11,19 +11,19 @@
         label: string = "";
 
     if (node.children) {
-        let n = findNodeByTag(node.children, "code");
+        let n = findNodeByTag("code", node.children);
         if (n) lang = n.value;
         if (n)
             path = n.children ? n.children[n.children.length - 1].value : "n/a";
 
-        n = findNodeByTag(node.children, "caption");
+        n = findNodeByTag("caption", node.children);
         if (n)
             caption = n.children
                 ? n.children.map((c) => c.value).join(" ")
                 : "";
 
-        n = findNodeByTag(node.children, "label");
-        if (n) label = n.children ? n.children[0].value : "";
+        n = findNodeByTag("label", node.children);
+        if (n) label = n.children ? n.children[0].value.split(":")[1] : "";
     }
 </script>
 

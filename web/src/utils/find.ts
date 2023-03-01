@@ -1,11 +1,13 @@
-import type { INode, IToCNode } from "./types";
+import { NodeType, type INode, type IToCNode } from "./types";
 import text_data from "./../routes/text.json";
 import toc_data from "./../routes/toc.json";
 const data = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 
-export const findNodeByTag = (nodes: Array<INode>, tag: string): INode | null => {
-    var result = null;
+export const findNodeByTag = (tag: string, nodes?: Array<INode>): INode => {
+    var result: INode = { tag: "error", value: "error", children: null };
+    if (nodes === undefined)
+        nodes = data;
     for (var i = 0; i < nodes.length; i++) {
         const n = nodes[i]
 
@@ -13,12 +15,26 @@ export const findNodeByTag = (nodes: Array<INode>, tag: string): INode | null =>
             return n;
 
         if (n.children) {
-            result = findNodeByTag(n.children, tag);
-            if (result)
+            result = findNodeByTag(tag, n.children);
+            if (result.tag !== "error")
                 return result;
 
         }
     }
+    return result;
+}
+
+export const getFrontPage = (): Array<INode> => {
+    let result: Array<INode> = [];
+    const paragraphs = data[0].children ? data[0].children[0].children ? data[0].children[0].children[0].children as Array<INode> : [] : [];
+
+    for (let p of paragraphs) {
+        if (p.children && p.children[0].tag === NodeType.Include)
+            break
+        else if (p.children)
+            result.push(p.children[0])
+    }
+
     return result;
 }
 
@@ -65,8 +81,8 @@ export const findChapterInInclude = (include: string): INode => {
     const include_node = findNodeByValue(`${include}.tex`);
     if (include_node) {
         const children = include_node.children as Array<INode>;
-        const chap_node = findNodeByTag(children, "chapter")
-        return chap_node as INode;
+        const chap_node = findNodeByTag("chapter", children)
+        return chap_node;
     } else {
         const err = {
             tag: "error",
