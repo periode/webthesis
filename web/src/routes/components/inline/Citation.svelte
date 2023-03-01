@@ -7,6 +7,9 @@
 
     const dispatch = createEventDispatcher<{ citation: ICitation }>();
     const dispatchToggle = createEventDispatcher<{ showcitation: string }>();
+    const dispatchHighlight = createEventDispatcher<{
+        highlightcitation: string;
+    }>();
 
     export let node: INode;
     const value = node.children ? node.children[0].value : "Missing citation";
@@ -44,7 +47,7 @@
                 : "UNKNOWN DATE"
             : "UNKNOWN ISSUANCE";
 
-        return {author: author, editor: editor, year: year, id: typed.id };
+        return { author: author, editor: editor, year: year, id: typed.id };
     });
 
     let isVisible = !isMobile();
@@ -53,13 +56,17 @@
         keys.forEach((k) => {
             const b = bib.find((b) => b.id === k);
             const typed = b ? (b as unknown as ICitation) : undefined;
-            if(typed) typed.visible = isVisible;
+            if (typed) typed.visible = isVisible;
             dispatch("citation", typed);
         });
     });
 
     const showCitation = (id: string) => {
         dispatchToggle("showcitation", id);
+    };
+
+    const highlightCitation = (id: string) => {
+        dispatchHighlight("highlightcitation", id);
     };
 </script>
 
@@ -71,6 +78,12 @@
             }}
             on:keydown={() => {
                 showCitation(cit.id);
+            }}
+            on:mouseenter={() => {
+                highlightCitation(cit.id);
+            }}
+            on:mouseleave={() => {
+                highlightCitation(cit.id);
             }}
             class="citation cursor-pointer hover:underline"
             >{cit

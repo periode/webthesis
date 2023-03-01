@@ -7,15 +7,12 @@ front-end for the thesis.
 ## doing
 
 
+
 ## todo
 
 - [ ] listing
   - [ ] show as iframe on hover
   - [ ] jump to on click
-- [ ] quote
-  - [ ] deal with width issues ()
-- [ ] citation
-  - [ ] hovering above citation highlights the corresponding item
 - [ ] layout
   - [ ] add footer (just the current section, expands into full ToC)
   - [ ] have lightmode/darkmode as a store?
@@ -29,6 +26,10 @@ front-end for the thesis.
   - [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
 
 ## done
+- [x] quote
+  - [x] deal with width issues ()
+- [x] citation
+  - [x] hovering above citation highlights the corresponding item
 - [x] navigation
   - [x] next / previous / up navigation both in header and at bottom of page
 - [x] references

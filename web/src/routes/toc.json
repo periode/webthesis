@@ -1,1 +1,661 @@
-[{"children":[{"children":[{"children":[{"children":[{"children":null,"tag":"Subsection","value":"The research territory: code","label":"subsec:research-territory","indent":2},{"children":null,"tag":"Subsection","value":"Beautiful code","label":"subsec:beautiful-code","indent":2},{"children":null,"tag":"Subsection","value":"Literature review","label":"subsec:literature-review","indent":2}],"tag":"Section","value":"Context","label":"sec:context","indent":0},{"children":null,"tag":"Section","value":"The aesthetic specificities of source code","label":"sec:aesthetic-specificities-code","indent":1},{"children":null,"tag":"Section","value":"Methodology","label":"sec:methodology","indent":1},{"children":null,"tag":"Section","value":"Roadmap","label":"subsec:roadmap","indent":1},{"children":null,"tag":"Section","value":"Implications and readership","label":"subsec:implications-readership","indent":1}],"tag":"Chapter","value":"Introduction","label":"chap:introduction","indent":0}],"tag":"Include","value":"introduction.tex","label":"","indent":0},{"children":[{"children":[{"children":[{"children":null,"tag":"Subsection","value":"Software developers","label":"subsec:software-developers","indent":2},{"children":null,"tag":"Subsection","value":"Hackers","label":"subsec:hackers","indent":2},{"children":[{"children":null,"tag":"Subsubsection","value":"Computation as a means","label":"subsubsec:computation-means","indent":3},{"children":null,"tag":"Subsubsection","value":"Computation as an end","label":"subsubsec:computation-end","indent":3}],"tag":"Subsection","value":"Scientists","label":"subsec:scientists","indent":2},{"children":null,"tag":"Subsection","value":"Poets","label":"subsec:poets","indent":2}],"tag":"Section","value":"The practice of programmers","label":"sec:practice-programmers","indent":0},{"children":[{"children":null,"tag":"Subsection","value":"Introduction to the Methodology","label":"subsec:ideals-methodology","indent":2},{"children":null,"tag":"Subsection","value":"Lexical Field in Programmer Discourse","label":"subsec:lexical-fields","indent":2}],"tag":"Section","value":"Ideals of beauty","label":"sec:ideals-beauty","indent":1},{"children":[{"children":[{"children":null,"tag":"Subsubsection","value":"Code as a linguistic practice","label":"subsubsec:code-linguistic","indent":3},{"children":null,"tag":"Subsubsection","value":"Code as text","label":"subsubsec:code-text","indent":3},{"children":null,"tag":"Subsubsection","value":"Code poetry","label":"subsubsec:code-poetry","indent":3}],"tag":"Subsection","value":"Literary Beauty","label":"subsec:literary-beauty","indent":2},{"children":[{"children":null,"tag":"Subsubsection","value":"Mathematics","label":"subsubsec:beauty-mathematics","indent":3},{"children":null,"tag":"Subsubsection","value":"Engineering","label":"subsubsec:beauty-engineering","indent":3}],"tag":"Subsection","value":"Scientific beauty","label":"subsec:scientific-beauty","indent":2},{"children":[{"children":null,"tag":"Subsubsection","value":"Formal organization","label":"subsubsec:formal-organization","indent":3},{"children":null,"tag":"Subsubsection","value":"Vernacular constructions","label":"subsubsec:vernacular-construction","indent":3}],"tag":"Subsection","value":"Architectural beauty","label":"subsec:beauty-architecture","indent":2}],"tag":"Section","value":"Aesthetic domains","label":"sec:aesthetic-domains","indent":1},{"children":[{"children":[{"children":null,"tag":"Subsubsection","value":"Craftsmanship through the ages","label":"subsubsec:history-craftsmanship","indent":3},{"children":null,"tag":"Subsubsection","value":"Software developers as craftsmen","label":"subsubsec:software-craftsmen","indent":3},{"children":null,"tag":"Subsubsection","value":"Craft in architecture","label":"subsubsec:craft-architecture","indent":3}],"tag":"Subsection","value":"Craftsmen and architects","label":"subsec:craftsmen-architect","indent":1},{"children":[{"children":null,"tag":"Subsubsection","value":"Apprentices and masters","label":"subsubsec:apprentices-masters","indent":3},{"children":null,"tag":"Subsubsection","value":"The problem with copying","label":"subsubsec:craft-copying","indent":3}],"tag":"Subsection","value":"Knowledge acquisition and production","label":"subsec:craft-knowledge","indent":2},{"children":null,"tag":"Subsection","value":"Material aesthetics","label":"subsec:material-aesthetic","indent":2}],"tag":"Section","value":"Craft, knowledge and beauty","label":"sec:craft","indent":1}],"tag":"Chapter","value":"Aesthetic ideals in programming practices","label":"chap:ideals","indent":0}],"tag":"Include","value":"ideals.tex","label":"","indent":0},{"children":[{"children":[{"children":[{"children":[{"children":null,"tag":"Subsubsection","value":"Theoretical foundations of formal understanding","label":"subsubsec:theoretical-understanding","indent":3},{"children":null,"tag":"Subsubsection","value":"Practical attempts at implementing formal understanding","label":"subsubsec:practical-understanding","indent":3}],"tag":"Subsection","value":"Between formal and informal","label":"subsec:formal-informal","indent":2},{"children":[{"children":null,"tag":"Subsubsection","value":"Knoweldge and situation","label":"subsubsec:knowledge-situation","indent":3},{"children":null,"tag":"Subsubsection","value":"Constructing knowledge","label":"subsubsec:constructing-knowledge","indent":3}],"tag":"Subsection","value":"Knowing-what and knowing-how","label":"subsec:knowing-what-how","indent":2}],"tag":"Section","value":"Formal and contextual understandings","label":"sec:formal-contextual-understandings","indent":0},{"children":[{"children":[{"children":null,"tag":"Subsubsection","value":"Levels of software","label":"subsubsec:levels-software","indent":3},{"children":null,"tag":"Subsubsection","value":"Types of complexity","label":"subsubsec:types-complexity","indent":3}],"tag":"Subsection","value":"Software complexity","label":"subsec:software-complexity","indent":2},{"children":[{"children":null,"tag":"Subsubsection","value":"Software as abstract artifact","label":"subsubsec:abstract-artifact","indent":3},{"children":null,"tag":"Subsubsection","value":"Software as a relational object","label":"subsubsec:software-relational","indent":3}],"tag":"Subsection","value":"Software ontology","label":"subsec:software-ontology","indent":2},{"children":null,"tag":"Subsection","value":"The psychology of programming","label":"subsec:psychology-programming","indent":2}],"tag":"Section","value":"Understanding computation","label":"sec:understanding-computation","indent":1},{"children":[{"children":[{"children":null,"tag":"Subsubsection","value":"Theoretical background","label":"subsubsec:metaphors-background","indent":3},{"children":null,"tag":"Subsubsection","value":"Metaphors for end-users","label":"subsubsec:metaphors-users","indent":3},{"children":null,"tag":"Subsubsection","value":"Programmer-facing metaphors","label":"subsubsec:metaphors-programmers","indent":3}],"tag":"Subsection","value":"Metaphors in computation","label":"subsec:metaphor-computation","indent":1},{"children":[{"children":null,"tag":"Subsubsection","value":"Extended cognition","label":"subsubsec:extended-cognition","indent":2}],"tag":"Subsection","value":"Tools as a cognitive extension","label":"subsubsec:tools-cognition","indent":2}],"tag":"Section","value":"Means of understanding","label":"sec:means-understanding","indent":1}],"tag":"Chapter","value":"Understanding source code","label":"chap:understanding","indent":0}],"tag":"Include","value":"understanding.tex","label":"","indent":0},{"children":[{"children":[{"children":null,"tag":"Section","value":"Aesthetics and cognition","label":"sec:aesthetic-cognition","indent":0},{"children":null,"tag":"Section","value":"Literature and understanding","label":"sec:aesthetic-literature","indent":1},{"children":null,"tag":"Section","value":"Architecture and understanding","label":"sec:arch-understanding","indent":1},{"children":null,"tag":"Section","value":"Forms of scientific activity","label":"sec:aesthetic-mathematics","indent":1},{"children":null,"tag":"Section","value":"Engineering and understanding","label":"sec:aesthetic-engineering","indent":1}],"tag":"Chapter","value":"Beauty and understanding","label":"chap:beauty","indent":0}],"tag":"Include","value":"beauty.tex","label":"","indent":0},{"children":[{"children":[{"children":[{"children":null,"tag":"Subsection","value":"Idiomaticity","label":"subsec:idiomaticity","indent":2}],"tag":"Section","value":"Machine meaning and human meaning","label":"sec:human-machine-meaning","indent":0},{"children":null,"tag":"Section","value":"A Framework for source code aesthetics","label":"sec:programming-aesthetic-framework","indent":1},{"children":null,"tag":"Section","value":"Case studies","label":"sec:case-studies","indent":1}],"tag":"Chapter","value":"Machine languages","label":"chap:programming","indent":0}],"tag":"Include","value":"programming.tex","label":"","indent":0},{"children":[{"children":[{"children":[{"children":null,"tag":"Subsection","value":"What does source code have to say about itself?","label":"subsec:conclusion-rq-1","indent":2},{"children":null,"tag":"Subsection","value":"How does source code relate to other aesthetic fields?","label":"subsec:conclusion-rq-2","indent":2},{"children":null,"tag":"Subsection","value":"How do the aesthetics of source code relate to its functionality?","label":"subsec:conclusion-rq-3","indent":2}],"tag":"Section","value":"Findings","label":"sec:findings","indent":0},{"children":[{"children":null,"tag":"Subsection","value":"Limitations","label":"subsec:conclusion-limitations","indent":2}],"tag":"Section","value":"Contribution","label":"sec:conclusion-contribution","indent":1},{"children":null,"tag":"Section","value":"Opening","label":"sec:opening","indent":1}],"tag":"Chapter","value":"Conclusion","label":"chap:conclusion","indent":0}],"tag":"Include","value":"conclusion.tex","label":"","indent":0}],"tag":"Documentclass","value":"","label":"","indent":0}]
+[
+    {
+        "children": [
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "The research territory: code",
+                                        "label": "subsec:research-territory",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Beautiful code",
+                                        "label": "subsec:beautiful-code",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Literature review",
+                                        "label": "subsec:literature-review",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Context",
+                                "label": "sec:context",
+                                "indent": 0
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "The aesthetic specificities of source code",
+                                "label": "sec:aesthetic-specificities-code",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Methodology",
+                                "label": "sec:methodology",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Roadmap",
+                                "label": "subsec:roadmap",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Implications and readership",
+                                "label": "subsec:implications-readership",
+                                "indent": 1
+                            }
+                        ],
+                        "tag": "Chapter",
+                        "value": "Introduction",
+                        "label": "chap:introduction",
+                        "indent": 0
+                    }
+                ],
+                "tag": "Include",
+                "value": "introduction.tex",
+                "label": "",
+                "indent": 0
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Software developers",
+                                        "label": "subsec:software-developers",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Hackers",
+                                        "label": "subsec:hackers",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Computation as a means",
+                                                "label": "subsubsec:computation-means",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Computation as an end",
+                                                "label": "subsubsec:computation-end",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Scientists",
+                                        "label": "subsec:scientists",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Poets",
+                                        "label": "subsec:poets",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "The practice of programmers",
+                                "label": "sec:practice-programmers",
+                                "indent": 0
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Introduction to the Methodology",
+                                        "label": "subsec:ideals-methodology",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Lexical Field in Programmer Discourse",
+                                        "label": "subsec:lexical-fields",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Ideals of beauty",
+                                "label": "sec:ideals-beauty",
+                                "indent": 1
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Code as a linguistic practice",
+                                                "label": "subsubsec:code-linguistic",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Code as text",
+                                                "label": "subsubsec:code-text",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Code poetry",
+                                                "label": "subsubsec:code-poetry",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Literary Beauty",
+                                        "label": "subsec:literary-beauty",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Mathematics",
+                                                "label": "subsubsec:beauty-mathematics",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Engineering",
+                                                "label": "subsubsec:beauty-engineering",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Scientific beauty",
+                                        "label": "subsec:scientific-beauty",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Formal organization",
+                                                "label": "subsubsec:formal-organization",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Vernacular constructions",
+                                                "label": "subsubsec:vernacular-construction",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Architectural beauty",
+                                        "label": "subsec:beauty-architecture",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Aesthetic domains",
+                                "label": "sec:aesthetic-domains",
+                                "indent": 1
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Craftsmanship through the ages",
+                                                "label": "subsubsec:history-craftsmanship",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Software developers as craftsmen",
+                                                "label": "subsubsec:software-craftsmen",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Craft in architecture",
+                                                "label": "subsubsec:craft-architecture",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Craftsmen and architects",
+                                        "label": "subsec:craftsmen-architect",
+                                        "indent": 1
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Apprentices and masters",
+                                                "label": "subsubsec:apprentices-masters",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "The problem with copying",
+                                                "label": "subsubsec:craft-copying",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Knowledge acquisition and production",
+                                        "label": "subsec:craft-knowledge",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Material aesthetics",
+                                        "label": "subsec:material-aesthetic",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Craft, knowledge and beauty",
+                                "label": "sec:craft",
+                                "indent": 1
+                            }
+                        ],
+                        "tag": "Chapter",
+                        "value": "Aesthetic ideals in programming practices",
+                        "label": "chap:ideals",
+                        "indent": 0
+                    }
+                ],
+                "tag": "Include",
+                "value": "ideals.tex",
+                "label": "",
+                "indent": 0
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Theoretical foundations of formal understanding",
+                                                "label": "subsubsec:theoretical-understanding",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Practical attempts at implementing formal understanding",
+                                                "label": "subsubsec:practical-understanding",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Between formal and informal",
+                                        "label": "subsec:formal-informal",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Knoweldge and situation",
+                                                "label": "subsubsec:knowledge-situation",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Constructing knowledge",
+                                                "label": "subsubsec:constructing-knowledge",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Knowing-what and knowing-how",
+                                        "label": "subsec:knowing-what-how",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Formal and contextual understandings",
+                                "label": "sec:formal-contextual-understandings",
+                                "indent": 0
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Levels of software",
+                                                "label": "subsubsec:levels-software",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Types of complexity",
+                                                "label": "subsubsec:types-complexity",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Software complexity",
+                                        "label": "subsec:software-complexity",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Software as abstract artifact",
+                                                "label": "subsubsec:abstract-artifact",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Software as a relational object",
+                                                "label": "subsubsec:software-relational",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Software ontology",
+                                        "label": "subsec:software-ontology",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "The psychology of programming",
+                                        "label": "subsec:psychology-programming",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Understanding computation",
+                                "label": "sec:understanding-computation",
+                                "indent": 1
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Theoretical background",
+                                                "label": "subsubsec:metaphors-background",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Metaphors for end-users",
+                                                "label": "subsubsec:metaphors-users",
+                                                "indent": 3
+                                            },
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Programmer-facing metaphors",
+                                                "label": "subsubsec:metaphors-programmers",
+                                                "indent": 3
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Metaphors in computation",
+                                        "label": "subsec:metaphor-computation",
+                                        "indent": 1
+                                    },
+                                    {
+                                        "children": [
+                                            {
+                                                "children": null,
+                                                "tag": "Subsubsection",
+                                                "value": "Extended cognition",
+                                                "label": "subsubsec:extended-cognition",
+                                                "indent": 2
+                                            }
+                                        ],
+                                        "tag": "Subsection",
+                                        "value": "Tools as a cognitive extension",
+                                        "label": "subsubsec:tools-cognition",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Means of understanding",
+                                "label": "sec:means-understanding",
+                                "indent": 1
+                            }
+                        ],
+                        "tag": "Chapter",
+                        "value": "Understanding source code",
+                        "label": "chap:understanding",
+                        "indent": 0
+                    }
+                ],
+                "tag": "Include",
+                "value": "understanding.tex",
+                "label": "",
+                "indent": 0
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Aesthetics and cognition",
+                                "label": "sec:aesthetic-cognition",
+                                "indent": 0
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Literature and understanding",
+                                "label": "sec:aesthetic-literature",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Architecture and understanding",
+                                "label": "sec:arch-understanding",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Forms of scientific activity",
+                                "label": "sec:aesthetic-mathematics",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Engineering and understanding",
+                                "label": "sec:aesthetic-engineering",
+                                "indent": 1
+                            }
+                        ],
+                        "tag": "Chapter",
+                        "value": "Beauty and understanding",
+                        "label": "chap:beauty",
+                        "indent": 0
+                    }
+                ],
+                "tag": "Include",
+                "value": "beauty.tex",
+                "label": "",
+                "indent": 0
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Idiomaticity",
+                                        "label": "subsec:idiomaticity",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Machine meaning and human meaning",
+                                "label": "sec:human-machine-meaning",
+                                "indent": 0
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "A Framework for source code aesthetics",
+                                "label": "sec:programming-aesthetic-framework",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Case studies",
+                                "label": "sec:case-studies",
+                                "indent": 1
+                            }
+                        ],
+                        "tag": "Chapter",
+                        "value": "Machine languages",
+                        "label": "chap:programming",
+                        "indent": 0
+                    }
+                ],
+                "tag": "Include",
+                "value": "programming.tex",
+                "label": "",
+                "indent": 0
+            },
+            {
+                "children": [
+                    {
+                        "children": [
+                            {
+                                "children": [
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "What does source code have to say about itself?",
+                                        "label": "subsec:conclusion-rq-1",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "How does source code relate to other aesthetic fields?",
+                                        "label": "subsec:conclusion-rq-2",
+                                        "indent": 2
+                                    },
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "How do the aesthetics of source code relate to its functionality?",
+                                        "label": "subsec:conclusion-rq-3",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Findings",
+                                "label": "sec:findings",
+                                "indent": 0
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "children": null,
+                                        "tag": "Subsection",
+                                        "value": "Limitations",
+                                        "label": "subsec:conclusion-limitations",
+                                        "indent": 2
+                                    }
+                                ],
+                                "tag": "Section",
+                                "value": "Contribution",
+                                "label": "sec:conclusion-contribution",
+                                "indent": 1
+                            },
+                            {
+                                "children": null,
+                                "tag": "Section",
+                                "value": "Opening",
+                                "label": "sec:opening",
+                                "indent": 1
+                            }
+                        ],
+                        "tag": "Chapter",
+                        "value": "Conclusion",
+                        "label": "chap:conclusion",
+                        "indent": 0
+                    }
+                ],
+                "tag": "Include",
+                "value": "conclusion.tex",
+                "label": "",
+                "indent": 0
+            }
+        ],
+        "tag": "Documentclass",
+        "value": "",
+        "label": "",
+        "indent": 0
+    }
+]

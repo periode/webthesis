@@ -61,6 +61,7 @@ export interface ICitation {
     title: string,
     publisher: string,
     visible: boolean,
+    highlighted: boolean,
 }
 
 export interface IFootnote {

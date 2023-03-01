@@ -28,7 +28,7 @@
     id={citation.id}
     class={`${
         citation.visible ? "block" : "hidden"
-    } w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto p-6 md:p-0  text-zinc-500 dark:text-zinc-300 border border-zinc-400 md:border-none bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto`}
+    }  w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto p-6 md:px-2 py-0  text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto border-l  ${citation.highlighted ? "border-l-zinc-900 dark:border-l-zinc-300" : "border-l-zinc-300 dark:border-l-zinc-900"}`}
 >
     <div
         class="md:hidden absolute top-1 right-2 text-lg font-mono cursor-pointer"

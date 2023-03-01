@@ -15,6 +15,7 @@
     import Footnote from "./Footnote.svelte";
     import Reference from "./inline/Reference.svelte";
     import Dots from "./inline/Dots.svelte";
+    import Quote from "./Quote.svelte";
 
     export let node: INode;
     const nodes = node.children ? node.children : [];
@@ -55,6 +56,8 @@
     };
 
     const handleCitation = (event: CustomEvent<ICitation>) => {
+        console.log('handling');
+        
         citations.push(event.detail);
         citations = citations;
     };
@@ -62,6 +65,16 @@
     const handleShowCitation = (event: CustomEvent<string>) => {
         citations.forEach((c) => {
             if (c.id === event.detail) c.visible = !c.visible;
+        });
+
+        citations = citations;
+    };
+
+    const handleHighlightCitation = (event: CustomEvent<string>) => {
+        console.log("highlight");
+
+        citations.forEach((c) => {
+            if (c.id === event.detail) c.highlighted = !c.highlighted;
         });
 
         citations = citations;
@@ -89,6 +102,7 @@
                             {node}
                             on:citation={handleCitation}
                             on:showcitation={handleShowCitation}
+                            on:highlightcitation={handleHighlightCitation}
                         />
                     {:else if node.tag === NodeType.Dots}
                         <Dots />
@@ -96,6 +110,13 @@
                         <Reference {node} />
                     {:else if node.tag === NodeType.InlineListing}
                         <InlineListing {node} />
+                    {:else if node.tag === NodeType.Quote}
+                        <Quote
+                            {node}
+                            on:citation={handleCitation}
+                            on:showcitation={handleShowCitation}
+                            on:highlightcitation={handleHighlightCitation}
+                        />
                     {:else if node.tag === NodeType.Footnote}
                         <Footnote
                             {node}
