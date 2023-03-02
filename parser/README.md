@@ -15,7 +15,8 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 ## todo
 
 - [ ] postprocessor
-  - [ ] when parsing toc, ignore following comments
+  - [ ] when parsing toc, ignore comments following on the same line
+  - [ ] change the grammar to not wrap single commands and single environments inside paragraphs
   - [ ] create list of figures
   - [ ] create list of listings
 - [ ] use `erased_serde` or `typetag` crate to have only one `save_ast` function
