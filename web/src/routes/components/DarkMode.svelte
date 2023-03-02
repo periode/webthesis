@@ -15,7 +15,7 @@
             document.documentElement.classList.add("dark");
             localStorage.setItem("theme", "dark");
         }
-        icon_name = `${localStorage.theme}mode`
+        icon_name = `${localStorage.theme}mode`;
     };
 
     onMount(() => {
@@ -40,11 +40,15 @@
 
 <div class="" on:click={toggleDarkMode} on:keydown={toggleDarkMode}>
     <img
+        width="24"
+        height="24"
         class="hidden dark:inline relative m-1 p-1 cursor-pointer"
         src={`/images/darkmode.svg`}
         alt={`icon to toggle dark mode or light mode`}
     />
     <img
+        width="24"
+        height="24"
         class="inline dark:hidden relative m-1 p-1 cursor-pointer"
         src={`/images/lightmode.svg`}
         alt={`icon to toggle dark mode or light mode`}

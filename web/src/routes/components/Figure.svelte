@@ -4,11 +4,11 @@
 
     export let node: INode;
     const contents = node.children ? node.children : [];
-    const i = findNodeByTag(contents, "image");
-    const image = i && i.children ? findNodeByTag(i.children, "literal") : null;
-    const c = findNodeByTag(contents, "caption");
+    const i = findNodeByTag("image", contents);
+    const image = i && i.children ? findNodeByTag("literal", i.children) : null;
+    const c = findNodeByTag("caption", contents);
     const caption = c && c.children ? c.children[0] : null;
-    const l = findNodeByTag(contents, "label");
+    const l = findNodeByTag("label", contents);
     const label = l && l.children ? l.children[0].value : "";
 </script>
 

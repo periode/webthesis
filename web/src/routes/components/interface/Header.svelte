@@ -18,6 +18,8 @@
     class="bg-zinc-50 dark:bg-zinc-900 md:bg-transparent w-auto fixed top-0 p-2 md:p-1 md:top-2 md:left-2 flex z-10"
 >
     <img
+        width="24"
+        height="24"
         on:click={toggleMenu}
         on:keydown={toggleMenu}
         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
@@ -25,6 +27,8 @@
         alt={`icon to toggle dark mode or light mode`}
     />
     <img
+        width="24"
+        height="24"
         on:click={toggleMenu}
         on:keydown={toggleMenu}
         class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
@@ -38,11 +42,15 @@
         <div>
             <a href="/">
                 <img
+                    width="24"
+                    height="24"
                     class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
                     src={`/images/home-dark.svg`}
                     alt={`icon to get back to the index page`}
                 />
                 <img
+                    width="24"
+                    height="24"
                     class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
                     src={`/images/home.svg`}
                     alt={`icon to get back to the index page`}

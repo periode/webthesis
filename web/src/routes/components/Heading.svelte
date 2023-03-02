@@ -38,7 +38,7 @@
             {/each}
         </ol>
     </div>
-    <div
+    <!-- <div
         class={`${
             showPreview ? "" : "hidden"
         } w-5/12 relative border border-zinc-100`}
@@ -52,7 +52,7 @@
             }}
             class="absolute font-mono cursor-pointer top-1 right-1 m-2 rounded-full bg-zinc-50"
         >
-            <img src="/images/close-circle-fill.svg" alt="" srcset="" />
+            <img width="24" height="24" src="/images/close-circle-fill.svg" alt="" srcset="" />
         </div>
         <iframe
             class="w-full h-full overflow-y-scroll"
@@ -60,5 +60,5 @@
             frameborder="0"
             title={chapter?.value}
         />
-    </div>
+    </div> -->
 </li>
