@@ -8,6 +8,8 @@ front-end for the thesis.
 
 - [ ] performance
   - [ ] load data on the server
+  - [ ] switch from iframes to components?
+  - [x] don't load highlightjs over cdn, but from source
 
 ## todo
 
@@ -30,6 +32,7 @@ front-end for the thesis.
 
 ### tech
 
+- https://github.com/caddyserver/cache-handler
 - https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
 - https://tradingstrategy.ai/blog/optimizing-page-load-speed-on-sveltekit
 - https://joyofcode.xyz/sveltekit-routing
