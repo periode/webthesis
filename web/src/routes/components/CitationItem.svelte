@@ -28,7 +28,11 @@
     id={citation.id}
     class={`${
         citation.visible ? "block" : "hidden"
-    }  w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto py-12 px-2  md:py-0  text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto md:border-l  ${citation.highlighted ? "border-l-zinc-900 dark:border-l-zinc-300" : "border-l-zinc-300 dark:border-l-zinc-900"}`}
+    }  w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto py-12 px-2  md:py-0  text-zinc-500 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto md:border-l  ${
+        citation.highlighted
+            ? "border-l-zinc-900 dark:border-l-zinc-300"
+            : "border-l-zinc-50 dark:border-l-zinc-900"
+    }`}
 >
     <i>{citation.title}</i> by {people}, {date}.
 </div>

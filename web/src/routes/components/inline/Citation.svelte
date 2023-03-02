@@ -99,9 +99,7 @@
             class="citation cursor-pointer hover:underline"
             >{cit
                 ? `${cit.author !== "" ? cit.author : cit.editor}, ${cit.year}`
-                : "nope"}
-        </span>
-    {/each})
+                : "MISSING CITATION"}</span>{/each})
     <span class="md:hidden">
         {#each citations as citation}
             <CitationItem {citation} />

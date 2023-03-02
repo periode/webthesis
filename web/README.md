@@ -10,18 +10,17 @@ front-end for the thesis.
 
 ## todo
 - [ ] bug
-  - [ ] jumping to a listing goes to the parent page if there is one
+  - [ ] jumping to a listing goes to the parent page. how to solve the issue of having the reference on the proper page? maybe the easiest way is indeed to have it as an inline <Code/>? e.g. if there is a listing on the page with the same label, jump to it. otherwise, show the inline.
 - [ ] performance
   - [ ] load data on the server
   - [ ] switch from iframes to components?
+  - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers
 - [ ] layout
   - [ ] add footer (just the current section, expands into full ToC)
 - [ ] performance
   - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
 
 ## wishlist:
-  - [ ] listing
-    - [ ] show as iframe on hover?
   - [ ] add full text search
   - [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
 

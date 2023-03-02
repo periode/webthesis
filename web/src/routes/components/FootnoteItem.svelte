@@ -12,8 +12,8 @@
         footnote.visible ? "block" : "hidden"
     } w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto p-4 italic md:p-0 md:py-2  text-zinc-500 dark:text-zinc-300 border-r bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto ${
         footnote.highlighted
-            ? "border-r-zinc-900 dark:border-r-zinc-300"
-            : "border-r-zinc-300 dark:border-r-zinc-900"
+            ? "border-r-zinc-300 dark:border-r-zinc-300"
+            : "border-r-zinc-50 dark:border-r-zinc-900"
     }`}
 >
     {#each children as node}
