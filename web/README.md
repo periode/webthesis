@@ -9,21 +9,19 @@ front-end for the thesis.
 - [ ] performance
   - [ ] load data on the server
   - [ ] switch from iframes to components?
-  - [x] don't load highlightjs over cdn, but from source
+- [ ] mobile
+  - [ ] footnotes click is janky
 
 ## todo
 
-- [ ] listing
-  - [ ] show as iframe on hover?
 - [ ] layout
   - [ ] add footer (just the current section, expands into full ToC)
-- [ ] mobile
-  - [ ] footnotes click is janky
-  - [ ] make footnotes as an inline div in the paragraph
 - [ ] performance
-  - [ ] prevent iframes??
   - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
-- [ ] wishlist:
+
+## wishlist:
+  - [ ] listing
+    - [ ] show as iframe on hover?
   - [ ] add full text search
   - [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
 

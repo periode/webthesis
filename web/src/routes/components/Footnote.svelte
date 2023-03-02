@@ -2,6 +2,7 @@
     import { createEventDispatcher, onMount } from "svelte";
     import isMobile from "../../utils/helper";
     import type { IFootnote, INode } from "../../utils/types";
+    import FootnoteItem from "./FootnoteItem.svelte";
     export let node: INode;
 
     const dispatch = createEventDispatcher<{ footnote: IFootnote }>();
@@ -15,17 +16,21 @@
         : [{ tag: node.tag, value: node.value, children: null } as INode];
 
     let isVisible = !isMobile();
+    let isMobileVisible = false;
+
+    let footnote = {
+        children: children,
+        value: node.value,
+        visible: isVisible,
+        highlighted: false,
+    } as IFootnote;
 
     onMount(() => {
-        dispatch("footnote", {
-            children: children,
-            value: node.value,
-            visible: isVisible,
-            highlighted: false,
-        } as IFootnote);
+        dispatch("footnote", footnote);
     });
 
     const showFootnote = () => {
+        isMobileVisible = !isMobileVisible;
         dispatchToggle("showfootnote", `footnote-${node.value}`);
     };
 
@@ -44,4 +49,8 @@
     >
         <sup>{node.value}</sup>
     </span>
+    <div class={isMobileVisible ? 'block' : 'hidden'}>
+        <FootnoteItem {footnote} />
+    </div>
+    
 </span>

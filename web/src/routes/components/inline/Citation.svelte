@@ -4,6 +4,7 @@
     import type { ICitation, INode } from "../../../utils/types";
     import { createEventDispatcher, onMount } from "svelte";
     import isMobile from "../../../utils/helper";
+    import CitationItem from "../CitationItem.svelte";
 
     const dispatch = createEventDispatcher<{ citation: ICitation }>();
     const dispatchToggle = createEventDispatcher<{ showcitation: string }>();
@@ -14,6 +15,8 @@
     export let node: INode;
     const value = node.children ? node.children[0].value : "Missing citation";
     const keys = value.split(",");
+    let citations: Array<ICitation> = [];
+    let isVisible = !isMobile();
 
     const short = keys.map((k) => {
         const b = bib.find((b) => b.id === k);
@@ -21,6 +24,9 @@
 
         if (typed === undefined)
             return { author: "author", year: "year", id: "id" };
+
+        typed.visible = false;
+        citations.push(typed);
 
         let author = "UNKNOWN AUTHOR",
             editor = "UNKNOWN EDITOR";
@@ -50,19 +56,24 @@
         return { author: author, editor: editor, year: year, id: typed.id };
     });
 
-    let isVisible = !isMobile();
-
     onMount(() => {
         keys.forEach((k) => {
             const b = bib.find((b) => b.id === k);
-            const typed = b ? (b as unknown as ICitation) : undefined;
-            if (typed) typed.visible = isVisible;
-            dispatch("citation", typed);
+            let cit = b as unknown as ICitation;
+            cit.visible = isVisible;
+            dispatch("citation", cit);
         });
     });
 
     const showCitation = (id: string) => {
-        dispatchToggle("showcitation", id);
+        if (isMobile()) {
+            for (let cit of citations) {
+                if (cit.id === id) cit.visible = !cit.visible;
+            }
+            citations = citations;
+        } else {
+            dispatchToggle("showcitation", id);
+        }
     };
 
     const highlightCitation = (id: string) => {
@@ -88,8 +99,14 @@
             class="citation cursor-pointer hover:underline"
             >{cit
                 ? `${cit.author !== "" ? cit.author : cit.editor}, ${cit.year}`
-                : "nope"}</span
-        >{/each})&nbsp;
+                : "nope"}
+        </span>
+    {/each})
+    <span class="md:hidden">
+        {#each citations as citation}
+            <CitationItem {citation} />
+        {/each}
+    </span>
 </span>
 
 <style>

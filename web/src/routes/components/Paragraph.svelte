@@ -89,7 +89,7 @@
     {#if isLiteralParagraph(nodes)}
         <div class="md:flex justify-between">
             <div
-                class="absolute top-0 h-full md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
+                class="absolute top-0 h-full hidden md:visible md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
             >
                 {#each footnotes as footnote}
                     <FootnoteItem {footnote} />
@@ -134,7 +134,7 @@
                 {/each}
             </div>
             <div
-                class="absolute top-0 h-full md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
+                class="absolute top-0 h-full hidden md:visible md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
             >
                 {#each citations as citation}
                     <CitationItem {citation} />

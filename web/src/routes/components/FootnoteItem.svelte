@@ -8,9 +8,9 @@
 
 <div
     id={`footnote-${footnote.value}`}
-    class={`${
+    class={`md:${
         footnote.visible ? "block" : "hidden"
-    } w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto p-6 md:p-0 md:py-2  text-zinc-500 dark:text-zinc-300 border-r bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto ${
+    } w-11/12 relative top-1/2 md:top-0 md:w-10/12 m-auto p-4 italic md:p-0 md:py-2  text-zinc-500 dark:text-zinc-300 border-r bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto ${
         footnote.highlighted
             ? "border-r-zinc-900 dark:border-r-zinc-300"
             : "border-r-zinc-300 dark:border-r-zinc-900"
@@ -19,15 +19,4 @@
     {#each children as node}
         <Node {node} />
     {/each}
-    <div
-        class="md:hidden absolute top-1 right-2 text-lg font-mono cursor-pointer"
-        on:click={() => {
-            footnote.visible = false;
-        }}
-        on:keydown={() => {
-            footnote.visible = false;
-        }}
-    >
-        x
-    </div>
 </div>
