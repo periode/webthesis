@@ -647,6 +647,7 @@
   {
     "DOI": "10.2307/3333782",
     "ISSN": "0021-8510",
+    "URL": "https://www.jstor.org/stable/3333782",
     "author": [
       {
         "family": "Blocker",
@@ -2387,6 +2388,31 @@
     "volume": "13"
   },
   {
+    "DOI": "10.5007/1808-1711.2011v15n3p399",
+    "author": [
+      {
+        "family": "Elgin",
+        "given": "Catherine Z."
+      }
+    ],
+    "container-title": "Principia: An International Journal of Epistemology",
+    "id": "elgin_making_2011",
+    "issue": "3",
+    "issued": {
+      "date-parts": [
+        [
+          2011
+        ]
+      ]
+    },
+    "page": "399-413",
+    "publisher": "Universidade Federal de Santa Catarina",
+    "title": "Making Manifest: The Role of Exemplification in the Sciences and the Arts",
+    "title-short": "Making Manifest",
+    "type": "article-journal",
+    "volume": "15"
+  },
+  {
     "DOI": "10.1007/978-1-349-01342-5_5",
     "ISBN": "978-1-349-01342-5",
     "abstract": "In this paper I shall not be concerned with the imagination as insight, but only with certain aspects of “magical” imagination, that division of the concept which centres upon the notion of an image. In the Philosophical Investigations (ii xi) Wittgenstein makes the extremely interesting remark that when a printed triangle is seen, for instance, as a mountain, it is as if an image came into contact, and for a time remained in contact, with the visual impression (i.e. with the object as seen by me). He goes on to say that in a picture a triangular figure may have some such aspect permanently  in the pictorial context we would read the figure at once as a mountain  but that we can make a distinction between “regarding” and “seeing” the figure as the thing meant. I take him to be contrasting those common experiences in which we see a figure in a picture as depicting a person, or as a “picture-person”, with those rarer experiences, referred to by art-critics when they talk of “presence”, in which it seems as if the person depicted in the picture is there before us “in the flesh”, and I assume that, like Sartre, Wittgenstein would suppose that imagination plays a part in experiences of this latter kind. In this paper I shall be concerned not with this sense of the presence of the object depicted, but chiefly with types of imaginal experience in which the image which seems to come into contact with what is perceived is an image of something which is not depicted or described in the work, but which nevertheless achieves a certain strength of presence.",
@@ -2770,6 +2796,7 @@
   },
   {
     "ISBN": "978-1-937561-24-6",
+    "URL": "https://www.jstor.org/stable/10.5749/j.ctt16d698p",
     "abstract": "In <i>On Doubt</i> , Vilém Flusser refines Martin Heidegger’s famous declaration that \"language is the dwelling of Being.\" For Flusser, \"the word is the dwelling of being,\" because in fact, in the beginning, there was the word. <i>On Doubt</i> is a treatise on the human intellect, its relation to language, and the reality-forming discourses that subsequently emerge. For Flusser, the faith that the modern age places in Cartesian doubt plays a role similar to the one that faith in God played in previous eras-a faith that needs to be challenged. Descartes doubts the world through his proposition <i>cogito ergo sum</i> , but leaves doubt itself untouched as indubitable and imperious. His <i>cogito ergo sum</i> may have proved to the Western intellect that thoughts exist, but it did not prove the existence of that which thinks: one can eliminate thinking and yet continue being. Therefore, should we not doubt doubt itself? Should we not try to go beyond this last step of Cartesian doubt and look for a new faith? The twentieth century has seen many attempts to defeat Cartesian doubt, however, this doubt of doubt has instead generated a complete loss of faith, which the West experiences as existential nihilism. Hence, the emergent emptying of values that results from such extreme doubt. Everything loses its meaning. Can this climate be overcome? Will the West survive the modern age?",
     "author": [
       {
@@ -3753,6 +3780,29 @@
     "volume": "3"
   },
   {
+    "annote": "Open Library ID: OL21175944M",
+    "author": [
+      {
+        "family": "Goodman",
+        "given": "Nelson"
+      }
+    ],
+    "id": "goodman_structure_1966",
+    "issued": {
+      "date-parts": [
+        [
+          1966
+        ]
+      ]
+    },
+    "keyword": "Phenomenology.,Science – Philosophy.,Structuralism.,System theory.",
+    "language": "en-US",
+    "publisher": "Bobbs-Merrill",
+    "publisher-place": "Indianapolis, IN",
+    "title": "The structure of appearance",
+    "type": "book"
+  },
+  {
     "abstract": "\"In a way reminiscent of Einstein, Goodman leads us to the very edge of relativism, only then to step back and to suggest certain criteria of fairness and rightness. More so than any other commentator, he has provided a workable notion of the kinds of skills and capacities that are central for anyone who works in the arts.\"  Howard Gardner, Harvard University",
     "author": [
       {
@@ -3872,6 +3922,7 @@
   {
     "DOI": "10.2307/3105044",
     "ISSN": "0040-165X",
+    "URL": "https://www.jstor.org/stable/3105044",
     "author": [
       {
         "family": "Gordon",
@@ -3896,6 +3947,7 @@
   {
     "DOI": "10.2307/3105044",
     "ISSN": "0040-165X",
+    "URL": "https://www.jstor.org/stable/3105044",
     "author": [
       {
         "family": "Gordon",
@@ -5489,6 +5541,7 @@
   },
   {
     "ISSN": "0031-8191",
+    "URL": "https://www.jstor.org/stable/3751740",
     "author": [
       {
         "family": "Kieran",
@@ -6147,6 +6200,7 @@
   {
     "DOI": "10.2307/431351",
     "ISSN": "00218529",
+    "URL": "https://www.jstor.org/stable/10.2307/431351",
     "author": [
       {
         "family": "Leddy",
@@ -6168,6 +6222,44 @@
     "title-short": "Everyday Surface Aesthetic Qualities",
     "type": "article-journal",
     "volume": "53"
+  },
+  {
+    "DOI": "10.1348/0007126042369811",
+    "ISSN": "2044-8295",
+    "abstract": "Although aesthetic experiences are frequent in modern life, there is as of yet no scientifically comprehensive theory that explains what psychologically constitutes such experiences. These experiences are particularly interesting because of their hedonic properties and the possibility to provide self-rewarding cognitive operations. We shall explain why modern art’s large number of individualized styles, innovativeness and conceptuality offer positive aesthetic experiences. Moreover, the challenge of art is mainly driven by a need for understanding. Cognitive challenges of both abstract art and other conceptual, complex and multidimensional stimuli require an extension of previous approaches to empirical aesthetics. We present an information-processing stage model of aesthetic processing. According to the model, aesthetic experiences involve five stages: perception, explicit classification, implicit classification, cognitive mastering and evaluation. The model differentiates between aesthetic emotion and aesthetic judgments as two types of output.",
+    "author": [
+      {
+        "family": "Leder",
+        "given": "Helmut"
+      },
+      {
+        "family": "Belke",
+        "given": "Benno"
+      },
+      {
+        "family": "Oeberst",
+        "given": "Andries"
+      },
+      {
+        "family": "Augustin",
+        "given": "Dorothee"
+      }
+    ],
+    "container-title": "British Journal of Psychology",
+    "id": "leder_model_2004",
+    "issue": "4",
+    "issued": {
+      "date-parts": [
+        [
+          2004
+        ]
+      ]
+    },
+    "language": "en-US",
+    "page": "489-508",
+    "title": "A model of aesthetic appreciation and aesthetic judgments",
+    "type": "article-journal",
+    "volume": "95"
   },
   {
     "abstract": "Threads are a seemingly straightforward adaptation of the dominant sequential model of computation to concurrent systems. Languages require little or no syntactic changes to support threads, and operating systems and architectures have evolved to efficiently support them. Many technologists are pushing for increased use of multithreading in software in order to take advantage of the predicted increases in parallelism in computer architectures. In this paper, I argue that this is not a good idea. Although threads seem to be a small step from sequential computation, in fact, they represent a huge step. They discard the most essential and appealing properties of sequential computation: understandability, predictability, and determinism. Threads, as a model of computation, are wildly nondeterministic, and the job of the programmer becomes one of pruning that nondeterminism. Although many research techniques improve the model by offering more effective pruning, I argue that this is approaching the problem backwards. Rather than pruning nondeterminism, we should build from essentially deterministic, composable components. Nondeterminism should be explicitly and judiciously introduced where needed, rather than removed where not needed. The consequences of this principle are profound. I argue for the development of concurrent coordination languages based on sound, composable formalisms. I believe that such languages will yield much more reliable, and more concurrent programs.",
@@ -6317,6 +6409,7 @@
   },
   {
     "ISSN": "0015-900X",
+    "URL": "https://www.jstor.org/stable/25000510",
     "author": [
       {
         "family": "Levin",
@@ -6616,7 +6709,7 @@
     "author": [
       {
         "family": "Manovich",
-        "given": "Lev."
+        "given": "Lev"
       }
     ],
     "id": "manovich_language_2001",
@@ -7005,6 +7098,7 @@
   },
   {
     "ISSN": "0034-4125",
+    "URL": "https://www.jstor.org/stable/20019302",
     "author": [
       {
         "family": "McGaughey",
@@ -7028,6 +7122,7 @@
   },
   {
     "ISSN": "0040-165X",
+    "URL": "https://www.jstor.org/stable/25147307",
     "author": [
       {
         "family": "McGee",
@@ -8617,6 +8712,38 @@
     "type": "paper-conference"
   },
   {
+    "abstract": "A paradigmatic aesthetic experience is a perceptual experience focusedon the beauty of an object like a work of art or an aspect of nature.Some philosophers take it that this is the only kind of aestheticexperience, though many more take it that there are other varieties aswell. You might, for instance, have an aesthetic experience bywitnessing not a beautiful but a sublime storm. You mighthave an aesthetic experience not by having a perceptual but rather byhaving an (imagined) emotional experience of the deep suffering ofSethe expressed in Toni Morrison’s great novel Beloved.Perhaps you might even have an aesthetic experience by appreciatingthe way in which an elegant theorem reorganizes your thought about amathematical structure., Philosophical work on art and beauty in the Western tradition extendsback at least as far as the ancient Greeks, but the concept ofaesthetic experience as such emerged in this tradition only in the18th century. Not all who work in this area take any formof experience to be the most fundamental concept for aesthetic theory;others take evaluative aesthetic judgments, or the aesthetic value ofobjects themselves, to be more basic in explaining the relevantphenomena. This entry discusses all those views in the Westerntradition with any theory of aesthetic experience at allnotonly those views that take aesthetic experience to be fundamental., Philosophers use the idea of a distinctively aestheticexperience for several different purposes. Some use it to defend deep,effortful engagement with the arts or art criticism (Shelley 1832[2003]). Some use it to give a substantive definition of art (Tolstoy1897 [2007]), or to elevate “real” art over other culturalmedia (Collingwood 1938 [1958]). Some use it to argue for the personalor social importance of an education in sensibility (Schiller 1795[1989]). Others describe aesthetic experience as a special form ofcognitive contact with the world, perhaps even with its fundamentalmetaphysics (Schopenhauer 1818 [1958]). Only a few now question theutility of the concept of aesthetic experience (Shusterman 1997, 2008,Nehamas 1998)., Given this diversity of purposes, it is difficult to say much aboutaesthetic experience that is not controversial. But a few questionscan be posed for all theories of aesthetic experience. What isdistinctive about aesthetic experience? What is valuable about havingan experience of this kind? How if at all, does it involve evaluatingits own object? Who can have these experiences, and under whatconditions? Does it make sense to say that we should havesuch experiences?, These questions will be answered on behalf of various differentapproaches to aesthetic experience in the course of this overview. Theoverview organizes such approaches along two dimensions: in terms ofthe properties of an object on which such experience focuses; and interms of various internal aspects of the experience itself.",
+    "author": [
+      {
+        "family": "Peacocke",
+        "given": "Antonia"
+      }
+    ],
+    "container-title": "The Stanford Encyclopedia of Philosophy",
+    "edition": "Spring 2023",
+    "editor": [
+      {
+        "family": "Zalta",
+        "given": "Edward N."
+      },
+      {
+        "family": "Nodelman",
+        "given": "Uri"
+      }
+    ],
+    "id": "peacocke_aesthetic_2023",
+    "issued": {
+      "date-parts": [
+        [
+          2023
+        ]
+      ]
+    },
+    "publisher": "Metaphysics Research Lab, Stanford University",
+    "title": "Aesthetic Experience",
+    "type": "chapter"
+  },
+  {
     "DOI": "10.1145/3387904.3389279",
     "ISBN": "978-1-4503-7958-8",
     "abstract": "Background: The way how programmers comprehend source code depends on several factors, including the source code itself and the programmer. Recent studies showed that novice programmers tend to read source code more like natural language text, whereas experts tend to follow the program execution flow. But, it is unknown how the linearity of source code and the comprehension strategy influence programmers’ linearity of reading order. Objective: We replicate two previous studies with the aim of additionally providing empirical evidence on the influencing effects of linearity of source code and programmers’ comprehension strategy on linearity of reading order. Methods: To understand the effects of linearity of source code on reading order, we conducted a non-exact replication of studies by Busjahn et al. and Peachock et al., which compared the reading order of novice and expert programmers. Like the original studies, we used an eye-tracker to record the eye movements of participants (12 novice and 19 intermediate programmers). Results: In line with Busjahn et al. (but different from Peachock et al.), we found that experience modulates the reading behavior of participants. However, the linearity of source code has an even stronger effect on reading order than experience, whereas the comprehension strategy has a minor effect. Implications: Our results demonstrate that studies on the reading behavior of programmers must carefully select source code snippets to control the influence of confounding factors. Furthermore, we identify a need for further studies on how programmers should structure source code to align it with their natural reading behavior to ease program comprehension.",
@@ -8867,6 +8994,7 @@
   {
     "DOI": "10.2307/2856447",
     "ISSN": "0038-7134",
+    "URL": "https://www.jstor.org/stable/2856447",
     "author": [
       {
         "family": "Pevsner",
@@ -9369,7 +9497,6 @@
     "DOI": "10.1002/smr.1737",
     "ISSN": "2047-7481",
     "abstract": "Over the past 15 years, researchers presented numerous techniques and tools for mining code smells. It is imperative to classify, compare, and evaluate existing techniques and tools used for the detection of code smells because of their varying features and outcomes. This paper presents an up-to-date review on the state-of-the-art techniques and tools used for mining code smells from the source code of different software applications. We classify selected code smell detection techniques and tools based on their detection methods and analyze the results of the selected techniques. We present our observations and recommendations after our critical analysis of existing code smell techniques and tools. Our recommendations may be used by existing and new tool developers working in the field of code smell detection. The scope of this review is limited to research publications in the area of code smells that focus on detection of code smells as compared with previous reviews that cover all aspects of code smells. Copyright  2015 John Wiley & Sons, Ltd.",
-    "annote": "_eprint: https://onlinelibrary.wiley.com/doi/pdf/10.1002/smr.1737",
     "author": [
       {
         "family": "Rasool",
@@ -9472,6 +9599,43 @@
     "publisher": "MIT Press",
     "title": "The New Hacker’s Dictionary",
     "type": "book"
+  },
+  {
+    "DOI": "10.1207/s15327957pspr0804_3",
+    "ISSN": "1088-8683",
+    "abstract": "We propose that aesthetic pleasure is a funnction of the perceiver’s processing dynamics: The more fluently perceivers can process an object, the more positive their aesthetic response. We review variables known to influence aesthetic judgments, such as figural goodness, figure-ground contrast, stimulus repetition, symmetry, and prototypicality, and trace their effects to changes in processing fluency. Other variables that influence processing fluency, like visual or semantic priming, similarly increase judgments of aesthetic pleasure. Our proposal provides an integrative framework for the study of aesthetic pleasure and sheds light on the interplay between early preferences versus cultural influences on taste, preferences for both prototypical and abstracted forms, and the relation between beauty and truth. In contrast to theories that trace aesthetic pleasure to objective stimulus features per se, we propose that beauty is grounded in the processing experiences of the perceiver, which are in part a function of stimulus properties.",
+    "author": [
+      {
+        "family": "Reber",
+        "given": "Rolf"
+      },
+      {
+        "family": "Schwarz",
+        "given": "Norbert"
+      },
+      {
+        "family": "Winkielman",
+        "given": "Piotr"
+      }
+    ],
+    "container-title": "Personality and Social Psychology Review",
+    "id": "reber_processing_2004",
+    "issue": "4",
+    "issued": {
+      "date-parts": [
+        [
+          2004,
+          11
+        ]
+      ]
+    },
+    "language": "en-US",
+    "page": "364-382",
+    "publisher": "SAGE Publications Inc",
+    "title": "Processing Fluency and Aesthetic Pleasure: Is Beauty in the Perceiver’s Processing Experience?",
+    "title-short": "Processing Fluency and Aesthetic Pleasure",
+    "type": "article-journal",
+    "volume": "8"
   },
   {
     "abstract": "An integrated development environment (IDE) is software for building applications that combines common developer tools into a single GUI.",
@@ -9801,6 +9965,7 @@
   },
   {
     "ISSN": "0039-7857",
+    "URL": "https://www.jstor.org/stable/20117626",
     "abstract": "It has been observed that whereas painters and musicians are likely to be embarrassed by references to the beauty in their work, mathematicians instead like to engage in discussions of the beauty of mathematics. Professional artists are more likely to stress the technical rather than the aesthetic aspects of their work. Mathematicians, instead, are fond of passing judgment on the beauty of their favored pieces of mathematics. Even a cursory observation shows that the characteristics of mathematical beauty are at variance with those of artistic beauty. For example, courses in \"art appreciation\" are fairly common; it is however unthinkable to find any \"mathematical beauty appreciation\" courses taught anywhere. The purpose of the present paper is to try to uncover the sense of the term \"beauty\" as it is currently used by mathematicians.",
     "author": [
       {
@@ -9847,6 +10012,7 @@
   },
   {
     "ISSN": "0048-8143",
+    "URL": "https://www.jstor.org/stable/23932366",
     "author": [
       {
         "family": "Russell",
@@ -10079,6 +10245,7 @@
   },
   {
     "ISSN": "0035-2969",
+    "URL": "https://www.jstor.org/stable/24380753",
     "author": [
       {
         "family": "Schultz",
@@ -11334,6 +11501,7 @@
   },
   {
     "ISSN": "1939-0394",
+    "URL": "https://www.jstor.org/stable/4300956",
     "author": [
       {
         "family": "Thompson",
@@ -11947,6 +12115,7 @@
   },
   {
     "ISSN": "0003-0996",
+    "URL": "https://www.jstor.org/stable/27826254",
     "author": [
       {
         "family": "Weaver",
@@ -12469,6 +12638,7 @@
   },
   {
     "ISSN": "0162-2439",
+    "URL": "https://www.jstor.org/stable/1557981",
     "abstract": "The author analyzes the types of metaphors that are used to describe the Internet in issues of Wired magazine from before and after the dot-com collapse to understand the perceptions and expectations of some of the actors involved in the shaping of the Internet. In addition, the metaphors deployed in economics and geophysiology are used to demonstrate how metaphors can influence public debate, policy, and theory. The author argues that metaphors do not simply have a descriptive function but that they also carry normative connotations. Language, alongside social practices and material objects, is an important tool in attempts to construct the future. Six overlapping metaphorical themes are identified: revolution, evolution, salvation, progress, universalism, and the \"American dream.\" A critical analysis of these metaphors, informed by a critique of the metaphors used in economics and geophysiology, leads the author to challenge the universalist claims made by some Internet enthusiasts for the inclusive potential of the Internet.",
     "author": [
       {

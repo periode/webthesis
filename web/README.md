@@ -6,14 +6,14 @@ front-end for the thesis.
 
 ## doing
 
+
+
+## todo
+- [ ] bug
+  - [ ] jumping to a listing goes to the parent page if there is one
 - [ ] performance
   - [ ] load data on the server
   - [ ] switch from iframes to components?
-- [ ] mobile
-  - [ ] footnotes click is janky
-
-## todo
-
 - [ ] layout
   - [ ] add footer (just the current section, expands into full ToC)
 - [ ] performance
