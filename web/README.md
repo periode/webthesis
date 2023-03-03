@@ -11,7 +11,6 @@ front-end for the thesis.
 ## todo
 - [ ] bug
   - [ ] jumping to a listing goes to the parent page. how to solve the issue of having the reference on the proper page? maybe the easiest way is indeed to have it as an inline <Code/>? e.g. if there is a listing on the page with the same label, jump to it. otherwise, show the inline.
-  - [ ] 0 padding on date day and min
 - [ ] performance
   - [ ] load data on the server
   - [ ] switch from iframes to components?
