@@ -39,6 +39,7 @@
     />
     <div class={`${isExpanded ? "inline" : "hidden"} flex`}>
         <DarkMode />
+        <!-- home -->
         <div>
             <a href="/">
                 <img
@@ -53,6 +54,25 @@
                     height="24"
                     class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
                     src={`/images/home.svg`}
+                    alt={`icon to get back to the index page`}
+                />
+            </a>
+        </div>
+        <!-- download -->
+        <div>
+            <a href="/thesis.pdf" download>
+                <img
+                    width="24"
+                    height="24"
+                    class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
+                    src={`/images/file-download-dark.svg`}
+                    alt={`icon to get back to the index page`}
+                />
+                <img
+                    width="24"
+                    height="24"
+                    class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
+                    src={`/images/file-download.svg`}
                     alt={`icon to get back to the index page`}
                 />
             </a>
