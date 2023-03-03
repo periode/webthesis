@@ -20,7 +20,6 @@ can i try and integrate multiple panels?
 - [ ] layout
   - [ ] add footer (just the current section, expands into full ToC)
   - [ ] Have each chapter and section as components rather than pages.
-  - [ ] Add the name of sections/chapters on arrows at the bottom
   - [ ] have some sort of perception of how far we are in the book (percent? graphic? pages?)
 
 ## wishlist:

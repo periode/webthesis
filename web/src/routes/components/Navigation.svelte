@@ -11,33 +11,39 @@
 </script>
 
 <div class="w-full lg:w-6/12 md:w-8/12 m-auto my-12 flex justify-between">
-    <div>
+    <div class="w-1/3 flex justify-start">
         {#if prev}
             <a
                 data-sveltekit-reload
                 href={section === ""
                     ? `/${prev_path}`
                     : `/${chapter.split(":")[1]}/${prev_path}`}
+                class="flex items-center"
             >
-                <img
-                    width="24"
-                    height="24"
-                    class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
-                    src={`/images/arrow-left.svg`}
-                    alt={`icon to reference a footnote`}
-                />
-                <img
-                    width="24"
-                    height="24"
-                    class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-                    src={`/images/arrow-left-dark.svg`}
-                    alt={`icon to reference a footnote`}
-                />
+                <div>
+                    <img
+                        width="24"
+                        height="24"
+                        class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
+                        src={`/images/arrow-left.svg`}
+                        alt={`icon to reference a footnote`}
+                    />
+                    <img
+                        width="24"
+                        height="24"
+                        class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
+                        src={`/images/arrow-left-dark.svg`}
+                        alt={`icon to reference a footnote`}
+                    />
+                </div>
+                <div class="text-sm italic ml-2 h-6">
+                    {prev.value}
+                </div>
             </a>
         {/if}
     </div>
 
-    <div>
+    <div class="w-1/3 flex justify-center">
         <a
             data-sveltekit-reload
             href={section === "" ? "/" : `/${chapter.split(":")[1]}`}
@@ -59,28 +65,34 @@
         </a>
     </div>
 
-    <div>
+    <div class="w-1/3 flex justify-end">
         {#if next}
             <a
                 data-sveltekit-reload
                 href={section === ""
                     ? `/${next_path}`
                     : `/${chapter.split(":")[1]}/${next_path}`}
+                    class="flex items-center"
             >
-                <img
-                    width="24"
-                    height="24"
-                    class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
-                    src={`/images/arrow-right.svg`}
-                    alt={`icon to reference a footnote`}
-                />
-                <img
-                    width="24"
-                    height="24"
-                    class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-                    src={`/images/arrow-right-dark.svg`}
-                    alt={`icon to reference a footnote`}
-                />
+                <div class="text-sm italic ml-2 h-6">
+                    {next.value}
+                </div>
+                <div>
+                    <img
+                        width="24"
+                        height="24"
+                        class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
+                        src={`/images/arrow-right.svg`}
+                        alt={`icon to reference a footnote`}
+                    />
+                    <img
+                        width="24"
+                        height="24"
+                        class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
+                        src={`/images/arrow-right-dark.svg`}
+                        alt={`icon to reference a footnote`}
+                    />
+                </div>
             </a>
         {/if}
     </div>
