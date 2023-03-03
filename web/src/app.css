@@ -5,14 +5,29 @@
 @layer base {
 	@font-face {
 		font-family: 'BespokeSerif';
-		src: url('/fonts/BespokeSerif-Regular.otf');
+		src: url('/fonts/BespokeSerif-Regular.woff');
 		font-weight: normal;
 		font-display: swap;
 	}
 
 	@font-face {
 		font-family: 'BespokeSerif';
-		src: url('/fonts/BespokeSerif-Italic.otf');
+		src: url('/fonts/BespokeSerif-Light.woff');
+		font-weight: lighter;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'BespokeSerif';
+		src: url('/fonts/BespokeSerif-LightItalic.woff');
+		font-weight: lighter;
+		font-style: italic;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: 'BespokeSerif';
+		src: url('/fonts/BespokeSerif-Italic.woff');
 		font-weight: normal;
 		font-style: italic;
 		font-display: swap;
@@ -20,14 +35,22 @@
 
 	@font-face {
 		font-family: 'BespokeSerif';
-		src: url('/fonts/BespokeSerif-Bold.otf');
+		src: url('/fonts/BespokeSerif-Bold.woff');
 		font-weight: bold;
 		font-display: swap;
 	}
 
 	@font-face {
+		font-family: 'BespokeSerif';
+		src: url('/fonts/BespokeSerif-BoldItalic.woff');
+		font-weight: bold;
+		font-style: italic;
+		font-display: swap;
+	}
+
+	@font-face {
 		font-family: 'IBMPlex';
-		src: url('/fonts/IbmPlexMono.otf');
+		src: url('/fonts/IbmPlexMono.woff');
 		font-weight: normal;
 		font-display: swap;
 	}
