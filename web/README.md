@@ -11,18 +11,26 @@ front-end for the thesis.
 ## todo
 - [ ] bug
   - [ ] jumping to a listing goes to the parent page. how to solve the issue of having the reference on the proper page? maybe the easiest way is indeed to have it as an inline <Code/>? e.g. if there is a listing on the page with the same label, jump to it. otherwise, show the inline.
+  - [ ] 0 padding on date day and min
 - [ ] performance
   - [ ] load data on the server
   - [ ] switch from iframes to components?
   - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers
+  - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
+  - [ ] split text.json into includes
 - [ ] layout
   - [ ] add footer (just the current section, expands into full ToC)
-- [ ] performance
-  - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
+  - [ ] Have each chapter and section as components rather than pages.
+  - [ ] Add the name of sections/chapters on arrows at the bottom
+  - [ ] have some sort of perception of how far we are in the book (percent? graphic? pages?)
 
 ## wishlist:
   - [ ] add full text search
+    - [ ] meaning across pages!
   - [ ] add index of nouns and iframes to show where they are? [index](https://en.wikipedia.org/wiki/Index_(publishing))
+  - [ ] bookmarking using localstorage?
+  - [ ] margin scribbles using localstorage?
+
 
 
 ## references
