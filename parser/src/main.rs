@@ -90,6 +90,7 @@ const SEPARATOR: &str = " | ";
 const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
 const DEFAULT_OUTPUT_DIR: &str = "output";
 const DEFAULT_VERBOSE: usize = 0;
+const DEFAULT_SPLIT: bool = true;
 #[derive(ArgParser, Debug)]
 struct Args {
     #[arg(short, default_value = DEFAULT_INPUT)]
@@ -100,6 +101,9 @@ struct Args {
 
     #[arg(short, default_value_t = DEFAULT_VERBOSE)]
     verbosity: usize,
+
+    #[arg(short, default_value_t = DEFAULT_SPLIT)]
+    split: bool,
 }
 
 fn main() {
@@ -125,19 +129,61 @@ fn main() {
         pretty_print(&ast, 0);
     }
 
-    save_ast(ast, &args.output_dir);
+    save_ast(ast, &args.output_dir, args.split);
     save_toc(toc, &args.output_dir);
     println!("lasting: {:?}", duration)
 }
 
-fn save_ast(nodes: Vec<Node>, dest: &str) {
-    let json_string = serde_json::to_string(&nodes).unwrap();
-    match File::create(format!("{}/text.json", &dest)) {
-        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-            Ok(_) => println!("writing: {}/text.json", dest),
-            Err(error) => println!("...failed to write {}:{}", dest, error),
-        },
-        Err(error) => println!("...failed to open {}:{}", dest, error),
+fn save_ast(nodes: Vec<Node>, dest: &str, split: bool) {
+    if split {
+        for first in nodes.into_iter() {
+            for second in first.children.unwrap().into_iter() {
+                for third in second.children.unwrap().into_iter() {
+                    let mut front: Vec<Node> = Vec::<Node>::new();
+                    for fourth in third.children.unwrap().into_iter() {
+                        for fifth in fourth.children.unwrap().into_iter() {
+                            if fifth.tag.value() == Command::Include.value() {
+                                let json_string = serde_json::to_string(&fifth).unwrap();
+                                let fname = fifth.value.split(".").next().unwrap();
+                                match File::create(format!("{}/{}.json", &dest, fname)) {
+                                    Ok(mut output_file) => {
+                                        match write!(output_file, "{}", json_string) {
+                                            Ok(_) => println!("writing: {}/{}.json", dest, fname),
+                                            Err(error) => {
+                                                println!("...failed to write {}:{}", dest, error)
+                                            }
+                                        }
+                                    }
+                                    Err(error) => println!("...failed to open {}:{}", dest, error),
+                                }
+                            } else if fifth.tag.is_front() {
+                                front.push(fifth);
+                            }
+                        }
+                    }
+                    println!("front len {}", front.len());
+
+                    let json_string = serde_json::to_string(&front).unwrap();
+                    let fname = "front";
+                    match File::create(format!("{}/{}.json", &dest, fname)) {
+                        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+                            Ok(_) => println!("writing: {}/{}.json", dest, fname),
+                            Err(error) => println!("...failed to write {}:{}", dest, error),
+                        },
+                        Err(error) => println!("...failed to open {}:{}", dest, error),
+                    }
+                }
+            }
+        }
+    } else {
+        let json_string = serde_json::to_string(&nodes).unwrap();
+        match File::create(format!("{}/text.json", &dest)) {
+            Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+                Ok(_) => println!("writing: {}/text.json", dest),
+                Err(error) => println!("...failed to write {}:{}", dest, error),
+            },
+            Err(error) => println!("...failed to open {}:{}", dest, error),
+        }
     }
 }
 
@@ -283,7 +329,7 @@ fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
                 }
             }
         } else {
-            println!("[WARN] [no-label] no command found after header");
+            println!("[WARN] [no-label] no command found after header ({:?})", par_iter);
         }
     }
     String::from("")

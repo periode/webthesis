@@ -35,6 +35,13 @@ impl Tag for Environment {
             Environment::Root => "root",
         }
     }
+
+    fn is_front(&self) -> bool {
+        match *self {
+            Environment::Abstract => true,
+            _ => false
+        }
+    }
 }
 
 pub fn parse_name(_name: &str) -> Option<Environment> {

@@ -135,6 +135,16 @@ impl Tag for Command {
             Command::DotSymbol => "math_dot",
         }
     }
+
+    fn is_front(&self)  -> bool {
+        match *self {
+            Command::Title => true,
+            Command::Author => true,
+            Command::Affiliation => true,
+            Command::Date => true,
+            _ => false,
+        }
+    }
 }
 
 impl Command {

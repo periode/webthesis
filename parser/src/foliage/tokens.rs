@@ -21,4 +21,8 @@ impl Tag for Token {
             Token::Paragraph => "paragraph",
         }
     }
+
+    fn is_front(&self) -> bool {
+        false
+    }
 }

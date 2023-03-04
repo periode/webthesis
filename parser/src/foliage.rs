@@ -6,6 +6,7 @@ pub mod tokens;
 
 pub trait Tag {
     fn value(&self) -> &str;
+    fn is_front(&self) -> bool;
 }
 
 impl Serialize for dyn Tag {

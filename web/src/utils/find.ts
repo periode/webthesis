@@ -1,6 +1,13 @@
-import { NodeType, type INode, type IToCNode } from "./types";
+import type { INode, IToCNode } from "./types";
 import text_data from "./../routes/text.json";
 import toc_data from "./../routes/toc.json";
+import front_data from "./../routes/front.json";
+import introduction_data from "./../routes/introduction.json";
+import ideals_data from "./../routes/ideals.json";
+import understanding_data from "./../routes/understanding.json";
+import beauty_data from "./../routes/beauty.json";
+import programming_data from "./../routes/programming.json";
+import conclusion_data from "./../routes/conclusion.json";
 const data = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 
@@ -24,18 +31,35 @@ export const findNodeByTag = (tag: string, nodes?: Array<INode>): INode => {
     return result;
 }
 
-export const getFrontPage = (): Array<INode> => {
-    let result: Array<INode> = [];
-    const paragraphs = data[0].children ? data[0].children[0].children ? data[0].children[0].children[0].children as Array<INode> : [] : [];
-
-    for (let p of paragraphs) {
-        if (p.children && p.children[0].tag === NodeType.Include)
-            break
-        else if (p.children)
-            result.push(p.children[0])
+export const getBundle = (name: string): Array<INode> => {
+    let bundle;
+    switch (name) {
+        case "front":
+            bundle = front_data as Array<INode>;
+            break;
+        case "introduction":
+            bundle = [introduction_data as INode];
+            break;
+        case "ideals":
+            bundle = [ideals_data as INode];
+            break;
+        case "understanding":
+            bundle = [understanding_data as INode];
+            break;
+        case "beauty":
+            bundle = [beauty_data as INode];
+            break;
+        case "programming":
+            bundle = [programming_data as INode];
+            break;
+        case "conclusion":
+            bundle = [conclusion_data as INode];
+            break;
+        default:
+            return []
     }
 
-    return result;
+    return bundle;
 }
 
 export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> => {

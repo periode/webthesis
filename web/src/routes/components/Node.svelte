@@ -10,10 +10,6 @@
     import Quote from "./Quote.svelte";
     import Include from "./Include.svelte";
     import Label from "./Label.svelte";
-    import Title from "./Title.svelte";
-    import Author from "./Author.svelte";
-    import Affiliation from "./Affiliation.svelte";
-    import Date from "./Date.svelte";
     import Paragraph from "./Paragraph.svelte";
     import Literal from "./inline/Literal.svelte";
     import Emph from "./inline/Emph.svelte";
@@ -51,10 +47,6 @@
         { tag: NodeType.Reference, component: Reference },
         { tag: NodeType.URL, component: URL },
         { tag: NodeType.InlineListing, component: InlineListing },
-        { tag: NodeType.Title, component: Title },
-        { tag: NodeType.Author, component: Author },
-        { tag: NodeType.Affiliation, component: Affiliation },
-        { tag: NodeType.Date, component: Date },
         { tag: NodeType.Spacer, component: Spacer },
     ];
 

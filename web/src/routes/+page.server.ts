@@ -1,8 +1,8 @@
 import type { PageServerLoad } from './$types';
-import { findNodeByTag, getFrontPage } from "../utils/find";
+import { findNodeByTag, getBundle } from "../utils/find";
 
 export const load = (async () => {
-    const fp = getFrontPage();
+    const fp = getBundle("front");
     
     const t = findNodeByTag("title", fp)
     const title = t.children ? t.children[0].value: "MISSING TITLE"
