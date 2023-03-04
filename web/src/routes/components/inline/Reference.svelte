@@ -26,28 +26,13 @@
     }
 </script>
 
-<span class="font-bold">
-    &nbsp;<a
+<span>
+    &nbsp;<a class="font-mono hover:underline"
         href={`${location !== "" ? "/" + location : ""}#${encodeURIComponent(
             name
         )}`}
     >
         {literal}
-        {#if type == "code" || type == "graphic"}
-            <img
-                width="24"
-                height="24"
-                class="inline dark:hidden relative bottom-1 left-1"
-                src={`/images/${type}.svg`}
-                alt={`icon to reference the ${value} item`}
-            />
-            <img
-                width="24"
-                height="24"
-                class="hidden dark:inline relative bottom-1 left-1"
-                src={`/images/${type}-dark.svg`}
-                alt={`icon to reference the ${value} item`}
-            />
-        {/if}</a
-    >&nbsp;&nbsp;
+        </a
+    >&nbsp;
 </span>

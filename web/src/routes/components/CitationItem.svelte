@@ -34,5 +34,5 @@
             : "border-l-zinc-50 dark:border-l-zinc-900"
     }`}
 >
-    <i>{citation.title}</i> by {people}, {date}.
+    {citation.title} by {people}, {date}.
 </div>

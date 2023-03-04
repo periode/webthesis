@@ -645,6 +645,31 @@
     "type": "book"
   },
   {
+    "DOI": "10.1093/aristotelian/55.1.273",
+    "ISSN": "0066-7374",
+    "author": [
+      {
+        "family": "Black",
+        "given": "Max"
+      }
+    ],
+    "container-title": "Proceedings of the Aristotelian Society",
+    "id": "black_metaphor_1955",
+    "issue": "1",
+    "issued": {
+      "date-parts": [
+        [
+          1955,
+          6
+        ]
+      ]
+    },
+    "page": "273-294",
+    "title": "Metaphor",
+    "type": "article-journal",
+    "volume": "55"
+  },
+  {
     "DOI": "10.2307/3333782",
     "ISSN": "0021-8510",
     "URL": "https://www.jstor.org/stable/3333782",
@@ -11619,6 +11644,28 @@
     "page": "509-513",
     "title": "Understanding Stack Overflow Code Fragments",
     "type": "paper-conference"
+  },
+  {
+    "ISBN": "978-1-930824-13-3",
+    "abstract": "\"This book deals with the theory and practice in the design of data graphics and makes the point that the most effective way to describe, explore, and summarize a set of numbers is to look at pictures of those numbers, through the use of statistical graphics, charts, and tables. It includes 250 illustrations of the best (and a few of the worst) statistical graphics, with detailed analysis of how to display data for precise, effective, quick analysis. Also offered is information on the design of the high-resolution displays, small multiples, editing and improving graphics, and the data-ink ratio. Time-series, relational graphics, data maps, multivariate designs, as well as detection of graphical deception: design variation vs. data variation, and sources of deception are discussed. Information on aesthetics and data graphical displays is included. The 2nd edition provides high-resolution color reproductions of the many graphics of William Playfair (1750-1800), adds color to other images where appropriate, and includes all the changes and corrections during the 17 printings of the 1st edition\"–Publisher’s description",
+    "author": [
+      {
+        "family": "Tufte",
+        "given": "Edward R."
+      }
+    ],
+    "id": "tufte_visual_2001",
+    "issued": {
+      "date-parts": [
+        [
+          2001
+        ]
+      ]
+    },
+    "language": "en-US",
+    "publisher": "Graphics Press",
+    "title": "The Visual Display of Quantitative Information",
+    "type": "book"
   },
   {
     "DOI": "10.2307/2268810",

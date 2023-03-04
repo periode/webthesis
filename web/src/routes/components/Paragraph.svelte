@@ -85,7 +85,7 @@
     };
 </script>
 
-<div class="relative m-1 md:m-2 leading-9">
+<div class="relative m-1 md:m-2 leading-8">
     {#if isLiteralParagraph(nodes)}
         <div class="md:flex justify-between">
             <div

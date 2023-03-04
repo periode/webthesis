@@ -30,11 +30,11 @@
 <div class="md:w-5/12 m-auto my-8 text-sm" id={`${encodeURIComponent(label)}`}>
     <div class="relative text-right text-sm text-zinc-400">{label}</div>
     <div
-        class="border-zinc-600 border p-2 font-mono  break-words overflow-y-hidden"
+        class="border-zinc-600 border p-2 font-mono break-words overflow-y-hidden"
     >
         <Code {lang} {path} />
     </div>
-    <div class="italic text-center text-base px-4">
+    <div class="max-w-max my-4 m-auto italic text-sm text-left text-zinc-500 dark:text-zinc-300">
         {caption}
     </div>
 </div>
