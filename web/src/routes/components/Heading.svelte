@@ -1,64 +1,44 @@
 <script lang="ts">
+    import { findLabel } from "../../utils/find";
     import type { IToCNode } from "../../utils/types";
-
     export let heading: IToCNode;
+    export let max_depth: number;
+    export let depth: number;
 
-    const path = heading.value.split(".")[0];
-    const chapter = heading.children ? (heading.children[0] as IToCNode) : null;
+    const type = heading.label.split(":")[0];
+    const value = heading.label.split(":")[1];
+    console.log(type, value)
+    const styles: { [index: string]: string } = {
+        chap: "my-12 text-2xl font-bold",
+        sec: "my-4 text-xl font-normal ml-4",
+        subsec: "my-1 text-base italic ml-4",
+        subsubsec: "text-sm ml-4",
+    };
+    const style = styles[type];
 
-    const sections = chapter ? (chapter.children as Array<IToCNode>) : [];
-    let showPreview = false;
+    let path: string = "";
+    const p = findLabel(heading.label)
+    if(p)
+        path = type == "chap" ? `/${p.value}`: `/${p.value}/${value}` 
+    
 </script>
 
-<li class="text-2xl my-12 flex justify-between">
+
+<li class={`${style} flex justify-between`}>
     <div>
-        <a
-            on:mouseenter={() => {
-                showPreview = true;
-            }}
-            href={`./${path}`}
-            class="font-bold underline">{chapter?.value}</a
-        >
-        <ol class="mt-4">
-            {#each sections as sec}
-                <li class="text-xl list-decimal ml-12 mb-2">
-                    <a href={`./${path}/${sec.label.split(":")[1]}`} class="underline"
-                        >{sec.value}</a
-                    >
-                </li>
-                <ul class="mb-4">
-                    {#if sec.children}
-                        {#each sec.children as subsec}
-                            <li class="text-base italic ml-16 md:ml-24">
-                                {subsec.value}
-                            </li>
-                        {/each}
-                    {/if}
-                </ul>
-            {/each}
-        </ol>
+        {#if type == "chap" || type == "sec"}
+            <a href={path} class="underline">{heading.value}</a>
+        {:else}
+            <div>{heading.value}</div>
+        {/if}
+
+        {#if heading.children  && depth < max_depth}
+            <ol class="mt-2 mb-4">
+                {#each heading.children as sec}
+                    <svelte:self heading={sec} depth={depth+1} {max_depth}/>
+                {/each}
+            </ol>
+        {/if}
     </div>
-    <!-- <div
-        class={`${
-            showPreview ? "" : "hidden"
-        } w-5/12 relative border border-zinc-100`}
-    >
-        <div
-            on:click={() => {
-                showPreview = false;
-            }}
-            on:keypress={() => {
-                showPreview = false;
-            }}
-            class="absolute font-mono cursor-pointer top-1 right-1 m-2 rounded-full bg-zinc-50"
-        >
-            <img width="24" height="24" src="/images/close-circle-fill.svg" alt="" srcset="" />
-        </div>
-        <iframe
-            class="w-full h-full overflow-y-scroll"
-            src={`./${path}`}
-            frameborder="0"
-            title={chapter?.value}
-        />
-    </div> -->
 </li>
+

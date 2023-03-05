@@ -29,6 +29,26 @@ export const findNodeByTag = (tag: string, nodes: Array<INode>): INode => {
     return result;
 }
 
+//-- returns the full toc if chap is empty, or the ToC of a specific chapter
+export const getToC = (chap?: string): Array<IToCNode> => {
+    const includes = toc[0].children as Array<IToCNode>;
+
+    if(chap === undefined || chap === null || chap === ""){
+        let chapters: IToCNode[] = [];
+        for(let inc of includes)
+            if(inc.children)
+                chapters.push(inc.children[0])
+        return chapters
+    }
+
+    
+    for(let inc of includes){
+        if(inc.children && inc.children[0].label === `chap:${chap}`)
+            return inc.children[0].children as Array<IToCNode>
+    }
+    return [];
+}
+
 export const getBundle = (name: string): Array<INode> => {
     let bundle;
     switch (name) {
@@ -255,7 +275,8 @@ export const findNextToC = (chapter: string, section: string): IToCNode | null =
     return null;
 }
 
-export const findSection = (include: string, value: string, nodes: Array<INode>): Array<INode> => {
+//-- findSection returns an interval of nodes from a starting section (value), until the next section or the end of the include (chapter)
+export const findSection = (include: string, section: string, nodes: Array<INode>): Array<INode> => {
     var result: INode[] = [];
 
     const root = findNodeByValue(`${include}.tex`, nodes)
@@ -286,7 +307,7 @@ export const findSection = (include: string, value: string, nodes: Array<INode>)
                             const label = par.children[0].children[0];
                             const label_value = label.value.split(":")[1]
 
-                            if (label_value === value) {
+                            if (label_value === section) {
                                 sectionFound = true;
                                 result.push(all_paragraphs[i - 1])
                                 result.push(all_paragraphs[i])
@@ -299,4 +320,29 @@ export const findSection = (include: string, value: string, nodes: Array<INode>)
     }
 
     return result;
+}
+
+//-- findChapterIncipit returns all the nodes of a given input (root) until reaching the first section
+export const findChapterIncipit = (root: Array<INode>): Array<INode> => {
+    let result: Array<INode> = [];
+    const r = root[0]
+    if (r.children && r.children[0].children) {
+        const all_paragraphs = r.children[0].children.map((el) => {
+            if (el.children) {
+                return el
+            }
+        }) as Array<INode>
+
+        for (let i = 0; i < all_paragraphs.length; i++) {
+            const par = all_paragraphs[i];
+
+            //-- we break if we find the beginning of a new section
+            if (par.children && par.children[0].tag === "section")
+                return result;
+
+            result.push(par);
+
+        }
+    }
+    return result
 }

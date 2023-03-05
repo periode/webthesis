@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import { findNodeByTag, getBundle } from "../utils/find";
+import { findNodeByTag, getBundle, getToC } from "../utils/find";
 
 export const load = (() => {
     const fp = getBundle("front");
@@ -17,6 +17,8 @@ export const load = (() => {
 
     const ab = findNodeByTag("abstract", fp)
     const abstract = ab.children ? ab.children[0].children ? ab.children[0].children[0].value: "MISSING ABSTRACT" : "MISSING ABSTRACT"
+
+    const toc = getToC()
     
   return {
     title: title,
@@ -24,5 +26,6 @@ export const load = (() => {
     affiliation: affiliation,
     date: date,
     abstract: abstract,
+    toc: toc,
   };
 }) satisfies PageLoad;

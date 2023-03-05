@@ -1,12 +1,14 @@
 import type { PageLoad } from './$types';
-import { getBundle } from "../../utils/find";
-import type { INode } from '../../utils/types';
+import { findChapterIncipit, getBundle, getToC } from "../../utils/find";
 
 export const load = (({params}) => {    
     const root = getBundle(params.chap);
-    const nodes = root ? root : [] as Array<INode>;
+    const nodes = findChapterIncipit(root)
+    const toc = getToC(params.chap)
     
   return {
-    nodes: nodes
+    nodes: nodes,
+    toc: toc
+
   };
 }) satisfies PageLoad;

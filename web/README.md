@@ -8,7 +8,7 @@ can i try and integrate multiple panels?
 
 ## doing
 
-- [ ] chapter page only displays the beginning
+- [x] chapter page only displays the beginning
 
 ## todo
 - [ ] performance

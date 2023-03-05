@@ -11,8 +11,6 @@
     let literal = name;
     let url = "";
 
-    console.log("location:", location, " value:", value, "type:", type);
-
     if (
         type == "chap" ||
         type == "sec" ||

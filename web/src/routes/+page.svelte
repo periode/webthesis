@@ -14,6 +14,7 @@
     const affiliation = data.affiliation;
     const date = data.date;
     const abstract = data.abstract;
+    const toc = data.toc;
 </script>
 
 <div
@@ -27,5 +28,5 @@
     </div>
 
     <Abstract {abstract} />
-    <TableOfContents />
+    <TableOfContents {toc}/>
 </div>

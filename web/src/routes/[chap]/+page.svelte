@@ -4,10 +4,12 @@
     import Node from "../components/Node.svelte";
     import NotFound from "../components/NotFound.svelte";
     import Navigation from "../components/Navigation.svelte";
+    import TableOfContents from "../components/TableOfContents.svelte";
 
     const chapter = $page.params.chap;
     export let data: PageData;
     const nodes = data.nodes;
+    const toc = data.toc;
 </script>
 
 <div
@@ -17,6 +19,7 @@
         {#each nodes as node}
             <Node {node} />
         {/each}
+        <TableOfContents {toc}/>
         <Navigation chapter={`chap:${chapter}`}/>
     {:else}
         <NotFound status="404" />
