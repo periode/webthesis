@@ -12,8 +12,7 @@ should there be the name of where the navigation takes you?
 
 ## todo
 - [ ] performance
-  - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers
-  - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
+  - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers, https://vite-pwa-org.netlify.app/frameworks/sveltekit.html
 - [ ] layout
   - [ ] footer (just the current section, expands into full ToC w/ interaction observer api)
   - [ ] Have each chapter and section as components rather than pages.
