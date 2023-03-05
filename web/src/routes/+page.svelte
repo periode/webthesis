@@ -28,5 +28,5 @@
     </div>
 
     <Abstract {abstract} />
-    <TableOfContents {toc}/>
+    <TableOfContents {toc} max_depth={2}/>
 </div>
