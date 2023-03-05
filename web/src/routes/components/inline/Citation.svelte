@@ -1,6 +1,5 @@
 <script lang="ts">
-    import bib from "../../bib.json";
-    import { clickOutside } from "../../../utils/actions";
+    import bib from "../../../data/bib.json";
     import type { ICitation, INode } from "../../../utils/types";
     import { createEventDispatcher, onMount } from "svelte";
     import isMobile from "../../../utils/helper";

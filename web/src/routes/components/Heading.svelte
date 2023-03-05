@@ -17,12 +17,12 @@
                 showPreview = true;
             }}
             href={`./${path}`}
-            class="font-bold hover:underline">{chapter?.value}</a
+            class="font-bold underline">{chapter?.value}</a
         >
         <ol class="mt-4">
             {#each sections as sec}
                 <li class="text-xl list-decimal ml-12 mb-2">
-                    <a href={`./${path}/${sec.label.split(":")[1]}`} class="hover:underline"
+                    <a href={`./${path}/${sec.label.split(":")[1]}`} class="underline"
                         >{sec.value}</a
                     >
                 </li>
