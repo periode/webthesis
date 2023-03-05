@@ -1,7 +1,7 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 import { findNodeByTag, getBundle } from "../utils/find";
 
-export const load = (async () => {
+export const load = (() => {
     const fp = getBundle("front");
     
     const t = findNodeByTag("title", fp)
@@ -25,4 +25,4 @@ export const load = (async () => {
     date: date,
     abstract: abstract,
   };
-}) satisfies PageServerLoad;
+}) satisfies PageLoad;

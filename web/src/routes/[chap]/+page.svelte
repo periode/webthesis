@@ -1,14 +1,13 @@
 <script lang="ts">
+    import type { PageData } from "./$types";
     import { page } from "$app/stores";
     import Node from "../components/Node.svelte";
-    import { findNodeByValue } from "../../utils/find";
-    import type { INode } from "../../utils/types";
     import NotFound from "../components/NotFound.svelte";
     import Navigation from "../components/Navigation.svelte";
 
     const chapter = $page.params.chap;
-    const root = findNodeByValue(`${chapter}.tex`);
-    const nodes = root ? (root.children as Array<INode>) : [];
+    export let data: PageData;
+    const nodes = data.nodes;
 </script>
 
 <div

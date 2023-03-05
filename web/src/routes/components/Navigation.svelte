@@ -10,7 +10,7 @@
     const next_path = next ? next.label.split(":")[1] : "MISSING";
 </script>
 
-<div class="w-full lg:w-6/12 md:w-8/12 m-auto my-12 flex justify-between">
+<div class="w-11/12 lg:w-6/12 md:w-8/12 m-auto my-6 md:my-12 flex justify-between">
     <div class="w-1/3 flex justify-start">
         {#if prev}
             <a
@@ -36,7 +36,7 @@
                         alt={`icon to reference a footnote`}
                     />
                 </div>
-                <div class="text-sm italic ml-2 h-6">
+                <div class="hidden md:visible text-sm italic ml-2 h-6">
                     {prev.value}
                 </div>
             </a>
@@ -74,7 +74,7 @@
                     : `/${chapter.split(":")[1]}/${next_path}`}
                     class="flex items-center"
             >
-                <div class="text-sm italic ml-2 h-6">
+                <div class="hidden md:visible text-sm italic ml-2 h-6">
                     {next.value}
                 </div>
                 <div>

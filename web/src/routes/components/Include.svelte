@@ -5,6 +5,6 @@
     export let node: INode;
 </script>
 
-<div class="border-b-2 pb-48 border-black">
+<div class="pb-12 md:pb-24 md:border-none">
     <Paragraph {node} />
 </div>

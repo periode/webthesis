@@ -1,18 +1,16 @@
 <script lang="ts">
+    import type { PageData } from "./$types";
     import { page } from "$app/stores";
     import Node from "../../components/Node.svelte";
-    import { findChapterInInclude, findSection } from "../../../utils/find";
     import NotFound from "../../components/NotFound.svelte";
     import Navigation from "../../components/Navigation.svelte";
 
-    const include = $page.params.chap;
-    const chap_node = findChapterInInclude(include);
-    const chap_value = chap_node.children
-        ? chap_node.children[0].value
-        : "MISSING CHAP";
+    export let data: PageData;
+    const chap = $page.params.chap;
+    const sec = $page.params.sec;
 
-    const section = $page.params.sec;
-    let nodes = findSection(include, section);
+    const chap_literal = data.chapter;
+    const nodes = data.nodes;
 </script>
 
 <div
@@ -22,12 +20,12 @@
         <div
             class="w-full lg:w-6/12 md:w-8/12 m-auto text-base mt-24 mb-8 italic"
         >
-            <a href={`/${include}`}>{chap_value}</a>
+            <a href={`/${chap}`}>{chap_literal}</a>
         </div>
         {#each nodes as node}
             <Node {node} />
         {/each}
-        <Navigation chapter={`chap:${include}`} section={`sec:${section}`}/>
+        <Navigation chapter={`chap:${chap}`} section={`sec:${sec}`}/>
     {:else}
         <NotFound status="404" />
     {/if}

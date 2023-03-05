@@ -161,7 +161,6 @@ fn save_ast(nodes: Vec<Node>, dest: &str, split: bool) {
                             }
                         }
                     }
-                    println!("front len {}", front.len());
 
                     let json_string = serde_json::to_string(&front).unwrap();
                     let fname = "front";
@@ -328,8 +327,6 @@ fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
                     println!("[WARN] [no-label] could not parse following command");
                 }
             }
-        } else {
-            println!("[WARN] [no-label] no command found after header ({:?})", par_iter);
         }
     }
     String::from("")
@@ -395,8 +392,6 @@ fn parse_command_toc(_cmd: Pair<Rule>) -> Option<ToCNode> {
 
                     fp = format!("{}/{}", root.parent().unwrap().display(), include.display());
                 }
-
-                println!("including in toc: {:?}", fp);
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
                 let children = parse_toc(src);
@@ -618,8 +613,6 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
 
                 let i = include.file_stem().unwrap().to_str().unwrap();
                 state.set_include(String::from(i));
-
-                println!("including: {:?}", fp);
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
                 let children = parse(src, state);

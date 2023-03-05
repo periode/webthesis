@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { INode } from "../../../utils/types";
 
-    export const node: INode = {tag: "dots", value:"...", children: null};
+    export let node: INode = {tag: "dots", value:`&#8230;`, children: null};
 </script>
 
-<span>&#8230;&nbsp;</span>
+<span>{`${node.value} `}</span>

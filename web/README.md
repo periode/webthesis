@@ -8,8 +8,6 @@ can i try and integrate multiple panels?
 
 ## doing
 
-- [ ] split text.json into includes and load data on the server
-
 ## todo
 - [ ] bug
   - [ ] jumping to a listing goes to the parent page. how to solve the issue of having the reference on the proper page? maybe the easiest way is indeed to have it as an inline <Code/>? e.g. if there is a listing on the page with the same label, jump to it. otherwise, show the inline.
@@ -24,6 +22,7 @@ can i try and integrate multiple panels?
 ## wishlist:
   - [ ] add full text search (meaning across pages!)
   - [ ] add index of nouns and list where they are (how??) [index](https://en.wikipedia.org/wiki/Index_(publishing))
+  - [ ] overlay/pop up for code snippet?
   - [ ] bookmarking using localstorage?
   - [ ] margin scribbles using localstorage?
   - [ ] graph of listings references? https://twitter.com/genmon/status/1631347161823694849?s=20

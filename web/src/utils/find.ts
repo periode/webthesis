@@ -8,13 +8,11 @@ import understanding_data from "./../routes/understanding.json";
 import beauty_data from "./../routes/beauty.json";
 import programming_data from "./../routes/programming.json";
 import conclusion_data from "./../routes/conclusion.json";
-const data = text_data as Array<INode>;
+const full_text = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 
-export const findNodeByTag = (tag: string, nodes?: Array<INode>): INode => {
+export const findNodeByTag = (tag: string, nodes: Array<INode>): INode => {
     var result: INode = { tag: "error", value: "error", children: null };
-    if (nodes === undefined)
-        nodes = data;
     for (var i = 0; i < nodes.length; i++) {
         const n = nodes[i]
 
@@ -80,9 +78,7 @@ export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> =
     return result;
 }
 
-export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | null => {
-    if (nodes === undefined)
-        nodes = data;
+export const findNodeByValue = (value: string, nodes: Array<INode>): INode | null => {
 
     var result = null;
     for (var i = 0; i < nodes.length; i++) {
@@ -101,8 +97,10 @@ export const findNodeByValue = (value: string, nodes?: Array<INode>): INode | nu
     return result;
 }
 
-export const findChapterInInclude = (include: string): INode => {
-    const include_node = findNodeByValue(`${include}.tex`);
+//-- findChapterInInclude returns the chapter node of a particular include
+//-- it's used when rendering a section in order to get the chapter to which the section belongs
+export const findChapterInInclude = (include: string, nodes: Array<INode>): INode => {
+    const include_node = findNodeByValue(`${include}.tex`, nodes);
     if (include_node) {
         const children = include_node.children as Array<INode>;
         const chap_node = findNodeByTag("chapter", children)
@@ -169,7 +167,7 @@ export const findHeadingValue = (label: string): string => {
 //-- this is mostly used when references need to locate on which page the label is
 export const findLabel = (value: string): INode | null => {
     var result = null;
-    const labels = findNodesByTag(data, "label")
+    const labels = findNodesByTag(full_text, "label")
 
     for (let label of labels) {
         if (label.children && label.children[0].value === value)
@@ -257,9 +255,10 @@ export const findNextToC = (chapter: string, section: string): IToCNode | null =
     return null;
 }
 
-export const findSection = (include: string, value: string): Array<INode> => {
+export const findSection = (include: string, value: string, nodes: Array<INode>): Array<INode> => {
     var result: INode[] = [];
-    const root = findNodeByValue(`${include}.tex`, data)
+
+    const root = findNodeByValue(`${include}.tex`, nodes)
 
     if (root && root.children) {
         if (root.children[0].children) {
