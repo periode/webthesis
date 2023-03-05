@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { IToCNode } from "../../utils/types";
     import Heading from "./Heading.svelte";
-    import toc_data from "../toc.json";
+    import toc_data from "../../data/toc.json";
     const toc = toc_data as Array<IToCNode>;
     const includes = toc[0].children as Array<IToCNode>;    
 </script>
@@ -14,4 +14,3 @@
         {/each}
     </ol>
 </div>
-
