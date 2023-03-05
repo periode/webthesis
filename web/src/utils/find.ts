@@ -1,13 +1,13 @@
 import type { INode, IToCNode } from "./types";
-import text_data from "./../routes/text.json";
-import toc_data from "./../routes/toc.json";
-import front_data from "./../routes/front.json";
-import introduction_data from "./../routes/introduction.json";
-import ideals_data from "./../routes/ideals.json";
-import understanding_data from "./../routes/understanding.json";
-import beauty_data from "./../routes/beauty.json";
-import programming_data from "./../routes/programming.json";
-import conclusion_data from "./../routes/conclusion.json";
+import text_data from "../data/text.json";
+import toc_data from "../data/toc.json";
+import front_data from "../data/front.json";
+import introduction_data from "../data/introduction.json";
+import ideals_data from "../data/ideals.json";
+import understanding_data from "../data/understanding.json";
+import beauty_data from "../data/beauty.json";
+import programming_data from "../data/programming.json";
+import conclusion_data from "../data/conclusion.json";
 const full_text = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 

@@ -5,18 +5,18 @@ test:
 	cd parser && cargo test
 
 data: thesis
-	cp ./parser/output/text.json ./web/src/routes/text.json
-	cp ./parser/output/toc.json ./web/src/routes/toc.json
-	cp ./parser/output/introduction.json ./web/src/routes/introduction.json
-	cp ./parser/output/ideals.json ./web/src/routes/ideals.json
-	cp ./parser/output/understanding.json ./web/src/routes/understanding.json
-	cp ./parser/output/beauty.json ./web/src/routes/beauty.json
-	cp ./parser/output/programming.json ./web/src/routes/programming.json
-	cp ./parser/output/conclusion.json ./web/src/routes/conclusion.json
+	cp ./parser/output/text.json ./web/src/data/text.json
+	cp ./parser/output/toc.json ./web/src/data/toc.json
+	cp ./parser/output/introduction.json ./web/src/data/introduction.json
+	cp ./parser/output/ideals.json ./web/src/data/ideals.json
+	cp ./parser/output/understanding.json ./web/src/data/understanding.json
+	cp ./parser/output/beauty.json ./web/src/data/beauty.json
+	cp ./parser/output/programming.json ./web/src/data/programming.json
+	cp ./parser/output/conclusion.json ./web/src/data/conclusion.json
 	cp /home/pierre/forschung/phd/redaction/images/* ./web/static/images
 	cp /home/pierre/forschung/phd/redaction/corpus/* ./web/src/corpus
 	cp /home/pierre/forschung/phd/redaction/thesis.pdf ./web/static/Depaz_AestheticsUnderstandingSourceCode.pdf
-	pandoc /home/pierre/forschung/phd/redaction/thesis.bib -t csljson -o ./web/src/routes/bib.json
+	pandoc /home/pierre/forschung/phd/redaction/thesis.bib -t csljson -o ./web/src/data/bib.json
 
 dev:
 	cd web && npm run dev -- --open
