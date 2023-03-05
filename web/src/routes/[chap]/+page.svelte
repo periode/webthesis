@@ -19,7 +19,11 @@
         {#each nodes as node}
             <Node {node} />
         {/each}
-        <TableOfContents {toc}/>
+        <div class="w-full lg:w-6/12 md:w-8/12 m-auto pt-12">
+            <h3 class="my-4 text-2xl">Sections</h3>
+            <TableOfContents {toc} />
+        </div>
+        
         <Navigation chapter={`chap:${chapter}`}/>
     {:else}
         <NotFound status="404" />

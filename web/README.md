@@ -6,16 +6,16 @@ front-end for the thesis.
 
 can i try and integrate multiple panels?
 
-## doing
+should there be the name of where the navigation takes you?
 
-- [x] chapter page only displays the beginning
+## doing
 
 ## todo
 - [ ] performance
   - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers
   - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
 - [ ] layout
-  - [ ] add footer (just the current section, expands into full ToC)
+  - [ ] footer (just the current section, expands into full ToC w/ interaction observer api)
   - [ ] Have each chapter and section as components rather than pages.
   - [ ] have some sort of perception of how far we are in the book (percent? graphic? pages?)
   - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
@@ -33,7 +33,6 @@ can i try and integrate multiple panels?
 
 ### tech
 
-- https://github.com/caddyserver/cache-handler
 - https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog
 - https://tradingstrategy.ai/blog/optimizing-page-load-speed-on-sveltekit
 - https://joyofcode.xyz/sveltekit-routing

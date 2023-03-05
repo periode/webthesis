@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import Date from "./components/Date.svelte";
-    
+
     import Author from "./components/Author.svelte";
     import Title from "./components/Title.svelte";
     import Affiliation from "./components/Affiliation.svelte";
@@ -28,5 +28,8 @@
     </div>
 
     <Abstract {abstract} />
-    <TableOfContents {toc} max_depth={2}/>
+    <div class="w-full lg:w-6/12 md:w-8/12 m-auto pt-12">
+        <h3 class="my-4 text-2xl">Table of contents</h3>
+        <TableOfContents {toc} max_depth={2} />
+    </div>
 </div>
