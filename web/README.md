@@ -8,9 +8,9 @@ can i try and integrate multiple panels?
 
 ## doing
 
+- [ ] chapter page only displays the beginning
+
 ## todo
-- [ ] bug
-  - [ ] jumping to a listing goes to the parent page. how to solve the issue of having the reference on the proper page? maybe the easiest way is indeed to have it as an inline <Code/>? e.g. if there is a listing on the page with the same label, jump to it. otherwise, show the inline.
 - [ ] performance
   - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers
   - [ ] rollup optimization? https://stackoverflow.com/questions/69260715/skipping-larger-chunks-while-running-npm-run-build
@@ -18,11 +18,12 @@ can i try and integrate multiple panels?
   - [ ] add footer (just the current section, expands into full ToC)
   - [ ] Have each chapter and section as components rather than pages.
   - [ ] have some sort of perception of how far we are in the book (percent? graphic? pages?)
+  - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
 
 ## wishlist:
   - [ ] add full text search (meaning across pages!)
   - [ ] add index of nouns and list where they are (how??) [index](https://en.wikipedia.org/wiki/Index_(publishing))
-  - [ ] overlay/pop up for code snippet?
+  - [ ] overlay/pop up for code snippet <Code/>?
   - [ ] bookmarking using localstorage?
   - [ ] margin scribbles using localstorage?
   - [ ] graph of listings references? https://twitter.com/genmon/status/1631347161823694849?s=20

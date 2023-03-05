@@ -9,11 +9,9 @@
     let type = value.split(":")[0];
     let name = value.split(":")[1];
     let literal = name;
+    let url = "";
 
-    //-- handle the cases where the reference is to a chapter, if the reference is to another chapter, or if its a current anchor.
-    const url = location === name ? `/${location}` : `${location !== "" ? "/" + location : ""}#${encodeURIComponent(
-            name
-        )}`
+    console.log("location:", location, " value:", value, "type:", type);
 
     if (
         type == "chap" ||
@@ -21,18 +19,35 @@
         type == "subsec" ||
         type == "subsubsec"
     ) {
-        literal = findHeadingValue(value);
+        if (type === "chap") {
+            url = `/${location}`;
+        } else if (type === "sec") {
+            url = `/${location}/${name}`;
+        } else {
+            //-- handle the cases where the reference is to a chapter, if the reference is to another chapter, or if its a current anchor.
+            url =
+                location === name
+                    ? `/${location}`
+                    : `${
+                          location !== "" ? "/" + location : ""
+                      }#${encodeURIComponent(name)}`;
+        }
+
         type = "heading";
+        literal = findHeadingValue(value);
+    } else {
+        url = `#${encodeURIComponent(name)}`;
     }
+
+    const target = type === "heading" ? "_self" : "";
 </script>
 
 <span>
-    &nbsp;<a class="font-mono hover:underline"
-        href={`${location !== "" ? "/" + location : ""}#${encodeURIComponent(
-            name
-        )}`}
+    &nbsp;<a
+        {target}
+        class={`${type === "code" ? "font-mono" : "underline"} hover:underline`}
+        href={url}
     >
         {literal}
-        </a
-    >&nbsp;
+    </a>&nbsp;
 </span>
