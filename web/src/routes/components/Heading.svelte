@@ -1,5 +1,6 @@
 <script lang="ts">
     import { findLabel } from "../../utils/find";
+    import { slide } from "svelte/transition";
     import type { IToCNode } from "../../utils/types";
     export let heading: IToCNode;
     export let max_depth: number;
@@ -7,7 +8,6 @@
 
     const type = heading.label.split(":")[0];
     const value = heading.label.split(":")[1];
-    console.log(type, value)
     const styles: { [index: string]: string } = {
         chap: "mb-12 text-2xl font-bold",
         sec: "my-4 text-xl font-normal ml-4",
@@ -15,30 +15,47 @@
         subsubsec: "text-sm ml-4",
     };
     const style = styles[type];
-
+    let isExpanded = false;
     let path: string = "";
-    const p = findLabel(heading.label)
-    if(p)
-        path = type == "chap" ? `/${p.value}`: `/${p.value}/${value}` 
-    
-</script>
+    const p = findLabel(heading.label);
+    if (p) path = type == "chap" ? `/${p.value}` : `/${p.value}/${value}`;
 
+    const toggleExpansion = () => {
+        isExpanded = !isExpanded;
+    };
+</script>
 
 <li class={`${style} flex justify-between`}>
     <div>
         {#if type == "chap" || type == "sec"}
             <a href={path} class="underline">{heading.value}</a>
         {:else}
-            <div>{heading.value}</div>
+            <div
+                on:click={toggleExpansion}
+                on:keydown={toggleExpansion}
+                class={`flex flex-row ${heading.children ? 'cursor-pointer' : ''}`}
+            >
+                <div
+                    class={`${
+                        heading.children && !isExpanded
+                            ? "opacity-100"
+                            : "opacity-0"
+                    } w-6`}
+                >
+                    -
+                </div>
+                <div>
+                    {heading.value}
+                </div>
+            </div>
         {/if}
 
-        {#if heading.children  && depth < max_depth}
-            <ol class="mt-2 mb-4">
+        {#if heading.children && (depth < max_depth || isExpanded)}
+            <ol transition:slide class="mt-2 mb-4">
                 {#each heading.children as sec}
-                    <svelte:self heading={sec} depth={depth+1} {max_depth}/>
+                    <svelte:self heading={sec} depth={depth + 1} {max_depth} />
                 {/each}
             </ol>
         {/if}
     </div>
 </li>
-

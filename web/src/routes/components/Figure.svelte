@@ -9,7 +9,8 @@
     const c = findNodeByTag("caption", contents);
     const caption = c && c.children ? c.children[0] : null;
     const l = findNodeByTag("label", contents);
-    const label = l && l.children ? l.children[0].value : "";
+    const label = l && l.children ? l.children[0].value.split(":")[1] : "";
+    
 </script>
 
 <div class="w-full lg:w-6/12 m-auto  md:w-5/12 my-8 " id={encodeURIComponent(label)}>

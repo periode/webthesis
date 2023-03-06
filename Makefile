@@ -7,6 +7,7 @@ test:
 data: thesis
 	cp ./parser/output/text.json ./web/src/data/text.json
 	cp ./parser/output/toc.json ./web/src/data/toc.json
+	cp ./parser/output/front.json ./web/src/data/front.json
 	cp ./parser/output/introduction.json ./web/src/data/introduction.json
 	cp ./parser/output/ideals.json ./web/src/data/ideals.json
 	cp ./parser/output/understanding.json ./web/src/data/understanding.json

@@ -5494,6 +5494,26 @@
     "volume": "28"
   },
   {
+    "author": [
+      {
+        "family": "Keith",
+        "given": "Jeremy"
+      }
+    ],
+    "container-title": "Resilient Web Design",
+    "id": "keith_resilient_2016",
+    "issued": {
+      "date-parts": [
+        [
+          2016
+        ]
+      ]
+    },
+    "publisher": "https://resilientwebdesign.com/chapter2/#The%20world%20of%20architecture%20has%20accrued%20its%20own%20set%20of%20design%20values%20over%20the%20years.%20One%20of%20those%20values%20is%20the%20principle%20of%20material%20honesty.%20One%20material%20should%20not%20be%20used%20as%20a%20substitute%20for%20another.%20Otherwise%20the%20end%20result%20is%20deceptive.",
+    "title": "Resilient Web Design 2",
+    "type": ""
+  },
+  {
     "abstract": "Les traités mathématiques sanskrits, suivant le style des textes de cette culture savante, sont rédigés en vers concis et concernent le plus souvent des procédures. Cette présentation se propose d’observer le lien entre le texte et l’algorithme reconstruit qu’il s’agit d’exécuter, afin d’y mettre en lumière comment s’effectue l’expression concise des étapes de l’exécution. En s’appuyant sur un texte canonique, l’Āryabhaṭīya (499), et le commentaire de Bhāskara pour décoder le sens des vers, nous observerons des manières de dire des procédures d’extraction de racine carrée, de calculer différents éléments d’une suite arithmétique ou de résoudre un certain type d’équation indéterminée. L’analyse pourra s’élargir à l’expression verbale de table numériques de sinus. Il s’agira donc d’observer les modes de compression d’un texte d’algorithme ou d’un ensemble de données numériques.",
     "author": [
       {
