@@ -30,8 +30,10 @@
     });
 
     const showFootnote = () => {
-        isMobileVisible = !isMobileVisible;
-        dispatchToggle("showfootnote", `footnote-${node.value}`);
+        if(isMobile())
+            isMobileVisible = !isMobileVisible;
+        else
+            dispatchToggle("showfootnote", `footnote-${node.value}`);
     };
 
     const highlightFootnote = () => {

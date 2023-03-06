@@ -2,6 +2,8 @@
     import { findLabel } from "../../utils/find";
     import { slide } from "svelte/transition";
     import type { IToCNode } from "../../utils/types";
+    import { fade } from "svelte/transition";
+
     export let heading: IToCNode;
     export let max_depth: number;
     export let depth: number;
@@ -33,16 +35,14 @@
             <div
                 on:click={toggleExpansion}
                 on:keydown={toggleExpansion}
-                class={`flex flex-row ${heading.children ? 'cursor-pointer' : ''}`}
+                class={`flex flex-row ${
+                    heading.children ? "cursor-pointer" : ""
+                }`}
             >
-                <div
-                    class={`${
-                        heading.children && !isExpanded
-                            ? "opacity-100"
-                            : "opacity-0"
-                    } w-6`}
-                >
-                    -
+                <div class={`w-6`}>
+                    {#if heading.children && !isExpanded && depth >= max_depth}
+                        <span transition:fade={{duration: 50}}>-</span>
+                    {/if}
                 </div>
                 <div>
                     {heading.value}
