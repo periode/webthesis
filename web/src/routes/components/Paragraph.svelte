@@ -16,6 +16,8 @@
     import Reference from "./inline/Reference.svelte";
     import Dots from "./inline/Dots.svelte";
     import Quote from "./Quote.svelte";
+    import Url from "./inline/URL.svelte";
+    import Superscript from "./inline/Superscript.svelte";
 
     export let node: INode;
     const nodes = node.children ? node.children : [];
@@ -55,9 +57,10 @@
         footnotes = footnotes;
     };
 
-    const handleHighlightFootnote = (event: CustomEvent<string>) => {        
-        footnotes.forEach((f) => {            
-            if (event.detail === `footnote-${f.value}`) f.highlighted = !f.highlighted;
+    const handleHighlightFootnote = (event: CustomEvent<string>) => {
+        footnotes.forEach((f) => {
+            if (event.detail === `footnote-${f.value}`)
+                f.highlighted = !f.highlighted;
         });
 
         footnotes = footnotes;
@@ -110,10 +113,14 @@
                         />
                     {:else if node.tag === NodeType.Dots}
                         <Dots />
+                    {:else if node.tag === NodeType.Superscript}
+                        <Superscript {node} />
                     {:else if node.tag === NodeType.Reference}
                         <Reference {node} />
                     {:else if node.tag === NodeType.InlineListing}
                         <InlineListing {node} />
+                    {:else if node.tag === NodeType.URL}
+                        <Url {node} />
                     {:else if node.tag === NodeType.Quote}
                         <Quote
                             {node}

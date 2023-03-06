@@ -10,6 +10,7 @@ export enum NodeType {
     Emphasis = 'emph',
     Italic = 'italic',
     Dots = 'dots',
+    Superscript = 'superscript',
     Citation = 'citation',
     Code = 'code',
     Figure = 'figure',
