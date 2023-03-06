@@ -8,7 +8,10 @@ can i try and integrate multiple panels?
 
 ## doing
 
+
+
 ## todo
+- [ ] tests?
 - [ ] listing should also hold its own full path (handleMissingId warn)
 - [ ] performance
   - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers, https://vite-pwa-org.netlify.app/frameworks/sveltekit.html

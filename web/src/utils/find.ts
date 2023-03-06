@@ -29,6 +29,12 @@ export const findNodeByTag = (tag: string, nodes: Array<INode>): INode => {
     return result;
 }
 
+export const findFullReferencePath = (value: string): string => {
+    let path = "";
+    //-- load the list of listings.json and find the key
+    return path;
+}
+
 //-- returns the full toc if chap is empty, or the ToC of a specific chapter
 export const getToC = (chap?: string): Array<IToCNode> => {
     const includes = toc[0].children as Array<IToCNode>;
@@ -135,6 +141,7 @@ export const findChapterInInclude = (include: string, nodes: Array<INode>): INod
     }
 }
 
+//-- the special thing about this is that it also returns the parent of the node <3
 export const findToCNodeByLabel = (label: string, nodes?: Array<IToCNode>): IToCNode | null => {
     if (nodes === undefined)
         nodes = toc;
@@ -148,8 +155,10 @@ export const findToCNodeByLabel = (label: string, nodes?: Array<IToCNode>): IToC
 
         if (n.children) {
             result = findToCNodeByLabel(label, n.children);
-            if (result)
+            if (result){
+                if(result.parent === undefined) result.parent = n;
                 return result;
+            }
 
         }
     }

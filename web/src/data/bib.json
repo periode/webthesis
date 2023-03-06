@@ -2467,6 +2467,44 @@
     "volume": "95"
   },
   {
+    "ISBN": "978-2-7535-7823-4",
+    "author": [
+      {
+        "family": "Elgin",
+        "given": "Catherine Z."
+      }
+    ],
+    "collection-title": "Collection \"Hors-série\"",
+    "container-title": "Épistémologie de l’esthétique: perspectives et débats",
+    "editor": [
+      {
+        "family": "Granata",
+        "given": "Vincent"
+      },
+      {
+        "family": "Pouivet",
+        "given": "Roger"
+      },
+      {
+        "literal": "Université de Lorraine"
+      }
+    ],
+    "id": "elgin_understanding_2020",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "keyword": "Aesthetics,Congresses,Methodology",
+    "language": "fre eng",
+    "publisher": "Presses universitaires de Rennes",
+    "publisher-place": "Rennes",
+    "title": "Understanding Understanding Art",
+    "type": "chapter"
+  },
+  {
     "DOI": "10.1007/978-1-349-01342-5_5",
     "ISBN": "978-1-349-01342-5",
     "abstract": "In this paper I shall not be concerned with the imagination as insight, but only with certain aspects of “magical” imagination, that division of the concept which centres upon the notion of an image. In the Philosophical Investigations (ii xi) Wittgenstein makes the extremely interesting remark that when a printed triangle is seen, for instance, as a mountain, it is as if an image came into contact, and for a time remained in contact, with the visual impression (i.e. with the object as seen by me). He goes on to say that in a picture a triangular figure may have some such aspect permanently  in the pictorial context we would read the figure at once as a mountain  but that we can make a distinction between “regarding” and “seeing” the figure as the thing meant. I take him to be contrasting those common experiences in which we see a figure in a picture as depicting a person, or as a “picture-person”, with those rarer experiences, referred to by art-critics when they talk of “presence”, in which it seems as if the person depicted in the picture is there before us “in the flesh”, and I assume that, like Sartre, Wittgenstein would suppose that imagination plays a part in experiences of this latter kind. In this paper I shall be concerned not with this sense of the presence of the object depicted, but chiefly with types of imaginal experience in which the image which seems to come into contact with what is perceived is an image of something which is not depicted or described in the work, but which nevertheless achieves a certain strength of presence.",
@@ -4053,6 +4091,40 @@
     "title": "Read Me: Software Art & Cultures",
     "title-short": "Read Me",
     "type": "book"
+  },
+  {
+    "DOI": "10.1177/1088868315574978",
+    "ISSN": "1532-7957",
+    "PMID": "25742990",
+    "abstract": "In this article, we develop an account of how aesthetic preferences can be formed as a result of two hierarchical, fluency-based processes. Our model suggests that processing performed immediately upon encountering an aesthetic object is stimulus driven, and aesthetic preferences that accrue from this processing reflect aesthetic evaluations of pleasure or displeasure. When sufficient processing motivation is provided by a perceiver’s need for cognitive enrichment and/or the stimulus’ processing affordance, elaborate perceiver-driven processing can emerge, which gives rise to fluency-based aesthetic evaluations of interest, boredom, or confusion. Because the positive outcomes in our model are pleasure and interest, we call it the Pleasure-Interest Model of Aesthetic Liking (PIA Model). Theoretically, this model integrates a dual-process perspective and ideas from lay epistemology into processing fluency theory, and it provides a parsimonious framework to embed and unite a wealth of aesthetic phenomena, including contradictory preference patterns for easy versus difficult-to-process aesthetic stimuli.",
+    "author": [
+      {
+        "family": "Graf",
+        "given": "Laura K. M."
+      },
+      {
+        "family": "Landwehr",
+        "given": "Jan R."
+      }
+    ],
+    "container-title": "Personality and Social Psychology Review: An Official Journal of the Society for Personality and Social Psychology, Inc",
+    "id": "graf_dualprocess_2015",
+    "issue": "4",
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          11
+        ]
+      ]
+    },
+    "keyword": "boredom,Cognition,confusion,dual-process theories,empirical aesthetics,epistemic motivation,Esthetics,Humans,interest,Models; Psychological,Motivation,need for cognitive enrichment,pleasure,Pleasure,processing fluency",
+    "language": "en-US",
+    "page": "395-410",
+    "title": "A dual-process perspective on fluency-based aesthetics: The pleasure-interest model of aesthetic liking",
+    "title-short": "A dual-process perspective on fluency-based aesthetics",
+    "type": "article-journal",
+    "volume": "19"
   },
   {
     "author": [
@@ -9694,43 +9766,6 @@
     ],
     "container-title": "Personality and Social Psychology Review",
     "id": "reber_processing_2004",
-    "issue": "4",
-    "issued": {
-      "date-parts": [
-        [
-          2004,
-          11
-        ]
-      ]
-    },
-    "language": "en-US",
-    "page": "364-382",
-    "publisher": "SAGE Publications Inc",
-    "title": "Processing Fluency and Aesthetic Pleasure: Is Beauty in the Perceiver’s Processing Experience?",
-    "title-short": "Processing Fluency and Aesthetic Pleasure",
-    "type": "article-journal",
-    "volume": "8"
-  },
-  {
-    "DOI": "10.1207/s15327957pspr0804_3",
-    "ISSN": "1088-8683",
-    "abstract": "We propose that aesthetic pleasure is a funnction of the perceiver’s processing dynamics: The more fluently perceivers can process an object, the more positive their aesthetic response. We review variables known to influence aesthetic judgments, such as figural goodness, figure-ground contrast, stimulus repetition, symmetry, and prototypicality, and trace their effects to changes in processing fluency. Other variables that influence processing fluency, like visual or semantic priming, similarly increase judgments of aesthetic pleasure. Our proposal provides an integrative framework for the study of aesthetic pleasure and sheds light on the interplay between early preferences versus cultural influences on taste, preferences for both prototypical and abstracted forms, and the relation between beauty and truth. In contrast to theories that trace aesthetic pleasure to objective stimulus features per se, we propose that beauty is grounded in the processing experiences of the perceiver, which are in part a function of stimulus properties.",
-    "author": [
-      {
-        "family": "Reber",
-        "given": "Rolf"
-      },
-      {
-        "family": "Schwarz",
-        "given": "Norbert"
-      },
-      {
-        "family": "Winkielman",
-        "given": "Piotr"
-      }
-    ],
-    "container-title": "Personality and Social Psychology Review",
-    "id": "reber_processing_2004a",
     "issue": "4",
     "issued": {
       "date-parts": [

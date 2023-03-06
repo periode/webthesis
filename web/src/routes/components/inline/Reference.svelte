@@ -1,5 +1,11 @@
 <script lang="ts">
-    import { findHeadingValue, findLabel } from "../../../utils/find";
+    import {
+        findFullReferencePath,
+        findHeadingValue,
+        findLabel,
+        findToCNodeByLabel,
+        findToCNodeByValue,
+    } from "../../../utils/find";
     import type { INode } from "../../../utils/types";
     export let node: INode;
     const value = node.children ? node.children[0].value : "Missing reference";
@@ -21,14 +27,32 @@
             url = `/${location}`;
         } else if (type === "sec") {
             url = `/${location}/${name}`;
-        } else {
-            //-- handle the cases where the reference is to a chapter, if the reference is to another chapter, or if its a current anchor.
-            url =
-                location === name
-                    ? `/${location}`
-                    : `${
-                          location !== "" ? "/" + location : ""
-                      }#${encodeURIComponent(name)}`;
+        } else if (type == "subsec" || type == "subsubsec") {
+            //-- handle the case where the reference is to a subsection, meaning we need to get the chapter and section where that subsection is
+
+            const current = findToCNodeByLabel(value);
+            if (current && current.parent) {
+                const sec = findToCNodeByLabel(current.parent.label);
+
+                if (sec && sec.parent) {
+                    if (sec.parent.tag === "Chapter") {
+                        url = `/${sec.parent.label.split(":")[1]}/${
+                            current.parent.label.split(":")[1]
+                        }#${encodeURIComponent(name)}`;
+                    } else {
+                        //-- we are dealing with a subsubsection
+                        const subsec = findToCNodeByLabel(sec.parent.label);
+
+                        if (subsec && subsec.parent) {
+                            url = `/${subsec.parent.label.split(":")[1]}/${
+                                subsec.label.split(":")[1]
+                            }#${encodeURIComponent(name)}`;
+                        }
+                    }
+                }
+
+                console.log(url);
+            }
         }
 
         type = "heading";

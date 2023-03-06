@@ -41,6 +41,7 @@ export interface IToCNode {
     value: string;
     label: string;
     children: Array<IToCNode> | null;
+    parent?: IToCNode;
 };
 
 export interface IAuthor {
