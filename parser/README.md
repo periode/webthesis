@@ -12,13 +12,14 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 ## doing
 
+- [ ] create list of listings and table of figures
+  - [ ] it looks like the best way to do this would be to have a separate parsing pass that only looks at the listings/figures, combined with a global state to keep track of the current chapter/section
+
 ## todo
 
 - [ ] postprocessor
   - [ ] when parsing toc, ignore comments following on the same line
   - [ ] change the grammar to not wrap single commands and single environments inside paragraphs
-  - [ ] create list of figures
-  - [ ] create list of listings
 - [ ] use `erased_serde` or `typetag` crate to have only one `save_ast` function
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
