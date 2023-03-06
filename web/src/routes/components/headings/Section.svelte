@@ -8,6 +8,6 @@
     const label = label_node ? label_node.label.split(":")[1] : "MISSING";
 </script>
 
-<div class="w-full lg:w-6/12 md:w-8/12 m-auto text-3xl mt-14 mb-4" id={label}>
+<div class="w-full lg:w-4/12 md:w-6/12 m-auto text-3xl mt-14 mb-4" id={label}>
     {value}
 </div>

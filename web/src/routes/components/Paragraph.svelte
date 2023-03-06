@@ -85,7 +85,7 @@
     };
 </script>
 
-<div class="relative m-1 md:m-2 leading-8">
+<div class="relative m-1 md:m-2 leading-6 md:leading-8">
     {#if isLiteralParagraph(nodes)}
         <div class="md:flex justify-between">
             <div
@@ -95,7 +95,7 @@
                     <FootnoteItem {footnote} />
                 {/each}
             </div>
-            <div class="w-full lg:w-6/12 md:w-8/12 m-auto mb-1 indent-12">
+            <div class="w-full lg:w-4/12 md:w-6/12 m-auto mb-1 indent-12">
                 {#each nodes as node}
                     {#if node.tag == NodeType.Literal}
                         <Literal {node} />

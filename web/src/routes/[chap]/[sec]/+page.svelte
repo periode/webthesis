@@ -18,7 +18,7 @@
 >
     {#if nodes.length > 0}
         <div
-            class="w-full lg:w-6/12 md:w-8/12 m-auto text-base mt-24 mb-8 italic"
+            class="w-full lg:w-4/12 md:w-6/12 m-auto text-base mt-24 mb-8 italic"
         >
             <a href={`/${chap}`}>{chap_literal}</a>
         </div>
