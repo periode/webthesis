@@ -10,7 +10,9 @@
     const next_path = next ? next.label.split(":")[1] : "MISSING";
 </script>
 
-<div class="w-11/12 lg:w-4/12 md:w-6/12 m-auto my-6 md:my-12 flex justify-between">
+<div
+    class="w-11/12 lg:w-4/12 md:w-6/12 m-auto my-12 flex justify-between"
+>
     <div class="w-1/3 flex justify-start">
         {#if prev}
             <a
@@ -18,26 +20,29 @@
                 href={section === ""
                     ? `/${prev_path}`
                     : `/${chapter.split(":")[1]}/${prev_path}`}
-                class="flex items-center"
+                class="w-full flex justify-start"
             >
-                <div>
-                    <img
-                        width="24"
-                        height="24"
-                        class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
-                        src={`/images/arrow-left.svg`}
-                        alt={`icon to reference a footnote`}
-                    />
-                    <img
-                        width="24"
-                        height="24"
-                        class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-                        src={`/images/arrow-left-dark.svg`}
-                        alt={`icon to reference a footnote`}
-                    />
-                </div>
-                <div class="hidden md:visible text-sm italic ml-2 h-6">
-                    {prev.value}
+                <div class="flex">
+                    <div class="flex mr-3">
+                        <img
+                            width="24"
+                            height="24"
+                            class="dark:hidden pointer-events-none"
+                            src={`/images/arrow-left.svg`}
+                            alt={`icon to reference a footnote`}
+                        />
+                        <img
+                            width="24"
+                            height="24"
+                            class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
+                            src={`/images/arrow-left-dark.svg`}
+                            alt={`icon to reference a footnote`}
+                        />
+                    </div>
+                    <div class="hidden md:flex flex-col text-sm justify-center">
+                        <div>Previous</div>
+                        <div class="opacity-60">{prev.value}</div>
+                    </div>
                 </div>
             </a>
         {/if}
@@ -72,12 +77,14 @@
                 href={section === ""
                     ? `/${next_path}`
                     : `/${chapter.split(":")[1]}/${next_path}`}
-                    class="flex items-center"
+                class="w-full flex justify-end"
             >
-                <div class="hidden md:visible text-sm italic ml-2 h-6">
-                    {next.value}
+            <div class="flex">
+                <div class="hidden md:flex flex-col text-sm text-right justify-center">
+                    <div>Next</div>
+                    <div class="opacity-60">{next.value}</div>
                 </div>
-                <div>
+                <div class="flex ml-3">
                     <img
                         width="24"
                         height="24"
@@ -93,6 +100,7 @@
                         alt={`icon to reference a footnote`}
                     />
                 </div>
+            </div>
             </a>
         {/if}
     </div>

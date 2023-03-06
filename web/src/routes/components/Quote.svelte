@@ -35,7 +35,7 @@
     };
 </script>
 
-<div class="w-10/12 md:w-7/12 m-auto my-12 md:my-20 italic text-zinc-500 dark:text-zinc-300">
+<div class="w-10/12 md:w-10/12 m-auto my-12 md:my-18 italic text-zinc-500 dark:text-zinc-300">
     <blockquote>
         {#each nodes as node}
             <Node {node} />
