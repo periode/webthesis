@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { findLabel } from "../../utils/find";
+    import { findToCNodeByLabel } from "../../utils/find";
     import { slide } from "svelte/transition";
     import type { IToCNode } from "../../utils/types";
     import { fade } from "svelte/transition";
@@ -19,8 +19,12 @@
     const style = styles[type];
     let isExpanded = false;
     let path: string = "";
-    const p = findLabel(heading.label);
-    if (p) path = type == "chap" ? `/${p.value}` : `/${p.value}/${value}`;
+
+    if (type == "chap") path = `/${value}`;
+    else if (type === "sec") {
+        const p = findToCNodeByLabel(heading.label);
+        if (p) path = `/${p.parent?.label.split(":")[1]}/${value}`;
+    }
 
     const toggleExpansion = () => {
         isExpanded = !isExpanded;
@@ -36,12 +40,14 @@
                 on:click={toggleExpansion}
                 on:keydown={toggleExpansion}
                 class={`flex flex-row ${
-                    heading.children && depth >= max_depth ? "cursor-pointer" : ""
+                    heading.children && depth >= max_depth
+                        ? "cursor-pointer"
+                        : ""
                 }`}
             >
                 <div class={`w-6`}>
                     {#if heading.children && !isExpanded && depth >= max_depth}
-                        <span transition:fade={{duration: 50}}>-</span>
+                        <span transition:fade={{ duration: 50 }}>-</span>
                     {/if}
                 </div>
                 <div>
