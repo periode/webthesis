@@ -8,8 +8,6 @@ can i try and integrate multiple panels?
 
 ## doing
 
-- [ ] on desktop, show `next section/chapter ->`, with the literal stacked below
-  - [ ] and add an animation on hover?
 
 ## todo
 - [ ] listing should also hold its own full path (handleMissingId warn)
@@ -18,12 +16,11 @@ can i try and integrate multiple panels?
 - [ ] layout
   - [ ] footer (just the current section, expands into full ToC w/ interaction observer api)
   - [ ] Have each chapter and section as components rather than pages.
-  - [ ] have some sort of perception of how far we are in the book (percent? graphic? pages?)
   - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
 - [ ] interface
   - [ ] option to highlight inline refs, and other elements
   - [ ] add a `\url` node and a `\superscript` node
-  - [ ] routing bug:
+- [ ] routing bug:
     - [ ] manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 
 ## wishlist:
