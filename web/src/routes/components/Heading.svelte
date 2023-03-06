@@ -36,7 +36,7 @@
                 on:click={toggleExpansion}
                 on:keydown={toggleExpansion}
                 class={`flex flex-row ${
-                    heading.children ? "cursor-pointer" : ""
+                    heading.children && depth >= max_depth ? "cursor-pointer" : ""
                 }`}
             >
                 <div class={`w-6`}>
