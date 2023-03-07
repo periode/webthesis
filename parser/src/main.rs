@@ -35,18 +35,18 @@ fn main() {
     let input = args.input.to_string();
     let fp = Path::new(&input);
     let src = fs::read_to_string(fp.as_os_str()).expect("Cannot open file");
-    println!("reading: {}", args.input);
+    println!("- reading: {}", args.input);
 
 
     let start = Instant::now();
 
-    print!("parsing: text");
+    println!("- parsing: text...");
     let ast = parsers::text::parse(src.clone());
 
-    print!(", table of contents");
+    println!("- parsing: table of contents...");
     let toc = parsers::toc::parse(src.clone());
 
-    println!(", listings.");
+    println!("- parsing: listings...");
     let listings = parsers::figures::parse(src.clone());
 
     let duration = start.elapsed();
@@ -58,7 +58,7 @@ fn main() {
     parsers::text::save(ast, &args.output_dir, args.split);
     parsers::toc::save(toc, &args.output_dir);
     parsers::figures::save(listings, &args.output_dir);
-    println!("lasting: {:?}", duration)
+    println!("- lasting: {:?}", duration)
 }
 
 

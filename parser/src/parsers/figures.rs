@@ -250,7 +250,7 @@ pub fn save(nodes: Vec<ListingNode>, dest: &str) {
     let json_string = serde_json::to_string(&nodes).unwrap();
     match File::create(format!("{}/listings.json", &dest)) {
         Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-            Ok(_) => println!("writing: {}/listings.json", dest),
+            Ok(_) => println!("- writing: {}/listings.json", dest),
             Err(error) => println!("...failed to write {}:{}", dest, error),
         },
         Err(error) => println!("...failed to open {}:{}", dest, error),

@@ -12,9 +12,11 @@ the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the 
 
 I removed the `\begin{center}` environment from some of the figures in the source latex. if that messes up the layou on pdf, i should modify the parsing process to account for the possible nestedness of environments (roughly `figures.rs:129`)
 
+__WARNING__ there should always be a new line at the end of the document, otherwise `\end{document}` does not get picked up
+
 ## doing
 
-- [ ] **PRIORITY** change the grammar to not wrap single commands and single environments inside paragraphs
+- [x] **PRIORITY** change the grammar to not wrap single commands and single environments inside paragraphs
 
 ## todo
 
