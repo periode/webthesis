@@ -1,18 +1,18 @@
 extern crate pest;
+use clap::Parser as ArgParser;
+use pest::iterators::Pair;
+use pest::iterators::Pairs;
+use pest::Parser;
+use serde::Serialize;
 use std::fs::{self, File};
 use std::io::Write;
 use std::iter::Peekable;
 use std::path::Path;
 use std::slice::Iter;
-use clap::Parser as ArgParser;
-use pest::Parser;
-use pest::iterators::Pairs;
-use pest::{iterators::Pair};
-use serde::Serialize;
 
-use crate::Args;
 use crate::foliage::commands;
-use crate::{foliage::commands::Command};
+use crate::foliage::commands::Command;
+use crate::Args;
 
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
@@ -52,9 +52,9 @@ pub fn parse(src: String) -> Vec<ToCNode> {
                 let pair = start_iter.next();
                 match pair {
                     Some(subpair) => match subpair.as_rule() {
-                        Rule::env_content => {
-                            if let Some(n) = parse_paragraph(subpair) {
-                                toc.push(n);
+                        Rule::env_stmt => {
+                            if let Some(mut n) = parse_env(subpair) {
+                                toc.append(&mut n);
                             }
                         }
                         Rule::paragraph => {
@@ -159,6 +159,35 @@ fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
     String::from("")
 }
 
+//-- parse env looks for commandss
+fn parse_env(_env: Pair<Rule>) -> Option<Vec<ToCNode>> {
+    let mut nodes = Vec::<ToCNode>::new();
+    let mut pair_iter = _env.into_inner();
+    loop {
+        match pair_iter.next() {
+            Some(pair) => match pair.as_rule() {
+                Rule::env_content => {
+                    for subpair in pair.into_inner() {
+                        match subpair.as_rule() {
+                            Rule::cmd_stmt => {
+                                if let Some(n) = parse_command(subpair) {
+                                    
+                                    nodes.push(n);
+                                }
+                            }
+                            _ => (),
+                        }
+                    }
+                }
+                _ => (),
+            },
+            None => break,
+        }
+    }
+    
+    Some(nodes)
+}
+
 //-- this one is just for recursion (either paragraph, and keep on going, or command, and check for headers)
 fn parse_paragraph(_paragraph: Pair<Rule>) -> Option<ToCNode> {
     let mut pair_iter = _paragraph.into_inner();
@@ -188,7 +217,7 @@ fn parse_paragraph(_paragraph: Pair<Rule>) -> Option<ToCNode> {
                     }
                 }
                 Rule::cmd_stmt => return parse_command(pair),
-                _ => (),
+                _ => println!("unknown paragraph: {}", pair.as_str()),
             },
             None => break,
         }
@@ -203,6 +232,7 @@ fn parse_paragraph(_paragraph: Pair<Rule>) -> Option<ToCNode> {
 
 fn parse_command(_cmd: Pair<Rule>) -> Option<ToCNode> {
     //-- check if we're currently at an \include
+    println!("parsing command: {}", _cmd.as_str());
     let mut s = _cmd.clone().into_inner();
     if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
         match c {
