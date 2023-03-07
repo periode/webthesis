@@ -37,19 +37,18 @@ export const findFullReferencePath = (value: string): string => {
 
 //-- returns the full toc if chap is empty, or the ToC of a specific chapter
 export const getToC = (chap?: string): Array<IToCNode> => {
-    const includes = toc[0].children as Array<IToCNode>;
 
-    if(chap === undefined || chap === null || chap === ""){
+    if (chap === undefined || chap === null || chap === "") {
         let chapters: IToCNode[] = [];
-        for(let inc of includes)
-            if(inc.children)
+        for (let inc of toc)
+            if (inc.children)
                 chapters.push(inc.children[0])
         return chapters
     }
 
-    
-    for(let inc of includes){
-        if(inc.children && inc.children[0].label === `chap:${chap}`)
+
+    for (let inc of toc) {
+        if (inc.children && inc.children[0].label === `chap:${chap}`)
             return inc.children[0].children as Array<IToCNode>
     }
     return [];
@@ -155,8 +154,8 @@ export const findToCNodeByLabel = (label: string, nodes?: Array<IToCNode>): IToC
 
         if (n.children) {
             result = findToCNodeByLabel(label, n.children);
-            if (result){
-                if(result.parent === undefined) result.parent = n;
+            if (result) {
+                if (result.parent === undefined) result.parent = n;
                 return result;
             }
 
@@ -291,41 +290,35 @@ export const findSection = (include: string, section: string, nodes: Array<INode
     const root = findNodeByValue(`${include}.tex`, nodes)
 
     if (root && root.children) {
-        if (root.children[0].children) {
-            const all_paragraphs = root.children[0].children.map((el) => {
-                if (el.children) {
-                    return el
-                }
-            }) as Array<INode>
 
-            let sectionFound = false;
-            for (let i = 0; i < all_paragraphs.length; i++) {
-                const par = all_paragraphs[i];
+        let sectionFound = false;
+        for (let i = 0; i < root.children.length; i++) {
+            const node = root.children[i];
 
-                if (sectionFound) {
-                    //-- we break if we find the beginning of a new section
-                    if (par.children && par.children[0].tag === "section")
-                        return result;
+            if (sectionFound) {
+                //-- we break if we find the beginning of a new section
+                if (node.tag === "section")
+                    return result;
 
-                    result.push(par);
+                result.push(node);
 
-                } else {
-                    //-- we look for the starting section, whose label should match the given value
-                    if (par.children && par.children[0].tag === 'label') {
-                        if (par.children[0].children) {
-                            const label = par.children[0].children[0];
-                            const label_value = label.value.split(":")[1]
+            } else {
+                //-- we look for the starting section, whose label should match the given value
+                if (node.children && node.tag === 'label') {
 
-                            if (label_value === section) {
-                                sectionFound = true;
-                                result.push(all_paragraphs[i - 1])
-                                result.push(all_paragraphs[i])
-                            }
-                        }
+                    const label = node.children[0];
+                    const label_value = label.value.split(":")[1]
+
+                    if (label_value === section) {
+                        sectionFound = true;
+                        result.push(root.children[i - 1])
+                        result.push(root.children[i])
                     }
+
                 }
             }
         }
+
     }
 
     return result;

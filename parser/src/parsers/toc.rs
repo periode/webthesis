@@ -57,11 +57,13 @@ pub fn parse(src: String) -> Vec<ToCNode> {
                                 toc.append(&mut n);
                             }
                         }
-                        Rule::paragraph => {
-                            let s = parse_paragraph(subpair);
-                            if let Some(mut node) = s {
-                                node.label = parse_label(&mut start_iter);
-                                toc.push(node.clone());
+                        Rule::cmd_stmt => {
+                            if let Some(mut n) = parse_command(subpair) {
+                                if n.tag.is_header() {
+                                    let l = parse_label(&mut start_iter);
+                                    n.label = l;
+                                }
+                                toc.push(n);
                             }
                         }
                         _ => (),
@@ -137,29 +139,24 @@ fn assess_toc_relation(next: &ToCNode, current: &Command) -> i8 {
 //-- used for the labelling of headings in the toc
 fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
     if let Some(par) = _pairs.next() {
-        //-- next paragraph
-        let mut par_iter = par.into_inner();
-        if let Some(label_cmd) = par_iter.next() {
-            //-- actual label cmd
-            let mut label = label_cmd.into_inner();
-            if let Some(label_name) = label.next() {
-                if let Some(cmd) = commands::parse_name(label_name.as_str()) {
-                    if cmd == Command::Label {
-                        let label_content = label.next().unwrap();
-                        return String::from(label_content.as_str());
-                    } else {
-                        println!("[WARN] [no-label] following command is not a label!");
-                    }
+        let mut label = par.into_inner();
+        if let Some(label_name) = label.next() {
+            if let Some(cmd) = commands::parse_name(label_name.as_str()) {
+                if cmd == Command::Label {
+                    let label_content = label.next().unwrap();
+                    return String::from(label_content.as_str());
                 } else {
-                    println!("[WARN] [no-label] could not parse following command");
+                    println!("[WARN] [no-label] following command is not a label!");
                 }
+            } else {
+                println!("[WARN] [no-label] could not parse following command");
             }
         }
     }
     String::from("")
 }
 
-//-- parse env looks for commandss
+//-- parse env looks for commands in the environment content
 fn parse_env(_env: Pair<Rule>) -> Option<Vec<ToCNode>> {
     let mut nodes = Vec::<ToCNode>::new();
     let mut pair_iter = _env.into_inner();
@@ -171,7 +168,6 @@ fn parse_env(_env: Pair<Rule>) -> Option<Vec<ToCNode>> {
                         match subpair.as_rule() {
                             Rule::cmd_stmt => {
                                 if let Some(n) = parse_command(subpair) {
-                                    
                                     nodes.push(n);
                                 }
                             }
@@ -184,55 +180,13 @@ fn parse_env(_env: Pair<Rule>) -> Option<Vec<ToCNode>> {
             None => break,
         }
     }
-    
+
     Some(nodes)
-}
-
-//-- this one is just for recursion (either paragraph, and keep on going, or command, and check for headers)
-fn parse_paragraph(_paragraph: Pair<Rule>) -> Option<ToCNode> {
-    let mut pair_iter = _paragraph.into_inner();
-    let mut paragraph = ToCNode {
-        tag: Command::Documentclass,
-        value: String::from(""),
-        label: String::from(""),
-        children: None,
-        indent: 0,
-    };
-
-    loop {
-        match pair_iter.next() {
-            Some(pair) => match pair.as_rule() {
-                Rule::env_stmt => {
-                    let mut env_iter = pair.into_inner();
-                    let _env_name = env_iter.next();
-                    let env_content = env_iter.next().unwrap();
-
-                    if let Some(n) = parse_paragraph(env_content) {
-                        return Some(n);
-                    }
-                }
-                Rule::paragraph => {
-                    if let Some(node) = parse_paragraph(pair) {
-                        paragraph.add(node);
-                    }
-                }
-                Rule::cmd_stmt => return parse_command(pair),
-                _ => println!("unknown paragraph: {}", pair.as_str()),
-            },
-            None => break,
-        }
-    }
-
-    if let Some(_) = paragraph.children {
-        return Some(paragraph);
-    } else {
-        return None;
-    }
 }
 
 fn parse_command(_cmd: Pair<Rule>) -> Option<ToCNode> {
     //-- check if we're currently at an \include
-    println!("parsing command: {}", _cmd.as_str());
+
     let mut s = _cmd.clone().into_inner();
     if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
         match c {
