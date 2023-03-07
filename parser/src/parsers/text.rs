@@ -180,6 +180,11 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
                         Rule::env_stmt => {
                             let e = parse_environment(subsubpair, state);
                             env_node.add(e);
+                        },
+                        Rule::cmd_stmt => {
+                            if let Some(c) = parse_command(subsubpair, state){
+                                env_node.add(c);
+                            }
                         }
                         _ => println!(
                             "could not parse inside environment: {:?}",

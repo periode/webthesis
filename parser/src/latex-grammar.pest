@@ -24,7 +24,7 @@ cmd_stmt = { ctrl_character ~ (!("begin"|"end") ~ name) ~ opts? ~ ("{" ~ ( cmd_s
 
 // environments
 env_stmt            = { ctrl_character ~ "begin" ~ opts? ~ "{" ~ PUSH(env_name) ~ "}" ~ env_content ~ ctrl_character ~ "end" ~ "{" ~ POP ~ "}" }
-env_content         = { ((env_stmt | code_stmt | paragraph)? ~ newline_char)* }
+env_content         = { ((env_stmt | code_stmt | cmd_stmt | paragraph)? ~ newline_char)* }
 env_name            = { name }
 
 // code block - to allow for { } characters and disallow nested command statements
