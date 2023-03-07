@@ -7,7 +7,7 @@ document = {
 
 // basic unit
 paragraph = {
-    ( cmd_stmt | literal_group )*
+    ( cmd_stmt | literal_group+ )*
 }
 
 //-- letters and numbers with no spaces, brackets are included separately to address options

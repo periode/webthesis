@@ -209,11 +209,10 @@ export const findPreviousToC = (chapter: string, section: string): IToCNode | nu
     let label = ""
 
     if (section === "") { //-- find chapter siblings
-        start_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
+        start_nodes = toc;
         label = chapter;
     } else { //-- find section siblings
-        const chapter_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
-        for (let chap of chapter_nodes)
+        for (let chap of toc)
             for (let c of chap.children as Array<IToCNode>)
                 if (c.label == chapter)
                     start_nodes = c.children as Array<IToCNode>;
@@ -249,11 +248,10 @@ export const findNextToC = (chapter: string, section: string): IToCNode | null =
     let label = ""
 
     if (section === "") { //-- chapter
-        start_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
+        start_nodes = toc;
         label = chapter;
     } else { //-- section
-        const chapter_nodes = toc[0] ? toc[0].children ? toc[0].children : [] : [];
-        for (let chap of chapter_nodes)
+        for (let chap of toc)
             for (let c of chap.children as Array<IToCNode>)
                 if (c.label == chapter)
                     start_nodes = c.children as Array<IToCNode>;
@@ -329,17 +327,12 @@ export const findChapterIncipit = (root: Array<INode>): Array<INode> => {
     let result: Array<INode> = [];
     const r = root[0]
     if (r.children && r.children[0].children) {
-        const all_paragraphs = r.children[0].children.map((el) => {
-            if (el.children) {
-                return el
-            }
-        }) as Array<INode>
 
-        for (let i = 0; i < all_paragraphs.length; i++) {
-            const par = all_paragraphs[i];
+        for (let i = 0; i < r.children.length; i++) {
+            const par = r.children[i];
 
             //-- we break if we find the beginning of a new section
-            if (par.children && par.children[0].tag === "section")
+            if (par.tag === "section")
                 return result;
 
             result.push(par);

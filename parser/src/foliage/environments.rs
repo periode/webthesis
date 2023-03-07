@@ -1,6 +1,6 @@
 use super::Tag;
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq)]
 pub enum Environment {
     Abstract,
     Aligned,

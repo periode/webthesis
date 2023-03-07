@@ -106,7 +106,7 @@ pub fn parse(src: String) -> Vec<Node> {
 }
 
 fn parse_paragraph(_section: Pair<Rule>, state: &mut State) -> Node {
-    let mut section_node = Node {
+    let mut paragraph = Node {
         children: None,
         tag: Box::new(Environment::Paragraph),
         value: String::from(""),
@@ -114,17 +114,9 @@ fn parse_paragraph(_section: Pair<Rule>, state: &mut State) -> Node {
 
     for subpair in _section.into_inner() {
         match subpair.as_rule() {
-            Rule::env_stmt => {
-                let e = parse_environment(subpair, state);
-                return e;
-            }
-            Rule::code_stmt => {
-                let e = parse_environment(subpair, state);
-                return e;
-            }
             Rule::cmd_stmt => {
                 if let Some(c) = parse_command(subpair, state) {
-                    return c;
+                    paragraph.add(c)
                 }
             }
             Rule::literal_group => {
@@ -133,21 +125,14 @@ fn parse_paragraph(_section: Pair<Rule>, state: &mut State) -> Node {
                     value: String::from(subpair.as_str()),
                     children: None,
                 };
-                section_node.add(l);
+                paragraph.add(l);
             }
-            Rule::paragraph => {
-                let s = parse_paragraph(subpair, state);
-                if let Some(_) = &s.children {
-                    //-- skip empty paragraphs
-                    section_node.add(s);
-                }
-            }
-            Rule::COMMENT => println!("{}", subpair.as_str()),
+            // Rule::COMMENT => println!("{}", subpair.as_str()),
             _ => println!("unable to parse paragraph:{:?}", subpair.as_rule()),
         }
     }
 
-    section_node
+    paragraph
 }
 
 fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
@@ -157,10 +142,16 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
         value: String::from(""),
     };
 
+    let mut is_quote = false;
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
             Rule::env_name => match environments::parse_name(subpair.as_str()) {
-                Some(env) => env_node.tag = Box::new(env),
+                Some(env) => {
+                    env_node.tag = Box::new(env);
+                    if env == Environment::Quote {
+                        is_quote = true;
+                    }
+                }
                 None => println!("Could not parse environment name: {}", subpair.as_str()),
             },
             Rule::env_content => {
@@ -176,13 +167,13 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
                         Rule::code_stmt => {
                             let e = parse_environment(subsubpair, state);
                             env_node.add(e);
-                        },
+                        }
                         Rule::env_stmt => {
                             let e = parse_environment(subsubpair, state);
                             env_node.add(e);
-                        },
+                        }
                         Rule::cmd_stmt => {
-                            if let Some(c) = parse_command(subsubpair, state){
+                            if let Some(c) = parse_command(subsubpair, state) {
                                 env_node.add(c);
                             }
                         }
@@ -220,6 +211,17 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
         }
     }
 
+    if is_quote { // hmmm... the quote is semantically a paragraph, but technically an environment
+        let mut p = Node {
+            children: None,
+            tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
+            value: String::from(""),
+        };
+
+        p.add(env_node);
+
+        return p
+    }
     env_node
 }
 
