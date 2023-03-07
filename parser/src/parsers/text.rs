@@ -309,6 +309,7 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
 
 pub fn save(nodes: Vec<Node>, dest: &str, split: bool) {
     if split {
+        print!("writing: ");
         for first in nodes.into_iter() {
             for second in first.children.unwrap().into_iter() {
                 for third in second.children.unwrap().into_iter() {
@@ -321,7 +322,7 @@ pub fn save(nodes: Vec<Node>, dest: &str, split: bool) {
                                 match File::create(format!("{}/{}.json", &dest, fname)) {
                                     Ok(mut output_file) => {
                                         match write!(output_file, "{}", json_string) {
-                                            Ok(_) => println!("writing: {}/{}.json", dest, fname),
+                                            Ok(_) => print!("{}/{}.json ", dest, fname),
                                             Err(error) => {
                                                 println!("...failed to write {}:{}", dest, error)
                                             }

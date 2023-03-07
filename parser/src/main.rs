@@ -40,13 +40,13 @@ fn main() {
 
     let start = Instant::now();
 
-    println!("parsing text...");
+    print!("parsing: text");
     let ast = parsers::text::parse(src.clone());
 
-    println!("parsing table of contents...");
+    print!(", table of contents");
     let toc = parsers::toc::parse(src.clone());
 
-    println!("parsing figures, listings...");
+    println!(", listings.");
     let listings = parsers::figures::parse(src.clone());
 
     let duration = start.elapsed();

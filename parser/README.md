@@ -10,10 +10,10 @@ from this AST, it generates a web rendering of the latex file.
 
 the parsing of `\item` is a bit tricky (it does not require `{}`, but takes the rest of the line as its body). the workaround is to adapt the writing of the `.tex` input to only use `\item{}`.
 
+I removed the `\begin{center}` environment from some of the figures in the source latex. if that messes up the layou on pdf, i should modify the parsing process to account for the possible nestedness of environments (roughly `figures.rs:129`)
+
 ## doing
 
-- [ ] create list of listings and table of figures
-  - [ ] todo: get the label for each chapter/section
 - [ ] **PRIORITY** change the grammar to not wrap single commands and single environments inside paragraphs
 
 ## todo
