@@ -14,7 +14,7 @@ const SEPARATOR: &str = " | ";
 const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
 const DEFAULT_OUTPUT_DIR: &str = "output";
 const DEFAULT_VERBOSE: usize = 0;
-const DEFAULT_SPLIT: bool = false;
+const DEFAULT_SPLIT: bool = true;
 #[derive(ArgParser, Debug)]
 struct Args {
     #[arg(short, default_value = DEFAULT_INPUT)]
@@ -46,6 +46,9 @@ fn main() {
     println!("parsing table of contents...");
     let toc = parsers::toc::parse(src.clone());
 
+    println!("parsing figures, listings...");
+    let listings = parsers::figures::parse(src.clone());
+
     let duration = start.elapsed();
 
     if args.verbosity == 1 {
@@ -54,6 +57,7 @@ fn main() {
 
     parsers::text::save(ast, &args.output_dir, args.split);
     parsers::toc::save(toc, &args.output_dir);
+    parsers::figures::save(listings, &args.output_dir);
     println!("lasting: {:?}", duration)
 }
 

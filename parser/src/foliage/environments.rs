@@ -17,6 +17,16 @@ pub enum Environment {
     Root,
 }
 
+impl Environment {
+    pub fn is_listing(&self) -> bool {
+        match *self {
+            Environment::Listing => true,
+            Environment::Figure => true,
+            _ => false,
+        }
+    }
+}
+
 impl Tag for Environment {
     fn value(&self) -> &str {
         match *self {

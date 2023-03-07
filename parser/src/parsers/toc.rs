@@ -41,6 +41,7 @@ impl ToCNode {
 
 pub fn parse(src: String) -> Vec<ToCNode> {
     let mut toc = Vec::<ToCNode>::new();
+
     match LaTeXParser::parse(Rule::document, &src) {
         Ok(mut pairs) => {
             let pair = pairs.next().unwrap();
@@ -69,6 +70,7 @@ pub fn parse(src: String) -> Vec<ToCNode> {
                 }
             }
 
+            //-- turn the list of toc headings into a tree
             let mut toc_iter = toc.iter().peekable();
             if let Some(start) = toc_iter.next() {
                 let mut sc = start.clone();
@@ -185,7 +187,7 @@ fn parse_paragraph(_paragraph: Pair<Rule>) -> Option<ToCNode> {
                         paragraph.add(node);
                     }
                 }
-                Rule::cmd_stmt => return parse_command_toc(pair),
+                Rule::cmd_stmt => return parse_command(pair),
                 _ => (),
             },
             None => break,
@@ -199,9 +201,8 @@ fn parse_paragraph(_paragraph: Pair<Rule>) -> Option<ToCNode> {
     }
 }
 
-fn parse_command_toc(_cmd: Pair<Rule>) -> Option<ToCNode> {
+fn parse_command(_cmd: Pair<Rule>) -> Option<ToCNode> {
     //-- check if we're currently at an \include
-    // println!("parsing command: {}", _cmd.as_str());
     let mut s = _cmd.clone().into_inner();
     if let Some(c) = commands::parse_name(s.next().unwrap().as_str()) {
         match c {
