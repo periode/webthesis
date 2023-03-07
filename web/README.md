@@ -8,19 +8,17 @@ can i try and integrate multiple panels?
 
 ## doing
 
-
+- [ ] listing should also hold its own full path (handleMissingId warn)
+- [ ] footer (showing the current section, expands into full ToC w/ https://github.com/metonym/svelte-intersection-observer and writing to store passed as props)
 
 ## todo
 - [ ] tests?
-- [ ] listing should also hold its own full path (handleMissingId warn)
 - [ ] performance
   - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers, https://vite-pwa-org.netlify.app/frameworks/sveltekit.html
+  - [ ] lazy load chapter sections?
 - [ ] layout
-  - [ ] footer (just the current section, expands into full ToC w/ interaction observer api)
   - [ ] Have each chapter and section as components rather than pages.
   - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
-- [ ] interface
-  - [ ] option to highlight inline refs, and other elements
 - [ ] routing bug:
     - [ ] manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 
@@ -33,6 +31,8 @@ can i try and integrate multiple panels?
   - [ ] graph of listings references? https://twitter.com/genmon/status/1631347161823694849?s=20
   - [ ] download to read offline -> service workers
   - [ ] "continue from your last visit?"
+- [ ] interface
+  - [ ] option to highlight inline refs, and other elements
 
 ## references
 
