@@ -71,9 +71,7 @@
             }${
                 reference.section_label !== "" ? reference.section_label : ""
             }#${encodeURIComponent(name)}`;
-        else url = `#${encodeURIComponent(name)}`;
-        console.log(url);
-        
+        else url = `#${encodeURIComponent(name)}`;        
     }
 
     const target = type === "heading" ? "_self" : "";

@@ -9,9 +9,7 @@ can i try and integrate multiple panels?
 ## doing
 
 - [ ] footer
-  - [ ] scroll to corresponding heading in toc
-  - [ ] have styles for footer based on indent?
-  - [ ] have numbers for each toc headings
+  - [ ] have styles for footer based on indent? -> pass current_label to table of contents?
 
 ## todo
 - [ ] tests?

@@ -31,7 +31,7 @@
     };
 </script>
 
-<li class={`${style} flex justify-between`}>
+<li class={`${style} flex justify-between`} id={heading.label}>
     <div>
         {#if type == "chap" || type == "sec"}
             <a href={path} class="underline">{heading.value}</a>

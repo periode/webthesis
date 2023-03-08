@@ -1,14 +1,31 @@
 <script lang="ts">
-    import { getToC } from "../../../utils/find";
+    import { findToCNodeByValue, getToC } from "../../../utils/find";
     import TableOfContents from "../TableOfContents.svelte";
     import { slide } from "svelte/transition";
     import { current_heading } from "../../../stores";
 
+    let current_label = "";
     let isExpanded = false;
     const toggleToC = () => {
         isExpanded = !isExpanded;
+
+        if (isExpanded && current_label !== "")
+            setTimeout(() => {
+                let el = document.getElementById(current_label);
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 600);
     };
     const toc = getToC();
+
+    current_heading.subscribe((v) => {
+        const l = findToCNodeByValue(v);
+
+        if (l) {
+            current_label = l.label;
+            let el = document.getElementById(current_label);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
 </script>
 
 <div
@@ -16,7 +33,7 @@
 >
     {#if isExpanded}
         <div
-            transition:slide
+            transition:slide={{duration: 400}}
             class={`font-serif text-sm max-h-96 p-1 mb-3 overflow-y-scroll bg-zinc-50 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-50`}
         >
             <TableOfContents {toc} max_depth={4} />
