@@ -11,7 +11,7 @@
     const type = heading.label.split(":")[0];
     const value = heading.label.split(":")[1];
     const styles: { [index: string]: string } = {
-        chap: "mb-12 text-2xl font-bold",
+        chap: "mb-12 text-2xl font-semibold",
         sec: "my-4 text-xl font-normal ml-4",
         subsec: "my-1 text-base italic ml-4",
         subsubsec: "text-sm ml-4",

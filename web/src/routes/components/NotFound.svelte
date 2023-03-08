@@ -4,7 +4,7 @@
     export const status: string = "";
 </script>
 
-<div class="w-full lg:w-4/12 md:w-6/12 m-auto text-center pt-12">
+<div class="w-full lg:w-5/12 md:w-6/12 m-auto text-center pt-12">
     <div class="text-2xl">
         Oops, we've encountered an error{status !== ""
             ? `(specifically, a ${status} error)`

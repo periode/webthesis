@@ -26,7 +26,7 @@
 <div
     class="container max-w-full bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 p-2 lg:p-8 font-serif md:text-xl"
 >
-    <div class="w-full lg:w-4/12 md:w-6/12 m-auto text-center pt-12">
+    <div class="w-full lg:w-5/12 md:w-6/12 m-auto text-center pt-12">
         <Title {title} />
         <Author {author} />
         <Affiliation {affiliation} />
@@ -34,7 +34,7 @@
     </div>
 
     <Abstract {abstract} />
-    <div class="w-full lg:w-4/12 md:w-6/12 m-auto pt-12">
+    <div class="w-full lg:w-5/12 md:w-6/12 m-auto pt-12">
         <h3 class="my-4 text-2xl">Table of contents</h3>
         <TableOfContents {toc} max_depth={2} />
     </div>

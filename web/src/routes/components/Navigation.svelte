@@ -11,7 +11,7 @@
 </script>
 
 <div
-    class="w-11/12 lg:w-4/12 md:w-6/12 m-auto my-12 flex justify-between"
+    class="w-11/12 lg:w-5/12 md:w-6/12 m-auto my-12 flex justify-between"
 >
     <div class="w-1/3 flex justify-start">
         {#if prev}

@@ -22,6 +22,7 @@ can i try and integrate multiple panels?
 - [ ] layout
   - [ ] Have each chapter and section as components rather than pages.
   - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
+  - [ ] number on `FootnoteItem`
 - [ ] routing bug: manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 - [ ] **interface**
   - [ ] move the dark theme setting logic to the main icon so that it is mounted early

@@ -68,7 +68,9 @@
     };
 </script>
 
-<div class="relative md:flex justify-between m-1 md:m-2 leading-6 md:leading-8">
+<div
+    class="relative md:flex justify-between m-1 md:m-2 leading-6 md:leading-8 md:text-body"
+>
     <div
         class="absolute top-0 h-full hidden md:visible md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
     >
@@ -76,7 +78,7 @@
             <FootnoteItem {footnote} />
         {/each}
     </div>
-    <div class="w-full lg:w-4/12 md:w-6/12 m-auto mb-1 indent-12 hyphens">
+    <div class="w-full lg:w-5/12 md:w-6/12 m-auto mb-1 indent-12 hyphens">
         {#each nodes as node}
             {#if node.tag == NodeType.Literal}
                 <Literal {node} />

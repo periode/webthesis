@@ -15,7 +15,7 @@
     on:enter={(e) => {
         $current_heading = value;
     }}
-    class="w-full lg:w-4/12 md:w-6/12 m-auto mt-6 font-bold"
+    class="w-full lg:w-5/12 md:w-6/12 m-auto mt-6 font-semibold"
 >
     {value}
 </div>
