@@ -9,7 +9,10 @@ can i try and integrate multiple panels?
 ## doing
 
 - [ ] listing should also hold its own full path (handleMissingId warn)
-- [ ] footer (showing the current section, expands into full ToC w/ https://github.com/metonym/svelte-intersection-observer and writing to store passed as props)
+- [ ] footer
+  - [ ] scroll to corresponding heading in toc
+  - [ ] have styles for footer based on indent?
+  - [ ] have numbers for each toc headings
 
 ## todo
 - [ ] tests?
@@ -20,6 +23,8 @@ can i try and integrate multiple panels?
   - [ ] Have each chapter and section as components rather than pages.
   - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
 - [ ] routing bug: manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
+- [ ] **interface**
+  - [ ] move the dark theme setting logic to the main icon so that it is mounted early
 
 ## wishlist:
   - [ ] add full text search (meaning across pages!)

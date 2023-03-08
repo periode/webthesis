@@ -5,6 +5,12 @@
     import NotFound from "../components/NotFound.svelte";
     import Navigation from "../components/Navigation.svelte";
     import TableOfContents from "../components/TableOfContents.svelte";
+    import { current_heading } from "../../stores";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        $current_heading = ''
+    })
 
     const chapter = $page.params.chap;
     export let data: PageData;

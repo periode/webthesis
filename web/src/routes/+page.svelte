@@ -7,6 +7,12 @@
     import Affiliation from "./components/Affiliation.svelte";
     import TableOfContents from "./components/TableOfContents.svelte";
     import Abstract from "./components/Abstract.svelte";
+    import { current_heading } from "../stores";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        $current_heading = ''
+    })
 
     export let data: PageData;
     const author = data.author;
