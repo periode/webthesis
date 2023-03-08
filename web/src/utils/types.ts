@@ -44,6 +44,17 @@ export interface IToCNode {
     parent?: IToCNode;
 };
 
+export interface IListingsNode {
+    index: number,
+    filename: string,
+    label: string,
+    value: string,
+    section: string,
+    section_label: string,
+    chapter: string,
+    chapter_label: string,
+}
+
 export interface IAuthor {
     family: string,
     given: string,

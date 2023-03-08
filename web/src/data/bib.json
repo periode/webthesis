@@ -148,6 +148,28 @@
     "type": ""
   },
   {
+    "abstract": "This is an expanded transcript of a guest lecture I gave at the School of Ma in Berlin, in July 2016, during Gene Kogan’s “Machine Learning…",
+    "author": [
+      {
+        "family": "Akten",
+        "given": "Memo"
+      }
+    ],
+    "container-title": "Artists + Machine Intelligence",
+    "id": "akten_journey_2016",
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          9
+        ]
+      ]
+    },
+    "language": "en-US",
+    "title": "A journey through multiple dimensions and transformations in SPACE",
+    "type": ""
+  },
+  {
     "ISBN": "978-0-19-501919-3",
     "abstract": "You can use this book to design a house for yourself with your family; you can use it to work with your neighbors to improve your town and neighborhood; you can use it to design an office, or a workshop, or a public building. And you can use it to guide you in the actual process of construction. After a ten-year silence, Christopher Alexander and his colleagues at the Center for Environmental Structure are now publishing a major statement in the form of three books which will, in their words, \"lay the basis for an entirely new approach to architecture, building and planning, which will we hope replace existing ideas and practices entirely.\" The three books are The Timeless Way of Building, The Oregon Experiment, and this book, A Pattern Language. At the core of these books is the idea that people should design for themselves their own houses, streets, and communities. This idea may be radical (it implies a radical transformation of the architectural profession) but it comes simply from the observation that most of the wonderful places of the world were not made by architects but by the people. At the core of the books, too, is the point that in designing their environments people always rely on certain \"languages,\" which, like the languages we speak, allow them to articulate and communicate an infinite variety of designs within a forma system which gives them coherence. This book provides a language of this kind. It will enable a person to make a design for almost any kind of building, or any part of the built environment. \"Patterns,\" the units of this language, are answers to design problems (How high should a window sill be? How many stories should a building have? How much space in a neighborhood should be devoted to grass and trees?). More than 250 of the patterns in this pattern language are given: each consists of a problem statement, a discussion of the problem with an illustration, and a solution. As the authors say in their introduction, many of the patterns are archetypal, so deeply rooted in the nature of things that it seemly likely that they will be a part of human nature, and human action, as much in five hundred years as they are today.",
     "author": [
@@ -742,6 +764,30 @@
     "type": "book"
   },
   {
+    "ISBN": "978-2-7056-8802-8",
+    "abstract": "La création littéraire avec et pour l’ordinateur existe depuis plus d’un demi-siècle. Cette littérature s’inscrit dans des lignes généalogiques connues : écriture combinatoire et écriture à contraintes, écriture fragmentaire, écriture sonore et visuelle. Qu’il s’agisse de fictions hypertextuelles, de poèmes animés, d’oeuvres faisant appel à la génération automatique de textes ou encore d’oeuvres participatives, la création littéraire numérique est actuellement florissante, notamment en ligne. Parce qu’elle est au croisement d’enjeux littéraires, communicationnels, épistémologiques, pédagogiques, la littérature numérique est un objet particulièrement fécond. La valeur heuristique de la littérature numérique, c’est celle qui permet de faire retour sur certaines notions (le texte, le récit, la matérialité, la figure, la mémoire...), mais aussi celle qui donne à voir et ouvre des pistes en matière d’écriture numérique.",
+    "author": [
+      {
+        "family": "Bouchardon",
+        "given": "Serge"
+      }
+    ],
+    "collection-title": "Cultures numériques",
+    "id": "bouchardon_valeur_2014",
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          1
+        ]
+      ]
+    },
+    "language": "fr-FR",
+    "publisher": "Editions Hermann",
+    "title": "La valeur heuristique de la littérature numérique",
+    "type": "book"
+  },
+  {
     "ISBN": "978-0-7695-5166-1",
     "abstract": "The purpose of the Guide to the Software Engineering Body of Knowledge is to provide a validated classification of the bounds of the software engineering discipline and topical access that will support this discipline. The Body of Knowledge is subdivided into a set of software engineering Knowledge Areas (KA) that differentiate among the various important concepts, allowing readers to find their way quickly to subjects of interest. Upon finding a subject, readers are referred to key papers or book chapters. SWEBOK Guide V3.0 builds upon SWEBOK 2004 to refresh and add new reviewed content. Emphases on engineering practice lead the Guide toward a strong relationship with the normative literature. The normative literature is validated by consensus formed among practitioners and is concentrated in standards and related documents. The two major standards bodies for software engineering (IEEE Computer Society Software and Systems Engineering Standards Committee and ISO/IEC JTC1/SC7) are represented in the project. The Guide is oriented toward a variety of audiences, all over the world. It aims to serve public and private organizations in need of a consistent view of software engineering for defining education and training requirements, classifying jobs, developing performance evaluation policies or specifying software development tasks. It also addresses practicing, or managing, software engineers and the officials responsible for making public policy regarding licensing and professional guidelines. In addition, professional societies and educators defining the certification rules, accreditation policies for university curricula, and guidelines for professional practice will benefit from the SWEBOK Guide, as well as the students learning the software engineering profession and educators and trainers engaged in defining curricula and course content. It is hoped that readers will find this book useful in guiding them toward the knowledge and resources they need in their lifelong career development as software engineering professionals.",
     "edition": "Version 3.0",
@@ -823,6 +869,26 @@
     "title-short": "Environmental aesthetics",
     "type": "article-journal",
     "volume": "2"
+  },
+  {
+    "editor": [
+      {
+        "family": "Brand",
+        "given": "Sy"
+      }
+    ],
+    "id": "brand_code_2019",
+    "issued": {
+      "date-parts": [
+        [
+          2019
+        ]
+      ]
+    },
+    "publisher": "code::art",
+    "title": "Code::art::0",
+    "title-short": "Code",
+    "type": "book"
   },
   {
     "ISBN": "978-94-011-2464-5",
@@ -9317,6 +9383,24 @@
     "type": "book"
   },
   {
+    "author": [
+      {
+        "literal": "porpentine"
+      }
+    ],
+    "id": "porpentine_howling_2012",
+    "issued": {
+      "date-parts": [
+        [
+          2012
+        ]
+      ]
+    },
+    "publisher-place": "US",
+    "title": "Howling dogs",
+    "type": ""
+  },
+  {
     "ISBN": "978-0-670-80454-2",
     "author": [
       {
@@ -10133,6 +10217,26 @@
     "title": "The Phenomenology of Mathematical Beauty",
     "type": "article-journal",
     "volume": "111"
+  },
+  {
+    "author": [
+      {
+        "family": "Rousset",
+        "given": "Jean"
+      }
+    ],
+    "id": "rousset_forme_1962",
+    "issued": {
+      "date-parts": [
+        [
+          1962
+        ]
+      ]
+    },
+    "language": "fr-FR",
+    "publisher": "Librairie José Corti",
+    "title": "Forme et signification",
+    "type": "book"
   },
   {
     "abstract": "26",

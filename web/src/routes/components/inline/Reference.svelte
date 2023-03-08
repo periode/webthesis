@@ -1,10 +1,10 @@
 <script lang="ts">
+    import { construct_svelte_component } from "svelte/internal";
     import {
-        findFullReferencePath,
+        findFullReference,
         findHeadingValue,
         findLabel,
         findToCNodeByLabel,
-        findToCNodeByValue,
     } from "../../../utils/find";
     import type { INode } from "../../../utils/types";
     export let node: INode;
@@ -26,7 +26,10 @@
         if (type === "chap") {
             url = `/${location}`;
         } else if (type === "sec") {
-            url = `/${location}/${name}`;
+            const current = findToCNodeByLabel(value);
+            if (current)
+                url = `/${current.parent?.label.split(":")[1]}/${name}`;
+            console.log(url);
         } else if (type == "subsec" || type == "subsubsec") {
             //-- handle the case where the reference is to a subsection, meaning we need to get the chapter and section where that subsection is
 
@@ -50,15 +53,27 @@
                         }
                     }
                 }
-
-                console.log(url);
             }
         }
 
         type = "heading";
         literal = findHeadingValue(value);
     } else {
-        url = `#${encodeURIComponent(name)}`;
+        let reference;
+        if (node.children)
+            reference = findFullReference(node.children[0].value);
+
+        if (reference)
+            url = `/${
+                reference.chapter_label !== ""
+                    ? reference.chapter_label + "/"
+                    : ""
+            }${
+                reference.section_label !== "" ? reference.section_label : ""
+            }#${encodeURIComponent(name)}`;
+        else url = `#${encodeURIComponent(name)}`;
+        console.log(url);
+        
     }
 
     const target = type === "heading" ? "_self" : "";

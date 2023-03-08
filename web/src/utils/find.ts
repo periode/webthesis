@@ -1,4 +1,4 @@
-import type { INode, IToCNode } from "./types";
+import type { IListingsNode, INode, IToCNode } from "./types";
 import text_data from "../data/text.json";
 import toc_data from "../data/toc.json";
 import front_data from "../data/front.json";
@@ -11,6 +11,7 @@ import conclusion_data from "../data/conclusion.json";
 import listings_data from "../data/listings.json";
 const full_text = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
+const listings = listings_data as Array<IListingsNode>;
 
 export const findNodeByTag = (tag: string, nodes: Array<INode>): INode => {
     var result: INode = { tag: "error", value: "error", children: null };
@@ -30,10 +31,9 @@ export const findNodeByTag = (tag: string, nodes: Array<INode>): INode => {
     return result;
 }
 
-export const findFullReferencePath = (value: string): string => {
-    let path = "";
-    //-- load the list of listings.json and find the key
-    return path;
+export const findFullReference = (label: string): IListingsNode | undefined => {
+    const l = listings.find((n) => label === n.label)
+    return l;
 }
 
 //-- returns the full toc if chap is empty, or the ToC of a specific chapter

@@ -8,7 +8,6 @@ can i try and integrate multiple panels?
 
 ## doing
 
-- [ ] listing should also hold its own full path (handleMissingId warn)
 - [ ] footer
   - [ ] scroll to corresponding heading in toc
   - [ ] have styles for footer based on indent?
@@ -26,6 +25,8 @@ can i try and integrate multiple panels?
 - [ ] routing bug: manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 - [ ] **interface**
   - [ ] move the dark theme setting logic to the main icon so that it is mounted early
+- [ ] **bug**
+  - [ ] error on parsing `\item{}`
 
 ## wishlist:
   - [ ] add full text search (meaning across pages!)
