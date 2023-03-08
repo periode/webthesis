@@ -47,7 +47,7 @@ fn main() {
     let toc = parsers::toc::parse(src.clone());
 
     println!("- parsing: listings...");
-    let listings = parsers::figures::parse(src.clone());
+    let listings = parsers::listings::parse(src.clone());
 
     let duration = start.elapsed();
 
@@ -57,7 +57,7 @@ fn main() {
 
     parsers::text::save(ast, &args.output_dir, args.split);
     parsers::toc::save(toc, &args.output_dir);
-    parsers::figures::save(listings, &args.output_dir);
+    parsers::listings::save(listings, &args.output_dir);
     println!("- lasting: {:?}", duration)
 }
 

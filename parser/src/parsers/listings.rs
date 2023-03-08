@@ -87,17 +87,13 @@ pub fn parse(src: String) -> Vec<ListingNode> {
 
                 match pair {
                     Some(subpair) => match subpair.as_rule() {
-                        Rule::paragraph => {
-                            if let Some(mut listing) = parse_paragraph(subpair, &mut state) {
+                        Rule::env_stmt => {
+                            println!("env {}", subpair.as_str());
+                            if let Some(mut listing) = parse_env(subpair, &mut state) {
                                 list.append(&mut listing);
                             }
                         }
-                        Rule::env_content => {
-                            if let Some(mut listing) = parse_paragraph(subpair, &mut state) {
-                                list.append(&mut listing);
-                            }
-                        }
-                        _ => (),
+                        _ => println!("missed parse: {:?}", subpair.as_rule()),
                     },
                     None => break,
                 }
@@ -111,8 +107,8 @@ pub fn parse(src: String) -> Vec<ListingNode> {
     list
 }
 
-fn parse_paragraph(_paragraph: Pair<Rule>, _state: &mut State) -> Option<Vec<ListingNode>> {
-    let mut pair_iter = _paragraph.into_inner();
+fn parse_env(_env: Pair<Rule>, _state: &mut State) -> Option<Vec<ListingNode>> {
+    let mut pair_iter = _env.into_inner();
 
     let mut nodes = Vec::<ListingNode>::new();
     loop {
@@ -155,7 +151,7 @@ fn parse_paragraph(_paragraph: Pair<Rule>, _state: &mut State) -> Option<Vec<Lis
 
                                 nodes.push(l);
                             } else {
-                                if let Some(mut n) = parse_paragraph(env_content, _state) {
+                                if let Some(mut n) = parse_env(env_content, _state) {
                                     nodes.append(&mut n);
                                 }
                             }
@@ -164,7 +160,7 @@ fn parse_paragraph(_paragraph: Pair<Rule>, _state: &mut State) -> Option<Vec<Lis
                     }
                 }
                 Rule::paragraph => {
-                    if let Some(mut n) = parse_paragraph(pair, _state) {
+                    if let Some(mut n) = parse_env(pair, _state) {
                         nodes.append(&mut n);
                     }
                 }
@@ -173,7 +169,7 @@ fn parse_paragraph(_paragraph: Pair<Rule>, _state: &mut State) -> Option<Vec<Lis
                         nodes.append(&mut n)
                     }
                 }
-                _ => (),
+                _ => println!("missed env rule: {}", pair.as_str()),
             },
             None => break,
         }
