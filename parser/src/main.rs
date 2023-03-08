@@ -47,7 +47,8 @@ fn main() {
     let toc = parsers::toc::parse(src.clone());
 
     println!("- parsing: listings...");
-    let listings = parsers::listings::parse(src.clone());
+    let mut state = parsers::listings::State::new();
+    let listings = parsers::listings::parse(src.clone(), &mut state);
 
     let duration = start.elapsed();
 
