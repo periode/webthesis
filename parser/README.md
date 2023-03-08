@@ -16,13 +16,12 @@ __WARNING__ there should always be a new line at the end of the document, otherw
 
 ## doing
 
-- [x] **PRIORITY** change the grammar to not wrap single commands and single environments inside paragraphs
+- [ ] toc
+  - [ ] ignore comments on same line
+  - [ ] provide numbering
 
 ## todo
 
-- [ ] postprocessor
-  - [ ] when parsing toc, ignore comments following on the same line
-- [ ] use `erased_serde` or `typetag` crate to have only one `save_ast` function
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__
