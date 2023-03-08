@@ -14,6 +14,7 @@ data: thesis
 	cp ./parser/output/beauty.json ./web/src/data/beauty.json
 	cp ./parser/output/programming.json ./web/src/data/programming.json
 	cp ./parser/output/conclusion.json ./web/src/data/conclusion.json
+	cp ./parser/output/listings.json ./web/src/data/listings.json
 	cp /home/pierre/forschung/phd/redaction/images/* ./web/static/images
 	cp /home/pierre/forschung/phd/redaction/corpus/* ./web/src/corpus
 	cp /home/pierre/forschung/phd/redaction/thesis.pdf ./web/static/Depaz_AestheticsUnderstandingSourceCode.pdf

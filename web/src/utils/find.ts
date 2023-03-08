@@ -8,6 +8,7 @@ import understanding_data from "../data/understanding.json";
 import beauty_data from "../data/beauty.json";
 import programming_data from "../data/programming.json";
 import conclusion_data from "../data/conclusion.json";
+import listings_data from "../data/listings.json";
 const full_text = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 
