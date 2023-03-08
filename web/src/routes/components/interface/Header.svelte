@@ -2,11 +2,22 @@
     import { onMount } from "svelte";
     import DarkMode from "../DarkMode.svelte";
     import { fade } from "svelte/transition";
+    import { dark_mode } from "../../../stores";
 
     const header_icon = "header";
-    let theme: string | null = "";
     onMount(() => {
-        theme = window.localStorage.getItem("theme");
+        //-- only respect system defaults if the user hasn't explicity chosen the light theme
+        if (
+            $dark_mode === "dark" ||
+            (!("theme" in localStorage) &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+            $dark_mode = "dark";
+            document.documentElement.classList.add("dark");
+        } else {
+            $dark_mode = "light";
+            document.documentElement.classList.remove("dark");
+        }    
     });
 
     let isExpanded = false;

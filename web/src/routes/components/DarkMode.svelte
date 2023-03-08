@@ -1,41 +1,16 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { dark_mode } from "../../stores";
 
-    let icon_name = "lightmode";
     const toggleDarkMode = () => {
-        const theme = localStorage.theme;
+        $dark_mode = $dark_mode === "dark" ? "light" : "dark";
+        console.log($dark_mode);
 
-        if (!theme) {
+        if ($dark_mode === "dark")
             document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        } else if (theme === "dark") {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-        } else if (theme === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-        }
-        icon_name = `${localStorage.theme}mode`;
+        else document.documentElement.classList.remove("dark");
+        
+        localStorage.setItem("theme", $dark_mode);
     };
-
-    onMount(() => {
-        let theme = localStorage.theme;
-
-        //-- only respect system defaults if the user hasn't explicity chosen the light theme
-        if (
-            theme === "dark" ||
-            (!("theme" in localStorage) &&
-                window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
-            theme = "dark";
-            document.documentElement.classList.add("dark");
-        } else {
-            theme = "light";
-            document.documentElement.classList.remove("dark");
-        }
-
-        icon_name = theme ? `${theme}mode` : "lightmode";
-    });
 </script>
 
 <div class="" on:click={toggleDarkMode} on:keydown={toggleDarkMode}>

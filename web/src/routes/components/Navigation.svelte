@@ -50,7 +50,6 @@
 
     <div class="w-1/3 flex justify-center">
         <a
-            data-sveltekit-reload
             href={section === "" ? "/" : `/${chapter.split(":")[1]}`}
         >
             <img
