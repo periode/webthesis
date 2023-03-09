@@ -142,14 +142,14 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
         value: String::from(""),
     };
 
-    let mut is_quote = false;
+    let mut is_paragraph = false;
     for subpair in _env.into_inner() {
         match subpair.as_rule() {
             Rule::env_name => match environments::parse_name(subpair.as_str()) {
                 Some(env) => {
                     env_node.tag = Box::new(env);
-                    if env == Environment::Quote {
-                        is_quote = true;
+                    if env == Environment::Quote || env == Environment::Itemize {
+                        is_paragraph = true;
                     }
                 }
                 None => println!("Could not parse environment name: {}", subpair.as_str()),
@@ -211,7 +211,7 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
         }
     }
 
-    if is_quote { // hmmm... the quote is semantically a paragraph, but technically an environment
+    if is_paragraph { // hmmm... the quote is semantically a paragraph, but technically an environment
         let mut p = Node {
             children: None,
             tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
