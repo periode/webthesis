@@ -35,7 +35,7 @@
 <li class={`${style} flex justify-between`} id={heading.label}>
     <div>
         {#if type == "chap" || type == "sec"}
-            <a href={path} class="underline ${current_label == heading.label ? "font-bold" : ""}">{heading.value}</a>
+            <a href={path} class={`underline ${current_label == heading.label ? "font-bold" : ""}`}>{heading.value}</a>
         {:else}
             <div
                 on:click={toggleExpansion}
