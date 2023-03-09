@@ -1,7 +1,7 @@
 <script lang="ts">
     import hljs from "highlight.js";
 
-    import { getRawSourceCode } from "../../utils/snippet";
+    import { getRawSourceCode } from "../../../utils/snippet";
     export let path: string;
     export let lang: string
 

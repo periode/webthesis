@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { NodeType, type ICitation, type INode } from "../../utils/types";
-    import Node from "./Node.svelte";
-    import Citation from "./inline/Citation.svelte";
+    import { NodeType, type ICitation, type INode } from "../../../utils/types";
+    import Node from "./../Node.svelte";
+    import Citation from "./../inline/Citation.svelte";
     import { createEventDispatcher } from "svelte";
     export let node: INode;
 

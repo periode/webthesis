@@ -1,8 +1,8 @@
 <script lang="ts">
     import { createEventDispatcher, onMount } from "svelte";
-    import isMobile from "../../utils/helper";
-    import type { IFootnote, INode } from "../../utils/types";
-    import FootnoteItem from "./FootnoteItem.svelte";
+    import isMobile from "../../../utils/helper";
+    import type { IFootnote, INode } from "../../../utils/types";
+    import FootnoteItem from "../block/FootnoteItem.svelte";
     export let node: INode;
 
     const dispatch = createEventDispatcher<{ footnote: IFootnote }>();

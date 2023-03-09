@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import DarkMode from "../DarkMode.svelte";
+    import DarkMode from "./DarkMode.svelte";
     import { fade } from "svelte/transition";
     import { dark_mode } from "../../../stores";
 

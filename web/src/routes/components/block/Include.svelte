@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { INode } from "../../utils/types";
+    import type { INode } from "../../../utils/types";
     import Paragraph from "./Paragraph.svelte";
 
     export let node: INode;

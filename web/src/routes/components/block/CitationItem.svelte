@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { clickOutside } from "../../utils/actions";
-    import type { ICitation } from "../../utils/types";
+    import { clickOutside } from "../../../utils/actions";
+    import type { ICitation } from "../../../utils/types";
 
     export let citation: ICitation;
 

@@ -14,10 +14,7 @@ can i try and integrate multiple panels?
   - [ ] vitest
 - [ ] **performance**
   - [ ] make [pwa](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)
-  - [ ] lazy load chapter sections?
 - [ ] **layout**
-  - [ ] Have each chapter and section as components rather than pages.
-  - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
 - [ ] **interface**
   - [ ] typography settings (line-height, line-length, font-height, font-family)
   - [ ] hover bubble
@@ -34,6 +31,8 @@ can i try and integrate multiple panels?
   - [ ] "continue from your last visit?"
 - [ ] interface
   - [ ] option to highlight inline refs, and other elements
+  - [ ] lazy load chapter sections
+  - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
 
 ## references
 

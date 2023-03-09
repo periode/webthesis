@@ -1,9 +1,9 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import { page } from "$app/stores";
-    import Node from "../../components/Node.svelte";
+    import Section from "../../components/Section.svelte";
     import NotFound from "../../components/NotFound.svelte";
-    import Navigation from "../../components/Navigation.svelte";
+    import Navigation from "../../components/interface/Navigation.svelte";
 
     export let data: PageData;
 
@@ -20,9 +20,7 @@
         >
             <a href={`/${chap}`}>{chapter}</a>
         </div>
-        {#each nodes as node (node)}
-            <Node {node} />
-        {/each}
+        <Section {nodes}/>
         {#key sec}
             <Navigation chapter={`chap:${chap}`} section={`sec:${sec}`} />
         {/key}

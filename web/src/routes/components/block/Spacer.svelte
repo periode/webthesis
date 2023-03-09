@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { INode } from "../../utils/types";
+    import type { INode } from "../../../utils/types";
 
     export let node: INode = {tag: "spacer", children: null, value: `- - -`};
     if(node.value.length === 0) node.value = `- - -`

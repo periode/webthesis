@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { findNodeByTag } from "../../utils/find";
-    import type { INode } from "../../utils/types";
+    import { findNodeByTag } from "../../../utils/find";
+    import type { INode } from "../../../utils/types";
     export let node: INode;
     
     const items = node.children ? node.children.map((n) => {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Spacer from "./Spacer.svelte";
+    import Spacer from "./block/Spacer.svelte";
 
     export const status: string = "";
 </script>

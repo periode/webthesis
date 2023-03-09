@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { IFootnote, INode } from "../../utils/types";
-    import Node from "./Node.svelte";
+    import type { IFootnote, INode } from "../../../utils/types";
+    import Node from "./../Node.svelte";
 
     export let footnote: IFootnote;
     const children = footnote.children as INode[];   

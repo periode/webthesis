@@ -3,7 +3,7 @@
     import type { ICitation, INode } from "../../../utils/types";
     import { createEventDispatcher, onMount } from "svelte";
     import isMobile from "../../../utils/helper";
-    import CitationItem from "../CitationItem.svelte";
+    import CitationItem from "../block/CitationItem.svelte";
 
     const dispatch = createEventDispatcher<{ citation: ICitation }>();
     const dispatchToggle = createEventDispatcher<{ showcitation: string }>();

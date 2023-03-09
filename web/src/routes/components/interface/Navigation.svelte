@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { findNextToC, findPreviousToC } from "../../utils/find";
+    import { findNextToC, findPreviousToC } from "../../../utils/find";
 
     export let chapter: string;
     export let section: string = "";

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { dark_mode } from "../../stores";
+    import { dark_mode } from "../../../stores";
 
     const toggleDarkMode = () => {
         $dark_mode = $dark_mode === "dark" ? "light" : "dark";

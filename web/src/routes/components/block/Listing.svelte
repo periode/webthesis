@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { findNodeByTag } from "../../utils/find";
+    import { findNodeByTag } from "../../../utils/find";
     import Code from "./Code.svelte";
-    import type { INode } from "../../utils/types";
+    import type { INode } from "../../../utils/types";
 
     export let node: INode;
 

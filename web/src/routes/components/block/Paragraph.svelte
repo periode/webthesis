@@ -4,20 +4,20 @@
         type ICitation,
         type IFootnote,
         type INode,
-    } from "../../utils/types";
-    import Node from "./Node.svelte";
-    import CitationItem from "./CitationItem.svelte";
+    } from "../../../utils/types";
+    import Node from "../Node.svelte";
+    import CitationItem from "../block/CitationItem.svelte";
     import FootnoteItem from "./FootnoteItem.svelte";
-    import Literal from "./inline/Literal.svelte";
-    import Emph from "./inline/Emph.svelte";
-    import Citation from "./inline/Citation.svelte";
-    import InlineListing from "./inline/InlineListing.svelte";
-    import Footnote from "./Footnote.svelte";
-    import Reference from "./inline/Reference.svelte";
-    import Dots from "./inline/Dots.svelte";
+    import Literal from "../inline/Literal.svelte";
+    import Emph from "../inline/Emph.svelte";
+    import Citation from "../inline/Citation.svelte";
+    import InlineListing from "../inline/InlineListing.svelte";
+    import Footnote from "../inline/Footnote.svelte";
+    import Reference from "../inline/Reference.svelte";
+    import Dots from "../inline/Dots.svelte";
     import Quote from "./Quote.svelte";
-    import Url from "./inline/URL.svelte";
-    import Superscript from "./inline/Superscript.svelte";
+    import Url from "../inline/URL.svelte";
+    import Superscript from "../inline/Superscript.svelte";
     import List from "./List.svelte";
 
     export let node: INode;
