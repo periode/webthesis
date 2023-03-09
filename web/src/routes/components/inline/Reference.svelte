@@ -29,7 +29,6 @@
             const current = findToCNodeByLabel(value);
             if (current)
                 url = `/${current.parent?.label.split(":")[1]}/${name}`;
-            console.log(url);
         } else if (type == "subsec" || type == "subsubsec") {
             //-- handle the case where the reference is to a subsection, meaning we need to get the chapter and section where that subsection is
 

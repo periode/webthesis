@@ -6,11 +6,9 @@
     import Navigation from "../../components/Navigation.svelte";
 
     export let data: PageData;
-    const chap = $page.params.chap;
-    const sec = $page.params.sec;
 
-    const chap_literal = data.chapter;
-    const nodes = data.nodes;
+    $: ({ chap, sec } = $page.params);
+    $: ({ nodes, chapter } = data);
 </script>
 
 <div
@@ -20,12 +18,14 @@
         <div
             class="w-full lg:w-5/12 md:w-6/12 m-auto text-base mt-24 mb-8 italic"
         >
-            <a href={`/${chap}`}>{chap_literal}</a>
+            <a href={`/${chap}`}>{chapter}</a>
         </div>
-        {#each nodes as node}
+        {#each nodes as node (node)}
             <Node {node} />
         {/each}
-        <Navigation chapter={`chap:${chap}`} section={`sec:${sec}`}/>
+        {#key sec}
+            <Navigation chapter={`chap:${chap}`} section={`sec:${sec}`} />
+        {/key}
     {:else}
         <NotFound status="404" />
     {/if}

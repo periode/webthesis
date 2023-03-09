@@ -16,7 +16,6 @@
     <div class="w-1/3 flex justify-start">
         {#if prev}
             <a
-                data-sveltekit-reload
                 href={section === ""
                     ? `/${prev_path}`
                     : `/${chapter.split(":")[1]}/${prev_path}`}
@@ -71,8 +70,7 @@
 
     <div class="w-1/3 flex justify-end">
         {#if next}
-            <a
-                data-sveltekit-reload
+            <a              
                 href={section === ""
                     ? `/${next_path}`
                     : `/${chapter.split(":")[1]}/${next_path}`}

@@ -3,7 +3,6 @@
 
     const toggleDarkMode = () => {
         $dark_mode = $dark_mode === "dark" ? "light" : "dark";
-        console.log($dark_mode);
 
         if ($dark_mode === "dark")
             document.documentElement.classList.add("dark");

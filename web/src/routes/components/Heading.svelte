@@ -26,8 +26,6 @@
         const p = findToCNodeByLabel(heading.label);
         if (p) path = `/${p.parent?.label.split(":")[1]}/${value}`;
     }
-
-    console.log(current_label, heading.label);
     
     const toggleExpansion = () => {
         isExpanded = !isExpanded;

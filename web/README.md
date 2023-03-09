@@ -22,7 +22,6 @@ can i try and integrate multiple panels?
   - [ ] typography settings (line-height, line-length, font-height, font-family)
   - [ ] hover bubble
 - [ ] **bug**
-  - [ ] manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 
 ## wishlist:
   - [ ] add full text search (meaning across pages!)
