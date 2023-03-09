@@ -7,6 +7,7 @@
     export let heading: IToCNode;
     export let max_depth: number;
     export let depth: number;
+    export let current_label: string = "";
 
     const type = heading.label.split(":")[0];
     const value = heading.label.split(":")[1];
@@ -26,6 +27,8 @@
         if (p) path = `/${p.parent?.label.split(":")[1]}/${value}`;
     }
 
+    console.log(current_label, heading.label);
+    
     const toggleExpansion = () => {
         isExpanded = !isExpanded;
     };
@@ -34,7 +37,7 @@
 <li class={`${style} flex justify-between`} id={heading.label}>
     <div>
         {#if type == "chap" || type == "sec"}
-            <a href={path} class="underline">{heading.value}</a>
+            <a href={path} class="underline ${current_label == heading.label ? "font-bold" : ""}">{heading.value}</a>
         {:else}
             <div
                 on:click={toggleExpansion}
@@ -50,7 +53,7 @@
                         <span transition:fade={{ duration: 50 }}>-</span>
                     {/if}
                 </div>
-                <div>
+                <div class={`${current_label == heading.label ? "font-bold" : ""}`}>
                     {heading.value}
                 </div>
             </div>
@@ -59,7 +62,7 @@
         {#if heading.children && (depth < max_depth || isExpanded)}
             <ol transition:slide class="mt-2 mb-4">
                 {#each heading.children as sec}
-                    <svelte:self heading={sec} depth={depth + 1} {max_depth} />
+                    <svelte:self heading={sec} depth={depth + 1} {max_depth} {current_label}/>
                 {/each}
             </ol>
         {/if}

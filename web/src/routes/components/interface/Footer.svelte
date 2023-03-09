@@ -36,7 +36,7 @@
             transition:slide={{duration: 400}}
             class={`font-serif text-sm max-h-96 p-1 mb-3 overflow-y-scroll bg-zinc-50 dark:bg-zinc-900 text-zinc-800 dark:text-zinc-50`}
         >
-            <TableOfContents {toc} max_depth={4} />
+                <TableOfContents {toc} max_depth={4} {current_label}/>
         </div>
     {/if}
     <!-- toc -->

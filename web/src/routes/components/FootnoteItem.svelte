@@ -16,6 +16,7 @@
             : "border-r-zinc-50 dark:border-r-zinc-900"
     }`}
 >
+    <sup>{footnote.value}</sup>
     {#each children as node}
         <Node {node} />
     {/each}

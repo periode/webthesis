@@ -4,7 +4,7 @@
     export let node: INode;
     
     const items = node.children ? node.children.map((n) => {
-        const i = findNodeByTag(n.children as INode[], "literal");
+        const i = findNodeByTag("literal", n.children as INode[]);
         const v = i ? i.value : "n/a";
         return v;
     }) : []

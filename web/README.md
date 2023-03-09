@@ -8,23 +8,21 @@ can i try and integrate multiple panels?
 
 ## doing
 
-- [ ] footer
-  - [ ] have styles for footer based on indent? -> pass current_label to table of contents?
-
 ## todo
-- [ ] tests?
-- [ ] performance
-  - [ ] add service worker for offline perf https://kit.svelte.dev/docs/service-workers, https://vite-pwa-org.netlify.app/frameworks/sveltekit.html
+
+- [ ] **tests**
+  - [ ] vitest
+- [ ] **performance**
+  - [ ] make [pwa](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)
   - [ ] lazy load chapter sections?
-- [ ] layout
+- [ ] **layout**
   - [ ] Have each chapter and section as components rather than pages.
   - [ ] fix issues with spacing in references (e.g. should be a space after a [a-zA-Z], but not after `(`)
-  - [ ] number on `FootnoteItem`
-- [ ] routing bug: manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 - [ ] **interface**
-  - [ ] move the dark theme setting logic to the main icon so that it is mounted early
+  - [ ] typography settings (line-height, line-length, font-height, font-family)
+  - [ ] hover bubble
 - [ ] **bug**
-  - [ ] error on parsing `\item{}`
+  - [ ] manually invalidate to force a reload of data? https://kit.svelte.dev/docs/load#invalidation-manual-invalidation
 
 ## wishlist:
   - [ ] add full text search (meaning across pages!)
