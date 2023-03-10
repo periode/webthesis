@@ -25,8 +25,16 @@
     else if (type === "sec") {
         const p = findToCNodeByLabel(heading.label);
         if (p) path = `/${p.parent?.label.split(":")[1]}/${value}`;
+    } else if (type == "subsec") {
+        const sec = findToCNodeByLabel(heading.label);
+        let chap;
+        if (sec && sec.parent) chap = findToCNodeByLabel(sec.parent?.label);
+        if (sec && chap)
+            path = `/${chap.parent?.label.split(":")[1]}/${
+                sec.parent?.label.split(":")[1]
+            }#${value}`;
     }
-    
+
     const toggleExpansion = () => {
         isExpanded = !isExpanded;
     };
@@ -35,7 +43,12 @@
 <li class={`${style} flex justify-between`} id={heading.label}>
     <div>
         {#if type == "chap" || type == "sec"}
-            <a href={path} class={`underline ${current_label == heading.label ? "font-bold" : ""}`}>{heading.value}</a>
+            <a
+                href={path}
+                class={`underline ${
+                    current_label == heading.label ? "font-bold" : ""
+                }`}>{heading.value}</a
+            >
         {:else}
             <div
                 on:click={toggleExpansion}
@@ -51,8 +64,14 @@
                         <span transition:fade={{ duration: 50 }}>-</span>
                     {/if}
                 </div>
-                <div class={`${current_label == heading.label ? "font-bold" : ""}`}>
-                    {heading.value}
+                <div
+                    class={`${
+                        current_label == heading.label ? "font-bold" : ""
+                    }`}
+                >
+                    <a href={path} class="hover:underline">
+                        {heading.value}
+                    </a>
                 </div>
             </div>
         {/if}
@@ -60,7 +79,12 @@
         {#if heading.children && (depth < max_depth || isExpanded)}
             <ol transition:slide class="mt-2 mb-4">
                 {#each heading.children as sec}
-                    <svelte:self heading={sec} depth={depth + 1} {max_depth} {current_label}/>
+                    <svelte:self
+                        heading={sec}
+                        depth={depth + 1}
+                        {max_depth}
+                        {current_label}
+                    />
                 {/each}
             </ol>
         {/if}
