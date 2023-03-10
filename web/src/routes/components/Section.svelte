@@ -3,9 +3,10 @@
     import Node from "../components/Node.svelte";
     
     export let nodes: INode[];
+    export let name: string = "";
 </script>
 
-<div>
+<div class={name}>
     {#each nodes as node (node)}
         <Node {node} />
     {/each}

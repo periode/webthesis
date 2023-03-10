@@ -11,9 +11,6 @@ can i try and integrate multiple panels?
 ## todo
 
 - [ ] **tests**
-  - [x] mount toc
-  - [ ] mount section
-  - [ ] mount front
   - [ ] mount interface
 - [ ] **performance**
   - [ ] make [pwa](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)

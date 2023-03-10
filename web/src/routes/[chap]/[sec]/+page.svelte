@@ -20,7 +20,7 @@
         >
             <a href={`/${chap}`}>{chapter}</a>
         </div>
-        <Section {nodes}/>
+        <Section {nodes} name={sec}/>
         {#key sec}
             <Navigation chapter={`chap:${chap}`} section={`sec:${sec}`} />
         {/key}
