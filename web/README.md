@@ -13,7 +13,6 @@ can i try and integrate multiple panels?
 - [ ] **tests**
   - [ ] mount interface
 - [ ] **performance**
-  - [ ] make [pwa](https://vite-pwa-org.netlify.app/frameworks/sveltekit.html)
 - [ ] **layout**
 - [ ] **interface**
   - [ ] typography settings (line-height, line-length, font-height, font-family)
