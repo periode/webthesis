@@ -11,6 +11,6 @@
     
 </script>
 
-<div class="w-full lg:w-5/12 md:w-6/12 m-auto text-3xl mt-14 mb-4" id={label}>
+<h2 class="w-full lg:w-5/12 md:w-6/12 m-auto text-3xl mt-14 mb-4" id={label}>
     {value}
-</div>
+</h2>

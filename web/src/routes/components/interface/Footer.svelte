@@ -28,7 +28,7 @@
     });
 </script>
 
-<div
+<footer
     class="bg-zinc-50 dark:bg-zinc-900 md:bg-transparent w-full md:w-3/12 fixed bottom-0 p-1 pb-2 md:p-2 border-t border-b-zinc-900 dark:border-b-zinc-300 md:border-none flex flex-col z-10"
 >
     {#if isExpanded}
@@ -63,4 +63,4 @@
         </div>
         <div class="font-serif ml-3">{$current_heading}</div>
     </div>
-</div>
+</footer>

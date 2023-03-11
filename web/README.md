@@ -14,13 +14,18 @@ can i try and integrate multiple panels?
   - [ ] mount interface
 - [ ] **performance**
 - [ ] **layout**
+  - [ ] update title tag
+  - [ ] label headings with counter-increment https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Counter_Styles/Using_CSS_counters
 - [ ] **interface**
   - [ ] typography settings (line-height, line-length, font-height, font-family)
   - [ ] hover bubble
 - [ ] **bug**
+- [ ] **chore**
+  - [ ] add snippets
 
 ## wishlist
 
+- [ ] code generation for the snippets
 - [ ] add full text search (meaning across pages!)
 - [ ] add index of nouns and list where they are (how??) [index](https://en.wikipedia.org/wiki/Index_(publishing))
 - [ ] overlay/pop up for code snippet `<Code/>`?

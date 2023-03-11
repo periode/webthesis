@@ -33,8 +33,9 @@
     </div>
 
     <Abstract {abstract} />
+
     <div class="w-full lg:w-5/12 md:w-6/12 m-auto pt-12">
-        <h3 class="my-4 text-2xl">Table of contents</h3>
+        <h2 class="my-4 text-2xl">Table of contents</h2>
         <TableOfContents {toc} max_depth={2} />
     </div>
 </div>

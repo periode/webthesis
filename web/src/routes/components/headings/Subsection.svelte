@@ -13,7 +13,7 @@
     const options = {};
 </script>
 
-<div
+<h3
     use:inview={options}
     on:enter={(e) => {
         $current_heading = value;
@@ -22,4 +22,4 @@
     id={label}
 >
     {value}
-</div>
+</h3>

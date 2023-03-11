@@ -6,8 +6,12 @@
     export let name: string = "";
 </script>
 
-<div class={name}>
+<svelte:head>
+    <title>The aesthetics of source code | {name}</title>
+</svelte:head>
+
+<section class={name}>
     {#each nodes as node (node)}
         <Node {node} />
     {/each}
-</div>
+</section>

@@ -17,7 +17,7 @@
         } else {
             $dark_mode = "light";
             document.documentElement.classList.remove("dark");
-        }    
+        }
     });
 
     let isExpanded = false;
@@ -26,7 +26,7 @@
     };
 </script>
 
-<div
+<header
     class="bg-zinc-50 dark:bg-zinc-900 md:bg-transparent w-full md:w-auto fixed top-0 p-1 pb-2 md:p-2 border-b border-b-zinc-900 dark:border-b-zinc-300 md:border-none flex z-10"
 >
     <img
@@ -50,7 +50,7 @@
         alt={`icon to toggle dark mode or light mode`}
     />
     {#if isExpanded}
-        <div transition:fade={{duration: 100}} class={`flex`}>
+        <div transition:fade={{ duration: 100 }} class={`flex`}>
             <DarkMode />
             <!-- home -->
             <div>
@@ -92,4 +92,4 @@
             </div>
         </div>
     {/if}
-</div>
+</header>

@@ -6,7 +6,7 @@
     const children = footnote.children as INode[];   
 </script>
 
-<div
+<aside
     id={`footnote-${footnote.value}`}
     class={`md:${
         footnote.visible ? "block" : "hidden"
@@ -20,4 +20,4 @@
     {#each children as node}
         <Node {node} />
     {/each}
-</div>
+</aside>

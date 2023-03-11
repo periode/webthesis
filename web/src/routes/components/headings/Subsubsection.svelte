@@ -10,7 +10,7 @@
     const options = {};
 </script>
 
-<div
+<h4
     use:inview={options}
     on:enter={(e) => {
         $current_heading = value;
@@ -18,5 +18,5 @@
     class="w-full lg:w-5/12 md:w-6/12 m-auto mt-6 font-semibold"
 >
     {value}
-</div>
+</h4>
 

@@ -2,6 +2,6 @@
     export let title: string;
 </script>
 
-<div class="text-3xl">
+<h1 class="text-3xl">
     {` ${title} `}
-</div>
+</h1>

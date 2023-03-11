@@ -9,6 +9,6 @@
     const minute = d.getMinutes() < 10 ? "0" + d.getMinutes() : d.getMinutes();
 </script>
 
-<div class="text-sm">
+<time datetime={`${year}`} class="text-sm">
     last updated on: {`${day}.${month}.${year}`} at {`${hour}:${minute}`}
-</div>
+</time>
