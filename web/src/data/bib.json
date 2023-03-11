@@ -356,6 +356,30 @@
     "volume": "0"
   },
   {
+    "ISBN": "978-0-292-71527-1 978-0-292-71534-9",
+    "abstract": "xxxiv, 444 pages ; 24 cm; These essays reveal Mikhail Bakhtin (1895-1975)–known in the West largely through his studies of Rabelais and Dostoevsky–as a philosopher of language, a cultural historian, and a major theoretician of the novel. The Dialogic Imaginationpresents, in superb English translation, four selections fromVoprosy literatury i estetiki(Problems of literature and esthetics), published in Moscow in 1975. The volume also contains a lengthy introduction to Bakhtin and his thought and a glossary of terminology. Bakhtin uses the category \"novel\" in a highly idiosyncratic way, claiming for it vastly larger territory than has been traditionally accepted. For him, the novel is not so much a genre as it is a force, \"novelness,\" which he discusses in \"From the Prehistory of Novelistic Discourse.\" Two essays, \"Epic and Novel\" and \"Forms of Time and of the Chronotope in the Novel,\" deal with literary history in Bakhtin’s own unorthodox way. In the final essay, he discusses literature and language in general, which he sees as stratified, constantly changing systems of subgenres, dialects, and fragmented \"languages\" in battle with one another; Translation of: Voprosy literatury i ėstetiki; Includes index; Epic and novel – From the Prehistory of novelistic discourse – Forms of time and of the chronotope in the novel – Discourse in the novel; Includes bibliographical references and index; Translation of: Voprosy literatury i estetiki",
+    "author": [
+      {
+        "family": "Bakhtin",
+        "given": "M. M. (Mikhail Mikhailovich)"
+      }
+    ],
+    "id": "bakhtin_dialogic_1981",
+    "issued": {
+      "date-parts": [
+        [
+          1981
+        ]
+      ]
+    },
+    "keyword": "Romans",
+    "language": "en-US",
+    "publisher": "Austin : University of Texas Press",
+    "title": "The dialogic imagination : Four essays",
+    "title-short": "The dialogic imagination",
+    "type": "book"
+  },
+  {
     "ISBN": "978-1-4438-0749-4",
     "author": [
       {
@@ -913,6 +937,13 @@
     "publisher": "Springer Science & Business Media",
     "title": "What Robots Can and Can’t Be",
     "type": "book"
+  },
+  {
+    "id": "british_",
+    "publisher": "https://www.bsls.ac.uk/reviews/general-and-theory/terence-cave-thinking-with-literature-towards-a-cognitive-criticism/",
+    "title": "The British Society for Literature and Science \\cdot Terence Cave, Thinking with Literature: Towards a Cognitive Criticism",
+    "title-short": "The British Society for Literature and Science \\cdot Terence Cave, Thinking with Literature",
+    "type": ""
   },
   {
     "author": [
@@ -2344,6 +2375,12 @@
     "type": ""
   },
   {
+    "id": "don_",
+    "publisher": "https://news.ycombinator.com/item?id=13571159",
+    "title": "Don’t complain that Chinese is ugly and unreadable just because you speak Englis... | Hacker News",
+    "type": ""
+  },
+  {
     "author": [
       {
         "family": "Douce",
@@ -2750,6 +2787,30 @@
     "title": "Improving source code readability: Theory and practice",
     "title-short": "Improving source code readability",
     "type": "paper-conference"
+  },
+  {
+    "DOI": "10.1017/CBO9780511624582",
+    "ISBN": "978-0-521-44949-6",
+    "abstract": "Mental Spaces is the classic introduction to the study of mental spaces and conceptual projection, as revealed through the structure and use of language. It examines in detail the dynamic construction of connected domains as discourse unfolds. The discovery of mental space organization has modified our conception of language and thought: powerful and uniform accounts of superficially disparate phenomena have become available in the areas of reference, presupposition projection, counterfactual and analogical reasoning, metaphor and metonymy, and time and aspect in discourse.The present work lays the foundation for this research. It uncovers simple and general principles that lie behind the awesome complexity of everyday logic.",
+    "author": [
+      {
+        "family": "Fauconnier",
+        "given": "Gilles"
+      }
+    ],
+    "id": "fauconnier_mental_1994",
+    "issued": {
+      "date-parts": [
+        [
+          1994
+        ]
+      ]
+    },
+    "publisher": "Cambridge University Press",
+    "publisher-place": "Cambridge",
+    "title": "Mental Spaces: Aspects of Meaning Construction in Natural Language",
+    "title-short": "Mental Spaces",
+    "type": "book"
   },
   {
     "DOI": "10.1016/j.tics.2019.04.010",
@@ -5894,6 +5955,38 @@
     "type": "book"
   },
   {
+    "DOI": "10.1177/0309132507077082",
+    "ISSN": "0309-1325",
+    "abstract": "In this paper we argue that cartography is profitably conceived as a processual, rather than representational, science. Building on recent analysis concerning the philosophical underpinnings of cartography we question the ontological security of maps, contending that it is productive to rethink cartography as ontogenetic in nature; that is maps emerge through practices and have no secure ontological status. Drawing on the concepts of transduction and technicity we contend that maps are of-the-moment, brought into being through practices (embodied, social, technical); that mapping is a process of constant reterritorialization. Maps are never fully formed and their work is never complete. Maps are transitory and fleeting, being contingent, relational and context-dependent; they are always mappings; spatial practices enacted to solve relational problems (eg, how best to create a spatial representation, how to understand a spatial distribution, how to get between A and B, and so on). Such a rethinking, we contend, provides a fresh perspective on cartographic epistemology, and could work to provide a common framework for those who undertake mapping as applied knowledge (asking technical questions) and those that seek to critique such mapping as a form of power/knowledge (asking ideological questions). We illustrate our argument through an analysis of mapping practices.",
+    "author": [
+      {
+        "family": "Kitchin",
+        "given": "Rob"
+      },
+      {
+        "family": "Dodge",
+        "given": "Martin"
+      }
+    ],
+    "container-title": "Progress in Human Geography",
+    "id": "kitchin_rethinking_2007",
+    "issue": "3",
+    "issued": {
+      "date-parts": [
+        [
+          2007,
+          6
+        ]
+      ]
+    },
+    "language": "en-US",
+    "page": "331-344",
+    "publisher": "SAGE Publications Ltd",
+    "title": "Rethinking maps",
+    "type": "article-journal",
+    "volume": "31"
+  },
+  {
     "author": [
       {
         "family": "Kittler",
@@ -6790,6 +6883,25 @@
     "title": "When Computers Were Women",
     "type": "article-journal",
     "volume": "40"
+  },
+  {
+    "author": [
+      {
+        "literal": "Linux"
+      }
+    ],
+    "id": "linux_content_2023",
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          3
+        ]
+      ]
+    },
+    "publisher": "https://archive.softwareheritage.org/swh:1:cnt:0c883d6fbd44d06763ef037e5df0b55e44222c88;origin=https://github.com/torvalds/linux;visit=swh:1:snp:e546f517ecbfe7675f5f240726fe75eaf19d8b55;anchor=swh:1:rev:44889ba56cbb3d51154660ccd15818bc77276696;path=/lib/genalloc.c;lines=182-205",
+    "title": "Content - 0c883d6fbd44d06763ef037e5df0b55e44222c88 - 76665c5/lib/genalloc.c  Software Heritage archive",
+    "type": ""
   },
   {
     "author": [
@@ -10316,6 +10428,61 @@
     "title-short": "Deep Immediacy",
     "type": "article-journal",
     "volume": "89"
+  },
+  {
+    "ISBN": "978-0-367-51443-3",
+    "abstract": "The idea of textual space is normally associated with the space represented in the text, this is to say, with mimetic space (henceforth space 1). But the involvement of texts with space can take other forms: the embedding of textual objects in a",
+    "author": [
+      {
+        "family": "Ryan",
+        "given": "Marie-Laure"
+      }
+    ],
+    "container-title": "Digital Narrative Spaces: An Interdisciplinary Examination",
+    "editor": [
+      {
+        "family": "Punday",
+        "given": "Daniel"
+      }
+    ],
+    "id": "ryan_four_2021",
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          12
+        ]
+      ]
+    },
+    "publisher": "Routledge",
+    "title": "Four Types of Textual Space and their Manifestations in Digital Narrative",
+    "type": "chapter"
+  },
+  {
+    "DOI": "10.1515/9783110217445.420",
+    "ISBN": "978-3-11-021744-5",
+    "abstract": "Space was published in Handbook of Narratology on page 420.",
+    "author": [
+      {
+        "family": "Ryan",
+        "given": "Marie-Laure"
+      }
+    ],
+    "container-title": "Space",
+    "id": "ryan_space_2009",
+    "issued": {
+      "date-parts": [
+        [
+          2009,
+          8
+        ]
+      ]
+    },
+    "language": "en-US",
+    "page": "420-433",
+    "publisher": "De Gruyter",
+    "title": "Space",
+    "type": "chapter"
   },
   {
     "author": [
