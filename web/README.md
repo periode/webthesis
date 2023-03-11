@@ -16,6 +16,9 @@ can i try and integrate multiple panels?
 - [ ] **layout**
 - [ ] **content**
   - [ ] listings
+    - [ ] change the "all the names of god" output to a code: prefix with txt formatting
+    - [ ] when you click on left side of listing, the graphic/listing appears
+    - [ ] organize all listings and graphics by chapters rather than have them on the right, but keep a small icon on the right to link to the actual text
   - [ ] bibliography
   - [ ] about
 - [ ] **interface**

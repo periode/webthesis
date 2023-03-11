@@ -62,6 +62,10 @@ export const getBibliography = (): Array<any> => {
     return bib;
 }
 
+export const getListings = (): Array<any> => {
+    return listings;
+}
+
 export const getBundle = (name: string): Array<INode> => {
     let bundle;
     switch (name) {
