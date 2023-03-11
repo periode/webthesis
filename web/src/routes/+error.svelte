@@ -1,6 +1,6 @@
 <script>
     import { page } from "$app/stores";
-    import Spacer from "./components/block/Spacer.svelte";
+    import Spacer from "../components/block/Spacer.svelte";
 
     const { status } = $page;
 </script>

@@ -1,11 +1,11 @@
 <script lang="ts">
     import type { PageData } from "./$types";
-    import Date from "./components/front/Date.svelte";
-    import Author from "./components/front/Author.svelte";
-    import Title from "./components/front/Title.svelte";
-    import Affiliation from "./components/front/Affiliation.svelte";
-    import TableOfContents from "./components/TableOfContents.svelte";
-    import Abstract from "./components/front/Abstract.svelte";
+    import Date from "../components/front/Date.svelte";
+    import Author from "../components/front/Author.svelte";
+    import Title from "../components/front/Title.svelte";
+    import Affiliation from "../components/front/Affiliation.svelte";
+    import TableOfContents from "../components/TableOfContents.svelte";
+    import Abstract from "../components/front/Abstract.svelte";
     import { current_heading } from "../stores";
     import { onMount } from "svelte";
 

@@ -1,4 +1,4 @@
-import type { IListingsNode, INode, IToCNode } from "./types";
+import type { IListingsNode, INode, IToCNode, ICitation } from "./types";
 import text_data from "../data/text.json";
 import toc_data from "../data/toc.json";
 import front_data from "../data/front.json";
@@ -9,6 +9,9 @@ import beauty_data from "../data/beauty.json";
 import programming_data from "../data/programming.json";
 import conclusion_data from "../data/conclusion.json";
 import listings_data from "../data/listings.json";
+import bib_data from "../data/bib.json";
+
+const bib = bib_data as any[];
 const full_text = text_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 const listings = listings_data as Array<IListingsNode>;
@@ -53,6 +56,10 @@ export const getToC = (chap?: string): Array<IToCNode> => {
             return inc.children[0].children as Array<IToCNode>
     }
     return [];
+}
+
+export const getBibliography = (): Array<any> => {
+    return bib;
 }
 
 export const getBundle = (name: string): Array<INode> => {

@@ -1,9 +1,9 @@
 <script lang="ts">
     import type { PageData } from "./$types";
     import { page } from "$app/stores";
-    import Section from "../../components/Section.svelte";
-    import NotFound from "../../components/NotFound.svelte";
-    import Navigation from "../../components/interface/Navigation.svelte";
+    import Section from "../../../components/Section.svelte";
+    import NotFound from "../../../components/NotFound.svelte";
+    import Navigation from "../../../components/interface/Navigation.svelte";
 
     export let data: PageData;
 
