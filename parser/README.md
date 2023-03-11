@@ -22,6 +22,7 @@ __WARNING__ there should always be a new line at the end of the document, otherw
 
 ## todo
 
+- [ ] chore: include multiple possible paragraphs in quote environment
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
   - [ ] textquote __currently not used in thesis__
