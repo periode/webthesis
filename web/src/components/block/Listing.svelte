@@ -34,7 +34,9 @@
     >
         <Code {lang} {path} />
     </div>
-    <div class="max-w-max my-4 m-auto italic text-sm text-left text-zinc-500 dark:text-zinc-300">
+    <div
+        class="max-w-max my-4 m-auto italic text-sm text-left text-zinc-500 dark:text-zinc-300"
+    >
         {caption}
     </div>
 </div>

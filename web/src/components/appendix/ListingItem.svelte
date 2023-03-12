@@ -30,7 +30,6 @@
                         <div transition:slide class="flex flex-row">
                             <div class="flex flex-col">
                                 <Listing {node}/>
-                                <span class="text-sm">{listing.value}</span>
                             </div>
                         </div>
                     {/if}
