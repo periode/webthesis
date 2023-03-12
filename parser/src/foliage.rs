@@ -1,10 +1,11 @@
 use serde::Serialize;
+use dyn_clone::DynClone;
 
 pub mod commands;
 pub mod environments;
 pub mod tokens;
 
-pub trait Tag {
+pub trait Tag : DynClone {
     fn value(&self) -> &str;
     fn is_front(&self) -> bool;
 }

@@ -5,7 +5,7 @@ test:
 	cd parser && cargo test
 
 data: thesis
-	cp ./parser/output/text.json ./web/src/data/text.json
+	cp ./parser/output/full.json ./web/src/data/full.json
 	cp ./parser/output/toc.json ./web/src/data/toc.json
 	cp ./parser/output/front.json ./web/src/data/front.json
 	cp ./parser/output/introduction.json ./web/src/data/introduction.json

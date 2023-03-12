@@ -18,8 +18,9 @@ use crate::Args;
 #[derive(Parser)]
 #[grammar = "latex-grammar.pest"]
 pub struct LaTeXParser;
+dyn_clone::clone_trait_object!(Tag);
 
-#[derive(Serialize)]
+#[derive(Serialize, Clone)]
 pub struct Node {
     pub children: Option<Vec<Node>>,
     pub tag: Box<dyn Tag>,
@@ -148,7 +149,11 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
             Rule::env_name => match environments::parse_name(subpair.as_str()) {
                 Some(env) => {
                     env_node.tag = Box::new(env);
-                    if env == Environment::Quote || env == Environment::Itemize {
+                    if env == Environment::Quote
+                        || env == Environment::Itemize
+                        || env == Environment::Listing
+                        || env == Environment::Figure
+                    {
                         is_paragraph = true;
                     }
                 }
@@ -174,6 +179,13 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
                         }
                         Rule::cmd_stmt => {
                             if let Some(c) = parse_command(subsubpair, state) {
+                                if c.tag.value() == Command::Label.value() {
+                                    //-- wtf
+                                    let tmp = c.clone().to_owned().children.unwrap();
+                                    let first = tmp.first().unwrap();
+                                    env_node.value = first.value.clone();
+                                }
+
                                 env_node.add(c);
                             }
                         }
@@ -211,7 +223,8 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
         }
     }
 
-    if is_paragraph { // hmmm... the quote is semantically a paragraph, but technically an environment
+    if is_paragraph {
+        // hmmm... the quote is semantically a paragraph, but technically an environment
         let mut p = Node {
             children: None,
             tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
@@ -220,7 +233,7 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
 
         p.add(env_node);
 
-        return p
+        return p;
     }
     env_node
 }
@@ -319,50 +332,48 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
     Some(cmd_node)
 }
 
-pub fn save(nodes: Vec<Node>, dest: &str, split: bool) {
-    if split {
-        print!("- writing: ");
-        for document in nodes.into_iter() {
-            let mut front: Vec<Node> = Vec::<Node>::new();
-            for node in document.children.unwrap().into_iter() {
-                if node.tag.value() == Command::Include.value() {
-                    let json_string = serde_json::to_string(&node).unwrap();
-                    let fname = node.value.split(".").next().unwrap();
-                    match File::create(format!("{}/{}.json", &dest, fname)) {
-                        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-                            Ok(_) => print!("{}/{}.json ", dest, fname),
-                            Err(error) => {
-                                println!("...failed to write {}:{}", dest, error)
-                            }
-                        },
-                        Err(error) => println!("...failed to open {}:{}", dest, error),
-                    }
-                } else if node.tag.is_front() {
-                    front.push(node);
-                }
-            }
+pub fn save(nodes: Vec<Node>, dest: &str) {
+    let json_string = serde_json::to_string(&nodes).unwrap();
+    match File::create(format!("{}/full.json", &dest)) {
+        Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+            Ok(_) => println!("- writing: {}/full.json ", dest),
+            Err(error) => println!("...failed to write {}:{}", dest, error),
+        },
+        Err(error) => println!("...failed to open {}:{}", dest, error),
+    }
 
-            if front.len() > 0 {
-                let json_string = serde_json::to_string(&front).unwrap();
-                let fname = "front";
+    print!("- writing: ");
+    for document in nodes.into_iter() {
+        let mut front: Vec<Node> = Vec::<Node>::new();
+        for node in document.children.unwrap().into_iter() {
+            if node.tag.value() == Command::Include.value() {
+                let json_string = serde_json::to_string(&node).unwrap();
+                let fname = node.value.split(".").next().unwrap();
                 match File::create(format!("{}/{}.json", &dest, fname)) {
                     Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-                        Ok(_) => print!("{}/{}.json", dest, fname),
-                        Err(error) => println!("...failed to write {}:{}", dest, error),
+                        Ok(_) => print!("{}/{}.json ", dest, fname),
+                        Err(error) => {
+                            println!("...failed to write {}:{}", dest, error)
+                        }
                     },
                     Err(error) => println!("...failed to open {}:{}", dest, error),
                 }
+            } else if node.tag.is_front() {
+                front.push(node);
             }
-            println!()
         }
-    } else {
-        let json_string = serde_json::to_string(&nodes).unwrap();
-        match File::create(format!("{}/text.json", &dest)) {
-            Ok(mut output_file) => match write!(output_file, "{}", json_string) {
-                Ok(_) => println!("- writing {}/text.json ", dest),
-                Err(error) => println!("...failed to write {}:{}", dest, error),
-            },
-            Err(error) => println!("...failed to open {}:{}", dest, error),
+
+        if front.len() > 0 {
+            let json_string = serde_json::to_string(&front).unwrap();
+            let fname = "front";
+            match File::create(format!("{}/{}.json", &dest, fname)) {
+                Ok(mut output_file) => match write!(output_file, "{}", json_string) {
+                    Ok(_) => print!("{}/{}.json", dest, fname),
+                    Err(error) => println!("...failed to write {}:{}", dest, error),
+                },
+                Err(error) => println!("...failed to open {}:{}", dest, error),
+            }
         }
+        println!()
     }
 }

@@ -14,7 +14,6 @@ const SEPARATOR: &str = " | ";
 const DEFAULT_INPUT: &str = "./test_inputs/include.tex";
 const DEFAULT_OUTPUT_DIR: &str = "output";
 const DEFAULT_VERBOSE: usize = 0;
-const DEFAULT_SPLIT: bool = true;
 #[derive(ArgParser, Debug)]
 struct Args {
     #[arg(short, default_value = DEFAULT_INPUT)]
@@ -25,9 +24,6 @@ struct Args {
 
     #[arg(short, default_value_t = DEFAULT_VERBOSE)]
     verbosity: usize,
-
-    #[arg(short, default_value_t = DEFAULT_SPLIT)]
-    split: bool,
 }
 
 fn main() {
@@ -56,7 +52,7 @@ fn main() {
         pretty_print(&ast, 0);
     }
 
-    parsers::text::save(ast, &args.output_dir, args.split);
+    parsers::text::save(ast, &args.output_dir);
     parsers::toc::save(toc, &args.output_dir);
     parsers::listings::save(listings, &args.output_dir);
     println!("- lasting: {:?}", duration)
