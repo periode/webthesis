@@ -4,12 +4,13 @@
     import type { PageData } from "../$types";
     import FigureItem from "../../../components/appendix/FigureItem.svelte";
     import Spacer from "../../../components/block/Spacer.svelte";
+    import { findHeadingValue } from "../../../utils/find";
 
     export let data: PageData;
 
-    const listings = data.listings as Array<IListingsNode>;
+    const listings = data.listings as { [k: string]: Array<IListingsNode> };
     const full_listings = data.full_listings as Array<INode>;
-    const figures = data.figures as Array<IListingsNode>;
+    const figures = data.figures as { [k: string]: Array<IListingsNode> };
     const full_figures = data.full_figures as Array<INode>;
 </script>
 
@@ -24,8 +25,11 @@
         <section>
             <h2 class="text-2xl mt-24 mb-8">List of listings</h2>
             <ol class="w-full list-inside list-decimal">
-                {#each listings as listing, i}
-                    <ListingItem {listing} node={full_listings[i]} />
+                {#each Object.entries(listings) as [chapter, children]}
+                    <div class="text-xl my-8 font-semibold">{findHeadingValue(`chap:${chapter}`)}</div>
+                    {#each children as listing}
+                        <ListingItem {listing} node={full_listings[listing.index]} />
+                    {/each}
                 {/each}
             </ol>
         </section>
@@ -35,9 +39,12 @@
         <section>
             <h2 class="text-2xl mt-24 mb-8">List of figures</h2>
             <ol class="w-full list-inside list-decimal">
-                {#each figures as figure, i}
-                    <FigureItem {figure} node={full_figures[i]} />
+                {#each Object.entries(figures) as [chapter, children]}
+                <div class="text-xl my-8 font-semibold">{findHeadingValue(`chap:${chapter}`)}</div>
+                {#each children as figure}
+                    <FigureItem {figure} node={full_figures[figure.index]} />
                 {/each}
+            {/each}
             </ol>
         </section>
     </main>

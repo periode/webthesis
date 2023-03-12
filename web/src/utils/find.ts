@@ -66,11 +66,11 @@ export const getListings = (): Array<any> => {
     return listings;
 }
 
-export const findListingByLabel = (label : string, chapter?: string, _nodes?: INode[]): INode => {
-   let nodes: INode[] = [];
+export const findListingByLabel = (label: string, chapter?: string, _nodes?: INode[]): INode => {
+    let nodes: INode[] = [];
 
-    if(chapter !== undefined) nodes = getBundle(chapter)
-    else if (!_nodes) nodes = full_text;        
+    if (chapter !== undefined) nodes = getBundle(chapter)
+    else if (!_nodes) nodes = full_text;
 
     const listings = findNodesByTag('listing', nodes)
     const result = listings.find(l => l.value == label) as INode;
@@ -78,17 +78,17 @@ export const findListingByLabel = (label : string, chapter?: string, _nodes?: IN
     return result
 }
 
-export const findFigureByLabel = (label : string, chapter?: string, _nodes?: INode[]): INode => {
+export const findFigureByLabel = (label: string, chapter?: string, _nodes?: INode[]): INode => {
     let nodes: INode[] = [];
- 
-     if(chapter !== undefined) nodes = getBundle(chapter)
-     else if (!_nodes) nodes = full_text;        
- 
-     const listings = findNodesByTag('figure', nodes)
-     const result = listings.find(l => l.value == label) as INode;
- 
-     return result
- }
+
+    if (chapter !== undefined) nodes = getBundle(chapter)
+    else if (!_nodes) nodes = full_text;
+
+    const listings = findNodesByTag('figure', nodes)
+    const result = listings.find(l => l.value == label) as INode;
+
+    return result
+}
 
 export const getBundle = (name: string): Array<INode> => {
     let bundle;
@@ -114,19 +114,19 @@ export const getBundle = (name: string): Array<INode> => {
         case "conclusion":
             bundle = [conclusion_data as INode];
             break;
-        case "all":            
+        case "all":
             bundle = full_text;
             break;
         default:
             return []
     }
-    
+
     return bundle;
 }
 
 export const findNodesByTag = (tag: string, _nodes?: Array<INode>): Array<INode> => {
     let nodes: INode[] = [];
-    if(_nodes) nodes = _nodes
+    if (_nodes) nodes = _nodes
     else nodes = []
 
     var result: Array<INode> = [];
@@ -230,7 +230,7 @@ export const findToCNodeByValue = (value: string, nodes?: Array<IToCNode>): IToC
 
 //-- findHeadingValue takes a label and returns the literal for the heading associated with the label
 export const findHeadingValue = (label: string): string => {
-    const node = findToCNodeByLabel(label)
+    const node = findToCNodeByLabel(label)    
     return node ? node.value : "ERROR";
 }
 
