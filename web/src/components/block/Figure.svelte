@@ -12,7 +12,7 @@
     const label = l && l.children ? l.children[0].value.split(":")[1] : "";    
 </script>
 
-<div class="w-full lg:w-5/12 md:w-6/12 m-auto my-8" id={encodeURIComponent(label)}>
+<div class="w-full m-auto my-8" id={encodeURIComponent(label)}>
     <div class="relative text-zinc-400 text-right text-sm">{label}</div>
     <figure class="flex flex-col border border-zinc-600 p-2">
         <img class="max-h-fit" src={`/images/${image?.value}`} alt={caption?.value} srcset="" />

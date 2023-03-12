@@ -16,7 +16,8 @@ module.exports = {
       none: 'none',
       disc: 'disc',
       decimal: 'decimal',
-      alpha: 'lower-alpha'
+      alpha: 'lower-alpha',
+      'upper-alpha': 'upper-alpha',
     },
     fontFamily: {
       'serif': ['BespokeSerif', defaultTheme.fontFamily.serif],

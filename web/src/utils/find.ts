@@ -1,5 +1,5 @@
-import type { IListingsNode, INode, IToCNode, ICitation } from "./types";
-import text_data from "../data/text.json";
+import type { IListingsNode, INode, IToCNode } from "./types";
+import full_data from "../data/full.json";
 import toc_data from "../data/toc.json";
 import front_data from "../data/front.json";
 import introduction_data from "../data/introduction.json";
@@ -12,7 +12,7 @@ import listings_data from "../data/listings.json";
 import bib_data from "../data/bib.json";
 
 const bib = bib_data as any[];
-const full_text = text_data as Array<INode>;
+const full_text = full_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 const listings = listings_data as Array<IListingsNode>;
 
@@ -66,6 +66,30 @@ export const getListings = (): Array<any> => {
     return listings;
 }
 
+export const findListingByLabel = (label : string, chapter?: string, _nodes?: INode[]): INode => {
+   let nodes: INode[] = [];
+
+    if(chapter !== undefined) nodes = getBundle(chapter)
+    else if (!_nodes) nodes = full_text;        
+
+    const listings = findNodesByTag('listing', nodes)
+    const result = listings.find(l => l.value == label) as INode;
+
+    return result
+}
+
+export const findFigureByLabel = (label : string, chapter?: string, _nodes?: INode[]): INode => {
+    let nodes: INode[] = [];
+ 
+     if(chapter !== undefined) nodes = getBundle(chapter)
+     else if (!_nodes) nodes = full_text;        
+ 
+     const listings = findNodesByTag('figure', nodes)
+     const result = listings.find(l => l.value == label) as INode;
+ 
+     return result
+ }
+
 export const getBundle = (name: string): Array<INode> => {
     let bundle;
     switch (name) {
@@ -90,14 +114,21 @@ export const getBundle = (name: string): Array<INode> => {
         case "conclusion":
             bundle = [conclusion_data as INode];
             break;
+        case "all":            
+            bundle = full_text;
+            break;
         default:
             return []
     }
-
+    
     return bundle;
 }
 
-export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> => {
+export const findNodesByTag = (tag: string, _nodes?: Array<INode>): Array<INode> => {
+    let nodes: INode[] = [];
+    if(_nodes) nodes = _nodes
+    else nodes = []
+
     var result: Array<INode> = [];
     for (var i = 0; i < nodes.length; i++) {
         const n = nodes[i]
@@ -106,7 +137,7 @@ export const findNodesByTag = (nodes: Array<INode>, tag: string): Array<INode> =
             result.push(n)
 
         if (n.children) {
-            const r = findNodesByTag(n.children, tag);
+            const r = findNodesByTag(tag, n.children);
             if (r)
                 result.push(...r)
 
@@ -207,7 +238,7 @@ export const findHeadingValue = (label: string): string => {
 //-- this is mostly used when references need to locate on which page the label is
 export const findLabel = (value: string): INode | null => {
     var result = null;
-    const labels = findNodesByTag(full_text, "label")
+    const labels = findNodesByTag("label", full_text)
 
     for (let label of labels) {
         if (label.children && label.children[0].value === value)

@@ -61,7 +61,7 @@
             >
                 <div class={`w-6`}>
                     {#if heading.children && !isExpanded && depth >= max_depth}
-                        <span transition:fade={{ duration: 50 }}>-</span>
+                        <span transition:fade={{ duration: 50 }}>+</span>
                     {/if}
                 </div>
                 <div

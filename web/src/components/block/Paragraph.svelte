@@ -18,6 +18,8 @@
     import Url from "../inline/URL.svelte";
     import Superscript from "../inline/Superscript.svelte";
     import List from "./List.svelte";
+    import Listing from "./Listing.svelte";
+    import Figure from "./Figure.svelte";
 
     export let node: INode;
     const nodes = node.children ? node.children : [];
@@ -99,6 +101,10 @@
                 <Reference {node} />
             {:else if node.tag === NodeType.InlineListing}
                 <InlineListing {node} />
+            {:else if node.tag === NodeType.Listing}
+                <Listing {node} />
+            {:else if node.tag === NodeType.Figure}
+                <Figure {node} />
             {:else if node.tag === NodeType.List}
                 <List {node} />
             {:else if node.tag === NodeType.URL}

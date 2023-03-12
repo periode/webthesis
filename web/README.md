@@ -16,8 +16,6 @@ can i try and integrate multiple panels?
 - [ ] **layout**
 - [ ] **content**
   - [ ] listings
-    - [ ] change the "all the names of god" output to a code: prefix with txt formatting
-    - [ ] when you click on left side of listing, the graphic/listing appears
     - [ ] organize all listings and graphics by chapters rather than have them on the right, but keep a small icon on the right to link to the actual text
   - [ ] bibliography
   - [ ] about
@@ -30,7 +28,7 @@ can i try and integrate multiple panels?
 
 ## wishlist
 
-= [ ] a listing should be anchored but also be a popup
+- [ ] a listing should be anchored but also be a popup
 - [ ] code generation for the snippets
 - [ ] add full text search (meaning across pages!)
 - [ ] add index of nouns and list where they are (how??) [index](https://en.wikipedia.org/wiki/Index_(publishing))
