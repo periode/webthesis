@@ -73,9 +73,13 @@
                     }`}
                 >
                     <div class="mr-2">{heading.index.join(".")}</div>
-                    <a href={path} class="hover:underline">
-                        {heading.value}
-                    </a>
+                    {#if type === "subsec"}
+                        <a href={path} class="hover:underline">
+                            {heading.value}
+                        </a>
+                    {:else}
+                        <span>{heading.value}</span>
+                    {/if}
                 </div>
             </div>
         {/if}

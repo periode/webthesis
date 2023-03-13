@@ -1,12 +1,10 @@
 <script lang="ts">
     import { inview } from "svelte-inview";
     import type { INode } from "../../utils/types";
+    import { current_heading } from "../../stores";    
     export let node: INode;
-
-    import { current_heading } from "../../stores";
-
     let value = node.children ? node.children[0].value : "none";
-
+    
     const options = {};
 </script>
 
