@@ -41,20 +41,13 @@ export const findFullReference = (label: string): IListingsNode | undefined => {
 
 //-- returns the full toc if chap is empty, or the ToC of a specific chapter
 export const getToC = (chap?: string): Array<IToCNode> => {
+    if (chap === undefined || chap === null || chap === "")
+        return toc;
 
-    if (chap === undefined || chap === null || chap === "") {
-        let chapters: IToCNode[] = [];
-        for (let inc of toc)
-            if (inc.children)
-                chapters.push(inc.children[0])
-        return chapters
-    }
+    for (let c of toc)
+        if (c.label === `chap:${chap}`)
+            return c.children as Array<IToCNode>
 
-
-    for (let inc of toc) {
-        if (inc.children && inc.children[0].label === `chap:${chap}`)
-            return inc.children[0].children as Array<IToCNode>
-    }
     return [];
 }
 
@@ -230,7 +223,7 @@ export const findToCNodeByValue = (value: string, nodes?: Array<IToCNode>): IToC
 
 //-- findHeadingValue takes a label and returns the literal for the heading associated with the label
 export const findHeadingValue = (label: string): string => {
-    const node = findToCNodeByLabel(label)    
+    const node = findToCNodeByLabel(label)
     return node ? node.value : "ERROR";
 }
 

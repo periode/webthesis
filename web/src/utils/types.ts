@@ -42,6 +42,7 @@ export interface IToCNode {
     label: string;
     children: Array<IToCNode> | null;
     parent?: IToCNode;
+    index: Array<number>;
 };
 
 export interface IListingsNode {

@@ -18,10 +18,12 @@ can i try and integrate multiple panels?
   - [ ] bibliography
   - [ ] about
 - [ ] **interface**
-  - [ ] typography settings (line-height, line-length, font-height, font-family)
+  - [ ] typography settings (line-height, line-length, font-size, font-family)
   - [ ] hover bubble
 - [ ] **bug**
+  - [ ] jump to listing anchor in section from appendix not ideal
 - [ ] **chore**
+  - [ ] reorganize `utils/`
 
 ## wishlist
 

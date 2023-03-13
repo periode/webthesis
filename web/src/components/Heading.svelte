@@ -40,15 +40,18 @@
     };
 </script>
 
-<li class={`${style} flex justify-between`} id={heading.label}>
-    <div>
+<li class={`${style} flex justify-between]`} id={heading.label}>
+    <div class="">
         {#if type == "chap" || type == "sec"}
-            <a
-                href={path}
-                class={`underline ${
-                    current_label == heading.label ? "font-bold" : ""
-                }`}>{heading.value}</a
-            >
+            <div class="flex">
+                <div class="mr-2">{heading.index.join(".")}</div>
+                <a
+                    href={path}
+                    class={`underline ${
+                        current_label == heading.label ? "font-bold" : ""
+                    }`}>{heading.value}</a
+                >
+            </div>
         {:else}
             <div
                 on:click={toggleExpansion}
@@ -59,16 +62,17 @@
                         : ""
                 }`}
             >
-                <div class={`w-6`}>
+                <div class="w-6">
                     {#if heading.children && !isExpanded && depth >= max_depth}
                         <span transition:fade={{ duration: 50 }}>+</span>
                     {/if}
                 </div>
                 <div
                     class={`${
-                        current_label == heading.label ? "font-bold" : ""
+                        current_label == heading.label ? "font-bold" : "flex"
                     }`}
                 >
+                    <div class="mr-2">{heading.index.join(".")}</div>
                     <a href={path} class="hover:underline">
                         {heading.value}
                     </a>

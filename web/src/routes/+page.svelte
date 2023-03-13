@@ -42,7 +42,7 @@
         <h2 class="my-4 text-2xl">Appendix</h2>
         <ol class="list-upper-alpha list-inside">
             <li>
-                <a href="/appendix/a" class="font-bold underline">Figures and Listings</a>
+                <a href="/appendix/a" class="font-semibold underline">Figures and Listings</a>
             </li>
         </ol>
     </div>

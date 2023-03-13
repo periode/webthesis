@@ -24,7 +24,7 @@ pub struct ToCNode {
     tag: Command,
     value: String,
     label: String,
-    indent: i8,
+    index: Vec<usize>,
 }
 
 impl ToCNode {
@@ -37,9 +37,28 @@ impl ToCNode {
             self.children = Some(v);
         }
     }
+
+    pub fn set_index(&mut self, index: Vec<usize>) {
+        self.index = index;
+    }
 }
 
 pub fn parse(src: String) -> Vec<ToCNode> {
+    let toc = make_toc_tree(src);
+
+    let mut without_includes = Vec::<ToCNode>::new();
+    for include in toc {
+        if let Some(mut chap) = include.children {
+            without_includes.append(&mut chap);
+        }
+    }
+    
+    let final_tree = prefix_toc(without_includes, &mut vec![]);
+    return final_tree;
+}
+
+//-- this function parses the document, then assembles the AST
+fn make_toc_tree(src: String) -> Vec<ToCNode> {
     let mut toc = Vec::<ToCNode>::new();
 
     match LaTeXParser::parse(Rule::document, &src) {
@@ -60,7 +79,7 @@ pub fn parse(src: String) -> Vec<ToCNode> {
                         Rule::cmd_stmt => {
                             if let Some(mut n) = parse_command(subpair) {
                                 if n.tag.is_header() {
-                                    let l = parse_label(&mut start_iter);
+                                    let l = get_label(&mut start_iter);
                                     n.label = l;
                                 }
                                 toc.push(n);
@@ -74,11 +93,10 @@ pub fn parse(src: String) -> Vec<ToCNode> {
 
             //-- turn the list of toc headings into a tree
             let mut toc_iter = toc.iter().peekable();
-            if let Some(start) = toc_iter.next() {
-                let mut sc = start.clone();
-                let final_toc = make_toc(&mut sc, &mut toc_iter, 0);
+            if let Some(s) = toc_iter.next() {
+                let tree_toc = make_toc(&mut s.clone(), &mut toc_iter);
 
-                return final_toc;
+                return tree_toc;
             } else {
                 return toc;
             }
@@ -90,36 +108,56 @@ pub fn parse(src: String) -> Vec<ToCNode> {
     }
 }
 
-fn make_toc(current: &mut ToCNode, iter: &mut Peekable<Iter<ToCNode>>, indent: i8) -> Vec<ToCNode> {
+//-- this function populates the index member to represent the nested heading number
+fn prefix_toc(_tree: Vec<ToCNode>, index: &mut Vec<usize>) -> Vec<ToCNode> {
+    let mut tree = Vec::<ToCNode>::new();
+    index.push(0);
+    for mut node in _tree {
+        if let Some(last) = index.last_mut() {
+            *last += 1;
+
+            node.index = index.clone();
+            if let Some(ch) = node.children {
+                let children = prefix_toc(ch, &mut index.clone());
+                node.children = Some(children);
+            }
+
+            tree.push(node);
+        }
+    }
+    return tree;
+}
+
+fn make_toc(
+    current: &mut ToCNode,
+    iter: &mut Peekable<Iter<ToCNode>>,
+) -> Vec<ToCNode> {
     let mut tree = Vec::<ToCNode>::new();
 
     loop {
         if let Some(next) = iter.peek() {
+            //-- we peek ahead before making a decision
             match assess_toc_relation(&next, &current.tag) {
                 0 => {
-                    let mut sibling = iter.next().unwrap().clone();
-                    sibling.indent = indent;
+                    let sibling = iter.next().unwrap().clone();
                     tree.push(sibling);
                 }
                 1 => {
                     let mut child = iter.next().unwrap().clone();
-                    child.indent = indent;
-                    let grandchildren = make_toc(&mut child, iter, indent + 1);
 
-                    if grandchildren.len() == 0 {
-                        tree.push(current.clone()); //-- todo not sure why this is needed
-                        return tree;
+                    let grandchildren = make_toc(&mut child, iter);
+
+                    //-- todo: demystify
+                    if let Some(l) = tree.last_mut() {
+                        //-- either get the last node on the tree
+                        l.children = Some(grandchildren);
                     } else {
-                        if let Some(l) = tree.last_mut() {
-                            l.children = Some(grandchildren);
-                        } else {
-                            current.children = Some(grandchildren);
-                        }
+                        //-- if there is no last node, add to the current one
+                        current.children = Some(grandchildren);
                     }
                 }
                 _ => {
-                    let mut c = current.clone();
-                    c.indent = indent;
+                    let c = current.clone();
                     tree.insert(0, c);
                     return tree;
                 }
@@ -137,7 +175,7 @@ fn assess_toc_relation(next: &ToCNode, current: &Command) -> i8 {
 
 //-- this finds a label on the following line of the given _pairs
 //-- used for the labelling of headings in the toc
-fn parse_label(_pairs: &mut Pairs<Rule>) -> String {
+fn get_label(_pairs: &mut Pairs<Rule>) -> String {
     if let Some(par) = _pairs.next() {
         let mut label = par.into_inner();
         if let Some(label_name) = label.next() {
@@ -204,14 +242,14 @@ fn parse_command(_cmd: Pair<Rule>) -> Option<ToCNode> {
                 }
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
-                let children = parse(src);
+                let children = make_toc_tree(src);
 
                 let n = ToCNode {
                     children: Some(children),
                     tag: Command::Include,
                     value: include.display().to_string(),
                     label: String::from(""),
-                    indent: 0,
+                    index: vec![],
                 };
 
                 return Some(n);
@@ -232,7 +270,7 @@ fn parse_command(_cmd: Pair<Rule>) -> Option<ToCNode> {
                                 children: None,
                                 tag: cmd,
                                 value: String::from(p.as_str()),
-                                indent: 0,
+                                index: vec![],
                                 label: String::from(""),
                             };
 
