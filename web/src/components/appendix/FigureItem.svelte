@@ -1,10 +1,18 @@
 <script lang="ts">
     import { fade, slide } from "svelte/transition";
+    import { findNodesByTag, getBundle } from "../../utils/find";
     import type { IListingsNode, INode } from "../../utils/types";
     import Figure from "../block/Figure.svelte";
 
     export let figure: IListingsNode;
-    export let node: INode;
+    let node: INode = { tag: "none", value: "", children: null };
+    let ls = findNodesByTag("figure", getBundle(figure.chapter_label));
+
+    if (ls) {
+        let tmp = ls.find((el) => el.value == figure.label);
+        if (tmp) node = tmp;
+    }
+
     let isExpanded = false;
 
     const toggleExpansion = () => {
@@ -14,7 +22,7 @@
 
 <li class="flex w-full my-4">
     <div class="flex flex-row w-full justify-between">
-        <div class="w-full flex flex-row justify-between">
+        <div class="w-full flex flex-col md:flex-row justify-between">
             <div class="flex">
                 <div class="mr-3">{figure.index}.</div>
 
@@ -27,8 +35,8 @@
                     >
 
                     {#if isExpanded}
-                        <div transition:slide class="flex flex-row">
-                            <div class="flex flex-col">
+                        <div transition:slide>
+                            <div class="max-w-xs md:max-w-xl">
                                 <Figure {node} />
                             </div>
                         </div>
@@ -37,16 +45,16 @@
             </div>
 
             {#if isExpanded}
-                <div transition:fade={{duration: 100}} class="flex justify-start ml-4">
+                <div
+                    transition:fade={{ duration: 100 }}
+                    class=" flex justify-start ml-4 items-baseline"
+                >
                     <a
                         href={`/${figure.chapter_label}/${
                             figure.section_label
                         }#${figure.label.split(":")[1]}`}
                         class="hover:underline text-right flex flex-col"
                     >
-                        <div>
-                            {figure.chapter}
-                        </div>
                         <div class="text-sm">
                             {figure.section}
                         </div>

@@ -22,7 +22,6 @@ can i try and integrate multiple panels?
   - [ ] hover bubble
 - [ ] **bug**
 - [ ] **chore**
-  - [ ] add snippets
 
 ## wishlist
 

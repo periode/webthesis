@@ -35,7 +35,11 @@ import verbose_c from '../corpus/verbose.c?raw'
 import verbose_refactored_c from '../corpus/verbose_refactored.c?raw'
 import multiple_references_rs from '../corpus/multiple_references.rs?raw'
 import representation_rs from '../corpus/representation.rs?raw'
-
+import cynical_american_preamble_py from '../corpus/cynical_american_preamble.py?raw'
+import unhandled_love_java from '../corpus/unhandled_love.java?raw'
+import mac_sched_c from '../corpus/mac_sched.c?raw'
+import nested_html from '../corpus/nested.html?raw'
+import genalloc_c from '../corpus/genalloc.c?raw'
 
 export const getRawSourceCode = (key: string): string => {
    switch (key) {
@@ -113,7 +117,18 @@ export const getRawSourceCode = (key: string): string => {
          return multiple_references_rs
       case "representation.rs":
          return representation_rs
+      case "cynical_american_preamble.py":
+         return cynical_american_preamble_py
+      case "unhandled_love.java":
+         return unhandled_love_java
+      case "mac_sched.c":
+         return mac_sched_c
+      case "nested.html":
+         return nested_html
+      case "genalloc.c":
+         return genalloc_c
       default:
-         return "no source code available!"
+         console.warn(`no source available for ${key}`)
+         return `no source available for ${key}`
    }
 }

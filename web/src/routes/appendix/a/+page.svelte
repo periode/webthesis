@@ -9,9 +9,7 @@
     export let data: PageData;
 
     const listings = data.listings as { [k: string]: Array<IListingsNode> };
-    const full_listings = data.full_listings as Array<INode>;
     const figures = data.figures as { [k: string]: Array<IListingsNode> };
-    const full_figures = data.full_figures as Array<INode>;
 </script>
 
 <div
@@ -26,9 +24,11 @@
             <h2 class="text-2xl mt-24 mb-8">List of listings</h2>
             <ol class="w-full list-inside list-decimal">
                 {#each Object.entries(listings) as [chapter, children]}
-                    <div class="text-xl my-8 font-semibold">{findHeadingValue(`chap:${chapter}`)}</div>
+                    <div class="text-xl my-8 font-semibold">
+                        {findHeadingValue(`chap:${chapter}`)}
+                    </div>
                     {#each children as listing}
-                        <ListingItem {listing} node={full_listings[listing.index]} />
+                        <ListingItem {listing} />
                     {/each}
                 {/each}
             </ol>
@@ -40,11 +40,13 @@
             <h2 class="text-2xl mt-24 mb-8">List of figures</h2>
             <ol class="w-full list-inside list-decimal">
                 {#each Object.entries(figures) as [chapter, children]}
-                <div class="text-xl my-8 font-semibold">{findHeadingValue(`chap:${chapter}`)}</div>
-                {#each children as figure}
-                    <FigureItem {figure} node={full_figures[figure.index]} />
+                    <div class="text-xl my-8 font-semibold">
+                        {findHeadingValue(`chap:${chapter}`)}
+                    </div>
+                    {#each children as figure}
+                        <FigureItem {figure} />
+                    {/each}
                 {/each}
-            {/each}
             </ol>
         </section>
     </main>

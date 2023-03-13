@@ -10,7 +10,7 @@
         caption: string = "",
         label: string = "";
 
-    if (node.children) {
+    if (node && node.children) {
         let n = findNodeByTag("code", node.children);
         if (n) lang = n.value;
         if (n)
