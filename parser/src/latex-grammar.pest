@@ -34,7 +34,7 @@ filepath = { char+ }
 
 // characters
 name           = @{ (ASCII_ALPHANUMERIC | "^" ) + } //-- used for command and environment names
-COMMENT        = _{ "%" ~ (!newline_char ~ ANY)* ~ newline_char }
+COMMENT        = _{ "%" ~ (!newline_char ~ ANY)* }
 WHITESPACE     = _{ ( " " | "\t" ) }
 newline_char   = _{ "\n" }
 ctrl_character = _{ "\\" }

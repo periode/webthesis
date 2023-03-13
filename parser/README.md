@@ -16,13 +16,12 @@ __WARNING__ there should always be a new line at the end of the document, otherw
 
 ## doing
 
-
+- [ ] toc
+  - [x] ignore comments on same line
+  - [ ] provide numbering
 
 ## todo
 
-- [ ] toc
-  - [ ] ignore comments on same line
-  - [ ] provide numbering
 - [ ] chore: include multiple possible paragraphs in quote environment
 - [ ] semantic commands
   - [ ] href (url + display text) __currently not used in thesis__
