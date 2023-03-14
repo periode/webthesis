@@ -18,6 +18,7 @@ __WARNING__ there should always be a new line at the end of the document, otherw
 
 ## todo
 
+- [ ] number paragraphs
 - [ ] chore: include multiple possible paragraphs in quote environment
 - [ ] chore: strip includes in the parse pass? the issue is that returning a `Vec<ToCNode>` from the parse_cmd implies we need to get the label then, which is tricky
 - [ ] semantic commands

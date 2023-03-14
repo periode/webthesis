@@ -30,9 +30,11 @@ the starting question: what is the material?
 
 ## pre-existing
 
-most projects seem to be between journal systems and book systems; is there an alternative?
+most digital publishing projects seem to be between journal systems and book systems; is there an alternative?
 
-modes of reading?
+modes of reading? informational or dialogic, in both they look for "semiotic units of manipulation" vs. Semiotic units of movement, which are used by persuasive texts (Alexandra Saemmer, Rhétorique du texte numérique. Figures de la lecture, anticipations de pratiques)
+
+> L’efficacité des figures de la lecture des textes informatif et argumentatif doit par contre être cernée en considérant le réseau hypertextuel associant un « texte géniteur » avec des « textes reliés ». L’auteure distingue donc tout un éventail d’hyperliens qu’elle associe aux figures de la lecture informationnelle ou bien dialogique.
 
 tangential question of centralized hosting vs. decentralized hosting
 
