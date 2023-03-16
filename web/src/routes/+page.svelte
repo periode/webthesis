@@ -39,6 +39,10 @@
 
         <Spacer />
 
+        <h2 class="my-8 text-2xl font-semibold underline">
+            <a href="/references">References</a>
+        </h2>
+
         <h2 class="my-4 text-2xl">Appendix</h2>
         <ol class="list-upper-alpha list-inside">
             <li>

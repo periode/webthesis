@@ -18,6 +18,7 @@ data: thesis
 	cp /home/pierre/forschung/phd/redaction/images/* ./web/static/images
 	cp /home/pierre/forschung/phd/redaction/corpus/* ./web/src/corpus
 	cp /home/pierre/forschung/phd/redaction/thesis.pdf ./web/static/Depaz_AestheticsUnderstandingSourceCode.pdf
+	cp /home/pierre/forschung/phd/redaction/thesis.bib ./web/static/Depaz_AestheticsUnderstandingSourceCode.bib
 	pandoc /home/pierre/forschung/phd/redaction/thesis.bib -t csljson -o ./web/src/data/bib.json
 
 dev:

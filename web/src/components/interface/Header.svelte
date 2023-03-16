@@ -73,7 +73,7 @@
             </div>
             <!-- download -->
             <div>
-                <a href="/thesis.pdf" download>
+                <a href="/Depaz_AestheticsUnderstandingSourceCode.pdf" download>
                     <img
                         width="28"
                         height="28"
