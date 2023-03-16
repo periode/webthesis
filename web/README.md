@@ -8,6 +8,12 @@ can i try and integrate multiple panels?
 
 ## doing
 
+- [ ] bibliography
+  - [ ] simple representation
+  - [ ] add paragraph indices to citation
+  - [ ] when unfolded: link to, and download citation
+  - [ ] at the top, donwload whole bib.json
+
 ## todo
 
 - [ ] **tests**
@@ -15,7 +21,6 @@ can i try and integrate multiple panels?
 - [ ] **performance**
 - [ ] **layout**
 - [ ] **content**
-  - [ ] bibliography
   - [ ] about
 - [ ] **interface**
   - [ ] typography settings (line-height, line-length, font-size, font-family)
@@ -44,10 +49,7 @@ can i try and integrate multiple panels?
 
 ### tech
 
-- <https://joshcollinsworth.com/blog/build-static-sveltekit-markdown-blog>
 - <https://tradingstrategy.ai/blog/optimizing-page-load-speed-on-sveltekit>
-- <https://joyofcode.xyz/sveltekit-routing>
-- <https://pimpmytype.com/font-size/>
 
 ### theoretical
 

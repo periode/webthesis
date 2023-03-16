@@ -25,6 +25,7 @@ pub struct Node {
     pub children: Option<Vec<Node>>,
     pub tag: Box<dyn Tag>,
     pub value: String,
+    pub index: i32,
 }
 
 impl Node {
@@ -40,18 +41,34 @@ impl Node {
 }
 
 #[derive(Clone)]
-struct State {
+pub struct State {
     include: String,
     footnote_index: i32,
+    paragraph_index: i32,
 }
 
 impl State {
+    pub fn new() -> State {
+        return State {
+            include: String::from(""),
+            footnote_index: 0,
+            paragraph_index: 0,
+        };
+    }
     fn set_include(&mut self, _include: String) {
         self.include = _include
     }
 
     fn get_include(&self) -> String {
-        self.include.clone()
+        return self.include.clone();
+    }
+
+    fn increment_paragraph(&mut self) {
+        self.paragraph_index += 1;
+    }
+
+    fn get_paragraph(&mut self) -> i32 {
+        return self.paragraph_index;
     }
 
     //-- to be called whenever a footnote is encountered
@@ -62,12 +79,7 @@ impl State {
     }
 }
 
-pub fn parse(src: String) -> Vec<Node> {
-    let mut state = State {
-        include: String::from(""),
-        footnote_index: 0,
-    };
-
+pub fn parse(src: String, state: &mut State) -> Vec<Node> {
     let mut ast = Vec::<Node>::new();
 
     match LaTeXParser::parse(Rule::document, &src) {
@@ -77,17 +89,19 @@ pub fn parse(src: String) -> Vec<Node> {
             for subpair in pair.into_inner() {
                 match subpair.as_rule() {
                     Rule::paragraph => {
-                        let s = parse_paragraph(subpair, &mut state);
+                        let mut s = parse_paragraph(subpair, state);
                         if let Some(_) = &s.children {
+                            state.increment_paragraph();
+                            s.index = state.get_paragraph();
                             ast.push(s);
                         }
                     }
                     Rule::env_stmt => {
-                        let e = parse_environment(subpair, &mut state);
+                        let e = parse_environment(subpair, state);
                         ast.push(e);
                     }
                     Rule::cmd_stmt => {
-                        if let Some(c) = parse_command(subpair, &mut state) {
+                        if let Some(c) = parse_command(subpair, state) {
                             ast.push(c);
                         }
                     }
@@ -111,6 +125,7 @@ fn parse_paragraph(_section: Pair<Rule>, state: &mut State) -> Node {
         children: None,
         tag: Box::new(Environment::Paragraph),
         value: String::from(""),
+        index: 0,
     };
 
     for subpair in _section.into_inner() {
@@ -125,6 +140,7 @@ fn parse_paragraph(_section: Pair<Rule>, state: &mut State) -> Node {
                     tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
                     children: None,
+                    index: 0,
                 };
                 paragraph.add(l);
             }
@@ -141,6 +157,7 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
         children: None,
         tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
         value: String::from(""),
+        index: 0,
     };
 
     let mut is_paragraph = false;
@@ -180,7 +197,7 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
                         Rule::cmd_stmt => {
                             if let Some(c) = parse_command(subsubpair, state) {
                                 if c.tag.value() == Command::Label.value() {
-                                    //-- wtf
+                                    //-- wtf: assign the label value directly inside the environment
                                     let tmp = c.clone().to_owned().children.unwrap();
                                     let first = tmp.first().unwrap();
                                     env_node.value = first.value.clone();
@@ -205,6 +222,7 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
                     tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
                     children: None,
+                    index: 0,
                 };
 
                 env_node.add(l);
@@ -215,6 +233,7 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
                     children: None,
                     tag: Box::new(Token::Options),
                     value: String::from(opts.as_str()),
+                    index: 0,
                 };
 
                 env_node.add(o);
@@ -225,10 +244,12 @@ fn parse_environment(_env: Pair<Rule>, state: &mut State) -> Node {
 
     if is_paragraph {
         // hmmm... the quote is semantically a paragraph, but technically an environment
+        state.increment_paragraph();
         let mut p = Node {
             children: None,
-            tag: Box::new(Environment::Paragraph), //-- todo: change this to empty box?
+            tag: Box::new(Environment::Paragraph),
             value: String::from(""),
+            index: state.get_paragraph(),
         };
 
         p.add(env_node);
@@ -244,6 +265,7 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
         children: None,
         tag: Box::new(Token::Command),
         value: String::from(""),
+        index: 0,
     };
 
     //-- check if we're currently at an \include
@@ -267,7 +289,7 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                 state.set_include(String::from(i));
 
                 let src = fs::read_to_string(fp).expect("Cannot open file");
-                let children = parse(src);
+                let children = parse(src, state);
                 cmd_node.tag = Box::new(Command::Include);
                 cmd_node.value = include.display().to_string();
                 for c in children {
@@ -295,6 +317,8 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                         } else if cmd == Command::Footnote {
                             let i = state.register_footnote();
                             cmd_node.value = i.to_string();
+                        } else if cmd == Command::Citation {
+                            cmd_node.index = state.get_paragraph()
                         }
                     } else {
                         return None;
@@ -308,6 +332,7 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                     tag: Box::new(Token::Options),
                     value: String::from(opts.as_str()),
                     children: None,
+                    index: 0,
                 };
 
                 cmd_node.add(o);
@@ -321,6 +346,7 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                     tag: Box::new(Token::Literal),
                     value: String::from(subpair.as_str()),
                     children: None,
+                    index: 0,
                 };
 
                 cmd_node.add(l);

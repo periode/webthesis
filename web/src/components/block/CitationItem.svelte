@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { clickOutside } from "../../utils/actions";
     import type { ICitation } from "../../utils/types";
 
     export let citation: ICitation;
@@ -18,13 +17,14 @@
                 return a.literal ? a.literal : `${a.given} ${a.family}`;
             })
             .join(", ");
+
+    let url: string = "";
+    if (citation.publisher && citation.publisher.startsWith("http"))
+        url = citation.publisher;
+    else if (citation.URL) url = citation.URL;
 </script>
 
 <div
-    use:clickOutside
-    on:outclick={() => {
-        // citation.visible = false;
-    }}
     id={citation.id}
     class={`${
         citation.visible ? "block" : "hidden"
@@ -34,5 +34,10 @@
             : "border-l-zinc-50 dark:border-l-zinc-900"
     }`}
 >
-    {citation.title} by {people}, {date}.
+    {citation.title} by {people}, {date}.{#if url !== ""}&nbsp;[<a
+            href={url}
+            target="_blank"
+            class="underline">link</a
+        >]
+    {/if}
 </div>

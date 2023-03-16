@@ -40,6 +40,7 @@ import unhandled_love_java from '../corpus/unhandled_love.java?raw'
 import mac_sched_c from '../corpus/mac_sched.c?raw'
 import nested_html from '../corpus/nested.html?raw'
 import genalloc_c from '../corpus/genalloc.c?raw'
+import hardware_separation_h from '../corpus/hardware_separation.h?raw'
 
 export const getRawSourceCode = (key: string): string => {
    switch (key) {
@@ -127,6 +128,8 @@ export const getRawSourceCode = (key: string): string => {
          return nested_html
       case "genalloc.c":
          return genalloc_c
+      case "hardware_separation.h":
+         return hardware_separation_h
       default:
          console.warn(`no source available for ${key}`)
          return `no source available for ${key}`

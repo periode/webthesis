@@ -37,7 +37,8 @@ fn main() {
     let start = Instant::now();
 
     println!("- parsing: text...");
-    let ast = parsers::text::parse(src.clone());
+    let mut state = parsers::text::State::new();
+    let ast = parsers::text::parse(src.clone(), &mut state);
 
     println!("- parsing: table of contents...");
     let toc = parsers::toc::parse(src.clone());
@@ -76,7 +77,8 @@ fn pretty_print(_ast: &Vec<Node>, depth: usize) {
 #[test]
 fn it_parses_a_file() {
     let test_src = fs::read_to_string("test_inputs/basic.tex").expect("Cannot open file");
-    let test_ast = parsers::text::parse(test_src);
+    let mut state = parsers::text::State::new();
+    let test_ast = parsers::text::parse(test_src, &mut state);
     assert_eq!(test_ast.len(), 1);
 
     let top_level = test_ast.first().unwrap();

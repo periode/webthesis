@@ -1,4 +1,4 @@
-import type { IListingsNode, INode, IToCNode } from "./types";
+import type { ICitation, IListingsNode, INode, IToCNode } from "./types";
 import full_data from "../data/full.json";
 import toc_data from "../data/toc.json";
 import front_data from "../data/front.json";
@@ -51,7 +51,7 @@ export const getToC = (chap?: string): Array<IToCNode> => {
     return [];
 }
 
-export const getBibliography = (): Array<any> => {
+export const getBibliography = ()=> {
     return bib;
 }
 

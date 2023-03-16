@@ -34,6 +34,7 @@ export interface INode {
     tag: string;
     value: string;
     children: Array<INode> | null;
+    index?: number,
 };
 
 export interface IToCNode {
@@ -74,8 +75,10 @@ export interface ICitation {
     issued: IDateParts,
     title: string,
     publisher: string,
+    URL: string,
     visible: boolean,
     highlighted: boolean,
+    index: number,
 }
 
 export interface IFootnote {
