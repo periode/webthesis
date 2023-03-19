@@ -10,8 +10,10 @@ import programming_data from "../data/programming.json";
 import conclusion_data from "../data/conclusion.json";
 import listings_data from "../data/listings.json";
 import bib_data from "../data/bib.json";
+import raw_bib_data from "../data/raw.bib?raw";
 
 const bib = bib_data as any[];
+const raw_bib = raw_bib_data.split("\n\n") as string[];
 const full_text = full_data as Array<INode>;
 const toc = toc_data as Array<IToCNode>;
 const listings = listings_data as Array<IListingsNode>;
@@ -51,8 +53,16 @@ export const getToC = (chap?: string): Array<IToCNode> => {
     return [];
 }
 
-export const getBibliography = ()=> {
+export const getBibliography = () => {
     return bib;
+}
+
+export const getBibtexEntry = (_key: string): string => {
+    for (const e of raw_bib) {
+        if (e.indexOf(_key) > 1)
+            return e
+    }
+    return '';
 }
 
 export const getListings = (): Array<any> => {

@@ -9,10 +9,10 @@ can i try and integrate multiple panels?
 ## doing
 
 - [ ] bibliography
-  - [ ] simple representation
+  - [x] simple representation
   - [ ] add paragraph indices to citation
-  - [ ] when unfolded: link to, and download citation
-  - [ ] at the top, donwload whole bib.json
+  - [x] when unfolded: link to, and download citation
+  - [x] at the top, donwload whole bib.json
 
 ## todo
 
@@ -34,6 +34,7 @@ can i try and integrate multiple panels?
 
 ## wishlist
 
+- [ ] dynamic import of corpus [import()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import#importing_modules_with_a_non-literal_specifier)
 - [ ] hypothes.is exported as a node module
 - [ ] code generation for the snippets
 - [ ] add full text search (meaning across pages!)

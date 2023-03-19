@@ -31,7 +31,6 @@
 </script>
 
 <svelte:head>
-  <script src="https://hypothes.is/embed.js" async></script>
   {@html webManifest}
 </svelte:head>
 

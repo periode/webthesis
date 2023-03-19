@@ -10,7 +10,7 @@
 >
     <div class="w-full lg:w-5/12 md:w-6/12 m-auto ">
         <h1 class="text-4xl mt-24 mb-8">References</h1>
-        <div class="text-right underline">
+        <div class="text-right text-sm underline">
             <a href="/Depaz_AestheticsUnderstandingSourceCode.bib" download
                 >download .bib</a
             >

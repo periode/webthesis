@@ -5,7 +5,7 @@ import { getBibliography } from '../../utils/find';
 export const load = (() => {
     const bib = getBibliography();
 
-    //-- sort alphabeltically
+    //-- sort alphabetically
     bib.sort((a, b) => {
         const first = a.author ? a.author[0].family ? a.author[0].family.toUpperCase() : a.author[0].literal.toUpperCase() : a.editor[0].family.toUpperCase()
 
