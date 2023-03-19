@@ -50,14 +50,14 @@
                 width="28"
                 height="28"
                 class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                src={`/images/toc-line-dark.svg`}
+                src={`/images/interface/toc-line-dark.svg`}
                 alt={`icon to download the pdf of the thesis`}
             />
             <img
                 width="28"
                 height="28"
                 class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                src={`/images/toc-line.svg`}
+                src={`/images/interface/toc-line.svg`}
                 alt={`icon to download the pdf of the thesis`}
             />
         </div>

@@ -27,14 +27,14 @@
                             width="24"
                             height="24"
                             class="dark:hidden pointer-events-none"
-                            src={`/images/arrow-left.svg`}
+                            src={`/images/interface/arrow-left.svg`}
                             alt={`icon to reference a footnote`}
                         />
                         <img
                             width="24"
                             height="24"
                             class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-                            src={`/images/arrow-left-dark.svg`}
+                            src={`/images/interface/arrow-left-dark.svg`}
                             alt={`icon to reference a footnote`}
                         />
                     </div>
@@ -55,14 +55,14 @@
                 width="24"
                 height="24"
                 class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
-                src={`/images/arrow-up.svg`}
+                src={`/images/interface/arrow-up.svg`}
                 alt={`icon to reference a footnote`}
             />
             <img
                 width="24"
                 height="24"
                 class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-                src={`/images/arrow-up-dark.svg`}
+                src={`/images/interface/arrow-up-dark.svg`}
                 alt={`icon to reference a footnote`}
             />
         </a>
@@ -86,14 +86,14 @@
                         width="24"
                         height="24"
                         class="inline dark:hidden relative bottom-1 left-1 pointer-events-none"
-                        src={`/images/arrow-right.svg`}
+                        src={`/images/interface/arrow-right.svg`}
                         alt={`icon to reference a footnote`}
                     />
                     <img
                         width="24"
                         height="24"
                         class="relative bottom-1 left-1 pointer-events-none hidden dark:inline"
-                        src={`/images/arrow-right-dark.svg`}
+                        src={`/images/interface/arrow-right-dark.svg`}
                         alt={`icon to reference a footnote`}
                     />
                 </div>

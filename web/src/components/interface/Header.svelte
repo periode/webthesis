@@ -35,7 +35,7 @@
         on:click={toggleMenu}
         on:keydown={toggleMenu}
         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-        src={`/images/${isExpanded ? header_icon + "-open" : header_icon}.svg`}
+        src={`/images/interface/${isExpanded ? header_icon + "-open" : header_icon}.svg`}
         alt={`icon to toggle dark mode or light mode`}
     />
     <img
@@ -44,7 +44,7 @@
         on:click={toggleMenu}
         on:keydown={toggleMenu}
         class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-        src={`/images/${
+        src={`/images/interface/${
             isExpanded ? header_icon + "-open" : header_icon
         }-dark.svg`}
         alt={`icon to toggle dark mode or light mode`}
@@ -59,14 +59,14 @@
                         width="28"
                         height="28"
                         class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                        src={`/images/home-dark.svg`}
+                        src={`/images/interface/home-dark.svg`}
                         alt={`icon to get back to the index page`}
                     />
                     <img
                         width="28"
                         height="28"
                         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                        src={`/images/home.svg`}
+                        src={`/images/interface/home.svg`}
                         alt={`icon to get back to the index page`}
                     />
                 </a>
@@ -78,14 +78,14 @@
                         width="28"
                         height="28"
                         class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                        src={`/images/file-download-dark.svg`}
+                        src={`/images/interface/file-download-dark.svg`}
                         alt={`icon to download the pdf of the thesis`}
                     />
                     <img
                         width="28"
                         height="28"
                         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                        src={`/images/file-download.svg`}
+                        src={`/images/interface/file-download.svg`}
                         alt={`icon to download the pdf of the thesis`}
                     />
                 </a>

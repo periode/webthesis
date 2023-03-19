@@ -17,14 +17,14 @@
         width="28"
         height="28"
         class="hidden dark:inline relative m-1 p-1 cursor-pointer"
-        src={`/images/darkmode.svg`}
+        src={`/images/figures/darkmode.svg`}
         alt={`icon to toggle dark mode or light mode`}
     />
     <img
         width="28"
         height="28"
         class="inline dark:hidden relative m-1 p-1 cursor-pointer"
-        src={`/images/lightmode.svg`}
+        src={`/images/figures/lightmode.svg`}
         alt={`icon to toggle dark mode or light mode`}
     />
 </div>

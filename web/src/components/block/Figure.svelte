@@ -17,7 +17,7 @@
     <figure class="flex flex-col">
         <img
             class="max-h-fit border-zinc-600 border p-2"
-            src={`/images/${image?.value}`}
+            src={`/images/figures/${image?.value}`}
             alt={caption?.value}
             srcset=""
         />

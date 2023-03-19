@@ -97,14 +97,14 @@
                                     width="28"
                                     height="28"
                                     class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/show-dark.svg`}
+                                    src={`/images/interface/show-dark.svg`}
                                     alt={`icon to show the citation`}
                                 />
                                 <img
                                     width="28"
                                     height="28"
                                     class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/show.svg`}
+                                    src={`/images/interface/show.svg`}
                                     alt={`icon to show the citation`}
                                 />
                             {:else}
@@ -112,14 +112,14 @@
                                     width="28"
                                     height="28"
                                     class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/hide-dark.svg`}
+                                    src={`/images/interface/hide-dark.svg`}
                                     alt={`icon to hide the citation`}
                                 />
                                 <img
                                     width="28"
                                     height="28"
                                     class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/hide.svg`}
+                                    src={`/images/interface/hide.svg`}
                                     alt={`icon to hide the citation`}
                                 />
                             {/if}
@@ -132,14 +132,14 @@
                                 width="28"
                                 height="28"
                                 class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                src={`/images/copy-dark.svg`}
+                                src={`/images/interface/copy-dark.svg`}
                                 alt={`icon to copy information to the clipboard`}
                             />
                             <img
                                 width="28"
                                 height="28"
                                 class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                src={`/images/copy.svg`}
+                                src={`/images/interface/copy.svg`}
                                 alt={`icon to copy information to the clipboard`}
                             />
                         </div>
@@ -159,14 +159,14 @@
                                     width="28"
                                     height="28"
                                     class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/link-dark.svg`}
+                                    src={`/images/interface/link-dark.svg`}
                                     alt={`icon to open an external link`}
                                 />
                                 <img
                                     width="28"
                                     height="28"
                                     class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/link.svg`}
+                                    src={`/images/interface/link.svg`}
                                     alt={`icon to open an external link`}
                                 />
                             </div>
