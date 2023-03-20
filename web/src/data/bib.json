@@ -1740,7 +1740,7 @@
     },
     "author": [
       {
-        "family": "Chewxy"
+        "literal": "Chewxy"
       }
     ],
     "id": "chewxy_gorgonia_2022",
@@ -2069,6 +2069,36 @@
     "title-short": "Nelson Goodman and Project Zero",
     "type": "article-journal",
     "volume": "0"
+  },
+  {
+    "accessed": {
+      "date-parts": [
+        [
+          2023,
+          3,
+          17
+        ]
+      ]
+    },
+    "author": [
+      {
+        "family": "Coplien",
+        "given": "Jim"
+      }
+    ],
+    "container-title": "WikiWikiWeb",
+    "id": "coplien_patterns_2009",
+    "issued": {
+      "date-parts": [
+        [
+          2009,
+          1
+        ]
+      ]
+    },
+    "publisher": "https://wiki.c2.com/?PatternsAreNotTheLesserOfTwoEvils",
+    "title": "Patterns Are Not The Lesser Of Two Evils",
+    "type": ""
   },
   {
     "DOI": "10.1109/MAHC.2012.27",
@@ -2913,6 +2943,34 @@
     "type": ""
   },
   {
+    "accessed": {
+      "date-parts": [
+        [
+          2023,
+          3,
+          18
+        ]
+      ]
+    },
+    "author": [
+      {
+        "family": "Edwards",
+        "given": "Jonathan"
+      }
+    ],
+    "id": "edwards_jonathanmedwards_2022",
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          11
+        ]
+      ]
+    },
+    "title": "JonathanMEdwards/Subtext10",
+    "type": ""
+  },
+  {
     "DOI": "10.1109/JSYST.2018.2875152",
     "ISSN": "1937-9234",
     "abstract": "Despite elegance being universally recognized as a goal for system design, there is little guidance in the related research and literature that is relevant to the design, development, or evaluation of elegant systems. This paper begins by reviewing the rather loose usage of elegance as a property of a system and shows that there are both abstract and practical views. Further, from analysis of the practical views of elegance in systems, it is clear that most current definitions of elegance are focused on the sufficiency of the system as a solution to the stated problem, rather than on elegance, perse. This paper disambiguates the usage of sufficiency and elegance, offers a formal definition of the two terms, and then provides several simple examples by way of illustration. Elegance and sufficiency must be considered as separate properties of a system, if only because the essential act of validation is an examination of the sufficiency of a solution, not its elegance. Any system attribute desired by the customer must be included as part of the solution’s sufficiency and designed into the solution, not be a serendipitous unintended outcome of that design. Sufficiency is shown to be binary-a solution is either sufficient or it is not-and there may be more than one sufficient solution. Elegance is then defined to be the least complex sufficient solution. Furthermore, an elegant solution must be sufficient, but a sufficient system does not have to be (and is not always desirable to be) elegant.",
@@ -3434,23 +3492,63 @@
   },
   {
     "abstract": "By marrying traditional methods for computer programming with an artistic temperament, we give birth to a new phenomenon: the aesthetic program. Our work builds on visual approaches in programming as well as modeling for software, where I envision a gradual evolution from program to model. The need for the aesthetic model is strengthened with the importance of personalized, individually-tailored, models. I, and my students, have formulated the rube Project methodology around the use of 3D web-based virtual world construction of models. Initial results suggest that these models are artistic, while containing sufficient symbolism and concise metaphoric mapping as to be executable on a computer.",
+    "accessed": {
+      "date-parts": [
+        [
+          2023,
+          3,
+          19
+        ]
+      ]
+    },
     "author": [
       {
         "family": "Fishwick",
-        "given": "Paul"
+        "given": "P."
       }
     ],
-    "id": "fishwick_aesthetic_2001",
+    "id": "fishwick_aesthetic_2000",
     "issued": {
       "date-parts": [
         [
-          2001,
-          2
+          2000
         ]
       ]
     },
     "title": "Aesthetic Programming",
-    "type": "article-journal"
+    "type": "paper-conference"
+  },
+  {
+    "DOI": "10.7551/mitpress/1135.001.0001",
+    "ISBN": "978-0-262-27273-5",
+    "abstract": "In Aesthetic Computing, key scholars and practitioners from art, design, computer science, and mathematics lay the foundations for a discipline that applies the theory and practice of art to computing. Aesthetic computing explores the way art and aesthetics can play a role in different areas of computer science. One of its goals is to modify computer science by the application of the wide range of definitions and categories normally associated with making art. For example, structures in computing might be represented using the style of Gaudi or the Bauhaus school. This goes beyond the usual definition of aesthetics in computing, which most often refers to the formal, abstract qualities of such structuresa beautiful proof, or an elegant diagram. The contributors to this book discuss the broader spectrum of aestheticsfrom abstract qualities of symmetry and form to ideas of creative expression and pleasurein the context of computer science. The assumption behind aesthetic computing is that the field of computing will be enriched if it embraces all of aesthetics. Human-computer interaction will benefit\"usability,\" for example, could refer to improving a user’s emotional stateand new models of learning will emerge.Aesthetic Computing approaches its subject from a variety of perspectives. After defining the field and placing it in its historical context, the book looks at art and design, mathematics and computing, and interface and interaction. Contributions range from essays on the art of visualization and \"the poesy of programming\" to discussions of the aesthetics of mathematics throughout history and transparency and reflectivity in interface design.Contributors James Alty, Olav W. Bertelsen, Jay David Bolter, Donna Cox, Stephan Diehl, Mark d’Inverno, Michele Emmer, Paul Fishwick, Monica Fleischmann, Ben Fry, Carsten Görg, Susanne Grabowski, Diane Gromala, Kenneth A. Huff, John Lee, Frederic Fol Leymarie, Michael Leyton, Jonas Löwgren, Roger F. Malina, Laurent Mignonneau, Frieder Nake, Ray Paton, Jane Prophet, Aaron Quigley, Casey Reas, Christa Sommerer, Wolfgang Strauss, Noam Tractinksy, Paul Vickers, Dror Zmiri",
+    "accessed": {
+      "date-parts": [
+        [
+          2023,
+          3,
+          19
+        ]
+      ]
+    },
+    "editor": [
+      {
+        "family": "Fishwick",
+        "given": "Paul A."
+      }
+    ],
+    "id": "fishwick_aesthetic_2006a",
+    "issued": {
+      "date-parts": [
+        [
+          2006,
+          3
+        ]
+      ]
+    },
+    "publisher": "The MIT Press",
+    "title": "Aesthetic Computing",
+    "type": "book"
   },
   {
     "author": [
@@ -5907,13 +6005,13 @@
         ]
       ]
     },
+    "annote": "Version 4.4.7",
     "author": [
       {
         "family": "4.4.7",
         "given": "Jargon File"
       }
     ],
-    "container-title": "The Jargon File",
     "id": "jargonfile4.4.7_hacker_2014",
     "issued": {
       "date-parts": [
@@ -5922,35 +6020,8 @@
         ]
       ]
     },
+    "publisher": "http://www.catb.org/jargon/html/H/hacker.html",
     "title": "Hacker",
-    "type": ""
-  },
-  {
-    "accessed": {
-      "date-parts": [
-        [
-          2021,
-          1,
-          28
-        ]
-      ]
-    },
-    "author": [
-      {
-        "family": "4.4.7",
-        "given": "Jargon File"
-      }
-    ],
-    "id": "jargonfile4.4.7_jargon_2014",
-    "issued": {
-      "date-parts": [
-        [
-          2014
-        ]
-      ]
-    },
-    "publisher": "http://www.catb.org/jargon/html/",
-    "title": "The Jargon File",
     "type": ""
   },
   {
@@ -7264,6 +7335,30 @@
     "publisher": "National Council of Teachers of English, 1111 W",
     "title": "Writing Teachers Writing Software: Creating Our Place in the Electronic Age. Advances in Computers and Composition on Studies Series",
     "title-short": "Writing Teachers Writing Software",
+    "type": "book"
+  },
+  {
+    "annote": "ill. 25 cm. 1923, d’apr. National Union Catalog.",
+    "author": [
+      {
+        "literal": "Le Corbusier"
+      },
+      {
+        "literal": "Saugnier"
+      }
+    ],
+    "id": "lecorbusier_vers_1923",
+    "issued": {
+      "date-parts": [
+        [
+          1923
+        ]
+      ]
+    },
+    "language": "fre",
+    "publisher": "G. Crès",
+    "publisher-place": "Paris",
+    "title": "Vers une architecture",
     "type": "book"
   },
   {
@@ -9202,6 +9297,30 @@
     "type": "book"
   },
   {
+    "ISBN": "978-0-547-54132-7",
+    "abstract": "The acclaimed author of Lolita offers unique insight into works by James Joyce, Franz Kafka, Jane Austen, and otherswith an introduction by John Updike.   In the 1940s, when Vladimir Nabokov first embarked on his academic career in the United States, he brought with him hundreds of original lectures on the authors he most admired. For two decades those lectures served as the basis for Nabokov’s teaching, first at Wellesley and then at Cornell, as he introduced undergraduates to the delights of great fiction.   This volume collects Nabokov’s famous lectures on Western European literature, with analysis and commentary on Charles Dickens’s Bleak House, Gustav Flaubert’s Madam Bovary, Marcel Proust’s The Walk by Swann’s Place, Robert Louis Stevenson’s “The Strange Case of Dr. Jekyll and Mr. Hyde,” and other works. This volume also includes photographic reproductions of Nabokov’s original notes, revealing his own edits, underlined passages, and more.  Edited and with a Foreword by Fredson BowersIntroduction by John Updike",
+    "author": [
+      {
+        "family": "Nabokov",
+        "given": "Vladimir"
+      }
+    ],
+    "id": "nabokov_lectures_2017",
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          12
+        ]
+      ]
+    },
+    "keyword": "Literary Criticism / Books & Reading,Literary Criticism / European / General,Literary Criticism / Modern / 19th Century",
+    "language": "en-US",
+    "publisher": "Houghton Mifflin Harcourt",
+    "title": "Lectures on Literature",
+    "type": "book"
+  },
+  {
     "DOI": "10.1016/0165-6074(85)90032-8",
     "ISSN": "0165-6074",
     "abstract": "Some views on programming, taken in a wide sense and regarded as a human activity, are presented. Accepting that programs will not only have to be designed and produced, but also modified so as to cater for changing demands, it is concluded that the proper, primary aim of programming is, not to produce programs, but to have the programmers build theories of the manner in which the problems at hand are solved by program execution. The implications of such a view of programming on matters such as program life and modification, system development methods, and the professional status of programmers, are discussed.",
@@ -9509,6 +9628,34 @@
     "title": "Effects of the number of developers on code quality in open source software: A case study",
     "title-short": "Effects of the number of developers on code quality in open source software",
     "type": "paper-conference"
+  },
+  {
+    "accessed": {
+      "date-parts": [
+        [
+          2023,
+          1,
+          18
+        ]
+      ]
+    },
+    "author": [
+      {
+        "family": "Norvig",
+        "given": "Peter"
+      }
+    ],
+    "id": "norvig_design_1998",
+    "issued": {
+      "date-parts": [
+        [
+          1998,
+          3
+        ]
+      ]
+    },
+    "title": "Design Patterns in Dynamic Languages",
+    "type": ""
   },
   {
     "accessed": {
@@ -10068,6 +10215,41 @@
     "publisher": "Basic Books",
     "title": "Mindstorms: Children, Computers, And Powerful Ideas",
     "title-short": "Mindstorms",
+    "type": "book"
+  },
+  {
+    "ISBN": "978-0-19-965931-9",
+    "abstract": "Glenn Parsons and Allen Carlson offer an in-depth philosophical study of the relationship between function and aesthetic value, breaking with the philosophical tradition of seeing the two as separate. They begin by developing and defending, in a general way, the concept of Functional Beauty, exploring how the role of function in aesthetic appreciation has been treated by some notable thinkers in the history of aesthetics. They then consider the relationship to Functional Beauty of certain views in current aesthetic thought, especially what we call ’cognitively rich’ approaches to the aesthetic appreciation of both art and nature. Turning to work on the nature of function in the philosophy of science, they argue that this line of enquiry can help solve certain philosophical problems that have been raised for the idea that knowledge of function plays an important role in aesthetic appreciation. Although philosophical discussions of aesthetic appreciation tend to focus largely and sometimes almost exclusively on artworks, the range of aesthetic appreciation is, of course, much larger. Not simply art, but also nature, architecture, and even more mundane, everyday thingscars, tools, clothing, furniture, and sportsare objects of frequent and enthusiastic aesthetic appreciation. Accordingly, in the second half of the book, Glen Parsons and Allen Carlson consider the place and importance of Functional Beauty in the aesthetic appreciation of a broad range of different kinds of things. The final chapters explore Functional Beauty in nature and the natural environment, in architecture and the built environment, in everyday artefacts, events, and activities, and finally in art and the artworld. In each case, Parsons and Carlson argue that Functional Beauty illuminates our aesthetic experiences and helps to address various theoretical issues raised by these different objects of appreciation. , Glenn Parsons and Allen Carlson offer an in-depth philosophical study of the relationship between function and aesthetic value, breaking with the philosophical tradition of seeing the two as separate. They begin by developing and defending, in a general way, the concept of Functional Beauty, exploring how the role of function in aesthetic appreciation has been treated by some notable thinkers in the history of aesthetics. They then consider the relationship to Functional Beauty of certain views in current aesthetic thought, especially what we call ’cognitively rich’ approaches to the aesthetic appreciation of both art and nature. Turning to work on the nature of function in the philosophy of science, they argue that this line of enquiry can help solve certain philosophical problems that have been raised for the idea that knowledge of function plays an important role in aesthetic appreciation. Although philosophical discussions of aesthetic appreciation tend to focus largely and sometimes almost exclusively on artworks, the range of aesthetic appreciation is, of course, much larger. Not simply art, but also nature, architecture, and even more mundane, everyday thingscars, tools, clothing, furniture, and sportsare objects of frequent and enthusiastic aesthetic appreciation. Accordingly, in the second half of the book, Glen Parsons and Allen Carlson consider the place and importance of Functional Beauty in the aesthetic appreciation of a broad range of different kinds of things. The final chapters explore Functional Beauty in nature and the natural environment, in architecture and the built environment, in everyday artefacts, events, and activities, and finally in art and the artworld. In each case, Parsons and Carlson argue that Functional Beauty illuminates our aesthetic experiences and helps to address various theoretical issues raised by these different objects of appreciation.",
+    "author": [
+      {
+        "family": "Parsons",
+        "given": "Glenn"
+      },
+      {
+        "family": "Carlson",
+        "given": "Allen"
+      },
+      {
+        "family": "Parsons",
+        "given": "Glenn"
+      },
+      {
+        "family": "Carlson",
+        "given": "Allen"
+      }
+    ],
+    "id": "parsons_functional_2012",
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          9
+        ]
+      ]
+    },
+    "publisher": "Oxford University Press",
+    "publisher-place": "Oxford, New York",
+    "title": "Functional Beauty",
     "type": "book"
   },
   {
@@ -13497,6 +13679,34 @@
     "type": "book"
   },
   {
+    "accessed": {
+      "date-parts": [
+        [
+          2021,
+          1,
+          28
+        ]
+      ]
+    },
+    "annote": "Version 4.4.7",
+    "author": [
+      {
+        "literal": "The Jargon File"
+      }
+    ],
+    "id": "thejargonfile_jargon_2014",
+    "issued": {
+      "date-parts": [
+        [
+          2014
+        ]
+      ]
+    },
+    "publisher": "http://www.catb.org/jargon/html/",
+    "title": "The Jargon File",
+    "type": ""
+  },
+  {
     "ISBN": "978-0-486-20327-0",
     "abstract": "Sums up 20th-century knowledge; paints, binders, metals, surface preparation. Based on mss. and scientific investigation.",
     "author": [
@@ -13585,7 +13795,7 @@
     },
     "author": [
       {
-        "family": "Tom"
+        "literal": "Tom"
       }
     ],
     "container-title": "Stack Overflow",
@@ -14404,7 +14614,7 @@
     "annote": "Page Version ID: 1074709396",
     "author": [
       {
-        "family": "Wikipedia"
+        "literal": "Wikipedia"
       }
     ],
     "container-title": "Wikipedia",
@@ -14434,7 +14644,7 @@
     },
     "author": [
       {
-        "family": "Wikipedia"
+        "literal": "Wikipedia"
       }
     ],
     "id": "wikipedia_linux_2021",
@@ -14449,6 +14659,37 @@
     "language": "en-US",
     "title": "Linux kernel",
     "type": ""
+  },
+  {
+    "abstract": "The Unified Modeling Language (UML) is a general-purpose, developmental modeling language in the field of software engineering that is intended to provide a standard way to visualize the design of a system.The creation of UML was originally motivated by the desire to standardize the disparate notational systems and approaches to software design. It was developed at Rational Software in 1994, with further development led by them through 1996.In 1997, UML was adopted as a standard by the Object Management Group (OMG), and has been managed by this organization ever since. In 2005, UML was also published by the International Organization for Standardization (ISO) as an approved ISO standard. Since then the standard has been periodically revised to cover the latest revision of UML. In software engineering, most practitioners do not use UML, but instead produce informal hand drawn diagrams; these diagrams, however, often include elements from UML.:\\mkern1mu536",
+    "accessed": {
+      "date-parts": [
+        [
+          2023,
+          3,
+          17
+        ]
+      ]
+    },
+    "annote": "Page Version ID: 1144930999",
+    "author": [
+      {
+        "literal": "Wikipedia"
+      }
+    ],
+    "container-title": "Wikipedia",
+    "id": "wikipedia_unified_2023",
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          3
+        ]
+      ]
+    },
+    "language": "en-US",
+    "title": "Unified Modeling Language",
+    "type": "article-journal"
   },
   {
     "ISBN": "978-1-59749-589-9",

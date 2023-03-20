@@ -15,7 +15,6 @@ can i try and integrate multiple panels?
 - [ ] **performance**
 - [ ] **layout**
 - [ ] **content**
-  - [ ] about
 - [ ] **interface**
   - [ ] typography settings (line-height, line-length, font-size, font-family)
   - [ ] hover bubble

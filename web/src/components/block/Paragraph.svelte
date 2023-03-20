@@ -75,7 +75,7 @@
     class="relative md:flex justify-between m-1 md:m-2 leading-6 md:leading-8 md:text-body"
 >
     <div
-        class="absolute top-0 h-full hidden md:visible md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
+        class="hidden absolute top-0 h-full md:visible md:h-auto md:relative md:flex md:flex-col justify-center lg:w-3/12 text-base overflow-y-visible pointer-events-none"
     >
         {#each footnotes as footnote}
             <FootnoteItem {footnote} />

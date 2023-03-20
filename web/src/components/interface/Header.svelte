@@ -35,7 +35,9 @@
         on:click={toggleMenu}
         on:keydown={toggleMenu}
         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-        src={`/images/interface/${isExpanded ? header_icon + "-open" : header_icon}.svg`}
+        src={`/images/interface/${
+            isExpanded ? header_icon + "-open" : header_icon
+        }.svg`}
         alt={`icon to toggle dark mode or light mode`}
     />
     <img
@@ -60,14 +62,14 @@
                         height="28"
                         class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
                         src={`/images/interface/home-dark.svg`}
-                        alt={`icon to get back to the index page`}
+                        alt={`home icon`}
                     />
                     <img
                         width="28"
                         height="28"
                         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
                         src={`/images/interface/home.svg`}
-                        alt={`icon to get back to the index page`}
+                        alt={`home icon`}
                     />
                 </a>
             </div>
@@ -79,14 +81,33 @@
                         height="28"
                         class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
                         src={`/images/interface/file-download-dark.svg`}
-                        alt={`icon to download the pdf of the thesis`}
+                        alt={`download icon`}
                     />
                     <img
                         width="28"
                         height="28"
                         class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
                         src={`/images/interface/file-download.svg`}
-                        alt={`icon to download the pdf of the thesis`}
+                        alt={`download icon`}
+                    />
+                </a>
+            </div>
+            <!-- about -->
+            <div>
+                <a href="/about">
+                    <img
+                        width="28"
+                        height="28"
+                        class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
+                        src={`/images/interface/question-dark.svg`}
+                        alt={`about icon`}
+                    />
+                    <img
+                        width="28"
+                        height="28"
+                        class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
+                        src={`/images/interface/question.svg`}
+                        alt={`about icon`}
                     />
                 </a>
             </div>
