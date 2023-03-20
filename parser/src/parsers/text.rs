@@ -43,6 +43,8 @@ impl Node {
 #[derive(Clone)]
 pub struct State {
     include: String,
+    chapter: String,
+    section: String,
     footnote_index: i32,
     paragraph_index: i32,
 }
@@ -51,16 +53,35 @@ impl State {
     pub fn new() -> State {
         return State {
             include: String::from(""),
+            chapter: String::from(""),
+            section: String::from(""),
             footnote_index: 0,
             paragraph_index: 0,
         };
     }
+
     fn set_include(&mut self, _include: String) {
         self.include = _include
     }
 
     fn get_include(&self) -> String {
         return self.include.clone();
+    }
+
+    fn set_chapter(&mut self, _chapter: String) {
+        self.chapter = _chapter
+    }
+
+    fn get_chapter(&self) -> String {
+        return self.chapter.clone();
+    }
+
+    fn set_section(&mut self, _section: String) {
+        self.section = _section
+    }
+
+    fn get_section(&self) -> String {
+        return self.section.clone();
     }
 
     fn increment_paragraph(&mut self) {
@@ -318,7 +339,8 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                             let i = state.register_footnote();
                             cmd_node.value = i.to_string();
                         } else if cmd == Command::Citation {
-                            cmd_node.index = state.get_paragraph()
+                            cmd_node.index = state.get_paragraph();
+                            cmd_node.value = String::from(format!("{}/{}", state.get_chapter(), state.get_section()));
                         }
                     } else {
                         return None;
@@ -348,6 +370,17 @@ fn parse_command(_stmt: Pair<Rule>, state: &mut State) -> Option<Node> {
                     children: None,
                     index: 0,
                 };
+
+                if cmd_node.tag.value() == Command::Label.value() {
+                    let mut label = subpair.as_str().split(":");
+                    let heading = label.next().unwrap();
+                    let literal = label.next().unwrap();
+                    if heading == "chap" {
+                        state.set_chapter(literal.to_string());
+                    } else if heading == "sec" {
+                        state.set_section(literal.to_string())
+                    }
+                }
 
                 cmd_node.add(l);
             }

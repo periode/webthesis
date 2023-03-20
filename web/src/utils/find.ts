@@ -65,6 +65,18 @@ export const getBibtexEntry = (_key: string): string => {
     return '';
 }
 
+export const getParagraphReferences = (_key: string): { index: number, location: string }[] => {
+    let pars: { index: number, location: string }[] = [];
+    const cits = findNodesByTag("citation", full_text)
+
+    for (const cit of cits)
+        for (const el of cit.children as INode[])
+            if (cit.index && el.tag == "literal" && el.value.indexOf(_key) > -1)
+                pars.push({ index: cit.index, location: cit.value })
+
+    return pars
+}
+
 export const getListings = (): Array<any> => {
     return listings;
 }

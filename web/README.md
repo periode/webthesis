@@ -8,12 +8,6 @@ can i try and integrate multiple panels?
 
 ## doing
 
-- [ ] bibliography
-  - [x] simple representation
-  - [ ] add paragraph indices to citation
-  - [x] when unfolded: link to, and download citation
-  - [x] at the top, donwload whole bib.json
-
 ## todo
 
 - [ ] **tests**

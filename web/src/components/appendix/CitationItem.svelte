@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { Container } from "postcss";
-    import { getBibtexEntry } from "../../utils/find";
+    import { slide } from "svelte/transition";
+    import { getBibtexEntry, getParagraphReferences } from "../../utils/find";
     import type { ICitation } from "../../utils/types";
 
     export let citation: ICitation;
@@ -68,126 +68,148 @@
             hasCopiedToClipboard = false;
         }, 2000);
     };
+
+    const paragraphs = getParagraphReferences(citation.id);
 </script>
 
 <div
     id={citation.id}
     class="m-auto my-4  md:py-0 text-zinc-800 dark:text-zinc-50 bg-zinc-50 dark:bg-zinc-900 md:bg-transparent pointer-events-auto flex flex-col"
 >
-    <div class="flex">
-        <div>{isExpanded ? "-" : "+"}&nbsp;</div>
-        <div>
-            <div
-                class="cursor-pointer"
-                on:click={toggleExpansion}
-                on:keydown={toggleExpansion}
-            >
-                {@html inline}
-            </div>
-            {#if isExpanded}
-                <div class="flex my-3">
-                    <div
-                        class="flex items-center mr-6 cursor-pointer"
-                        on:click={toggleCitationVisibility}
-                        on:keydown={toggleCitationVisibility}
-                    >
-                        <div>
-                            {#if isCitationHidden}
-                                <img
-                                    width="28"
-                                    height="28"
-                                    class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/interface/show-dark.svg`}
-                                    alt={`icon to show the citation`}
-                                />
-                                <img
-                                    width="28"
-                                    height="28"
-                                    class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/interface/show.svg`}
-                                    alt={`icon to show the citation`}
-                                />
-                            {:else}
-                                <img
-                                    width="28"
-                                    height="28"
-                                    class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/interface/hide-dark.svg`}
-                                    alt={`icon to hide the citation`}
-                                />
-                                <img
-                                    width="28"
-                                    height="28"
-                                    class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/interface/hide.svg`}
-                                    alt={`icon to hide the citation`}
-                                />
-                            {/if}
-                        </div>
-                        <div>{isCitationHidden ? "view" : "hide"}</div>
-                    </div>
-                    <div class="mr-6 flex items-center">
-                        <div>
-                            <img
-                                width="28"
-                                height="28"
-                                class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                src={`/images/interface/copy-dark.svg`}
-                                alt={`icon to copy information to the clipboard`}
-                            />
-                            <img
-                                width="28"
-                                height="28"
-                                class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                src={`/images/interface/copy.svg`}
-                                alt={`icon to copy information to the clipboard`}
-                            />
-                        </div>
+    <div class="flex justify-between">
+        <div class="flex w-9/12">
+            <div>{isExpanded ? "-" : "+"}&nbsp;</div>
+            <div class="w-full">
+                <div
+                    class="cursor-pointer"
+                    on:click={toggleExpansion}
+                    on:keydown={toggleExpansion}
+                >
+                    {@html inline}
+                </div>
+                {#if isExpanded}
+                    <div transition:slide class="flex my-3">
                         <div
-                            class="cursor-pointer"
-                            on:click={copyToClipboard}
-                            on:keydown={copyToClipboard}
+                            class="flex items-center mr-6 cursor-pointer"
+                            on:click={toggleCitationVisibility}
+                            on:keydown={toggleCitationVisibility}
                         >
-                            {hasCopiedToClipboard ? "copied!" : "copy"}
+                            <div>
+                                {#if isCitationHidden}
+                                    <img
+                                        width="22"
+                                        height="22"
+                                        class={`hidden dark:inline relative m-2 cursor-pointer`}
+                                        src={`/images/interface/show-dark.svg`}
+                                        alt={`icon to show the citation`}
+                                    />
+                                    <img
+                                        width="22"
+                                        height="22"
+                                        class={`inline dark:hidden relative m-2 cursor-pointer`}
+                                        src={`/images/interface/show.svg`}
+                                        alt={`icon to show the citation`}
+                                    />
+                                {:else}
+                                    <img
+                                        width="22"
+                                        height="22"
+                                        class={`hidden dark:inline relative m-2 cursor-pointer`}
+                                        src={`/images/interface/hide-dark.svg`}
+                                        alt={`icon to hide the citation`}
+                                    />
+                                    <img
+                                        width="22"
+                                        height="22"
+                                        class={`inline dark:hidden relative m-2 cursor-pointer`}
+                                        src={`/images/interface/hide.svg`}
+                                        alt={`icon to hide the citation`}
+                                    />
+                                {/if}
+                            </div>
+                            <div>{isCitationHidden ? "view" : "hide"}</div>
                         </div>
-                    </div>
-
-                    {#if url !== ""}
                         <div class="mr-6 flex items-center">
                             <div>
                                 <img
-                                    width="28"
-                                    height="28"
-                                    class={`hidden dark:inline relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/interface/link-dark.svg`}
-                                    alt={`icon to open an external link`}
+                                    width="22"
+                                    height="22"
+                                    class={`hidden dark:inline relative m-2 cursor-pointer`}
+                                    src={`/images/interface/copy-dark.svg`}
+                                    alt={`icon to copy information to the clipboard`}
                                 />
                                 <img
-                                    width="28"
-                                    height="28"
-                                    class={`inline dark:hidden relative m-1 p-1 cursor-pointer`}
-                                    src={`/images/interface/link.svg`}
-                                    alt={`icon to open an external link`}
+                                    width="22"
+                                    height="22"
+                                    class={`inline dark:hidden relative m-2 cursor-pointer`}
+                                    src={`/images/interface/copy.svg`}
+                                    alt={`icon to copy information to the clipboard`}
                                 />
                             </div>
-                            <div>
-                                <a href={url} target="_blank" class="underline"
-                                    >open</a
-                                >
+                            <div
+                                class="cursor-pointer"
+                                on:click={copyToClipboard}
+                                on:keydown={copyToClipboard}
+                            >
+                                {hasCopiedToClipboard ? "copied!" : "copy"}
+                            </div>
+                        </div>
+
+                        {#if url !== ""}
+                            <div class="mr-6 flex items-center">
+                                <div>
+                                    <img
+                                        width="22"
+                                        height="22"
+                                        class={`hidden dark:inline relative m-2 cursor-pointer`}
+                                        src={`/images/interface/link-dark.svg`}
+                                        alt={`icon to open an external link`}
+                                    />
+                                    <img
+                                        width="22"
+                                        height="22"
+                                        class={`inline dark:hidden relative m-2 cursor-pointer`}
+                                        src={`/images/interface/link.svg`}
+                                        alt={`icon to open an external link`}
+                                    />
+                                </div>
+                                <div>
+                                    <a
+                                        href={url}
+                                        target="_blank"
+                                        class="underline">open</a
+                                    >
+                                </div>
+                            </div>
+                        {/if}
+                    </div>
+                    {#if !isCitationHidden}
+                        <div transition:slide class="text-sm leading-0">
+                            <div
+                                class="whitespace-pre-wrap white bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 p-2"
+                            >
+                                <code>
+                                    {bibtex}
+                                </code>
                             </div>
                         </div>
                     {/if}
-                </div>
-                {#if !isCitationHidden}
-                    <span class="text-sm leading-0">
-                        <pre class="whitespace-pre-line bg-zinc-100 dark:bg-zinc-800 dark:text-zinc-300 p-2">
-                    <code>
-                        {bibtex}
-                    </code>
-                </pre>
-                    </span>
                 {/if}
-            {/if}
+            </div>
+        </div>
+
+        <div class="text-right">
+            {#each paragraphs as par}
+                <a href={`/${par.location}#par-${par.index}`} class="par"
+                    >¶<span class="hover:underline">{par.index}</span></a
+                >
+            {/each}
         </div>
     </div>
 </div>
+
+<style>
+    .par ~ .par::before {
+        content: ", ";
+    }
+</style>
